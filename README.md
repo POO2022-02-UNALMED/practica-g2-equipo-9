@@ -3,7 +3,7 @@ Proyecto de estudiantes de la Unal en la asignatura programacion orientada a obj
 
 
 ## Integrantes del Equipo
-* Russbell Norena Mejia - rnorena@unal.edu.co
+* Russbell Noreña Mejia - rnorena@unal.edu.co
 * Sergio Andres Arias Jimenez - sarias@unal.edu.co
 * Linder Yolian Rodriguez Cortez - lirodriguezco@unal.edu.co
 * Kevin Jair Quiñones Sierra - kquinones@unal.edu.co
