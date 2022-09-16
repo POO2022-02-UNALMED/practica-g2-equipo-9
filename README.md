@@ -8,3 +8,8 @@ Proyecto de estudiantes de la Unal en la asignatura programacion orientada a obj
 * Linder Yolian Rodriguez Cortez - lirodriguezco@unal.edu.co
 * Kevin Jair Quiñones Sierra - kquinones@unal.edu.co
 * Janedt Valentina Carmona Ardila - jacarmonaa@unal.edu.co 
+
+
+
+## Link Memoria escrita:
+[Memoria escrita](https://docs.google.com/document/d/1pNBMtg4XIoYGMeoWH8SyqczRXrBrMyxMNjYD_unqU7c/edit)
