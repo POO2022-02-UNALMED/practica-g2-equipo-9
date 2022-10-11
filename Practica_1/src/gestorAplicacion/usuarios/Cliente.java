@@ -1,6 +1,6 @@
 package gestorAplicacion.usuarios;
 
-public class Cliente {
+public class Cliente extends Usuario{
  
     private int numeroReserva;
     
@@ -10,5 +10,11 @@ public class Cliente {
     }
     public String solicitarReserva(){
         return "algo";
+    }
+
+
+    @Override
+    public void ingresarAlPos() {
+
     }
 }

@@ -10,7 +10,7 @@ public class Gerente extends Empleado{
 
     
     @Override
-    public boolean ingresarAlPos() {
-        return false;
+    public void ingresarAlPos() {
+
     }
 }

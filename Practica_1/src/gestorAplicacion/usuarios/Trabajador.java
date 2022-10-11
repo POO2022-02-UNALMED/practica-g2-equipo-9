@@ -17,8 +17,8 @@ public class Trabajador extends Empleado {
     
     //metodos
     @Override
-    public boolean ingresarAlPos() {
-        return false;
+    public void ingresarAlPos() {
+
     }
     public static Producto ingresarArticulo(String opcion){//yo creo que esto es mas como ingresar pedido
         
