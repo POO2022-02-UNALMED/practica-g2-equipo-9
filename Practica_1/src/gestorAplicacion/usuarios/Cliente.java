@@ -19,9 +19,9 @@ public class Cliente extends Usuario{
 
     }
 
-    public static void main(
-
-            String[] args) {System.out.println("hola");//hola soy sergio
+    public static void main(String[] args) {
+        
+        System.out.println("hola");//hola soy sergio
 
     }
 }

@@ -12,5 +12,8 @@ public class Gerente extends Empleado{
     @Override
     public void ingresarAlPos() {
 
+        if(Empleado.estadoIngreso == true){
+            
+        }
     }
 }
