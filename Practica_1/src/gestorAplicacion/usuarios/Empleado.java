@@ -7,7 +7,7 @@ public abstract class Empleado extends Usuario{
     private boolean estadoIngreso;
     
     
-    public abstract boolean ingresarAlPos();
+
 
 
 }
