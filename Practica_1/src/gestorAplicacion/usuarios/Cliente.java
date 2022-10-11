@@ -17,4 +17,8 @@ public class Cliente extends Usuario{
     public void ingresarAlPos() {
 
     }
+
+    public static void main(String[] args) {
+        System.out.println("hola");
+    }
 }
