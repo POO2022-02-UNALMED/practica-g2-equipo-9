@@ -1,5 +1,4 @@
-package gestorAplicacion;
-import java.util.Date;
+package gestorAplicacion.padres;
 
 public abstract class Usuario {
     private long id;

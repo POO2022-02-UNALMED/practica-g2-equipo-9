@@ -1,6 +1,10 @@
 
-package gestorAplicacion;
+package gestorAplicacion.hijos;
 
+import gestorAplicacion.hijos.Producto;
+import gestorAplicacion.hijos.Pedido;
+import gestorAplicacion.hijos.Informe;
+import gestorAplicacion.padres.Empleado;
 import java.util.ArrayList;
 
 public class Trabajador extends Empleado {

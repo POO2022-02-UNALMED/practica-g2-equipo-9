@@ -1,5 +1,8 @@
 
-package gestorAplicacion;
+package gestorAplicacion.hijos;
+
+import gestorAplicacion.hijos.Informe;
+
 public class Producto {
     private int fechaVencimiento;
     private String nombre;

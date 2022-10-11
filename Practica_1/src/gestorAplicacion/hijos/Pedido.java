@@ -1,6 +1,7 @@
 
-package gestorAplicacion;
+package gestorAplicacion.hijos;
 
+import gestorAplicacion.hijos.Informe;
 import java.util.ArrayList;
 
 public class Pedido {
@@ -19,8 +20,11 @@ public class Pedido {
     
     
     //metodos 
-    public String generarFactura(){
-        return("algo");
+    
+    public String generarFactura(ArrayList<Producto> productos){
+        
+        Informe.getVentas().add(this);
+        return "algo";
     }
     
     //getters y setters
