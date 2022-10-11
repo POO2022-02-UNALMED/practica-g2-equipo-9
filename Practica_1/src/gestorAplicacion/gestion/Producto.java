@@ -1,7 +1,5 @@
 
-package gestorAplicacion.hijos;
-
-import gestorAplicacion.hijos.Informe;
+package gestorAplicacion.gestion;
 
 public class Producto {
     private int fechaVencimiento;

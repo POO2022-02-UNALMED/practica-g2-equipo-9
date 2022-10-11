@@ -1,6 +1,4 @@
-package gestorAplicacion.padres;
-
-import gestorAplicacion.padres.Usuario;
+package gestorAplicacion.usuarios;
 
 public abstract class Empleado extends Usuario{
     private String nombre;

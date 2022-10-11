@@ -1,8 +1,7 @@
 
-package gestorAplicacion.hijos;
+package gestorAplicacion.gestion;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Informe{
     

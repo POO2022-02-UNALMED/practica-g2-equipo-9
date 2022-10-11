@@ -1,9 +1,9 @@
 
 package uiMain;
 
-import gestorAplicacion.hijos.Informe;
-import gestorAplicacion.hijos.Producto;
-import gestorAplicacion.hijos.Trabajador;
+import gestorAplicacion.gestion.Informe;
+import gestorAplicacion.gestion.Producto;
+import gestorAplicacion.usuarios.Trabajador;
 
 public class interfazGenerica {
     public static void main(String[] args) { //esto es solo un ejemplo

@@ -1,7 +1,6 @@
 
-package gestorAplicacion.hijos;
+package gestorAplicacion.gestion;
 
-import gestorAplicacion.hijos.Informe;
 import java.util.ArrayList;
 
 public class Pedido {

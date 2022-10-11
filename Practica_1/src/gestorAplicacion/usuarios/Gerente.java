@@ -1,6 +1,4 @@
-package gestorAplicacion.hijos;
-
-import gestorAplicacion.padres.Empleado;
+package gestorAplicacion.usuarios;
 
 public class Gerente extends Empleado{
 

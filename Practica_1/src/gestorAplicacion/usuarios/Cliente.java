@@ -1,4 +1,4 @@
-package gestorAplicacion.hijos;
+package gestorAplicacion.usuarios;
 
 public class Cliente {
  
