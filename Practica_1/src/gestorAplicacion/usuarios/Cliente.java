@@ -3,6 +3,7 @@ package gestorAplicacion.usuarios;
 public class Cliente extends Usuario{
  
     private int numeroReserva;
+    private String estadoReserva;
     
     //metodos
     public String solicitarReembolso(int id){
