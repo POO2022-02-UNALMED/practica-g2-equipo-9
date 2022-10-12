@@ -13,6 +13,7 @@ public class Pedido {
     private static long numeroPedido=0;
     //constructor
     Pedido(){
+        1
         this.codigo=generarCodigo();
     }
     public long generarCodigo(){
