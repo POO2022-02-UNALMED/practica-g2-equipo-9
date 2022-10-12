@@ -7,21 +7,20 @@ import java.util.Iterator;
 public class Pedido {
     private String estadoPedido;
     private ArrayList<Producto> productos = new ArrayList<Producto>();//arraylist de productos pedidos por el cliente
-    private int fecha;
+    private String fecha;
     private long codigo; //cuando se cree, se cree con el mismo ID del cliente
 
     private static long numeroPedido=0;
     //constructor
     Pedido(){
+        this.estadoPedido="No cobrado"; //estado pedido por defecto es no cobrado
         this.codigo=generarCodigo();
+        this.fecha=fecha;
     }
     public long generarCodigo(){
         return numeroPedido++;
     }
 
-
-    
-    
     //metodos
     public void cobrar(){
         this.estadoPedido="cobrado"
@@ -31,6 +30,9 @@ public class Pedido {
     }
     public void ingresarProducto(Producto producto){
         productos.add(producto);
+    }
+    public void modificarPedido(String opcion){
+        opcion=
     }
     public String listaProductos(){
         Iterator<Producto> iterator =productos.iterator();
@@ -65,7 +67,7 @@ public class Pedido {
         this.productos = productos;
     }
 
-    public int getFecha() {
+    public String getFecha() {
         return fecha;
     }
 
