@@ -107,6 +107,6 @@ public class interfazGenerica {
         }
     }
     public static void registrarse(){
-        
+
     }
 }
