@@ -1,14 +1,9 @@
 
 package uiMain;
 
-import gestorAplicacion.gestion.Informe;
-import gestorAplicacion.gestion.Producto;
-import gestorAplicacion.usuarios.Cliente;
-import gestorAplicacion.usuarios.Trabajador;
-
 public class interfazGenerica {
 
-    public static Scanner input = new Scanner(System.in);
+    /*public static Scanner input = new Scanner(System.in);
     public static ArrayList<Usuario> usuarios = new ArrayList<>();
     public static ArrayList<saludoIngreso> saludo = new ArrayList<>();
 
@@ -100,7 +95,7 @@ public class interfazGenerica {
             }
         }*/
         
-    }
+    /*}
     public static void ingresar() {
         System.out.println("-                   Iniciar sesión                   -");
         System.out.println("-   Ingrese su numero de documento/correo electronico:");
@@ -115,5 +110,5 @@ public class interfazGenerica {
     }
     public static void registrarse(){
 
-    }
+    }*/
 }

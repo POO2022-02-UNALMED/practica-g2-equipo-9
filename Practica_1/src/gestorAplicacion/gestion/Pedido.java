@@ -2,27 +2,48 @@
 package gestorAplicacion.gestion;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class Pedido {
     private String estadoPedido;
     private ArrayList<Producto> productos = new ArrayList<Producto>();//arraylist de productos pedidos por el cliente
     private int fecha;
-    private int id; //cuando se cree, se cree con el mismo ID del cliente    
-    //constructor
+    private long codigo; //cuando se cree, se cree con el mismo ID del cliente
 
-    public Pedido(int fecha, int id) {
-        this.estadoPedido="no pagado";
-        this.fecha = fecha;
-        this.id = id;
+    private static long numeroPedido=0;
+    //constructor
+    Pedido(){
+        this.codigo=generarCodigo();
+    }
+    public long generarCodigo(){
+        return numeroPedido++;
     }
 
+
     
     
-    //metodos 
-    
+    //metodos
+    public void cobrar(){
+        this.estadoPedido="cobrado"
+    }
+    public void reembolsar(){
+        this.estadoPedido="reembolsar"
+    }
+    public void ingresarProducto(Producto producto){
+        productos.add(producto);
+    }
+    public String listaProductos(){
+        Iterator<Producto> iterator =productos.iterator();
+        StringBuffer lista= new StringBuffer("Productos pedidos:\n");
+        while(iterator.hasNext()){
+            Producto producto= (Producto) iterator.next();
+            lista.append(producto.descripcion()+"\n");
+        }
+        return lista.toString();
+        }
     public String generarFactura(ArrayList<Producto> productos){
         
-        Informe.getVentas().add(this);
+        Administracion.getVentas().add(this);
         return "algo";
     }
     
@@ -52,12 +73,14 @@ public class Pedido {
         this.fecha = fecha;
     }
 
-    public int getId() {
-        return id;
+    public int getCodigo() {
+        return codigo;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setCodigo(int id) {
+        this.codigo = codigo;
     }
-    
+
+
+
 }

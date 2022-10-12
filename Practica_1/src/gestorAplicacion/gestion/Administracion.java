@@ -3,7 +3,7 @@ package gestorAplicacion.gestion;
 
 import java.util.ArrayList;
 
-public class Informe{
+public class Administracion {
     
     private int fecha;
     private static ArrayList<Pedido> ventas = new ArrayList<Pedido>();//arraylist de los pedidos creados
@@ -11,15 +11,7 @@ public class Informe{
     
     //metodos 
     public static void generarPedidoProveedor(int opcion){
-        switch(opcion){
-            case 1 -> {
-                new Producto(4, "cola", 4, 8, 1, 1);
-            }
-                
-            case 2 -> {
-                new Producto(4, "pepsi", 4, 8, 1, 1);
-            }
-    }
+
     }
     
     public String estadisticasVentas(){
@@ -41,7 +33,7 @@ public class Informe{
     }
 
     public static void setVentas(ArrayList<Pedido> ventas) {
-        Informe.ventas = ventas;
+        Administracion.ventas = ventas;
     }
 
     public static ArrayList<Producto> getInventario() {
@@ -49,7 +41,7 @@ public class Informe{
     }
 
     public static void setInventario(ArrayList<Producto> inventario) {
-        Informe.inventario = inventario;
+        Administracion.inventario = inventario;
     }
     
     

@@ -2,26 +2,21 @@
 package gestorAplicacion.gestion;
 
 public class Producto {
-    private int fechaVencimiento;
     private String nombre;
     private int precioCompra;
     private int precioVenta;
     private long codigo;
+    private int fechaVencimiento;
     private int fechaIngreso;
     private int fechaVenta;
     
     //constructor
-    
-    public Producto(int fechaVencimiento, String nombre, int precioCompra, int precioVenta, long codigo, int fechaIngreso) {
-        this.fechaVencimiento = fechaVencimiento;
-        this.nombre = nombre;
-        this.precioCompra = precioCompra;
-        this.precioVenta = precioVenta;
-        this.codigo = codigo;
-        this.fechaIngreso = fechaIngreso;
-        
-        Informe.getInventario().add(this);
-        
+    public Producto (String nombre){
+        this.nombre=nombre;
+    }
+
+    public String descripcion(){
+        return "nombre: "+nombre;
     }
     
          //getters y setters
