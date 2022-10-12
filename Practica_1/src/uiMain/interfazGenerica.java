@@ -3,10 +3,17 @@ package uiMain;
 
 import gestorAplicacion.gestion.Informe;
 import gestorAplicacion.gestion.Producto;
+import gestorAplicacion.usuarios.Cliente;
 import gestorAplicacion.usuarios.Trabajador;
 
 public class interfazGenerica {
     public static void main(String[] args) { //esto es solo un ejemplo
+        System.out.println("Hola");
+
+
+
+
+        /*
         Producto p1=new Producto(4, "cola", 4, 8, 1, 1);
         Producto p2=new Producto(4, "cola", 4, 8, 2, 1);
         Producto p3=new Producto(4, "pepsi", 4, 8, 1, 1);

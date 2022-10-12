@@ -1,12 +1,12 @@
 package gestorAplicacion.usuarios;
 
 public abstract class Usuario {
-    private long id;
-    private String nombre;
-    private ArrayList <usuarios> usuarios = new ArrayList<>();
+    protected long codigo;
+    protected String nombre;
 
-    public abstract void ingresarAlPos();
-
-
-    
+    Usuario(long codigo, String nombre) {
+        this.codigo = codigo;
+        this.nombre = nombre;
+    }
 }
+
