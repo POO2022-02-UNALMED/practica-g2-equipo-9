@@ -13,6 +13,9 @@ public class Producto {
     //constructor
     public Producto (String nombre){
         this.nombre=nombre;
+
+        Administracion.getInventario().add(this);
+
     }
 
     public String descripcion(){

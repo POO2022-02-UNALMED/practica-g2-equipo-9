@@ -21,6 +21,7 @@ public class Pedido {
         this.estadoPedido="No cobrado"; //estado pedido por defecto es no cobrado
         this.codigo=generarCodigo();
         this.fecha=fecha;
+        Administracion.getVentas().add(this);
     }
     public long generarCodigo(){
         return numeroPedido++;

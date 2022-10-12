@@ -1,15 +1,32 @@
 
 package gestorAplicacion.gestion;
 
-import java.util.ArrayList;
+import gestorAplicacion.usuarios.Cliente;
 
-public class Administracion {
+import java.util.ArrayList;
+import java.util.Iterator;
+
+public class Administracion{
     
     private int fecha;
     private static ArrayList<Pedido> ventas = new ArrayList<Pedido>();//arraylist de los pedidos creados
     private static ArrayList<Producto> inventario = new ArrayList<Producto>();//arraylist de los objetos creados
-    
-    //metodos 
+
+    private static ArrayList<Cliente> clientes = new ArrayList<>();
+    //metodos
+
+    public Producto buscarProducto(String nombre){  // Nombre del producto
+        Iterator<Producto> iterator = inventario.iterator();
+        while(iterator.hasNext()){
+            Producto producto = (Producto) iterator.next();
+            if (producto.getNombre()==nombre){
+                return producto;
+            }
+            }
+        return null;
+        }
+
+
     public static void generarPedidoProveedor(int opcion){
 
     }

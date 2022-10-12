@@ -33,9 +33,30 @@ public class interfazGenerica {
 
     }
     static void ingresarPedido(Administracion admin){
+
         System.out.println("Ingresa un producto: ");
-        String producto=leerString();
-        Producto producto=admin.
+        String nombre=leerString(); // Nombre de producto
+        Producto producto=admin.buscarProducto(nombre);
+        if(producto != null){
+            System.out.println("1. Ingresar producto a cliente nuevo");
+            System.out.println("2. Ingresar producto a cliente existente");
+            System.out.println("3. Regresar");
+            long opcion=leerNumero();
+            while(opcion!=1 & opcion!=2 & opcion!=3){
+                System.out.println("Ingrese una opcion valida");
+                opcion=leerNumero();
+            }
+            if (opcion==1){
+
+            }
+            else if(opcion==2){
+
+            }
+            else{
+                return;
+            }
+
+        }
     }
 
 
