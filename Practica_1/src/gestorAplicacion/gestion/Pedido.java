@@ -1,10 +1,15 @@
 
 package gestorAplicacion.gestion;
 
+import gestorAplicacion.usuarios.Cliente;
+
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Scanner;
+
 
 public class Pedido {
+    Scanner input = new Scanner(System.in);
     private String estadoPedido;
     private ArrayList<Producto> productos = new ArrayList<Producto>();//arraylist de productos pedidos por el cliente
     private String fecha;
@@ -22,22 +27,31 @@ public class Pedido {
     }
 
     //metodos
-    public void cobrar(){
-        this.estadoPedido="cobrado"
+    public void cobrarProducto(){
+        this.estadoPedido="cobrado";
     }
-    public void reembolsar(){
-        this.estadoPedido="reembolsar"
+    public void reembolsarProducto(){
+        this.estadoPedido="reembolsado";
+    }
+    public void eliminarProducto(String nombre){
+        for(Producto i: productos){
+            if (productos!=null) {
+                if (i.getNombre() == nombre) {
+                    productos.remove(i);
+                    break;
+                }
+            }
+        }
+
     }
     public void ingresarProducto(Producto producto){
         productos.add(producto);
-    }
-    public void modificarPedido(String opcion){
-        opcion=
     }
     public String listaProductos(){
         Iterator<Producto> iterator =productos.iterator();
         StringBuffer lista= new StringBuffer("Productos pedidos:\n");
         while(iterator.hasNext()){
+            long i=0;
             Producto producto= (Producto) iterator.next();
             lista.append(producto.descripcion()+"\n");
         }
@@ -71,16 +85,37 @@ public class Pedido {
         return fecha;
     }
 
-    public void setFecha(int fecha) {
+    public void setFecha(String fecha) {
         this.fecha = fecha;
     }
 
-    public int getCodigo() {
+    public long getCodigo() {
         return codigo;
     }
 
     public void setCodigo(int id) {
         this.codigo = codigo;
+    }
+
+    public static void main(String[] args) {
+        Producto producto1=new Producto("coca cola");
+        Producto producto2=new Producto("Pepsi");
+        Pedido pedido1 =new Pedido();
+        Pedido pedido2 =new Pedido();
+        pedido1.ingresarProducto(producto2);
+        pedido1.ingresarProducto(producto2);
+        pedido1.ingresarProducto(producto1);
+        pedido2.ingresarProducto(producto2);
+        pedido2.ingresarProducto(producto1);
+
+        System.out.println(pedido1.listaProductos());
+        System.out.println("\n");
+
+        pedido1.eliminarProducto("Pepsi");
+        pedido1.eliminarProducto("coca cola");
+        pedido1.eliminarProducto("Pepsi");
+        pedido1.eliminarProducto("Pepsi");
+        System.out.println(pedido1.listaProductos());
     }
 
 

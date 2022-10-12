@@ -52,24 +52,4 @@ public class Cliente extends Usuario{
         return "algo";
     }
 
-    public static void main(String[] args) {
-        Producto producto1=new Producto("coca cola");
-        Producto producto2=new Producto("Pepsi");
-
-        Cliente  cliente1=new Cliente("Sergio");
-        Pedido pedido1 =new Pedido();
-        Pedido pedido2 =new Pedido();
-        pedido1.ingresarProducto(producto2);
-        pedido1.ingresarProducto(producto2);
-        pedido1.ingresarProducto(producto1);
-        pedido2.ingresarProducto(producto2);
-        pedido2.ingresarProducto(producto1);
-        cliente1.ingresarPedido(pedido1);
-        cliente1.ingresarPedido(pedido2);
-
-
-
-        System.out.println(cliente1.listaPedido());
-    }
-
 }

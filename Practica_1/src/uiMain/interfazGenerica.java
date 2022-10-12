@@ -1,7 +1,43 @@
 
 package uiMain;
 
+import java.util.Scanner;
+import gestorAplicacion.*;
+import gestorAplicacion.gestion.*;
+import gestorAplicacion.usuarios.*;
+
 public class interfazGenerica {
+    static Scanner entrada= new Scanner(System.in);
+    static long leerNumero(){ //leer numero
+        return entrada.nextLong();
+    }
+
+    static String leerString(){ //leer numero
+        entrada.nextLine();
+        return entrada.nextLine();
+    }
+
+    public static void main(String[] args) {
+        Administracion admin=new Administracion();
+        int opcion;
+        do {
+            System.out.println("Que operacion desea realizar?");
+            System.out.println("1. Ingresar pedido");
+            opcion =(int) leerNumero();
+
+            switch(opcion){
+                case 1:ingresarPedido(admin); break;
+                case 2:break;
+            }
+        }while(opcion !=2);
+
+    }
+    static void ingresarPedido(Administracion admin){
+        System.out.println("Ingresa un producto: ");
+        String producto=leerString();
+        Producto producto=admin.
+    }
+
 
     /*public static Scanner input = new Scanner(System.in);
     public static ArrayList<Usuario> usuarios = new ArrayList<>();
