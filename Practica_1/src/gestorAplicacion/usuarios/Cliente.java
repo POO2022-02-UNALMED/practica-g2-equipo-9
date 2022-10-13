@@ -1,5 +1,6 @@
 package gestorAplicacion.usuarios;
 
+import gestorAplicacion.gestion.Administracion;
 import gestorAplicacion.gestion.Pedido;
 import gestorAplicacion.gestion.Producto;
 
@@ -15,11 +16,11 @@ public class Cliente extends Usuario{
 
     //constructor
 
-    Cliente(String nombre) {
+    public Cliente(String nombre) {
         super(generarCodigo(),nombre);
         this.numeroReserva = numeroReserva;
         this.estadoReserva = estadoReserva;
-
+        Administracion.getClientes().add(this);
     }
     //metodos
     public String Descripcion(){

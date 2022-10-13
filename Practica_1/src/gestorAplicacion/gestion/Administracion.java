@@ -71,6 +71,12 @@ public class Administracion{
     public static void setInventario(ArrayList<Producto> inventario) {
         Administracion.inventario = inventario;
     }
-    
-    
+
+    public static ArrayList<Cliente> getClientes() {
+        return clientes;
+    }
+
+    public static void setClientes(ArrayList<Cliente> clientes) {
+        Administracion.clientes = clientes;
+    }
 }
