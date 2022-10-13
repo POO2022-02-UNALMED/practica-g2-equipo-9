@@ -1,9 +1,14 @@
 package uiMain;
+import gestorAplicacion.gestion.Administracion;
+import gestorAplicacion.gestion.Pedido;
+
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Funcionalidades {
     static Scanner sc = new Scanner(System.in);
     public static void generarInformeVentas(){
+        ArrayList<Pedido> pedidosFechas = new ArrayList<>();
         System.out.println("A continuacion ingrese ingrese las opciones de acuerdo a los datos requeridos en su informe:\n");
         System.out.println("Ingrese la fecha inicial de su informe");
         int inicial = sc.nextInt();
@@ -18,7 +23,11 @@ public class Funcionalidades {
             fin = sc.nextInt();
         }
 
+        for (int i = inicial; i < fin; i++) {
+            if (Administracion.getVentas().get(i).getFecha() >= inicial & Administracion.getVentas().get(i).getFecha() <= fin )
+            pedidosFechas.add(Administracion.getVentas().get(i));
 
+        }
 
 
 

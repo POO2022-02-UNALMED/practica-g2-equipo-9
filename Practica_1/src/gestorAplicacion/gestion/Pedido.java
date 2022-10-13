@@ -1,8 +1,6 @@
 
 package gestorAplicacion.gestion;
 
-import gestorAplicacion.usuarios.Cliente;
-
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Scanner;
@@ -10,9 +8,11 @@ import java.util.Scanner;
 
 public class Pedido {
     Scanner input = new Scanner(System.in);
+
+
     private String estadoPedido;
     private ArrayList<Producto> productos = new ArrayList<>();//arraylist de productos pedidos por el cliente
-    private String fecha;
+    private int fecha;
     private long codigo; //cuando se cree, se cree con el mismo ID del cliente
 
     private static long numeroPedido=0;
@@ -22,6 +22,7 @@ public class Pedido {
         this.codigo=generarCodigo();
         this.fecha=fecha;
         Administracion.getVentas().add(this);
+
     }
     //metodos
     public String mostrarProductos(){
@@ -95,11 +96,11 @@ public class Pedido {
         this.productos = productos;
     }
 
-    public String getFecha() {
+    public int getFecha() {
         return fecha;
     }
 
-    public void setFecha(String fecha) {
+    public void setFecha(int fecha) {
         this.fecha = fecha;
     }
 
