@@ -8,4 +8,6 @@ public abstract class Empleado extends Usuario{
     Empleado(long codigo, String nombre) {
         super(codigo, nombre);
     }
+
+
 }
