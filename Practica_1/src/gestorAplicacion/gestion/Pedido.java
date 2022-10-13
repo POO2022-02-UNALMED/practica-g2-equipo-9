@@ -111,6 +111,11 @@ public class Pedido {
         this.codigo = codigo;
     }
 
+    public static long getNumeroPedido() {
+        return numeroPedido;
+    }
 
-
+    public static void setNumeroPedido(long numeroPedido) {
+        Pedido.numeroPedido = numeroPedido;
+    }
 }

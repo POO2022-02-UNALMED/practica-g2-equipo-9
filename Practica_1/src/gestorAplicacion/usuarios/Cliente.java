@@ -55,4 +55,35 @@ public class Cliente extends Usuario{
         return "algo";
     }
 
+    public int getNumeroReserva() {
+        return numeroReserva;
+    }
+
+    public void setNumeroReserva(int numeroReserva) {
+        this.numeroReserva = numeroReserva;
+    }
+
+    public String getEstadoReserva() {
+        return estadoReserva;
+    }
+
+    public void setEstadoReserva(String estadoReserva) {
+        this.estadoReserva = estadoReserva;
+    }
+
+    public static long getNumeroCliente() {
+        return numeroCliente;
+    }
+
+    public static void setNumeroCliente(long numeroCliente) {
+        Cliente.numeroCliente = numeroCliente;
+    }
+
+    public ArrayList<Pedido> getPedidosCliente() {
+        return pedidosCliente;
+    }
+
+    public void setPedidosCliente(ArrayList<Pedido> pedidosCliente) {
+        this.pedidosCliente = pedidosCliente;
+    }
 }

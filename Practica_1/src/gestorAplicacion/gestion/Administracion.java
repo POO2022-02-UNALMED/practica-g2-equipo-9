@@ -114,4 +114,20 @@ public class Administracion{
     public static void setClientes(ArrayList<Cliente> clientes) {
         Administracion.clientes = clientes;
     }
+
+    public static ArrayList<Trabajador> getTrabajadores() {
+        return trabajadores;
+    }
+
+    public static void setTrabajadores(ArrayList<Trabajador> trabajadores) {
+        Administracion.trabajadores = trabajadores;
+    }
+
+    public static ArrayList<Producto> getProductosPedidos() {
+        return productosPedidos;
+    }
+
+    public static void setProductosPedidos(ArrayList<Producto> productosPedidos) {
+        Administracion.productosPedidos = productosPedidos;
+    }
 }
