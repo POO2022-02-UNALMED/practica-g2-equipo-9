@@ -25,9 +25,11 @@ public class Funcionalidades {
 
         for (int i = inicial; i < fin; i++) {
             if (Administracion.getVentas().get(i).getFecha() >= inicial & Administracion.getVentas().get(i).getFecha() <= fin )
-            pedidosFechas.add(Administracion.getVentas().get(i));
+                pedidosFechas.add(Administracion.getVentas().get(i));
 
         }
+        System.out.println("Seleccione todos los campos requeridos en el informe");
+
 
 
 
