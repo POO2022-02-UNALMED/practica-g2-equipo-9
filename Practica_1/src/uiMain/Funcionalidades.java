@@ -18,7 +18,5 @@ public class Funcionalidades {
             fin = sc.nextInt();
         }
 
-
-
     }
 }
