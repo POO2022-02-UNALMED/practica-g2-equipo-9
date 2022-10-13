@@ -2,6 +2,7 @@
 package gestorAplicacion.gestion;
 
 import gestorAplicacion.usuarios.Cliente;
+import gestorAplicacion.usuarios.Trabajador;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -9,12 +10,15 @@ import java.util.Iterator;
 public class Administracion{
     
     private int fecha;
+    private static ArrayList<Trabajador> trabajadores = new ArrayList<>();//arraylist de trabajadores
     private static ArrayList<Pedido> ventas = new ArrayList<Pedido>();//arraylist de los pedidos creados
     private static ArrayList<Producto> inventario = new ArrayList<>();//arraylist de los objetos creados
 
     private static ArrayList<Producto> productosPedidos = new ArrayList<>();
     private static ArrayList<Cliente> clientes = new ArrayList<>();//arraylist de los clientes en el sistema
     //metodos
+
+
     public Cliente crearCliente(String nombre){
         return new Cliente(nombre);
     }

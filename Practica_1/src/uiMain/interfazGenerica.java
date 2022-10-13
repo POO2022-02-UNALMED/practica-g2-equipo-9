@@ -35,14 +35,19 @@ public class interfazGenerica {
         do {
             System.out.println("Que operacion desea realizar?");
             System.out.println("1. Ingresar pedido");
-            System.out.println("2. Salir del sistema");
+            System.out.println("2. Mostrar pedidos");
+            System.out.println("3. Salir del sistema");
             opcion = (int) leerNumero();
 
             switch(opcion){
                 case 1:ingresarPedido(admin); break;
-                case 2:break;
+                case 2:mostrarPedido(admin); break;
+                case 3:break;
             }
-        }while(opcion !=2);
+        }while(opcion !=3);
+
+    }
+    static void mostrarPedido(Administracion admin){
 
     }
     static void seleccionar(Administracion admin){
@@ -97,6 +102,9 @@ public class interfazGenerica {
                 System.out.println("Ingrese una opcion valida");
             }
         }
+    }
+    static void seleccionarTrabajador(){
+
     }
     static void ingresarPedido(Administracion admin){
 
