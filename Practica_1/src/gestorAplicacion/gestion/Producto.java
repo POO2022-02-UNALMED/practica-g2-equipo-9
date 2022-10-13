@@ -11,12 +11,12 @@ public class Producto {
     private int fechaVenta;
     
     //constructor
-    public Producto (String nombre){
+    public Producto (String nombre, int precioVenta){
         this.nombre=nombre;
-
+        this.precioVenta=precioVenta;
         Administracion.getInventario().add(this);
-
     }
+
 
     public String descripcion(){
         return "nombre: "+nombre;

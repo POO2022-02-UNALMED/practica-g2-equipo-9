@@ -10,28 +10,59 @@ public class Administracion{
     
     private int fecha;
     private static ArrayList<Pedido> ventas = new ArrayList<Pedido>();//arraylist de los pedidos creados
-    private static ArrayList<Producto> inventario = new ArrayList<Producto>();//arraylist de los objetos creados
+    private static ArrayList<Producto> inventario = new ArrayList<>();//arraylist de los objetos creados
 
+    private static ArrayList<Producto> productosPedidos = new ArrayList<>();
     private static ArrayList<Cliente> clientes = new ArrayList<>();//arraylist de los clientes en el sistema
     //metodos
-
-    public Producto buscarProducto(String nombre){  // Nombre del producto
-        Iterator<Producto> iterator = inventario.iterator();
-        while(iterator.hasNext()){
-            Producto producto = (Producto) iterator.next();
-            if (producto.getNombre()==nombre){
-                return producto;
-            }
-            }
-        return null;
+    public Cliente crearCliente(String nombre){
+        return new Cliente(nombre);
+    }
+    public Pedido crearPedido(){
+        return new Pedido();
+    }
+    public String mostrarProductos(){
+        long i=1;
+        String cadena="";
+        for ( Producto e: inventario){
+            cadena+="\n"+i+". nombre: "+e.getNombre();
+            i++;
         }
-
+        return cadena;
+    }
+    public String mostrarClientes(){
+        long i=1;
+        String cadena="";
+        for ( Cliente e: clientes){
+            cadena+="\nCliente: "+i+
+                    "\nCodigo cliente: "+e.getCodigo()+
+                    "\nNombre: "+e.getNombre()+
+                    "\n";
+            i++;
+        }
+        return cadena;
+    }
+    public Producto buscarProducto(String nombre){  // codigo del cliente
+        Producto i = null;
+        for (Producto e : inventario) {
+            if (e.getNombre().equals(nombre)) {//los String se comparan con equals
+                i=e;
+                break;
+            }
+        }
+        if (i!=null){
+            Administracion.inventario.remove(i);
+            Administracion.productosPedidos.add(i);
+            return i;
+        }
+        else{
+            return null;
+        }
+    }
     public Cliente buscarCliente(long codigo){  // codigo del cliente
-        Iterator<Cliente> iterator = clientes.iterator();
-        while(iterator.hasNext()){
-            Cliente cliente= (Cliente) iterator.next();
-            if (cliente.getCodigo()==codigo){
-                return cliente;
+        for (Cliente e : clientes) {
+            if (e.getCodigo() == codigo) {
+                return e;
             }
         }
         return null;

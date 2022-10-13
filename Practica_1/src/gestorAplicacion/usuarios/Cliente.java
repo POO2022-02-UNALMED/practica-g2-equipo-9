@@ -12,7 +12,7 @@ public class Cliente extends Usuario{
     private String estadoReserva;
     private static long numeroCliente=0;
 
-    private ArrayList<Pedido> pedidosCliente = new ArrayList<Pedido>();//cliente tiene un array de pedidos, va pidiendo cosas y se van guardando aqui
+    private ArrayList<Pedido> pedidosCliente = new ArrayList<>();//cliente tiene un array de pedidos, va pidiendo cosas y se van guardando aqui
 
     //constructor
 
@@ -23,6 +23,8 @@ public class Cliente extends Usuario{
         Administracion.getClientes().add(this);
     }
     //metodos
+
+
     public String Descripcion(){
         return "nombre: "+this.nombre+
                 "\ncodigo: "+this.codigo;

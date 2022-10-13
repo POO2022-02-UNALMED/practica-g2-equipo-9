@@ -1,6 +1,8 @@
 
 package gestorAplicacion.gestion;
 
+import gestorAplicacion.usuarios.Cliente;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Scanner;
@@ -9,26 +11,35 @@ import java.util.Scanner;
 public class Pedido {
     Scanner input = new Scanner(System.in);
     private String estadoPedido;
-    private ArrayList<Producto> productos = new ArrayList<Producto>();//arraylist de productos pedidos por el cliente
+    private ArrayList<Producto> productos = new ArrayList<>();//arraylist de productos pedidos por el cliente
     private String fecha;
     private long codigo; //cuando se cree, se cree con el mismo ID del cliente
 
     private static long numeroPedido=0;
     //constructor
-    Pedido(){
+    public Pedido(){
         this.estadoPedido="No cobrado"; //estado pedido por defecto es no cobrado
         this.codigo=generarCodigo();
         this.fecha=fecha;
         Administracion.getVentas().add(this);
     }
     //metodos
+    public String mostrarProductos(){
+        long i=1;
+        String cadena="";
+        long total=0;
+        for ( Producto e: productos){
+            cadena+="\n"+i+". Nombre: "+e.getNombre()+"....Precio: "+e.getPrecioVenta();
+            total+=e.getPrecioVenta();
+            i++;
+        }
+        cadena+="\nTotal: "+total;
+        return cadena;
+    }
     public long generarCodigo(){
         return numeroPedido++;
     }
-    public static Pedido crearPedido(){
-        Pedido pedido=new Pedido();
-        return pedido;
-    }
+
     public void cobrarProducto(){
         this.estadoPedido="cobrado";
     }
