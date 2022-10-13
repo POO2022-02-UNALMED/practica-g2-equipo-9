@@ -1,8 +1,6 @@
 
 package gestorAplicacion.gestion;
 
-import gestorAplicacion.usuarios.Cliente;
-
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Scanner;
@@ -23,17 +21,21 @@ public class Pedido {
         this.fecha=fecha;
         Administracion.getVentas().add(this);
     }
+    //metodos
     public long generarCodigo(){
         return numeroPedido++;
     }
-
-    //metodos
+    public static Pedido crearPedido(){
+        Pedido pedido=new Pedido();
+        return pedido;
+    }
     public void cobrarProducto(){
         this.estadoPedido="cobrado";
     }
     public void reembolsarProducto(){
         this.estadoPedido="reembolsado";
     }
+
     public void eliminarProducto(String nombre){
         for(Producto i: productos){
             if (productos!=null) {
@@ -43,11 +45,11 @@ public class Pedido {
                 }
             }
         }
-
     }
     public void ingresarProducto(Producto producto){
         productos.add(producto);
     }
+
     public String listaProductos(){
         Iterator<Producto> iterator =productos.iterator();
         StringBuffer lista= new StringBuffer("Productos pedidos:\n");
@@ -96,27 +98,6 @@ public class Pedido {
 
     public void setCodigo(int id) {
         this.codigo = codigo;
-    }
-
-    public static void main(String[] args) {
-        Producto producto1=new Producto("coca cola");
-        Producto producto2=new Producto("Pepsi");
-        Pedido pedido1 =new Pedido();
-        Pedido pedido2 =new Pedido();
-        pedido1.ingresarProducto(producto2);
-        pedido1.ingresarProducto(producto2);
-        pedido1.ingresarProducto(producto1);
-        pedido2.ingresarProducto(producto2);
-        pedido2.ingresarProducto(producto1);
-
-        System.out.println(pedido1.listaProductos());
-        System.out.println("\n");
-
-        pedido1.eliminarProducto("Pepsi");
-        pedido1.eliminarProducto("coca cola");
-        pedido1.eliminarProducto("Pepsi");
-        pedido1.eliminarProducto("Pepsi");
-        System.out.println(pedido1.listaProductos());
     }
 
 

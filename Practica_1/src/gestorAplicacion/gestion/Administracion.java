@@ -12,7 +12,7 @@ public class Administracion{
     private static ArrayList<Pedido> ventas = new ArrayList<Pedido>();//arraylist de los pedidos creados
     private static ArrayList<Producto> inventario = new ArrayList<Producto>();//arraylist de los objetos creados
 
-    private static ArrayList<Cliente> clientes = new ArrayList<>();
+    private static ArrayList<Cliente> clientes = new ArrayList<>();//arraylist de los clientes en el sistema
     //metodos
 
     public Producto buscarProducto(String nombre){  // Nombre del producto
@@ -25,6 +25,17 @@ public class Administracion{
             }
         return null;
         }
+
+    public Cliente buscarCliente(long codigo){  // codigo del cliente
+        Iterator<Cliente> iterator = clientes.iterator();
+        while(iterator.hasNext()){
+            Cliente cliente= (Cliente) iterator.next();
+            if (cliente.getCodigo()==codigo){
+                return cliente;
+            }
+        }
+        return null;
+    }
 
 
     public static void generarPedidoProveedor(int opcion){

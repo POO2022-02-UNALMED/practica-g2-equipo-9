@@ -38,23 +38,30 @@ public class interfazGenerica {
         String nombre=leerString(); // Nombre de producto
         Producto producto=admin.buscarProducto(nombre);
         if(producto != null){
-            System.out.println("1. Ingresar producto a cliente nuevo");
-            System.out.println("2. Ingresar producto a cliente existente");
-            System.out.println("3. Regresar");
-            long opcion=leerNumero();
-            while(opcion!=1 & opcion!=2 & opcion!=3){
-                System.out.println("Ingrese una opcion valida");
-                opcion=leerNumero();
-            }
-            if (opcion==1){
+            while(true){
+                System.out.println("1. Ingresar producto a cliente nuevo");
+                System.out.println("2. Ingresar producto a cliente existente");
+                System.out.println("3. Regresar");
+                long opcion=leerNumero();
+                if (opcion==1){
 
-            }
-            else if(opcion==2){
+                }
+                else if(opcion==2){
+                        System.out.println("Ingresa codigo cliente");
+                        long codigo=leerNumero();
+                        if(admin.buscarCliente(codigo)!=null){
+                            admin.buscarCliente(codigo).ingresarPedido(Pedido.crearPedido().ingresarProducto(admin.buscarProducto(nombre)));
+                        }
 
+                }
+                else if(opcion==3){
+                    break;
+                }
+                else {
+                    System.out.println("Ingresa una opcion valida:");
+                }
             }
-            else{
-                return;
-            }
+
 
         }
     }
