@@ -27,7 +27,31 @@ public class Trabajador extends Empleado {
     public void verificarProducto(){ //producto vencido?
         
     }
+
+    public int getBase() {
+        return base;
     }
+
+    public void setBase(int base) {
+        this.base = base;
+    }
+
+    public int getSaldoFinal() {
+        return saldoFinal;
+    }
+
+    public void setSaldoFinal(int saldoFinal) {
+        this.saldoFinal = saldoFinal;
+    }
+
+    public ArrayList<Cliente> getVentasDia() {
+        return ventasDia;
+    }
+
+    public void setVentasDia(ArrayList<Cliente> ventasDia) {
+        this.ventasDia = ventasDia;
+    }
+}
  
 
     
