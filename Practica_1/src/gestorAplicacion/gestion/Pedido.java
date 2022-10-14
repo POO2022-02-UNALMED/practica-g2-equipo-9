@@ -8,13 +8,15 @@ import java.util.Scanner;
 
 public class Pedido {
 
+    //ATRIBUTOS DE INSTANCIA
     private String estadoPedido;
     private ArrayList<Producto> productos = new ArrayList<>();//arraylist de productos pedidos por el cliente
     private int fecha;
     private long codigo; //cuando se cree, se cree con el mismo ID del cliente
 
+    //ATRIBUTOS DE CLASE
     private static long numeroPedido=0;
-    //constructor
+    //CONSTRUCTOR
     public Pedido(){
         this.estadoPedido="No cobrado"; //estado pedido por defecto es no cobrado
         this.codigo=generarCodigo();
@@ -22,7 +24,7 @@ public class Pedido {
         Administracion.getVentas().add(this);
 
     }
-    //metodos
+    //METODOS
     public String descripcionPedido(){
         long i=1;
         String cadena="";
