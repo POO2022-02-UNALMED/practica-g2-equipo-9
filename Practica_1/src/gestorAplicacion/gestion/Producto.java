@@ -2,6 +2,7 @@
 package gestorAplicacion.gestion;
 
 public class Producto {
+    //ATRIBUTOS INSTANCIA
     private String nombre;
     private int precioCompra;
     private int precioVenta;
@@ -9,10 +10,13 @@ public class Producto {
     private int fechaVencimiento;
     private int fechaIngreso;
     private int fechaVenta;
+    private int disponibles;
+    private int reservados;
 
+    //ATRIBUTOS DE CLASE
     private static long numeroProducto=0;
     
-    //constructor
+    //CONSTRUCTOR
     public Producto (String nombre, int precioVenta){
         this.codigo=generarCodigo();
         this.nombre=nombre;
@@ -30,7 +34,7 @@ public class Producto {
                 "\nPrecio venta: "+this.getPrecioVenta();
     }
     
-         //getters y setters
+         //GETTERS Y SETTERS
 
     public int getFechaVencimiento() {
         return fechaVencimiento;
@@ -87,5 +91,28 @@ public class Producto {
     public void setFechaVenta(int fechaVenta) {
         this.fechaVenta = fechaVenta;
     }
-    
+
+    public int getDisponibles() {
+        return disponibles;
+    }
+
+    public void setDisponibles(int disponibles) {
+        this.disponibles = disponibles;
+    }
+
+    public int getReservados() {
+        return reservados;
+    }
+
+    public void setReservados(int reservados) {
+        this.reservados = reservados;
+    }
+
+    public static long getNumeroProducto() {
+        return numeroProducto;
+    }
+
+    public static void setNumeroProducto(long numeroProducto) {
+        Producto.numeroProducto = numeroProducto;
+    }
 }
