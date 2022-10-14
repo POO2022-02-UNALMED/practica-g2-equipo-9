@@ -1,6 +1,7 @@
 
 package gestorAplicacion.usuarios;
 
+import gestorAplicacion.gestion.Administracion;
 import gestorAplicacion.gestion.Producto;
 
 import java.util.ArrayList;
@@ -9,16 +10,26 @@ public class Trabajador extends Empleado {
     private int base;
     private int saldoFinal;
 
+    private static long numeroTrabajador=0;
+
     private ArrayList<Cliente> ventasDia = new ArrayList<>();//listado de objetos cliente, es decir guarda los clientes con sus respectivos pedidos
 
-
-    Trabajador(long codigo, String nombre) {
-        super(codigo, nombre);
+    //constructor
+    public Trabajador(String nombre) {
+        super(generarCodigo(),nombre);
+        Administracion.getTrabajadores().add(this);
     }
 
 
     //metodos
 
+    public String descripcionTrabajador(){
+        return "\nNombre: "+this.getNombre()+
+                "\nCodigo: "+this.codigo;
+    }
+    public static long generarCodigo(){
+        return numeroTrabajador++;
+    }
     public void ingresarArticulo(Producto producto){//yo creo que esto es mas como ingresar pedido
 
             

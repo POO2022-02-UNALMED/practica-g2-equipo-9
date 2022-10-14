@@ -25,9 +25,9 @@ public class Cliente extends Usuario{
     //metodos
 
 
-    public String Descripcion(){
-        return "nombre: "+this.nombre+
-                "\ncodigo: "+this.codigo;
+    public String descripcionCliente(){
+        return "\nNombre: "+this.nombre+
+                "\nCodigo: "+this.codigo;
     }
     private static long generarCodigo(){
         return numeroCliente++;

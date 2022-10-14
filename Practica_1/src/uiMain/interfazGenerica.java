@@ -25,6 +25,8 @@ public class interfazGenerica {
 
     public static void main(String[] args) {
         Cliente cliente1= new Cliente("Sergio");
+        Trabajador trabajador1=new Trabajador("Sebas");
+        Trabajador trabajador2=new Trabajador("Juan David");
         Producto producto1=new Producto("Coca cola", 200);
         Producto producto2=new Producto("Pepsi", 300);
 
@@ -47,9 +49,77 @@ public class interfazGenerica {
         }while(opcion !=3);
 
     }
+    public static void ingresarPedido(Administracion admin){
+        int opcion;
+        do {
+            Trabajador trabajador;
+            Pedido pedido;
+            Cliente cliente;
+            Producto producto;
+            do {
+                System.out.println(admin.mostrarTrabajadores());
+                System.out.println("Escoger codigo trabajador:");
+                opcion = (int) leerNumero();
+                trabajador = admin.buscarTrabajador(opcion);
+                if (trabajador==null){
+                    System.out.println("Codigo invalido, ingrese de nuevo un numero");
+                }
+            } while (trabajador != null);
+            System.out.println("Presiona para:");
+            System.out.println("1. Ingresar pedido a cliente existente");
+            System.out.println("2. Ingresar pedido a cliente nuevo");
+            System.out.println("3. Regresar");
+            switch (opcion) {
+                case 1:{
+                    String cadena="";
+                    int i=1;
+                    for (Cliente e: trabajador.getVentasDia()){
+                        cadena+="\nCliente "+i+
+                                "\n"+e.descripcionCliente();
+                        i++;
+                    }
+                    do{
+                        System.out.println("clientes disponibles");
+                        System.out.println(cadena);
+                        System.out.println("Ingresa codigo cliente a quien le ingresaras pedido");
+                        opcion=(int)leerNumero();
+                        cliente=admin.buscarCliente(opcion);
+                        if (cliente==null){
+                            System.out.println("Codigo invalido, ingrese de nuevo un numero");
+                        }
+                    }while(cliente != null);
+                    do{
+                        System.out.println("Presione para");
+                        System.out.println("1. Ingresar producto a cliente escogido: ");
+                        System.out.println("2. Regresar");
+                        opcion=(int)leerNumero();
+                        if (opcion==1){
+                            do{
+                                for(Producto e: Administracion.getInventario()){
+                                    System.out.println(e.getCodigo()+e.getNombre());
+                                }
+                                System.out.println("Ingresa codigo de un producto");
+                                opcion=(int)leerNumero();
+                                producto=admin.buscarProducto(opcion);
+                            }while(producto!=null);
+                        }
+                    }while(opcion!=2);
+
+                }
+                    break;
+                case 2:
+                    break;
+                case 3:
+                    break;
+            }
+        }while(opcion !=3);
+    }
+
     static void mostrarPedido(Administracion admin){
 
+
     }
+    /*
     static void seleccionar(Administracion admin){
         while(true){
             System.out.println("1. Mostrar lista de clientes activos");

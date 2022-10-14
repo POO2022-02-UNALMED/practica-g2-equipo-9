@@ -9,17 +9,25 @@ public class Producto {
     private int fechaVencimiento;
     private int fechaIngreso;
     private int fechaVenta;
+
+    private static long numeroProducto=0;
     
     //constructor
     public Producto (String nombre, int precioVenta){
+        this.codigo=generarCodigo();
         this.nombre=nombre;
         this.precioVenta=precioVenta;
         Administracion.getInventario().add(this);
     }
+    public static long generarCodigo(){
+        return numeroProducto++;
+    }
 
 
-    public String descripcion(){
-        return "nombre: "+nombre;
+    public String descripcionProducto(){
+        return "\nNombre: "+this.getNombre()+
+                "\nCodigo: "+this.getCodigo()+
+                "\nPrecio venta: "+this.getPrecioVenta();
     }
     
          //getters y setters

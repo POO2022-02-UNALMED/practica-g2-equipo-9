@@ -7,8 +7,6 @@ import java.util.Scanner;
 
 
 public class Pedido {
-    Scanner input = new Scanner(System.in);
-
 
     private String estadoPedido;
     private ArrayList<Producto> productos = new ArrayList<>();//arraylist de productos pedidos por el cliente
@@ -25,7 +23,7 @@ public class Pedido {
 
     }
     //metodos
-    public String mostrarProductos(){
+    public String descripcionPedido(){
         long i=1;
         String cadena="";
         long total=0;
@@ -68,7 +66,7 @@ public class Pedido {
         while(iterator.hasNext()){
             long i=0;
             Producto producto= (Producto) iterator.next();
-            lista.append(producto.descripcion()+"\n");
+            lista.append(producto.descripcionProducto()+"\n");
         }
         return lista.toString();
         }
