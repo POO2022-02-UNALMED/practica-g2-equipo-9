@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 public class Administracion{
-    
     private int fecha;
     private static ArrayList<Trabajador> trabajadores = new ArrayList<>();//arraylist de trabajadores
     private static ArrayList<Pedido> ventas = new ArrayList<Pedido>();//arraylist de los pedidos creados

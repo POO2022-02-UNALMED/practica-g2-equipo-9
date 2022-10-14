@@ -9,5 +9,7 @@ public abstract class Empleado extends Usuario{
         super(codigo, nombre);
     }
 
+    public abstract String asegurar();
+
 
 }

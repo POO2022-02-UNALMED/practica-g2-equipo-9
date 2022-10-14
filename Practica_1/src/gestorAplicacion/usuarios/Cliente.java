@@ -8,16 +8,19 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 public class Cliente extends Usuario{
+
+    //ATRIBUTOS DE INSTANCIA
     private int numeroReserva;
     private String estadoReserva;
-    private static long numeroCliente=0;
-
     private ArrayList<Pedido> pedidosCliente = new ArrayList<>();//cliente tiene un array de pedidos, va pidiendo cosas y se van guardando aqui
 
-    //constructor
+    private static long numeroCliente=0;
+
+
+    //CONSTRUCTOR
 
     public Cliente(String nombre) {
-        super(generarCodigo(),nombre);
+        super(numeroCliente,nombre);
         this.numeroReserva = numeroReserva;
         this.estadoReserva = estadoReserva;
         Administracion.getClientes().add(this);
@@ -29,8 +32,8 @@ public class Cliente extends Usuario{
         return "\nNombre: "+this.nombre+
                 "\nCodigo: "+this.codigo;
     }
-    private static long generarCodigo(){
-        return numeroCliente++;
+    private static void generarCodigo(){
+        numeroCliente++;
     }
     public void ingresarPedido(Pedido pedido){
         pedidosCliente.add(pedido);

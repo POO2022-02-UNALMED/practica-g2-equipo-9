@@ -62,6 +62,7 @@ public class Trabajador extends Empleado {
     public void setVentasDia(ArrayList<Cliente> ventasDia) {
         this.ventasDia = ventasDia;
     }
+
 }
  
 

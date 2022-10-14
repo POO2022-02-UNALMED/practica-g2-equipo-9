@@ -27,5 +27,8 @@ public abstract class Usuario {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
+
+    //METODOS ABSTRACOTS
+    private static void generarCodigo() {}
 }
 
