@@ -18,52 +18,86 @@ public class Administracion{
     private static ArrayList<Cliente> clientes = new ArrayList<>();//arraylist de los clientes en el sistema
     //metodos
 
-
-    public Cliente crearCliente(String nombre){
-        return new Cliente(nombre);
+    //metodos para crear instancias de clase
+    public Trabajador crearTrabajador(String nombre){
+        return new Trabajador(nombre);
     }
     public Pedido crearPedido(){
         return new Pedido();
     }
-    public String mostrarProductos(){
-        long i=1;
+    public Producto crearProducto(String nombre, int precioVenta){
+        return new Producto(nombre,precioVenta);
+    }
+    public Cliente crearCliente(String nombre){
+        return new Cliente(nombre);
+    }
+
+
+    //metodos para mostrar informacion de los objetos en las listas, las descripciones internas estan dentro de los propios objetos
+
+    public String mostrarTrabajadores(){
+        int i=1;
         String cadena="";
-        for ( Producto e: inventario){
-            cadena+="\n"+i+". nombre: "+e.getNombre();
+        for (Trabajador e: trabajadores){
+            cadena+="\nTrabajador "+i+e.descripcionTrabajador();
+            i++;
+        }
+        return cadena;
+    }
+    public String mostrarPedidos(){
+        int i=1;
+        String cadena="";
+        for (Pedido e: ventas){
+            cadena+="\nPedido "+i+e.descripcionPedido();
+            i++;
+        }
+        return cadena;
+    }
+    public String mostrarProductos(){
+        int i=1;
+        String cadena="";
+        for (Producto e: inventario){
+            cadena+="\nProducto "+i+e.descripcionProducto();
             i++;
         }
         return cadena;
     }
     public String mostrarClientes(){
-        long i=1;
+        int i=1;
         String cadena="";
-        for ( Cliente e: clientes){
-            cadena+="\nCliente: "+i+
-                    "\nCodigo cliente: "+e.getCodigo()+
-                    "\nNombre: "+e.getNombre()+
-                    "\n";
+        for (Cliente e: clientes){
+            cadena+="\nCliente "+i+e.descripcionCliente();
             i++;
         }
         return cadena;
     }
-    public Producto buscarProducto(String nombre){  // codigo del cliente
-        Producto i = null;
-        for (Producto e : inventario) {
-            if (e.getNombre().equals(nombre)) {//los String se comparan con equals
-                i=e;
-                break;
+
+    //metodos para buscar objetos
+    public Trabajador buscarTrabajador(long codigo){  // busca en la lista trabajadores si el trabajador existe, devuelve un objeto tipo Trabajador
+        for (Trabajador e : trabajadores) {
+            if (e.getCodigo()==codigo) {
+                return e;
             }
         }
-        if (i!=null){
-            Administracion.inventario.remove(i);
-            Administracion.productosPedidos.add(i);
-            return i;
-        }
-        else{
-            return null;
-        }
+        return null;
     }
-    public Cliente buscarCliente(long codigo){  // codigo del cliente
+    public Pedido buscarPedido(long codigo){ // busca en la lista ventas(pedido) si el pedido existe, devuelve un objeto tipo Pedido
+        for (Pedido e : ventas) {
+            if (e.getCodigo()==codigo) {
+                return e;
+            }
+        }
+        return null;
+    }
+    public Producto buscarProducto(long codigo){  // busca en el inventario si el producto existe, devuelve un objeto tipo Producto
+        for (Producto e : inventario) {
+            if (e.getCodigo()==codigo) {
+                return e;
+            }
+        }
+        return null;
+    }
+    public Cliente buscarCliente(long codigo){  // busca en clientes si el cliente existe, devuelve un objeto tipo Cliente
         for (Cliente e : clientes) {
             if (e.getCodigo() == codigo) {
                 return e;
