@@ -1,5 +1,5 @@
 package gestorAplicacion.gestion;
 
 public enum Servicio {
-    BarMan, MeseroExclusivo, CockTailChallenge
+    BarMan, MeseroExclusivo, CockTailChallenge, StripTease
 }
