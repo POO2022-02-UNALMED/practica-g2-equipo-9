@@ -7,14 +7,21 @@ import gestorAplicacion.gestion.Producto;
 import java.util.ArrayList;
 
 public class Trabajador extends Empleado {
+
+    //ATRIBUTOS DE INSTANCIA
     private int base;
     private int saldoFinal;
 
-    private static long numeroTrabajador=0;
+    private final int seguro=6;
 
     private ArrayList<Cliente> ventasDia = new ArrayList<>();//listado de objetos cliente, es decir guarda los clientes con sus respectivos pedidos
 
-    //constructor
+
+    //ATRIBUTOS DE CLASE
+    private static long numeroTrabajador=0;
+
+
+    //CONSTRUCTOR
     public Trabajador(String nombre) {
         super(generarCodigo(),nombre);
         Administracion.getTrabajadores().add(this);
@@ -63,6 +70,10 @@ public class Trabajador extends Empleado {
         this.ventasDia = ventasDia;
     }
 
+    //METODOS ABSTRACTOS
+    public String asegurar(){
+        return "algo";
+    }
 }
  
 
