@@ -1,8 +1,6 @@
 package gestorAplicacion.usuarios;
 
-import gestorAplicacion.gestion.Administracion;
 import gestorAplicacion.gestion.Pedido;
-import gestorAplicacion.gestion.Producto;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -14,39 +12,35 @@ public class Cliente extends Usuario{
     private String estadoReserva;
     private ArrayList<Pedido> pedidosCliente = new ArrayList<>();//cliente tiene un array de pedidos, va pidiendo cosas y se van guardando aqui
 
+
+    //ATRIBUTOS DE CLASE
+    private static ArrayList<Cliente> clientes=new ArrayList<>();
     private static long numeroCliente=0;
+
+
+
 
 
     //CONSTRUCTOR
 
-    public Cliente(String nombre) {
-        super(numeroCliente,nombre);
+    public Cliente(long codigo, String nombre, int numeroReserva, String estadoReserva, ArrayList<Pedido> pedidosCliente) {
+        super(generarCodigo(),nombre);
         this.numeroReserva = numeroReserva;
         this.estadoReserva = estadoReserva;
-        Administracion.getClientes().add(this);
+        this.pedidosCliente = pedidosCliente;
+        clientes.add(this);
+
     }
+
+
+
     //metodos
 
 
-    public String descripcionCliente(){
-        return "\nNombre: "+this.nombre+
-                "\nCodigo: "+this.codigo;
-    }
-    private static void generarCodigo(){
-        numeroCliente++;
-    }
-    public void ingresarPedido(Pedido pedido){
-        pedidosCliente.add(pedido);
-    }
 
-    public String listaPedido(){
-        Iterator<Pedido> iterator = pedidosCliente.iterator();
-        StringBuffer lista = new StringBuffer("Pedidos cliente: \n");
-        while (iterator.hasNext()){
-            Pedido pedido=(Pedido) iterator.next();
-            lista.append(pedido.listaProductos()+"\n");
-        }
-        return lista.toString();
+    private static long generarCodigo(){
+
+        return numeroCliente++;
     }
 
 
@@ -89,4 +83,15 @@ public class Cliente extends Usuario{
     public void setPedidosCliente(ArrayList<Pedido> pedidosCliente) {
         this.pedidosCliente = pedidosCliente;
     }
+    public static ArrayList<Cliente> getClientes() {
+        return clientes;
+    }
+
+    public static void setClientes(ArrayList<Cliente> clientes) {
+        Cliente.clientes = clientes;
+    }
+
+
+
+
 }

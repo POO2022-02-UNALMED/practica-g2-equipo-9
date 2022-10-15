@@ -1,9 +1,9 @@
 
 package gestorAplicacion.usuarios;
 
-import gestorAplicacion.gestion.Administracion;
 import gestorAplicacion.gestion.Producto;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Trabajador extends Empleado {
@@ -19,32 +19,28 @@ public class Trabajador extends Empleado {
 
     //ATRIBUTOS DE CLASE
     private static long numeroTrabajador=0;
-
+    private static ArrayList<Trabajador> trabajadores= new ArrayList<>();
 
     //CONSTRUCTOR
-    public Trabajador(String nombre) {
-        super(generarCodigo(),nombre);
-        Administracion.getTrabajadores().add(this);
+
+    public Trabajador(long codigo, String nombre, String cargo, Double sueldo, boolean estadoIngreso, Double comision, LocalDate fechaCreacion, LocalDate fechaIngreso, int base, int saldoFinal, ArrayList<Cliente> ventasDia) {
+        super(codigo, nombre, cargo, sueldo, estadoIngreso, comision, fechaCreacion, fechaIngreso);
+        this.base = base;
+        this.saldoFinal = saldoFinal;
+        this.ventasDia = ventasDia;
+        trabajadores.add(this);
     }
 
 
-    //metodos
+    //METODOS
 
-    public String descripcionTrabajador(){
-        return "\nNombre: "+this.getNombre()+
-                "\nCodigo: "+this.codigo;
-    }
     public static long generarCodigo(){
         return numeroTrabajador++;
     }
-    public void ingresarArticulo(Producto producto){//yo creo que esto es mas como ingresar pedido
 
-            
-    }
-    //
-    public void verificarProducto(){ //producto vencido?
-        
-    }
+
+    //GETTERS Y SETTERS
+
 
     public int getBase() {
         return base;
@@ -62,12 +58,32 @@ public class Trabajador extends Empleado {
         this.saldoFinal = saldoFinal;
     }
 
+    public int getSeguro() {
+        return seguro;
+    }
+
     public ArrayList<Cliente> getVentasDia() {
         return ventasDia;
     }
 
     public void setVentasDia(ArrayList<Cliente> ventasDia) {
         this.ventasDia = ventasDia;
+    }
+
+    public static long getNumeroTrabajador() {
+        return numeroTrabajador;
+    }
+
+    public static void setNumeroTrabajador(long numeroTrabajador) {
+        Trabajador.numeroTrabajador = numeroTrabajador;
+    }
+
+    public static ArrayList<Trabajador> getTrabajadores() {
+        return trabajadores;
+    }
+
+    public static void setTrabajadores(ArrayList<Trabajador> trabajadores) {
+        Trabajador.trabajadores = trabajadores;
     }
 
     //METODOS ABSTRACTOS

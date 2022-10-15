@@ -28,6 +28,7 @@ public abstract class Empleado extends Usuario{
         this.comision = comision;
         this.fechaCreacion = LocalDate.now();
         this.fechaIngreso = fechaIngreso;
+        empleados.add(this);
     }
 
 

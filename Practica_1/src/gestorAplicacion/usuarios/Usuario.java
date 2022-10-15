@@ -17,6 +17,7 @@ public abstract class Usuario {
     Usuario(long codigo, String nombre) {
         this.codigo = codigo;
         this.nombre = nombre;
+        usuarios.add(this);
     }
 
     //GETTERS Y SETTERS

@@ -17,13 +17,7 @@ public class Pedido {
     //ATRIBUTOS DE CLASE
     private static long numeroPedido=0;
     //CONSTRUCTOR
-    public Pedido(){
-        this.estadoPedido="No cobrado"; //estado pedido por defecto es no cobrado
-        this.codigo=generarCodigo();
-        this.fecha=fecha;
-        Administracion.getVentas().add(this);
 
-    }
     //METODOS
     public String descripcionPedido(){
         long i=1;
@@ -72,11 +66,6 @@ public class Pedido {
         }
         return lista.toString();
         }
-    public String generarFactura(ArrayList<Producto> productos){
-        
-        Administracion.getVentas().add(this);
-        return "algo";
-    }
     
     //getters y setters
 

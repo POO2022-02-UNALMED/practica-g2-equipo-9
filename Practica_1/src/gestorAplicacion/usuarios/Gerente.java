@@ -1,19 +1,29 @@
 package gestorAplicacion.usuarios;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
+
 public class Gerente extends Empleado{
 
-    private final int seguro= 1;
-    private static long numeroGerente=0;
-    Gerente(long codigo, String nombre) {
-        super(codigo, nombre);
-    }
-    public static void generarInformeVentas(){
+    //ATRIBUTOS DE INSTANCIA
 
+    private final int seguro= 1;
+
+    //ATRIBUTOS DE CLASE
+    private static long numeroGerente=0;
+    ArrayList<Gerente>gerentes=new ArrayList<>();
+
+
+    //CONSTRUCTOR
+
+    public Gerente(long codigo, String nombre, String cargo, Double sueldo, boolean estadoIngreso, Double comision, LocalDate fechaCreacion, LocalDate fechaIngreso) {
+        super(generarCodigo(), nombre, cargo, sueldo, estadoIngreso, comision, fechaCreacion, fechaIngreso);
+        gerentes.add(this);
     }
 
     //OTROS METODOS
-    public static void generarCodigo(){
-        numeroGerente++;
+    public static long generarCodigo(){
+        return numeroGerente++;
     }
 
     //METODOS ABSTRACTOS
@@ -21,9 +31,26 @@ public class Gerente extends Empleado{
         return "algo";
     }
 
+    //GETTERS Y SETTERS
 
 
+    public int getSeguro() {
+        return seguro;
+    }
 
-    
+    public static long getNumeroGerente() {
+        return numeroGerente;
+    }
 
+    public static void setNumeroGerente(long numeroGerente) {
+        Gerente.numeroGerente = numeroGerente;
+    }
+
+    public ArrayList<Gerente> getGerentes() {
+        return gerentes;
+    }
+
+    public void setGerentes(ArrayList<Gerente> gerentes) {
+        this.gerentes = gerentes;
+    }
 }

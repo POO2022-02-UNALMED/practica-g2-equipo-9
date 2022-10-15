@@ -1,19 +1,14 @@
 
 package uiMain;
 
-import java.sql.SQLOutput;
 import java.util.Scanner;
 import gestorAplicacion.gestion.Pedido;
 import gestorAplicacion.gestion.Producto;
-import gestorAplicacion.gestion.Administracion;
 import gestorAplicacion.usuarios.Cliente;
-import gestorAplicacion.usuarios.Empleado;
-import gestorAplicacion.usuarios.Gerente;
 import gestorAplicacion.usuarios.Trabajador;
-import gestorAplicacion.usuarios.Usuario;
 
 public class interfazGenerica {
-    static Scanner entrada= new Scanner(System.in);
+    /*static Scanner entrada= new Scanner(System.in);
     static long leerNumero(){ //leer numero
         return entrada.nextLong();
     }
