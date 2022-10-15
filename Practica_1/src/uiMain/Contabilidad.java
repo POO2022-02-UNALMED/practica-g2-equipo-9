@@ -49,10 +49,10 @@ public class Contabilidad {
         int mesSeleccionado=opcionMeses.get(opcion);
         System.out.println("Mes escogido: "+mesSeleccionado);
 
-        Contabilidad.calcularVentasMes(mesSeleccionado,meses);
+        Contabilidad.calcularGananciasMes(mesSeleccionado,meses);
     }
 
-    public static void calcularVentasMes(int mesSeleccionado, HashMap<Integer,String> meses){
+    public static String calcularGananciasMes(int mesSeleccionado, HashMap<Integer,String> meses){
         ArrayList<Producto> productosVendidosMes =new ArrayList<>();
 
         for(Producto producto: Producto.getProductos()){
@@ -76,9 +76,9 @@ public class Contabilidad {
             pagoGerente+=gerente.getSueldo();
         }
 
-        double pagoComisionesTrabajador =Trabajador.comisionesPorTrabajador(mesSeleccionado)*0.2;
+        double pagoComisionesTrabajador =Trabajador.comisionesPorTrabajador(mesSeleccionado);//0.2 es el porcentaje por las comisiones
 
-        double gananciasNetas = totalVentasProductos-pagoTrabajador-pagoGerente-pagoComisionesTrabajador;//o.2 es porcentaje por las comisiones
+        double gananciasNetas = totalVentasProductos-pagoTrabajador-pagoGerente-pagoComisionesTrabajador;//ganancias netas
         String s = "Contabilidad del mes "+meses.get(mesSeleccionado)+" del 2022:" +
                 "\n-------------------------------"+
                 "\nValor total por Productos: "+totalVentasProductos+
@@ -106,9 +106,16 @@ public class Contabilidad {
                     primaGerente+=empleado.calculoDePrima();
                 }
             }
-
-
+            gananciasNetas-=(primaEmpleados-primaGerente);
+            s+="\nPago de Prima a Empleados: -"+primaEmpleados+
+                    "\nPago de Prima a Gerentes: -"+primaGerente;
         }
+
+        //El resultado final de toda esta cosa es
+
+        s += "\n-------------------------------"+
+                "\n\nGanancias totales de este mes: "+ gananciasNetas;
+        return s;
 
     }
 
