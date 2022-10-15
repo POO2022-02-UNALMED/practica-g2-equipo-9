@@ -53,6 +53,8 @@ public class Contabilidad {
     }
 
     public static String calcularGananciasMes(int mesSeleccionado, HashMap<Integer,String> meses){
+
+        //PRODUCTOS CON ESTADO VENDIDO
         ArrayList<Producto> productosVendidosMes =new ArrayList<>();
 
         for(Producto producto: Producto.getProductos()){
@@ -66,6 +68,20 @@ public class Contabilidad {
                 totalVentasProductos+=producto.getPrecioVenta();
             }
         }
+
+        //SERVICIOS VENDIDOS EN EL MES SELECCIONADO
+        ArrayList<Servicio> serviciosMes=new ArrayList<>();
+        for (Pedido pedido: Pedido.getPedidos()){
+            if(pedido.getFechaPedido().getMonthValue()==mesSeleccionado && pedido.getEstadoPedido()=="PAGADO"){
+                for (Servicio servicio: pedido.getServicios()){
+                    serviciosMes.add(servicio);
+                }
+            }
+        }
+        double totalVentasDeServicios=0;
+        for (Servicio e: serviciosMes){
+            totalVentasDeServicios+=e.getPrecio();
+        }
         double pagoTrabajador=0;
         for (Trabajador trabajador: Trabajador.getTrabajadores()){
             pagoTrabajador+=trabajador.getSueldo();
@@ -78,18 +94,23 @@ public class Contabilidad {
 
         double pagoComisionesTrabajador =Trabajador.comisionesPorTrabajador(mesSeleccionado);//0.2 es el porcentaje por las comisiones
 
-        double gananciasNetas = totalVentasProductos-pagoTrabajador-pagoGerente-pagoComisionesTrabajador;//ganancias netas
+        double gananciasNetas = totalVentasProductos+totalVentasDeServicios-pagoTrabajador-pagoGerente-pagoComisionesTrabajador;//ganancias netas
+
         String s = "Contabilidad del mes "+meses.get(mesSeleccionado)+" del 2022:" +
                 "\n-------------------------------"+
                 "\nValor total por Productos: "+totalVentasProductos+
+                "\nValor total por Servicios: "+totalVentasDeServicios+
                 "\nPago Comisiones a Trabajadores: -"+pagoComisionesTrabajador+
                 "\nPago mensual a Empleados: -"+pagoTrabajador+
                 "\nPago mensual a gerentes: -"+pagoGerente;
-        double primaEmpleados=0;
-        double primaGerente=0;
+
 
 
         //Declaro un array de tipo Sueldo para guardar objetos tipo Trabajador y Gerente
+
+        //Esto de aqui que sigue es por si hay que pagar primas a trabajador
+        double primaEmpleados=0;
+        double primaGerente=0;
         ArrayList<Sueldo> empleados= new ArrayList<>();
         for (Trabajador trabajador: Trabajador.getTrabajadores()){
             empleados.add(trabajador);
@@ -127,6 +148,5 @@ public class Contabilidad {
         Trabajador trabajador1=new Trabajador(null,null,false,null,null,0,null);
 
         contabilidad();
-        int a=3;
     }
 }
