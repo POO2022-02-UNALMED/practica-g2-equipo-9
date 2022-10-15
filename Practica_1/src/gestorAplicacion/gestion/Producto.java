@@ -24,11 +24,22 @@ public class Producto {
 
     private static ArrayList<Producto> productos=new ArrayList<>();
     private static long numeroProducto=0;
+
+    //GETTER y SETTER de productos importante para muchas cosas
+    public LocalDate getFechaVenta() {
+        return fechaVenta;
+    }
+
+    public void setFechaVenta(LocalDate fechaVenta) {
+        this.fechaVenta = fechaVenta;
+    }
+
+
     
     //CONSTRUCTOR
 
 
-    public Producto(Trabajador trabajador, Pedido pedido, String estado, String nombre, int precioCompra, int precioVenta, long codigo, LocalDate fechaVencimiento, LocalDate fechaIngreso, LocalDate fechaVenta, int disponibles, int reservados) {
+    public Producto(Trabajador trabajador, Pedido pedido, String estado, String nombre, int precioCompra, int precioVenta, LocalDate fechaVencimiento, LocalDate fechaIngreso, LocalDate fechaVenta, int disponibles, int reservados) {
         this.trabajador = trabajador;
         this.pedido = pedido;
         this.estado = "no Vendido";
@@ -44,18 +55,6 @@ public class Producto {
         productos.add(this);
     }
 
-    public Producto(String nombre, int precioCompra, int precioVenta, long codigo, LocalDate fechaVencimiento, LocalDate fechaIngreso, LocalDate fechaVenta, int disponibles, int reservados) {
-        this.nombre = nombre;
-        this.precioCompra = precioCompra;
-        this.precioVenta = precioVenta;
-        this.codigo = codigo;
-        this.fechaVencimiento = fechaVencimiento;
-        this.fechaIngreso = fechaIngreso;
-        this.fechaVenta = fechaVenta;
-        this.disponibles = disponibles;
-        this.reservados = reservados;
-        productos.add(this);
-    }
 
     public static long generarCodigo(){
         return numeroProducto++;
@@ -134,9 +133,7 @@ public class Producto {
         this.fechaIngreso = fechaIngreso;
     }
 
-    public void setFechaVenta(LocalDate fechaVenta) {
-        this.fechaVenta = fechaVenta;
-    }
+
 
     public static ArrayList<Producto> getProductos() {
         return productos;

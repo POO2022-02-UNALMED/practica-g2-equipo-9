@@ -2,17 +2,13 @@ package uiMain;
 
 import java.time.LocalDate;
 import java.util.*;
-import static java.util.Map.entry;
 import java.time.temporal.ChronoField;
 
-import gestorAplicacion.gestion.Administracion;
 import gestorAplicacion.gestion.Espacio;
-import gestorAplicacion.gestion.Pedido;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
-import gestorAplicacion.usuarios.*;
+
 import gestorAplicacion.gestion.*;
 
 public class Funcionalidades {
@@ -58,14 +54,26 @@ public class Funcionalidades {
 
     }
 
-    public static void contabilidad(){
+    public static SortedSet<Integer> contabilidad(){
         System.out.println("Bienvenido al menu de contabilidad");
 
         System.out.println("Meses disponibles");
 
         //se buscan meses en los que se han comprado productos y
         SortedSet<Integer> fechas =new TreeSet<Integer>();//meses unicos
-        for (Producto productos: )
+        for (Producto producto: Producto.getProductos()){
+            fechas.add(producto.getFechaVenta().get(ChronoField.MONTH_OF_YEAR));
+        }
+
+        return fechas;
+
+    }
+
+    public static void main(String[] args) {
+        Producto producto=new Producto(null,null,"vendido","coca",0,0,null,null, LocalDate.of(2020,02,02),0,0);
+        Producto producto1=new Producto(null,null,"vendido","coca",0,0,null,null, LocalDate.of(2020,02,02),0,0);
+        Producto producto2=new Producto(null,null,"vendido","coca",0,0,null,null, LocalDate.of(2020,02,1),0,0);
+        System.out.println(contabilidad());
 
     }
 }
