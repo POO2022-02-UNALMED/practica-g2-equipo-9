@@ -54,7 +54,7 @@ public class Funcionalidades {
 
     }
 
-    public static SortedSet<Integer> contabilidad(){
+    public static String contabilidad(){
         System.out.println("Bienvenido al menu de contabilidad");
 
         System.out.println("Meses disponibles");
@@ -64,12 +64,18 @@ public class Funcionalidades {
         for (Producto producto: Producto.getProductos()){
             fechas.add(producto.getFechaVenta().get(ChronoField.MONTH_OF_YEAR));
         }
+        HashMap<Integer,String> meses = new HashMap<Integer,String>();
+        meses.put(1,"Enero"); meses.put(2,"Febrero"); meses.put(3, "Marzo"); meses.put(4, "Abril"); meses.put(5, "Mayo"); meses.put(6,"Junio");
+        meses.put(7, "Julio");meses.put(8, "Agosto"); meses.put(9, "Septiembre"); meses.put(10, "Octubre"); meses.put(11, "Noviembre"); meses.put(12, "Diciembre");
 
-        return fechas;
+        Iterator value=fechas.iterator();
+        int i=0;
+        return (String) value.next();
+
 
     }
 
-    public static void main(String[] args) {
+    public static String main(String[] args) {
         Producto producto=new Producto(null,null,"vendido","coca",0,0,null,null, LocalDate.of(2020,02,02),0,0);
         Producto producto1=new Producto(null,null,"vendido","coca",0,0,null,null, LocalDate.of(2020,02,02),0,0);
         Producto producto2=new Producto(null,null,"vendido","coca",0,0,null,null, LocalDate.of(2020,02,1),0,0);
