@@ -75,7 +75,13 @@ public class Contabilidad {
             pagoGerente+=gerente.getSueldo();
         }
 
-        long gananciasNetas=totalVentasProductos-pagoTrabajador;
+        //comisiones
+
+
+
+
+        long gananciasNetas = totalVentasProductos-pagoTrabajador-pagoGerente-Trabajador.comisionesPorTrabajador(mesSeleccionado);
+
 
 
     }

@@ -9,7 +9,6 @@ public abstract class Empleado extends Usuario{
     protected Double sueldo;
     protected boolean estadoIngreso;
 
-    protected Double comision;
 
     protected LocalDate fechaCreacion; //fecha cuando se creo el empleado
 
@@ -20,12 +19,11 @@ public abstract class Empleado extends Usuario{
 
     //CONSTRUCTOR
 
-    public Empleado(long codigo, String nombre, String cargo, Double sueldo, boolean estadoIngreso, Double comision, LocalDate fechaCreacion, LocalDate fechaIngreso) {
+    public Empleado(long codigo, String nombre, String cargo, Double sueldo, boolean estadoIngreso, LocalDate fechaCreacion, LocalDate fechaIngreso) {
         super(codigo, nombre);
         this.cargo = cargo;
         this.sueldo = sueldo;
         this.estadoIngreso = estadoIngreso;
-        this.comision = comision;
         this.fechaCreacion = LocalDate.now();
         this.fechaIngreso = fechaIngreso;
         empleados.add(this);
@@ -57,14 +55,6 @@ public abstract class Empleado extends Usuario{
 
     public void setEstadoIngreso(boolean estadoIngreso) {
         this.estadoIngreso = estadoIngreso;
-    }
-
-    public Double getComision() {
-        return comision;
-    }
-
-    public void setComision(Double comision) {
-        this.comision = comision;
     }
 
     public LocalDate getFechaCreacion() {

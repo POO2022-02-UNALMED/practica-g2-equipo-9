@@ -9,6 +9,7 @@ public class Producto {
     //ATRIBUTOS INSTANCIA
     private Trabajador trabajador;
     private Pedido pedido;
+    private Cliente cliente;
     private String estado; //agregue estado de producto, "Vendido", "no vendido"
     private String nombre;
     private int precioCompra;
@@ -174,4 +175,13 @@ public class Producto {
     public LocalDate getFechaIngreso() {
         return fechaIngreso;
     }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
 }

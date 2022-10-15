@@ -10,21 +10,20 @@ public class Trabajador extends Empleado {
 
     //ATRIBUTOS DE INSTANCIA
     private int saldoFinal;
-
-    private final int seguro=6;
+    private final int seguro = 6;
 
     private ArrayList<Cliente> ventasDia = new ArrayList<>();//listado de objetos cliente, es decir guarda los clientes con sus respectivos pedidos
 
 
     //ATRIBUTOS DE CLASE
-    private static long numeroTrabajador=0;
-    private static ArrayList<Trabajador> trabajadores= new ArrayList<>();
+    private static long numeroTrabajador = 0;
+    private static ArrayList<Trabajador> trabajadores = new ArrayList<>();
 
 
     //CONSTRUCTOR
 
-    public Trabajador(long codigo, String nombre, String cargo, Double sueldo, boolean estadoIngreso, Double comision, LocalDate fechaCreacion, LocalDate fechaIngreso, int saldoFinal, ArrayList<Cliente> ventasDia) {
-        super(codigo, nombre, cargo, sueldo, estadoIngreso, comision, fechaCreacion, fechaIngreso);
+    public Trabajador(long codigo, String nombre, String cargo, Double sueldo, boolean estadoIngreso, LocalDate fechaCreacion, LocalDate fechaIngreso, int saldoFinal, ArrayList<Cliente> ventasDia) {
+        super(codigo, nombre, cargo, sueldo, estadoIngreso, fechaCreacion, fechaIngreso);
         this.saldoFinal = saldoFinal;
         this.ventasDia = ventasDia;
         trabajadores.add(this);
@@ -33,7 +32,7 @@ public class Trabajador extends Empleado {
 
     //METODOS
 
-    public static long generarCodigo(){
+    public static long generarCodigo() {
         return numeroTrabajador++;
     }
 
@@ -77,9 +76,27 @@ public class Trabajador extends Empleado {
     }
 
     //METODOS ABSTRACTOS
-    public String asegurar(){
+    public String asegurar() {
         return "algo";
     }
+
+    //OTROS METODOS
+    public static long comisionesPorTrabajador(int mesSeleccionado) {
+        long comisionesPorTrabajador = 0;
+        for (Trabajador trabajador : Trabajador.getTrabajadores()) {
+            long contador = 0;
+            for (Producto producto : Producto.getProductos()) {
+                if (trabajador == producto.getTrabajador() && producto.getFechaVenta().getMonthValue() == mesSeleccionado) {
+                    contador++;
+                }
+            }
+            if (contador >= 50) {//vendio 50 o mas productos en el mes
+                comisionesPorTrabajador++;
+            }
+        }
+        return comisionesPorTrabajador;
+    }
+
 }
  
 

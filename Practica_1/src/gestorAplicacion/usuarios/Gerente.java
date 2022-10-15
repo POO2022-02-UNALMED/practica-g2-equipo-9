@@ -17,7 +17,7 @@ public class Gerente extends Empleado{
     //CONSTRUCTOR
 
     public Gerente(long codigo, String nombre, String cargo, Double sueldo, boolean estadoIngreso, Double comision, LocalDate fechaCreacion, LocalDate fechaIngreso) {
-        super(generarCodigo(), nombre, cargo, sueldo, estadoIngreso, comision, fechaCreacion, fechaIngreso);
+        super(generarCodigo(), nombre, cargo, sueldo, estadoIngreso, fechaCreacion, fechaIngreso);
         gerentes.add(this);
     }
 

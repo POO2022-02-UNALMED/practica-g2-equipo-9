@@ -1,6 +1,9 @@
 
 package gestorAplicacion.gestion;
 
+import gestorAplicacion.usuarios.Cliente;
+import gestorAplicacion.usuarios.Trabajador;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Scanner;
@@ -9,6 +12,9 @@ import java.util.Scanner;
 public class Pedido {
 
     //ATRIBUTOS DE INSTANCIA
+
+    private Trabajador trabajador;
+    private Cliente cliente;
     private String estadoPedido;
     private ArrayList<Producto> productos = new ArrayList<>();//arraylist de productos pedidos por el cliente
 
@@ -17,59 +23,37 @@ public class Pedido {
     private long codigo; //cuando se cree, se cree con el mismo ID del cliente
 
     //ATRIBUTOS DE CLASE
+
+    private static ArrayList<Pedido> pedidos= new ArrayList<>();
     private static long numeroPedido=0;
     //CONSTRUCTOR
 
-    //METODOS
-    public String descripcionPedido(){
-        long i=1;
-        String cadena="";
-        long total=0;
-        for ( Producto e: productos){
-            cadena+="\n"+i+". Nombre: "+e.getNombre()+"....Precio: "+e.getPrecioVenta();
-            total+=e.getPrecioVenta();
-            i++;
-        }
-        cadena+="\nTotal: "+total;
-        return cadena;
-    }
-    public long generarCodigo(){
-        return numeroPedido++;
+    public Trabajador getTrabajador() {
+        return trabajador;
     }
 
-    public void cobrarProducto(){
-        this.estadoPedido="cobrado";
-    }
-    public void reembolsarProducto(){
-        this.estadoPedido="reembolsado";
+    public void setTrabajador(Trabajador trabajador) {
+        this.trabajador = trabajador;
     }
 
-    public void eliminarProducto(String nombre){
-        for(Producto i: productos){
-            if (productos!=null) {
-                if (i.getNombre() == nombre) {
-                    productos.remove(i);
-                    break;
-                }
-            }
-        }
-    }
-    public void ingresarProducto(Producto producto){
-        productos.add(producto);
+    public Cliente getCliente() {
+        return cliente;
     }
 
-    public String listaProductos(){
-        Iterator<Producto> iterator =productos.iterator();
-        StringBuffer lista= new StringBuffer("Productos pedidos:\n");
-        while(iterator.hasNext()){
-            long i=0;
-            Producto producto= (Producto) iterator.next();
-            lista.append(producto.descripcionProducto()+"\n");
-        }
-        return lista.toString();
-        }
-    
-    //getters y setters
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
+    public static ArrayList<Pedido> getPedidos() {
+        return pedidos;
+    }
+
+    public static void setPedidos(ArrayList<Pedido> pedidos) {
+        Pedido.pedidos = pedidos;
+    }
+
+
+    //GETTERS Y SETTERS
 
     public String getEstadoPedido() {
         return estadoPedido;
@@ -121,6 +105,22 @@ public class Pedido {
 
     public void setCodigo(long codigo) {
         this.codigo = codigo;
+    }
+
+    //METODOS
+    public long generarCodigo(){
+        return numeroPedido++;
+    }
+
+    public void cobrarProducto(){
+        this.estadoPedido="cobrado";
+    }
+    public void reembolsarProducto(){
+        this.estadoPedido="reembolsado";
+    }
+
+    public void ingresarProducto(Producto producto){
+        productos.add(producto);
     }
 
 }
