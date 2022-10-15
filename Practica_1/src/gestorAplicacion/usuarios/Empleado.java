@@ -3,10 +3,10 @@ package gestorAplicacion.usuarios;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public abstract class Empleado extends Usuario{
+public abstract class Empleado extends Usuario {
     //ATRIBUTOS DE INSTANCIA
     protected String cargo;
-    protected Double sueldo;
+    protected double sueldo;
     protected boolean estadoIngreso;
 
 
@@ -41,14 +41,6 @@ public abstract class Empleado extends Usuario{
         this.cargo = cargo;
     }
 
-    public Double getSueldo() {
-        return sueldo;
-    }
-
-    public void setSueldo(Double sueldo) {
-        this.sueldo = sueldo;
-    }
-
     public boolean isEstadoIngreso() {
         return estadoIngreso;
     }
@@ -79,6 +71,14 @@ public abstract class Empleado extends Usuario{
 
     public static void setEmpleados(ArrayList<Empleado> empleados) {
         Empleado.empleados = empleados;
+    }
+
+    public double getSueldo() {
+        return sueldo;
+    }
+
+    public void setSueldo(double sueldo) {
+        this.sueldo = sueldo;
     }
 
     //METODOS ABSTRACTOS

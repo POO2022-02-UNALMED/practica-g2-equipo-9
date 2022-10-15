@@ -1,4 +1,4 @@
-package uiMain.paqueteFuncionalidades;
+package uiMain;
 
 import java.time.LocalDate;
 import java.util.*;
@@ -48,10 +48,10 @@ public class Contabilidad {
         int mesSeleccionado=opcionMeses.get(opcion);
         System.out.println("Mes escogido: "+mesSeleccionado);
 
-        Contabilidad.calcularVentasMes(mesSeleccionado);
+        Contabilidad.calcularVentasMes(mesSeleccionado,meses);
     }
 
-    public static void calcularVentasMes(int mesSeleccionado){
+    public static void calcularVentasMes(int mesSeleccionado, HashMap<Integer,String> meses){
         ArrayList<Producto> productosVendidosMes =new ArrayList<>();
 
         for(Producto producto: Producto.getProductos()){
@@ -59,29 +59,31 @@ public class Contabilidad {
                 productosVendidosMes.add(producto);
             }
         }
-        long totalVentasProductos=0;
+        double totalVentasProductos=0;
         for(Producto producto: productosVendidosMes){
             if(producto.getEstado()=="Vendido"){
                 totalVentasProductos+=producto.getPrecioVenta();
             }
         }
-        long pagoTrabajador=0;
+        double pagoTrabajador=0;
         for (Trabajador trabajador: Trabajador.getTrabajadores()){
             pagoTrabajador+=trabajador.getSueldo();
 
         }
-        long pagoGerente=0;
+        double pagoGerente=0;
         for (Gerente gerente: Gerente.getGerentes()){
             pagoGerente+=gerente.getSueldo();
         }
 
-        //comisiones
+        double pagoComisionesTrabajador =Trabajador.comisionesPorTrabajador(mesSeleccionado)*0.2;
 
-
-
-
-        long gananciasNetas = totalVentasProductos-pagoTrabajador-pagoGerente-Trabajador.comisionesPorTrabajador(mesSeleccionado);
-
+        double gananciasNetas = totalVentasProductos-pagoTrabajador-pagoGerente-pagoComisionesTrabajador;//o.2 es porcentaje por las comisiones
+        String s = "Contabilidad del mes "+meses.get(mesSeleccionado)+" del 2022:" +
+                "\n-------------------------------"+
+                "\nValor total por Productos: "+totalVentasProductos+
+                "\nPago Comisiones de Productos: -"+pagoComisionesTrabajador+
+                "\nPago mensual a Empleados: -"+pagoTrabajador+
+                "\nPago mensual a gerentes: -"+pagoGerente;
 
 
     }

@@ -6,7 +6,7 @@ import gestorAplicacion.gestion.Producto;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class Trabajador extends Empleado {
+public class Trabajador extends Empleado implements Sueldo{
 
     //ATRIBUTOS DE INSTANCIA
     private int saldoFinal;
@@ -23,18 +23,15 @@ public class Trabajador extends Empleado {
     //CONSTRUCTOR
 
     public Trabajador(long codigo, String nombre, String cargo, Double sueldo, boolean estadoIngreso, LocalDate fechaCreacion, LocalDate fechaIngreso, int saldoFinal, ArrayList<Cliente> ventasDia) {
-        super(codigo, nombre, cargo, sueldo, estadoIngreso, fechaCreacion, fechaIngreso);
+        super(codigo, nombre, cargo, Sueldo.sueldoBase, estadoIngreso, fechaCreacion, fechaIngreso);
         this.saldoFinal = saldoFinal;
         this.ventasDia = ventasDia;
         trabajadores.add(this);
     }
 
 
-    //METODOS
 
-    public static long generarCodigo() {
-        return numeroTrabajador++;
-    }
+
 
 
     //GETTERS Y SETTERS
@@ -67,6 +64,8 @@ public class Trabajador extends Empleado {
         Trabajador.numeroTrabajador = numeroTrabajador;
     }
 
+
+
     public static ArrayList<Trabajador> getTrabajadores() {
         return trabajadores;
     }
@@ -80,8 +79,13 @@ public class Trabajador extends Empleado {
         return "algo";
     }
 
+
     //OTROS METODOS
-    public static long comisionesPorTrabajador(int mesSeleccionado) {
+    public static long generarCodigo() {
+        return numeroTrabajador++;
+    }
+
+    public static double comisionesPorTrabajador(int mesSeleccionado) {
         long comisionesPorTrabajador = 0;
         for (Trabajador trabajador : Trabajador.getTrabajadores()) {
             long contador = 0;
@@ -94,9 +98,18 @@ public class Trabajador extends Empleado {
                 comisionesPorTrabajador++;
             }
         }
-        return comisionesPorTrabajador;
+        return comisionesPorTrabajador*0.2;
     }
 
+    @Override
+    public void aumentarSueldo(double porcentaje) {
+
+    }
+
+    @Override
+    public double primaComision() {
+        return 0;
+    }
 }
  
 

@@ -12,8 +12,8 @@ public class Producto {
     private Cliente cliente;
     private String estado; //agregue estado de producto, "Vendido", "no vendido"
     private String nombre;
-    private int precioCompra;
-    private int precioVenta;
+    private double precioCompra;
+    private double precioVenta;
     private long codigo;
     private LocalDate fechaVencimiento;
     private LocalDate fechaIngreso;
@@ -78,19 +78,19 @@ public class Producto {
         this.nombre = nombre;
     }
 
-    public int getPrecioCompra() {
+    public double getPrecioCompra() {
         return precioCompra;
     }
 
-    public void setPrecioCompra(int precioCompra) {
+    public void setPrecioCompra(double precioCompra) {
         this.precioCompra = precioCompra;
     }
 
-    public int getPrecioVenta() {
+    public double getPrecioVenta() {
         return precioVenta;
     }
 
-    public void setPrecioVenta(int precioVenta) {
+    public void setPrecioVenta(double precioVenta) {
         this.precioVenta = precioVenta;
     }
 

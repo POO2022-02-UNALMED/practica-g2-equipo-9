@@ -3,7 +3,7 @@ package gestorAplicacion.usuarios;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class Gerente extends Empleado{
+public class Gerente extends Empleado implements Sueldo {
 
     //ATRIBUTOS DE INSTANCIA
 
@@ -17,7 +17,7 @@ public class Gerente extends Empleado{
     //CONSTRUCTOR
 
     public Gerente(long codigo, String nombre, String cargo, Double sueldo, boolean estadoIngreso, Double comision, LocalDate fechaCreacion, LocalDate fechaIngreso) {
-        super(generarCodigo(), nombre, cargo, sueldo, estadoIngreso, fechaCreacion, fechaIngreso);
+        super(generarCodigo(), nombre, cargo, Sueldo.sueldoBase*2, estadoIngreso, fechaCreacion, fechaIngreso);
         gerentes.add(this);
     }
 
@@ -53,4 +53,16 @@ public class Gerente extends Empleado{
     public static void setGerentes(ArrayList<Gerente> gerentes) {
         Gerente.gerentes = gerentes;
     }
+
+
+    @Override
+    public void aumentarSueldo(double porcentaje) {
+
+    }
+
+    @Override
+    public double primaComision() {
+        return 0;
+    }
+
 }

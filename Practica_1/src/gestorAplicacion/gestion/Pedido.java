@@ -4,6 +4,7 @@ package gestorAplicacion.gestion;
 import gestorAplicacion.usuarios.Cliente;
 import gestorAplicacion.usuarios.Trabajador;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Scanner;
@@ -19,7 +20,7 @@ public class Pedido {
     private ArrayList<Producto> productos = new ArrayList<>();//arraylist de productos pedidos por el cliente
 
     private ArrayList<Servicio> servicios =new ArrayList<>();//arraylist de servicios pedidos por el cliente
-    private int fecha;
+    private LocalDate fecha;
     private long codigo; //cuando se cree, se cree con el mismo ID del cliente
 
     //ATRIBUTOS DE CLASE
@@ -71,11 +72,11 @@ public class Pedido {
         this.productos = productos;
     }
 
-    public int getFecha() {
+    public LocalDate getFecha() {
         return fecha;
     }
 
-    public void setFecha(int fecha) {
+    public void setFecha(LocalDate fecha) {
         this.fecha = fecha;
     }
 
