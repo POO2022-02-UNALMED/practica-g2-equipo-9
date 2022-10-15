@@ -22,8 +22,8 @@ public class Trabajador extends Empleado implements Sueldo{
 
     //CONSTRUCTOR
 
-    public Trabajador(long codigo, String nombre, String cargo, boolean estadoIngreso, LocalDate fechaCreacion, LocalDate fechaIngreso, int saldoFinal, ArrayList<Cliente> ventasDia) {
-        super(codigo, nombre, cargo, Sueldo.sueldoBase, estadoIngreso, fechaCreacion, fechaIngreso);
+    public Trabajador(String nombre, String cargo, boolean estadoIngreso, LocalDate fechaCreacion, LocalDate fechaIngreso, int saldoFinal, ArrayList<Cliente> ventasDia) {
+        super(generarCodigo(), nombre, cargo, Sueldo.sueldoBase, estadoIngreso, fechaCreacion, fechaIngreso);
         this.saldoFinal = saldoFinal;
         this.ventasDia = ventasDia;
         trabajadores.add(this);

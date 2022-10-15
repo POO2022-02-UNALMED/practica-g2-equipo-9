@@ -49,7 +49,7 @@ public class Contabilidad {
         int mesSeleccionado=opcionMeses.get(opcion);
         System.out.println("Mes escogido: "+mesSeleccionado);
 
-        Contabilidad.calcularGananciasMes(mesSeleccionado,meses);
+        System.out.println(Contabilidad.calcularGananciasMes(mesSeleccionado,meses));
     }
 
     public static String calcularGananciasMes(int mesSeleccionado, HashMap<Integer,String> meses){
@@ -62,7 +62,7 @@ public class Contabilidad {
         }
         double totalVentasProductos=0;
         for(Producto producto: productosVendidosMes){
-            if(producto.getEstado()=="Vendido"){
+            if(producto.getEstado().equals("Vendido")){
                 totalVentasProductos+=producto.getPrecioVenta();
             }
         }
@@ -120,10 +120,13 @@ public class Contabilidad {
     }
 
     public static void main(String[] args) {
-        Producto producto = new Producto(null, null, "vendido", "coca", 0, 0, null, null, LocalDate.of(2020, 02, 02), 0, 0);
-        Producto producto1 = new Producto(null, null, "vendido", "coca", 0, 0, null, null, LocalDate.of(2020, 02, 02), 0, 0);
-        Producto producto2 = new Producto(null, null, "vendido", "coca", 0, 0, null, null, LocalDate.of(2020, 02, 1), 0, 0);
-        Producto producto3 = new Producto(null, null, "vendido", "coca", 0, 0, null, null, LocalDate.of(2020, 12, 1), 0, 0);
+        Producto producto = new Producto(null, null, "Vendido", "coca", 0, 400, null, null, LocalDate.of(2020, 02, 02), 0, 0);
+        Producto producto1 = new Producto(null, null, "Vendido", "coca", 0, 400, null, null, LocalDate.of(2020, 02, 02), 0, 0);
+        Producto producto2 = new Producto(null, null, "Vendido", "coca", 0, 400, null, null, LocalDate.of(2020, 02, 1), 0, 0);
+        Producto producto3 = new Producto(null, null, "Vendido", "coca", 0, 400, null, null, LocalDate.of(2020, 12, 1), 0, 0);
+        Trabajador trabajador1=new Trabajador(null,null,false,null,null,0,null);
+
         contabilidad();
+        int a=3;
     }
 }
