@@ -6,6 +6,8 @@ import java.util.*;
 import java.util.Scanner;
 
 import gestorAplicacion.gestion.*;
+import gestorAplicacion.usuarios.Gerente;
+import gestorAplicacion.usuarios.Trabajador;
 
 public class Contabilidad {
     public static void contabilidad() {
@@ -57,13 +59,25 @@ public class Contabilidad {
                 productosVendidosMes.add(producto);
             }
         }
-        Double totalVentasProductos=0;
+        long totalVentasProductos=0;
         for(Producto producto: productosVendidosMes){
             if(producto.getEstado()=="Vendido"){
                 totalVentasProductos+=producto.getPrecioVenta();
             }
         }
-        double ventasTotales = 0;
+        long pagoTrabajador=0;
+        for (Trabajador trabajador: Trabajador.getTrabajadores()){
+            pagoTrabajador+=trabajador.getSueldo();
+
+        }
+        long pagoGerente=0;
+        for (Gerente gerente: Gerente.getGerentes()){
+            pagoGerente+=gerente.getSueldo();
+        }
+
+        long gananciasNetas=totalVentasProductos-pagoTrabajador;
+
+
     }
 
     public static void main(String[] args) {

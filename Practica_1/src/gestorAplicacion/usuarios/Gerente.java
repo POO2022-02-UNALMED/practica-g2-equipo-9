@@ -11,7 +11,7 @@ public class Gerente extends Empleado{
 
     //ATRIBUTOS DE CLASE
     private static long numeroGerente=0;
-    ArrayList<Gerente>gerentes=new ArrayList<>();
+    private static ArrayList<Gerente>gerentes=new ArrayList<>();
 
 
     //CONSTRUCTOR
@@ -46,11 +46,11 @@ public class Gerente extends Empleado{
         Gerente.numeroGerente = numeroGerente;
     }
 
-    public ArrayList<Gerente> getGerentes() {
+    public static ArrayList<Gerente> getGerentes() {
         return gerentes;
     }
 
-    public void setGerentes(ArrayList<Gerente> gerentes) {
-        this.gerentes = gerentes;
+    public static void setGerentes(ArrayList<Gerente> gerentes) {
+        Gerente.gerentes = gerentes;
     }
 }

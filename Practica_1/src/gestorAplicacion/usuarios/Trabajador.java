@@ -9,7 +9,6 @@ import java.util.ArrayList;
 public class Trabajador extends Empleado {
 
     //ATRIBUTOS DE INSTANCIA
-    private int base;
     private int saldoFinal;
 
     private final int seguro=6;
@@ -21,11 +20,11 @@ public class Trabajador extends Empleado {
     private static long numeroTrabajador=0;
     private static ArrayList<Trabajador> trabajadores= new ArrayList<>();
 
+
     //CONSTRUCTOR
 
-    public Trabajador(long codigo, String nombre, String cargo, Double sueldo, boolean estadoIngreso, Double comision, LocalDate fechaCreacion, LocalDate fechaIngreso, int base, int saldoFinal, ArrayList<Cliente> ventasDia) {
+    public Trabajador(long codigo, String nombre, String cargo, Double sueldo, boolean estadoIngreso, Double comision, LocalDate fechaCreacion, LocalDate fechaIngreso, int saldoFinal, ArrayList<Cliente> ventasDia) {
         super(codigo, nombre, cargo, sueldo, estadoIngreso, comision, fechaCreacion, fechaIngreso);
-        this.base = base;
         this.saldoFinal = saldoFinal;
         this.ventasDia = ventasDia;
         trabajadores.add(this);
@@ -40,15 +39,6 @@ public class Trabajador extends Empleado {
 
 
     //GETTERS Y SETTERS
-
-
-    public int getBase() {
-        return base;
-    }
-
-    public void setBase(int base) {
-        this.base = base;
-    }
 
     public int getSaldoFinal() {
         return saldoFinal;
