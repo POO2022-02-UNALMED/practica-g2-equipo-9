@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class Reserva {
     //ATRIBUTOS DE INSTANCIA
     private int idReserva;
-    private String estado;
+    private String estado; //"Exitosa", "No exitosa"
     private Cliente cliente;
     private ArrayList<Servicio> serivicios;
     private LocalDate fechaReserva; // el dia de la ejecucion de la reserva
