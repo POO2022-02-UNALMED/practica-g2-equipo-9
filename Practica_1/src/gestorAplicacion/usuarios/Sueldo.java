@@ -7,5 +7,5 @@ public interface Sueldo {
     public abstract double getSueldo();
     public abstract void setSueldo(double sueldo);
     public abstract void aumentarSueldo(double porcentaje);
-    public abstract double primaComision();
+    public abstract double calculoDePrima();
 }

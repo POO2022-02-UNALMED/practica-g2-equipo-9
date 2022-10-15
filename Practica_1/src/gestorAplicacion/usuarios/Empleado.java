@@ -19,7 +19,7 @@ public abstract class Empleado extends Usuario {
 
     //CONSTRUCTOR
 
-    public Empleado(long codigo, String nombre, String cargo, Double sueldo, boolean estadoIngreso, LocalDate fechaCreacion, LocalDate fechaIngreso) {
+    public Empleado(long codigo, String nombre, String cargo, double sueldo, boolean estadoIngreso, LocalDate fechaCreacion, LocalDate fechaIngreso) {
         super(codigo, nombre);
         this.cargo = cargo;
         this.sueldo = sueldo;
@@ -79,6 +79,15 @@ public abstract class Empleado extends Usuario {
 
     public void setSueldo(double sueldo) {
         this.sueldo = sueldo;
+    }
+
+    public void aumentarSueldo(double porcentajeAumento) {
+        this.setSueldo(this.getSueldo()*(1+porcentajeAumento));
+    }
+
+
+    public double calculoDePrima() {
+        return this.getSueldo()*0.5;
     }
 
     //METODOS ABSTRACTOS

@@ -39,11 +39,10 @@ public class Producto {
     
     //CONSTRUCTOR
 
-
     public Producto(Trabajador trabajador, Pedido pedido, String estado, String nombre, int precioCompra, int precioVenta, LocalDate fechaVencimiento, LocalDate fechaIngreso, LocalDate fechaVenta, int disponibles, int reservados) {
         this.trabajador = trabajador;
         this.pedido = pedido;
-        this.estado = "no Vendido";
+        this.estado = estado;
         this.nombre = nombre;
         this.precioCompra = precioCompra;
         this.precioVenta = precioVenta;
