@@ -10,7 +10,8 @@ import gestorAplicacion.usuarios.Gerente;
 import gestorAplicacion.usuarios.Sueldo;
 import gestorAplicacion.usuarios.Trabajador;
 
-public class Contabilidad {
+public class FuncionalidadesContabilidad {
+    //FUNCIONALIDAD CONTABILIDAD
     public static void contabilidad() {
         Scanner entrada = new Scanner(System.in);
         System.out.println("Bienvenido al menu de contabilidad");
@@ -24,6 +25,10 @@ public class Contabilidad {
         for (Producto producto : Producto.getProductos()) {
             //busca la fecha de venta de producto, luego obtiene de ella el int asociado al mes y lo guarda en fechas
             fechas.add(producto.getFechaVenta().getMonthValue());
+        }
+        //Busca fechas de servicios de los que se tengan conocimiento de orden
+        for (Pedido pedido: Pedido.getPedidos()){
+            fechas.add(pedido.getFechaPedido().getMonthValue());
         }
         HashMap<Integer,String> meses = new HashMap<Integer,String>();
         meses.put(1,"Enero"); meses.put(2,"Febrero"); meses.put(3, "Marzo"); meses.put(4, "Abril"); meses.put(5, "Mayo"); meses.put(6,"Junio");
@@ -49,7 +54,7 @@ public class Contabilidad {
         int mesSeleccionado=opcionMeses.get(opcion);
         System.out.println("Mes escogido: "+mesSeleccionado);
 
-        System.out.println(Contabilidad.calcularGananciasMes(mesSeleccionado,meses));
+        System.out.println(FuncionalidadesContabilidad.calcularGananciasMes(mesSeleccionado,meses));
     }
 
     public static String calcularGananciasMes(int mesSeleccionado, HashMap<Integer,String> meses){
