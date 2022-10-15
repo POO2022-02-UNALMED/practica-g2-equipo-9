@@ -69,7 +69,7 @@ public class FuncionalidadesContabilidad {
         }
         double totalVentasProductos=0;
         for(Producto producto: productosVendidosMes){
-            if(producto.getEstado().equals("Vendido")){
+            if(producto.getEstado().equals("VENDIDO")){
                 totalVentasProductos+=producto.getPrecioVenta();
             }
         }
@@ -97,16 +97,20 @@ public class FuncionalidadesContabilidad {
             pagoGerente+=gerente.getSueldo();
         }
 
-        double pagoComisionesTrabajador =Trabajador.comisionesPorTrabajador(mesSeleccionado);//0.2 es el porcentaje por las comisiones
+        //comisiones totales de mi plantilla de trabajadores
+        double comisionesTotales=0;
+        for(Trabajador e: Trabajador.getTrabajadores()){
+            comisionesTotales+=Trabajador.comisionTrabajador(e);
+        }
 
-        double gananciasNetas = totalVentasProductos+totalVentasDeServicios-pagoTrabajador-pagoGerente-pagoComisionesTrabajador;//ganancias netas
+        double gananciasNetas = totalVentasProductos+totalVentasDeServicios-pagoTrabajador-pagoGerente-comisionesTotales;//ganancias netas
 
         String s = "Contabilidad del mes "+meses.get(mesSeleccionado)+" del 2022:" +
                 "\n-------------------------------"+
                 "\nValor total por Productos: "+totalVentasProductos+
                 "\nValor total por Servicios: "+totalVentasDeServicios+
-                "\nPago Comisiones a Trabajadores: -"+pagoComisionesTrabajador+
                 "\nPago mensual a Empleados: -"+pagoTrabajador+
+                "\nPago Comisiones a Trabajadores: -"+comisionesTotales+
                 "\nPago mensual a gerentes: -"+pagoGerente;
 
 

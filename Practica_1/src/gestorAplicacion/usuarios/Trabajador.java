@@ -85,21 +85,17 @@ public class Trabajador extends Empleado implements Sueldo{
         return numeroTrabajador++;
     }
 
-    public static double comisionesPorTrabajador(int mesSeleccionado) {
-        long comisionesPorTrabajador = 0;
-        for (Trabajador trabajador : Trabajador.getTrabajadores()) {
-            long contador = 0;
-            for (Producto producto : Producto.getProductos()) {
-                if (trabajador == producto.getTrabajador() && producto.getFechaVenta().getMonthValue() == mesSeleccionado) {
-                    contador++;
-                }
+    //Este metodo me ayuda a saber que comision gana un trabajador por los productos que vente
+    public static double comisionTrabajador(Trabajador trabajador){
+        double comisionPorProducto=0;
+
+        for (Producto e: Producto.getProductos()){
+            if (e.getEstado().equals("VENDIDO") && e.getTrabajador()==trabajador){
+                comisionPorProducto+=e.getPrecioVenta()*Sueldo.porcentajeComision;
             }
-            if (contador >= 50) {//vendio 50 o mas productos en el mes
-                comisionesPorTrabajador++;
             }
+        return comisionPorProducto;
         }
-        return comisionesPorTrabajador*0.2;
-    }
 
 
 }

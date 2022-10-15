@@ -10,7 +10,7 @@ public class Producto {
     private Trabajador trabajador;
     private Pedido pedido;
     private Cliente cliente;
-    private String estado; //agregue estado de producto, "Vendido", "no vendido"
+    private String estado; //agregue estado de producto, "VENDIDO", "NO VENDIDO"
     private String nombre;
     private double precioCompra;
     private double precioVenta;
