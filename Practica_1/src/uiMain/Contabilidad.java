@@ -7,6 +7,7 @@ import java.util.Scanner;
 
 import gestorAplicacion.gestion.*;
 import gestorAplicacion.usuarios.Gerente;
+import gestorAplicacion.usuarios.Sueldo;
 import gestorAplicacion.usuarios.Trabajador;
 
 public class Contabilidad {
@@ -81,10 +82,33 @@ public class Contabilidad {
         String s = "Contabilidad del mes "+meses.get(mesSeleccionado)+" del 2022:" +
                 "\n-------------------------------"+
                 "\nValor total por Productos: "+totalVentasProductos+
-                "\nPago Comisiones de Productos: -"+pagoComisionesTrabajador+
+                "\nPago Comisiones a Trabajadores: -"+pagoComisionesTrabajador+
                 "\nPago mensual a Empleados: -"+pagoTrabajador+
                 "\nPago mensual a gerentes: -"+pagoGerente;
+        double primaEmpleados=0;
+        double primaGerente=0;
 
+
+        //Declaro un array de tipo Sueldo para guardar objetos tipo Trabajador y Gerente
+        ArrayList<Sueldo> empleados= new ArrayList<>();
+        for (Trabajador trabajador: Trabajador.getTrabajadores()){
+            empleados.add(trabajador);
+        }
+        for (Gerente gerente: Gerente.getGerentes()){
+            empleados.add(gerente);
+        }
+        if (meses.get(mesSeleccionado)=="Junio" || meses.get(mesSeleccionado)=="Diciembre"){
+            for (Sueldo empleado: empleados){
+                if (empleado instanceof Trabajador){//Utilice instanceof cuando necesite confirmar el tipo de un objeto en tiempo de ejecución. Verifica si prima pertenece a trabajador
+                    primaEmpleados+=empleado.calculoDePrima();
+                }
+                else if(empleado instanceof Gerente){
+                    primaGerente+=empleado.calculoDePrima();
+                }
+            }
+
+
+        }
 
     }
 

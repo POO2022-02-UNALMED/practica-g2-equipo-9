@@ -22,7 +22,7 @@ public class Trabajador extends Empleado implements Sueldo{
 
     //CONSTRUCTOR
 
-    public Trabajador(long codigo, String nombre, String cargo, Double sueldo, boolean estadoIngreso, LocalDate fechaCreacion, LocalDate fechaIngreso, int saldoFinal, ArrayList<Cliente> ventasDia) {
+    public Trabajador(long codigo, String nombre, String cargo, boolean estadoIngreso, LocalDate fechaCreacion, LocalDate fechaIngreso, int saldoFinal, ArrayList<Cliente> ventasDia) {
         super(codigo, nombre, cargo, Sueldo.sueldoBase, estadoIngreso, fechaCreacion, fechaIngreso);
         this.saldoFinal = saldoFinal;
         this.ventasDia = ventasDia;
@@ -101,15 +101,7 @@ public class Trabajador extends Empleado implements Sueldo{
         return comisionesPorTrabajador*0.2;
     }
 
-    @Override
-    public void aumentarSueldo(double porcentaje) {
 
-    }
-
-    @Override
-    public double primaComision() {
-        return 0;
-    }
 }
  
 
