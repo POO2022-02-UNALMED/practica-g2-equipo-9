@@ -88,9 +88,18 @@ public class FuncionalidadesNomina {
             }
         }
         //COMISION POR VENTA
-        double comisionesEmpleado=0;
+        double comisionTrabajador=0;
         for(Producto e: productosVendioEmpleado){
-            comisionesEmpleado+=e.getPrecioVenta()*Sueldo.porcentajeComision;
+            comisionTrabajador+=e.getPrecioVenta()*Sueldo.porcentajeComision;
+        }
+        //CANTIDAD DE PRODUCTOS VENDIDOS POR NOMBRE
+        SortedSet<String> nombres= new TreeSet<>();
+        for(Producto e: productosVendioEmpleado){
+            nombres.add(e.getNombre());
+        }
+        String productos="";
+        for (Producto e: productosVendioEmpleado){
+            productos+="\n";
         }
 
         //SERVICIOS QUE VENDIO
@@ -102,6 +111,25 @@ public class FuncionalidadesNomina {
                 }
             }
         }
+        String s="";
+        s+="\n "+
+                "\n "+
+                "\n ================================================================== "+
+                "\n                     Pago al trabajador con " + trabajadorSeleccionado+
+                "\n ================================================================== "+
+                "\n  "+
+                "\n Servicios vendidos: "+serviciosVendioEmpleado.size()+
+                "\n Productos vendidos: "+productosVendioEmpleado.size()+
+                "\n La comision por producto vendido es del "+Sueldo.porcentajeComision*100+"%"+
+                "\n Comision por productos vendidos: "+comisionTrabajador+" $"+
+                "\n "+
+                "\n Sueldo base: "+trabajadorSeleccionado.getSueldo()+
+                "\n "+
+                "\n El
+
+
+
+        return s;
     }
 
     public static void main(String[] args) {
