@@ -22,8 +22,8 @@ public class Trabajador extends Empleado implements Sueldo{
 
     //CONSTRUCTOR
 
-    public Trabajador(String nombre, String cargo, boolean estadoIngreso, LocalDate fechaCreacion, LocalDate fechaIngreso, int saldoFinal, ArrayList<Cliente> ventasDia) {
-        super(generarCodigo(), nombre, cargo, Sueldo.sueldoBase, estadoIngreso, fechaCreacion, fechaIngreso);
+    public Trabajador(String nombre, String cargo, boolean estadoIngreso, LocalDate fechaIngreso, int saldoFinal, ArrayList<Cliente> ventasDia) {
+        super(generarCodigo(), nombre, cargo, Sueldo.sueldoBase, estadoIngreso, fechaIngreso);
         this.saldoFinal = saldoFinal;
         this.ventasDia = ventasDia;
         trabajadores.add(this);
@@ -76,7 +76,16 @@ public class Trabajador extends Empleado implements Sueldo{
 
     //METODOS ABSTRACTOS
     public String asegurar() {
-        return "algo";
+        LocalDate vinculacion= super.getFechaVinculacion();
+        LocalDate finVinculacion= super.getFechaVinculacion().plusMonths(6);
+
+        if(LocalDate.now().isAfter(finVinculacion)){
+            return "Trabajador "+this.getNombre()+" "+" con codigo "+this.getCodigo()+" tiene vencido el seguro, este vencio en la fecha "+finVinculacion;
+        }
+        else{
+            return "Trabajador "+ this.getNombre()+" con codigo "+this.getCodigo()+" el seguro lo cubre desde la fecha "+vinculacion+" hasta la fecha "+finVinculacion;
+        }
+
     }
 
 
@@ -84,6 +93,11 @@ public class Trabajador extends Empleado implements Sueldo{
     public static long generarCodigo() {
         return numeroTrabajador++;
     }
+
+    public String toString(){
+        return "Codigo: "+this.getCodigo()+", Nombre: "+super.getNombre();
+    }
+
 
     //Este metodo me ayuda a saber que comision gana un trabajador por los productos que vente
     public static double comisionTrabajador(Trabajador trabajador){

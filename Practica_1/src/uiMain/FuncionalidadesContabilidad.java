@@ -154,8 +154,8 @@ public class FuncionalidadesContabilidad {
         Producto producto1 = new Producto(null, null, "Vendido", "coca", 0, 400, null, null, LocalDate.of(2020, 02, 02), 0, 0);
         Producto producto2 = new Producto(null, null, "Vendido", "coca", 0, 400, null, null, LocalDate.of(2020, 02, 1), 0, 0);
         Producto producto3 = new Producto(null, null, "Vendido", "coca", 0, 400, null, null, LocalDate.of(2020, 12, 1), 0, 0);
-        Trabajador trabajador1=new Trabajador(null,null,false,null,null,0,null);
-
+        Trabajador trabajador1=new Trabajador(null,null,false,null,0,null);
+        System.out.println(trabajador1.getFechaVinculacion());
         contabilidad();
     }
 }
