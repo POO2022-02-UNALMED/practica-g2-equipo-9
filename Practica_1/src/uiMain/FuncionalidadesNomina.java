@@ -125,7 +125,7 @@ public class FuncionalidadesNomina {
                 "\n "+
                 "\n Sueldo base: "+trabajadorSeleccionado.getSueldo()+
                 "\n "+
-                "\n El
+                "\n El";
 
 
 
