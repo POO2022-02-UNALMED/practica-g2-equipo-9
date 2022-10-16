@@ -10,7 +10,7 @@ public class Producto {
     private Trabajador trabajador;
     private Pedido pedido;
     private Cliente cliente;
-    private String estado; //agregue estado de producto, "Vendido", "no vendido"
+    private String estado; //agregue estado de producto, "Vendido", "Disponible", "Reservado"
     private String nombre;
     private double precioCompra;
     private double precioVenta;
@@ -21,10 +21,21 @@ public class Producto {
     private int disponibles;
     private int reservados;
 
+    private int tipo; //  "1. Bebida alcoholica", "2. Bebida no alcoholica", "3. Comida", "4. Snack", "5. Cigarrillo", "6. Energizante", "7. Otro"
+
     //ATRIBUTOS DE CLASE
 
     private static ArrayList<Producto> productos=new ArrayList<>();
     private static long numeroProducto=0;
+
+    private static ArrayList<Producto> bebidasAlcoholicas = new ArrayList();
+    private static ArrayList<Producto> bebidasNoAlcoholicas = new ArrayList();
+    private static ArrayList<Producto> comidas = new ArrayList();
+    private static ArrayList<Producto> snacks = new ArrayList();
+    private static ArrayList<Producto> cigarrillos = new ArrayList();
+    private static ArrayList<Producto> energizantes = new ArrayList();
+    private static ArrayList<Producto> otrosProductos = new ArrayList();
+
 
     //GETTER y SETTER de productos importante para muchas cosas
     public LocalDate getFechaVenta() {
@@ -183,4 +194,67 @@ public class Producto {
         this.cliente = cliente;
     }
 
+    public int getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(int tipo) {
+        this.tipo = tipo;
+    }
+
+    public static ArrayList<Producto> getBebidasAlcoholicas() {
+        return bebidasAlcoholicas;
+    }
+
+    public static void setBebidasAlcoholicas(ArrayList<Producto> bebidasAlcoholicas) {
+        Producto.bebidasAlcoholicas = bebidasAlcoholicas;
+    }
+
+    public static ArrayList<Producto> getBebidasNoAlcoholicas() {
+        return bebidasNoAlcoholicas;
+    }
+
+    public static void setBebidasNoAlcoholicas(ArrayList<Producto> bebidasNoAlcoholicas) {
+        Producto.bebidasNoAlcoholicas = bebidasNoAlcoholicas;
+    }
+
+    public static ArrayList<Producto> getComidas() {
+        return comidas;
+    }
+
+    public static void setComidas(ArrayList<Producto> comidas) {
+        Producto.comidas = comidas;
+    }
+
+    public static ArrayList<Producto> getSnacks() {
+        return snacks;
+    }
+
+    public static void setSnacks(ArrayList<Producto> snacks) {
+        Producto.snacks = snacks;
+    }
+
+    public static ArrayList<Producto> getCigarrillos() {
+        return cigarrillos;
+    }
+
+    public static void setCigarrillos(ArrayList<Producto> cigarrillos) {
+        Producto.cigarrillos = cigarrillos;
+    }
+
+    public static ArrayList<Producto> getEnergizantes() {
+        return energizantes;
+    }
+
+    public static void setEnergizantes(ArrayList<Producto> energizantes) {
+        Producto.energizantes = energizantes;
+    }
+
+    public static ArrayList<Producto> getOtrosProductos() {
+        return otrosProductos;
+    }
+
+    public static void setOtrosProductos(ArrayList<Producto> otrosProductos) {
+        Producto.otrosProductos = otrosProductos;
+    }
 }

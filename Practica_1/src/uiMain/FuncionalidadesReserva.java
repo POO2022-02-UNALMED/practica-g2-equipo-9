@@ -76,9 +76,18 @@ public class FuncionalidadesReserva {
                 opcionServicio = sc.nextInt();
             }
             opcion = opcionServicio;
-        } // el ciclo se termina por peiticion del usuario o porque ya selecciono todos los servicios disponibles
+        } // el ciclo se termina por peticion del usuario o porque ya selecciono todos los servicios disponibles
 
         //PRODUCTOS A AGREGAR EN LA RESERVA Y SU CANTIDAD
+        System.out.println("A continuacion ingrese los productos que desea en su reserva: ");
+        System.out.println("1. Bebidas alcoholicas");
+        System.out.println("2. Bebidas no alcoholicas");
+        System.out.println("3. Comida");
+        System.out.println("4. Snacks");
+        System.out.println("5. Cigarrillos");
+        System.out.println("6. Energizantes");
+        System.out.println("7. Otros");
+
 
 
 
