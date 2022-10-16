@@ -2,14 +2,13 @@ package uiMain;
 
 import gestorAplicacion.gestion.Pedido;
 import gestorAplicacion.gestion.Producto;
+import gestorAplicacion.gestion.Servicio;
+import gestorAplicacion.usuarios.Sueldo;
 import gestorAplicacion.usuarios.Trabajador;
 
 import java.sql.SQLOutput;
 import java.time.LocalDate;
-import java.util.HashMap;
-import java.util.Scanner;
-import java.util.SortedSet;
-import java.util.TreeSet;
+import java.util.*;
 
 public class FuncionalidadesNomina {
     //FUNCIONALIDAD NOMINA
@@ -51,19 +50,86 @@ public class FuncionalidadesNomina {
             opcionMeses.put(i,e);
             i++;
         }
-        //obtengo la fecha escogida
+        //Obtengo la fecha escogida
         System.out.println("Por favor ingresa una opcion:");
         int opcion=entrada.nextInt();
         int mesSeleccionado=opcionMeses.get(opcion);
         System.out.println("Mes escogido: "+mesSeleccionado);
 
-
+        //Seleccionar trabajador
         System.out.println("Selecciona trabajador a liquidar:");
 
         for (Trabajador trabajador: Trabajador.getTrabajadores()){
-            System.out.println();
+
+            System.out.println(trabajador);
+        }
+        System.out.println("Ingresa codigo del trabajador: ");
+        long codigo = entrada.nextInt();//codigo de empleado
+
+        //buscamos el codigo del trabajador
+        Trabajador trabajadorSeleccionado=null;
+        for (Trabajador trabajador: Trabajador.getTrabajadores()){
+            if(trabajador.getCodigo()==codigo){
+                trabajadorSeleccionado=trabajador;
+                break;
+            }
         }
 
+        System.out.println(FuncionalidadesNomina.nominaEmpleado(mesSeleccionado,trabajadorSeleccionado));
+
+
+    }
+    public static String nominaEmpleado(long mesSeleccionado, Trabajador trabajadorSeleccionado){
+        //PRODUCTOS QUE VENDIO EMPLEADO
+        ArrayList<Producto> productosVendioEmpleado= new ArrayList<>();
+        for (Producto producto: Producto.getProductos()){
+            if (producto.getFechaVenta().getMonthValue()==mesSeleccionado && producto.getTrabajador()==trabajadorSeleccionado && producto.getEstado().equals("VENDIDO")){
+                productosVendioEmpleado.add(producto);
+            }
+        }
+        //COMISION POR VENTA
+        double comisionTrabajador=0;
+        for(Producto e: productosVendioEmpleado){
+            comisionTrabajador+=e.getPrecioVenta()*Sueldo.porcentajeComision;
+        }
+        //CANTIDAD DE PRODUCTOS VENDIDOS POR NOMBRE
+        SortedSet<String> nombres= new TreeSet<>();
+        for(Producto e: productosVendioEmpleado){
+            nombres.add(e.getNombre());
+        }
+        String productos="";
+        for (Producto e: productosVendioEmpleado){
+            productos+="\n";
+        }
+
+        //SERVICIOS QUE VENDIO
+        ArrayList<Servicio> serviciosVendioEmpleado= new ArrayList<>();
+        for(Pedido e: Pedido.getPedidos()){
+            if(e.getFechaPedido().getMonthValue()==mesSeleccionado && e.getTrabajador()==trabajadorSeleccionado && e.getEstadoPedido().equals("PAGADO")){
+                for(Servicio servicio: e.getServicios()){
+                    serviciosVendioEmpleado.add(servicio);
+                }
+            }
+        }
+        String s="";
+        s+="\n "+
+                "\n "+
+                "\n ================================================================== "+
+                "\n                     Pago al trabajador con " + trabajadorSeleccionado+
+                "\n ================================================================== "+
+                "\n  "+
+                "\n Servicios vendidos: "+serviciosVendioEmpleado.size()+
+                "\n Productos vendidos: "+productosVendioEmpleado.size()+
+                "\n La comision por producto vendido es del "+Sueldo.porcentajeComision*100+"%"+
+                "\n Comision por productos vendidos: "+comisionTrabajador+" $"+
+                "\n "+
+                "\n Sueldo base: "+trabajadorSeleccionado.getSueldo()+
+                "\n "+
+                "\n El";
+
+
+
+        return s;
     }
 
     public static void main(String[] args) {
@@ -71,7 +137,6 @@ public class FuncionalidadesNomina {
         Producto producto1 = new Producto(null, null, "Vendido", "coca", 0, 400, null, null, LocalDate.of(2020, 02, 02), 0, 0);
         Producto producto2 = new Producto(null, null, "Vendido", "coca", 0, 400, null, null, LocalDate.of(2020, 02, 1), 0, 0);
         Producto producto3 = new Producto(null, null, "Vendido", "coca", 0, 400, null, null, LocalDate.of(2020, 12, 1), 0, 0);
-        Trabajador trabajador1=new Trabajador(null,null,false,null,0,null);
         Producto producto4 = new Producto(null, null, "Vendido", "coca", 0, 400, null, null, LocalDate.of(2020, 06, 02), 0, 0);
         Producto producto5 = new Producto(null, null, "Vendido", "coca", 0, 400, null, null, LocalDate.of(2020, 04, 1), 0, 0);
         Producto producto6 = new Producto(null, null, "Vendido", "coca", 0, 400, null, null, LocalDate.of(2020, 1, 02), 0, 0);
