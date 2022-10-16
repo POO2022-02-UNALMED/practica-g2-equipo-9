@@ -6,8 +6,6 @@ import gestorAplicacion.usuarios.Trabajador;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.Scanner;
 
 
 public class Pedido {
@@ -16,11 +14,11 @@ public class Pedido {
 
     private Trabajador trabajador;
     private Cliente cliente;
-    private String estadoPedido;
+    private String estadoPedido; // "PAGADO", "NO PAGADO"
     private ArrayList<Producto> productos = new ArrayList<>();//arraylist de productos pedidos por el cliente
 
     private ArrayList<Servicio> servicios =new ArrayList<>();//arraylist de servicios pedidos por el cliente
-    private LocalDate fecha;
+    private LocalDate fechaPedido;
     private long codigo; //cuando se cree, se cree con el mismo ID del cliente
 
     //ATRIBUTOS DE CLASE
@@ -29,6 +27,17 @@ public class Pedido {
     private static long numeroPedido=0;
     //CONSTRUCTOR
 
+    public Pedido(Trabajador trabajador, Cliente cliente, String estadoPedido, ArrayList<Producto> productos, ArrayList<Servicio> servicios, LocalDate fechaPedido) {
+        this.trabajador = trabajador;
+        this.cliente = cliente;
+        this.estadoPedido = estadoPedido;
+        this.productos = productos;
+        this.servicios = servicios;
+        this.fechaPedido = fechaPedido;
+        this.codigo = generarCodigo();
+    }
+
+    //GETTERS Y SETTERS
     public Trabajador getTrabajador() {
         return trabajador;
     }
@@ -53,9 +62,6 @@ public class Pedido {
         Pedido.pedidos = pedidos;
     }
 
-
-    //GETTERS Y SETTERS
-
     public String getEstadoPedido() {
         return estadoPedido;
     }
@@ -72,12 +78,12 @@ public class Pedido {
         this.productos = productos;
     }
 
-    public LocalDate getFecha() {
-        return fecha;
+    public LocalDate getFechaPedido() {
+        return fechaPedido;
     }
 
-    public void setFecha(LocalDate fecha) {
-        this.fecha = fecha;
+    public void setFechaPedido(LocalDate fechaPedido) {
+        this.fechaPedido = fechaPedido;
     }
 
     public long getCodigo() {
@@ -108,20 +114,11 @@ public class Pedido {
         this.codigo = codigo;
     }
 
-    //METODOS
+    //OTROS METODOS
     public long generarCodigo(){
         return numeroPedido++;
     }
 
-    public void cobrarProducto(){
-        this.estadoPedido="cobrado";
-    }
-    public void reembolsarProducto(){
-        this.estadoPedido="reembolsado";
-    }
 
-    public void ingresarProducto(Producto producto){
-        productos.add(producto);
-    }
 
 }

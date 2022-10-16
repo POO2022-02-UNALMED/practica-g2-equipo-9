@@ -10,7 +10,8 @@ import gestorAplicacion.usuarios.Gerente;
 import gestorAplicacion.usuarios.Sueldo;
 import gestorAplicacion.usuarios.Trabajador;
 
-public class Contabilidad {
+public class FuncionalidadesContabilidad {
+    //FUNCIONALIDAD CONTABILIDAD
     public static void contabilidad() {
         Scanner entrada = new Scanner(System.in);
         System.out.println("Bienvenido al menu de contabilidad");
@@ -25,6 +26,10 @@ public class Contabilidad {
             //busca la fecha de venta de producto, luego obtiene de ella el int asociado al mes y lo guarda en fechas
             fechas.add(producto.getFechaVenta().getMonthValue());
         }
+        //Busca fechas de servicios de los que se tengan conocimiento de orden
+        for (Pedido pedido: Pedido.getPedidos()){
+            fechas.add(pedido.getFechaPedido().getMonthValue());
+        }
         HashMap<Integer,String> meses = new HashMap<Integer,String>();
         meses.put(1,"Enero"); meses.put(2,"Febrero"); meses.put(3, "Marzo"); meses.put(4, "Abril"); meses.put(5, "Mayo"); meses.put(6,"Junio");
         meses.put(7, "Julio");meses.put(8, "Agosto"); meses.put(9, "Septiembre"); meses.put(10, "Octubre"); meses.put(11, "Noviembre"); meses.put(12, "Diciembre");
@@ -32,7 +37,7 @@ public class Contabilidad {
         //Iterator lo uso para recorrer el Array fechas de forma secuencial
         Iterator value = fechas.iterator(); //El método iterator() nos va a permitir obtener un objeto de tipo Iterator que representa la colección a recorrer
 
-        //.hasNext: Método que devuelve true si existe un siguiente elemento a la hora de iterar sobre una colección.
+
         HashMap<Integer,Integer> opcionMeses=new HashMap<>();
 
         System.out.println("Fechas Disponibles:");
@@ -49,10 +54,12 @@ public class Contabilidad {
         int mesSeleccionado=opcionMeses.get(opcion);
         System.out.println("Mes escogido: "+mesSeleccionado);
 
-        System.out.println(Contabilidad.calcularGananciasMes(mesSeleccionado,meses));
+        System.out.println(FuncionalidadesContabilidad.calcularGananciasMes(mesSeleccionado,meses));
     }
 
     public static String calcularGananciasMes(int mesSeleccionado, HashMap<Integer,String> meses){
+
+        //PRODUCTOS CON ESTADO VENDIDO
         ArrayList<Producto> productosVendidosMes =new ArrayList<>();
 
         for(Producto producto: Producto.getProductos()){
@@ -62,9 +69,23 @@ public class Contabilidad {
         }
         double totalVentasProductos=0;
         for(Producto producto: productosVendidosMes){
-            if(producto.getEstado().equals("Vendido")){
+            if(producto.getEstado().equals("VENDIDO")){
                 totalVentasProductos+=producto.getPrecioVenta();
             }
+        }
+
+        //SERVICIOS VENDIDOS EN EL MES SELECCIONADO
+        ArrayList<Servicio> serviciosMes=new ArrayList<>();
+        for (Pedido pedido: Pedido.getPedidos()){
+            if(pedido.getFechaPedido().getMonthValue()==mesSeleccionado && pedido.getEstadoPedido()=="PAGADO"){
+                for (Servicio servicio: pedido.getServicios()){
+                    serviciosMes.add(servicio);
+                }
+            }
+        }
+        double totalVentasDeServicios=0;
+        for (Servicio e: serviciosMes){
+            totalVentasDeServicios+=e.getPrecio();
         }
         double pagoTrabajador=0;
         for (Trabajador trabajador: Trabajador.getTrabajadores()){
@@ -76,20 +97,29 @@ public class Contabilidad {
             pagoGerente+=gerente.getSueldo();
         }
 
-        double pagoComisionesTrabajador =Trabajador.comisionesPorTrabajador(mesSeleccionado);//0.2 es el porcentaje por las comisiones
+        //comisiones totales de mi plantilla de trabajadores
+        double comisionesTotales=0;
+        for(Trabajador e: Trabajador.getTrabajadores()){
+            comisionesTotales+=Trabajador.comisionTrabajador(e);
+        }
 
-        double gananciasNetas = totalVentasProductos-pagoTrabajador-pagoGerente-pagoComisionesTrabajador;//ganancias netas
+        double gananciasNetas = totalVentasProductos+totalVentasDeServicios-pagoTrabajador-pagoGerente-comisionesTotales;//ganancias netas
+
         String s = "Contabilidad del mes "+meses.get(mesSeleccionado)+" del 2022:" +
                 "\n-------------------------------"+
                 "\nValor total por Productos: "+totalVentasProductos+
-                "\nPago Comisiones a Trabajadores: -"+pagoComisionesTrabajador+
+                "\nValor total por Servicios: "+totalVentasDeServicios+
                 "\nPago mensual a Empleados: -"+pagoTrabajador+
+                "\nPago Comisiones a Trabajadores: -"+comisionesTotales+
                 "\nPago mensual a gerentes: -"+pagoGerente;
-        double primaEmpleados=0;
-        double primaGerente=0;
+
 
 
         //Declaro un array de tipo Sueldo para guardar objetos tipo Trabajador y Gerente
+
+        //Esto de aqui que sigue es por si hay que pagar primas a trabajador
+        double primaEmpleados=0;
+        double primaGerente=0;
         ArrayList<Sueldo> empleados= new ArrayList<>();
         for (Trabajador trabajador: Trabajador.getTrabajadores()){
             empleados.add(trabajador);
@@ -124,9 +154,8 @@ public class Contabilidad {
         Producto producto1 = new Producto(null, null, "Vendido", "coca", 0, 400, null, null, LocalDate.of(2020, 02, 02), 0, 0);
         Producto producto2 = new Producto(null, null, "Vendido", "coca", 0, 400, null, null, LocalDate.of(2020, 02, 1), 0, 0);
         Producto producto3 = new Producto(null, null, "Vendido", "coca", 0, 400, null, null, LocalDate.of(2020, 12, 1), 0, 0);
-        Trabajador trabajador1=new Trabajador(null,null,false,null,null,0,null);
-
+        Trabajador trabajador1=new Trabajador(null,null,false,null,0,null);
+        System.out.println(trabajador1.getFechaVinculacion());
         contabilidad();
-        int a=3;
     }
 }

@@ -16,8 +16,8 @@ public class Gerente extends Empleado implements Sueldo {
 
     //CONSTRUCTOR
 
-    public Gerente(long codigo, String nombre, String cargo, boolean estadoIngreso, Double comision, LocalDate fechaCreacion, LocalDate fechaIngreso) {
-        super(generarCodigo(), nombre, cargo, Sueldo.sueldoBase*2, estadoIngreso, fechaCreacion, fechaIngreso);
+    public Gerente(long codigo, String nombre, String cargo, boolean estadoIngreso, Double comision, LocalDate fechaIngreso) {
+        super(generarCodigo(), nombre, cargo, Sueldo.sueldoBase*2, estadoIngreso, fechaIngreso);
         gerentes.add(this);
     }
 
