@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import gestorAplicacion.usuarios.*;
 
+
 public class Producto {
     //ATRIBUTOS INSTANCIA
     private Trabajador trabajador;
@@ -63,6 +64,7 @@ public class Producto {
         this.disponibles = disponibles;
         this.reservados = reservados;
         productos.add(this);
+        Producto.categorizarProdcuto(this);
     }
 
 
@@ -255,5 +257,43 @@ public class Producto {
 
     public static void setOtrosProductos(ArrayList<Producto> otrosProductos) {
         Producto.otrosProductos = otrosProductos;
+    }
+
+    public static void categorizarProdcuto(Producto producto){ // Este metodo sirve para clasificar los productos segun su tipo y ponerlo en el ArrayList correpondiente si es que este no existe en dicho ArrayList
+        switch (producto.tipo){
+            case 1:
+                Producto.verificarExistenciaCategoria(Producto.bebidasAlcoholicas, producto);
+                break;
+            case 2:
+                Producto.verificarExistenciaCategoria(Producto.bebidasNoAlcoholicas, producto);
+                break;
+            case 3:
+                Producto.verificarExistenciaCategoria(Producto.comidas, producto);
+                break;
+            case 4:
+                Producto.verificarExistenciaCategoria(Producto.snacks, producto);
+                break;
+            case 5:
+                Producto.verificarExistenciaCategoria(Producto.cigarrillos, producto);
+                break;
+            case 6:
+                Producto.verificarExistenciaCategoria(Producto.energizantes, producto);
+                break;
+        }
+    }
+
+    public static void verificarExistenciaCategoria(ArrayList<Producto> lista, Producto producto){
+        try{
+            for (Producto value : lista) {
+                if (value.getNombre().equals(producto.getNombre())) {
+                    return;
+                }
+            }
+            lista.add(producto);
+
+        } catch (Exception e) {
+            System.out.println("El metodo verificarExistenciaCategoria de la clase producto no se realizo de manera correcta");
+        }
+
     }
 }
