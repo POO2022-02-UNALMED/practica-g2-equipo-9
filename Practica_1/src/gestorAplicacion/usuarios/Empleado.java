@@ -17,6 +17,8 @@ public abstract class Empleado extends Usuario {
 
     private static ArrayList<Empleado> empleados= new ArrayList<>();
 
+
+
     //CONSTRUCTOR
 
     public Empleado(long codigo, String nombre, String cargo, double sueldo, boolean estadoIngreso, LocalDate fechaIngreso) {
@@ -84,6 +86,7 @@ public abstract class Empleado extends Usuario {
     public void aumentarSueldo(double porcentajeAumento) {
         this.setSueldo(this.getSueldo()*(1+porcentajeAumento));
     }
+
 
     //OTROS METODOS
     public double calculoDePrima() {

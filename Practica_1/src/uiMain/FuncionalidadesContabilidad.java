@@ -59,7 +59,7 @@ public class FuncionalidadesContabilidad {
 
     public static String calcularGananciasMes(int mesSeleccionado, HashMap<Integer,String> meses){
 
-        //PRODUCTOS CON ESTADO VENDIDO
+        //GUARDAMOS LA FECHA DE VENTA DE UN PRODUCTO
         ArrayList<Producto> productosVendidosMes =new ArrayList<>();
 
         for(Producto producto: Producto.getProductos()){
@@ -67,12 +67,19 @@ public class FuncionalidadesContabilidad {
                 productosVendidosMes.add(producto);
             }
         }
+        //PRODUCTOS CON ESTADO VENDIDO EN ESE MES Y CALCULAMOS LAS COMISIONES
+        double comisionesTotales=0;
         double totalVentasProductos=0;
         for(Producto producto: productosVendidosMes){
             if(producto.getEstado().equals("VENDIDO")){
                 totalVentasProductos+=producto.getPrecioVenta();
+                comisionesTotales+=producto.getPrecioVenta()*Sueldo.porcentajeComision;
             }
         }
+
+        //CALCULAMOS LAS COMISIONES TOTALES POR LOS PRODUCTOS VENDIDOS ESE MES
+
+
 
         //SERVICIOS VENDIDOS EN EL MES SELECCIONADO
         ArrayList<Servicio> serviciosMes=new ArrayList<>();
@@ -95,12 +102,6 @@ public class FuncionalidadesContabilidad {
         double pagoGerente=0;
         for (Gerente gerente: Gerente.getGerentes()){
             pagoGerente+=gerente.getSueldo();
-        }
-
-        //comisiones totales de mi plantilla de trabajadores
-        double comisionesTotales=0;
-        for(Trabajador e: Trabajador.getTrabajadores()){
-            comisionesTotales+=Trabajador.comisionTrabajador(e);
         }
 
         double gananciasNetas = totalVentasProductos+totalVentasDeServicios-pagoTrabajador-pagoGerente-comisionesTotales;//ganancias netas
@@ -154,8 +155,13 @@ public class FuncionalidadesContabilidad {
         Producto producto1 = new Producto(null, null, "Vendido", "coca", 0, 400, null, null, LocalDate.of(2020, 02, 02), 0, 0);
         Producto producto2 = new Producto(null, null, "Vendido", "coca", 0, 400, null, null, LocalDate.of(2020, 02, 1), 0, 0);
         Producto producto3 = new Producto(null, null, "Vendido", "coca", 0, 400, null, null, LocalDate.of(2020, 12, 1), 0, 0);
-        Trabajador trabajador1=new Trabajador(null,null,false,null,0,null);
-        System.out.println(trabajador1.getFechaVinculacion());
-        contabilidad();
+        Trabajador trabajador1=new Trabajador(null,false,null,0,null);
+        Trabajador trabajador2=new Trabajador(null,false,null,0,null);
+        System.out.println(trabajador1.getCodigo());
+        System.out.println(trabajador2.getCodigo());
+        Gerente gerente1= new Gerente(null,false,null);
+        Gerente gerente2= new Gerente(null,false,null);
+
+
     }
 }

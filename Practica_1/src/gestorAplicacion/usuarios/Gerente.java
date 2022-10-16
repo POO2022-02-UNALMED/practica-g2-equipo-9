@@ -16,8 +16,8 @@ public class Gerente extends Empleado implements Sueldo {
 
     //CONSTRUCTOR
 
-    public Gerente(long codigo, String nombre, String cargo, boolean estadoIngreso, Double comision, LocalDate fechaIngreso) {
-        super(generarCodigo(), nombre, cargo, Sueldo.sueldoBase*2, estadoIngreso, fechaIngreso);
+    public Gerente(String nombre, boolean estadoIngreso, LocalDate fechaIngreso) {
+        super(generarCodigo(), nombre, "Gerente", Sueldo.sueldoBase*2, estadoIngreso, fechaIngreso);
         gerentes.add(this);
     }
 
@@ -26,11 +26,23 @@ public class Gerente extends Empleado implements Sueldo {
         return numeroGerente++;
     }
 
-    //METODOS ABSTRACTOS
-    public String asegurar(){
-        return "algo";
+    public String toString(){
+        return "Codigo: "+this.getCodigo()+", Nombre: "+super.getNombre()+ ", Fecha de vinculacion: "+super.getFechaVinculacion();
     }
 
+    //METODOS ABSTRACTOS
+    public String asegurar() {
+        LocalDate vinculacion= super.getFechaVinculacion();
+        LocalDate finVinculacion= super.getFechaVinculacion().plusYears(this.getSeguro());
+
+        if(LocalDate.now().isAfter(finVinculacion)){
+            return "Gerente "+this.getNombre()+" "+" con codigo "+this.getCodigo()+", tiene vencido el seguro, este vencio en la fecha "+finVinculacion;
+        }
+        else{
+            return "Gerente "+ this.getNombre()+" con codigo "+this.getCodigo()+", lo cubre el seguro desde la fecha "+vinculacion+" hasta la fecha "+finVinculacion;
+        }
+
+    }
     //GETTERS Y SETTERS
 
 
