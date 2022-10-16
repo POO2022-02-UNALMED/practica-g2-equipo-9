@@ -96,8 +96,6 @@ public class Trabajador extends Empleado implements Sueldo{
             }
         return comisionPorProducto;
         }
-
-
 }
  
 

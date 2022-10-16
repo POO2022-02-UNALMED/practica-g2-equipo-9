@@ -37,7 +37,7 @@ public class FuncionalidadesContabilidad {
         //Iterator lo uso para recorrer el Array fechas de forma secuencial
         Iterator value = fechas.iterator(); //El método iterator() nos va a permitir obtener un objeto de tipo Iterator que representa la colección a recorrer
 
-        //.hasNext: Método que devuelve true si existe un siguiente elemento a la hora de iterar sobre una colección.
+
         HashMap<Integer,Integer> opcionMeses=new HashMap<>();
 
         System.out.println("Fechas Disponibles:");
