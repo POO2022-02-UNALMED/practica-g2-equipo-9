@@ -28,13 +28,13 @@ public class Producto {
     private static ArrayList<Producto> productos=new ArrayList<>();
     private static long numeroProducto=0;
 
-    private ArrayList<Producto> bebidasAlcoholicas = new ArrayList<>();
-    private ArrayList<Producto> bebidasNoAlcoholicas = new ArrayList<>();
-    private ArrayList<Producto> comidas = new ArrayList<>();
-    private ArrayList<Producto> snacks = new ArrayList<>();
-    private ArrayList<Producto> cigarrillos = new ArrayList<>();
-    private ArrayList<Producto> energizantes = new ArrayList<>();
-    private ArrayList<Producto> otrosProductos = new ArrayList<>();
+    private static ArrayList<Producto> bebidasAlcoholicas = new ArrayList<>(); // En esta lista va la primera instancia de un nuevo producto de tipo bebidasAlcoholicas, es decir no se puede repetir
+    private static ArrayList<Producto> bebidasNoAlcoholicas = new ArrayList<>();// En esta lista va la primera instancia de un nuevo producto de tipo bebidasNoAlcoholicas, es decir no se puede repetir
+    private static ArrayList<Producto> comidas = new ArrayList<>();// En esta lista va la primera instancia de un nuevo producto de tipo comidas, es decir no se puede repetir
+    private static ArrayList<Producto> snacks = new ArrayList<>();// En esta lista va la primera instancia de un nuevo producto de tipo snacks, es decir no se puede repetir
+    private static ArrayList<Producto> cigarrillos = new ArrayList<>();// En esta lista va la primera instancia de un nuevo producto de tipo cigarrillos, es decir no se puede repetir
+    private static ArrayList<Producto> energizantes = new ArrayList<>();// En esta lista va la primera instancia de un nuevo producto de tipo energizantes, es decir no se puede repetir
+    private static ArrayList<Producto> otrosProductos = new ArrayList<>();// En esta lista va la primera instancia de un nuevo producto de tipo otrosProductos, es decir no se puede repetir
 
     //GETTER y SETTER de productos importante para muchas cosas
     public LocalDate getFechaVenta() {
@@ -201,59 +201,59 @@ public class Producto {
         this.tipo = tipo;
     }
 
-    public ArrayList<Producto> getBebidasAlcoholicas() {
+    public static ArrayList<Producto> getBebidasAlcoholicas() {
         return bebidasAlcoholicas;
     }
 
-    public void setBebidasAlcoholicas(ArrayList<Producto> bebidasAlcoholicas) {
-        this.bebidasAlcoholicas = bebidasAlcoholicas;
+    public static void setBebidasAlcoholicas(ArrayList<Producto> bebidasAlcoholicas) {
+        Producto.bebidasAlcoholicas = bebidasAlcoholicas;
     }
 
-    public ArrayList<Producto> getBebidasNoAlcoholicas() {
+    public static ArrayList<Producto> getBebidasNoAlcoholicas() {
         return bebidasNoAlcoholicas;
     }
 
-    public void setBebidasNoAlcoholicas(ArrayList<Producto> bebidasNoAlcoholicas) {
-        this.bebidasNoAlcoholicas = bebidasNoAlcoholicas;
+    public static void setBebidasNoAlcoholicas(ArrayList<Producto> bebidasNoAlcoholicas) {
+        Producto.bebidasNoAlcoholicas = bebidasNoAlcoholicas;
     }
 
-    public ArrayList<Producto> getComidas() {
+    public static ArrayList<Producto> getComidas() {
         return comidas;
     }
 
-    public void setComidas(ArrayList<Producto> comidas) {
-        this.comidas = comidas;
+    public static void setComidas(ArrayList<Producto> comidas) {
+        Producto.comidas = comidas;
     }
 
-    public ArrayList<Producto> getSnacks() {
+    public static ArrayList<Producto> getSnacks() {
         return snacks;
     }
 
-    public void setSnacks(ArrayList<Producto> snacks) {
-        this.snacks = snacks;
+    public static void setSnacks(ArrayList<Producto> snacks) {
+        Producto.snacks = snacks;
     }
 
-    public ArrayList<Producto> getCigarrillos() {
+    public static ArrayList<Producto> getCigarrillos() {
         return cigarrillos;
     }
 
-    public void setCigarrillos(ArrayList<Producto> cigarrillos) {
-        this.cigarrillos = cigarrillos;
+    public static void setCigarrillos(ArrayList<Producto> cigarrillos) {
+        Producto.cigarrillos = cigarrillos;
     }
 
-    public ArrayList<Producto> getEnergizantes() {
+    public static ArrayList<Producto> getEnergizantes() {
         return energizantes;
     }
 
-    public void setEnergizantes(ArrayList<Producto> energizantes) {
-        this.energizantes = energizantes;
+    public static void setEnergizantes(ArrayList<Producto> energizantes) {
+        Producto.energizantes = energizantes;
     }
 
-    public ArrayList<Producto> getOtrosProductos() {
+    public static ArrayList<Producto> getOtrosProductos() {
         return otrosProductos;
     }
 
-    public void setOtrosProductos(ArrayList<Producto> otrosProductos) {
-        this.otrosProductos = otrosProductos;
+    public static void setOtrosProductos(ArrayList<Producto> otrosProductos) {
+        Producto.otrosProductos = otrosProductos;
     }
 }
