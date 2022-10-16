@@ -50,6 +50,12 @@ public class Producto {
     
     //CONSTRUCTOR
 
+
+    public Producto() {
+        Producto.numeroProducto++;
+        this.codigo = Producto.numeroProducto;
+    }
+
     public Producto(Trabajador trabajador, Pedido pedido, String estado, String nombre, int precioCompra, int precioVenta, LocalDate fechaVencimiento, LocalDate fechaIngreso, LocalDate fechaVenta, int disponibles, int reservados) {
         this.trabajador = trabajador;
         this.pedido = pedido;
@@ -67,6 +73,24 @@ public class Producto {
         Producto.categorizarProdcuto(this);
     }
 
+    public Producto(Trabajador trabajador, Pedido pedido, Cliente cliente, String estado, String nombre, double precioCompra, double precioVenta, LocalDate fechaVencimiento, LocalDate fechaIngreso, LocalDate fechaVenta, int disponibles, int reservados, int tipo) {
+        Producto.numeroProducto++;
+        this.trabajador = trabajador;
+        this.pedido = pedido;
+        this.cliente = cliente;
+        this.estado = estado;
+        this.nombre = nombre;
+        this.precioCompra = precioCompra;
+        this.precioVenta = precioVenta;
+        this.codigo = Producto.numeroProducto;
+        this.fechaVencimiento = fechaVencimiento;
+        this.fechaIngreso = fechaIngreso;
+        this.fechaVenta = fechaVenta;
+        this.disponibles = disponibles;
+        this.reservados = reservados;
+        this.tipo = tipo;
+        categorizarProdcuto(this);
+    }
 
     public static long generarCodigo(){
         return numeroProducto++;
