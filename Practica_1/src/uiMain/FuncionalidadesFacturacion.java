@@ -8,7 +8,7 @@ import java.util.*;
 public class FuncionalidadesFacturacion {
     public static void facturarPedido(){
         Scanner entrada=new Scanner(System.in);
-        System.out.println("Que operacion desea realizar? ")
+        System.out.println("Que operacion desea realizar? ");
         System.out.println("1. Ingresar Pedido nuevo");
         System.out.println("2. Ver listas de Pedidos NO PAGADO");
 
