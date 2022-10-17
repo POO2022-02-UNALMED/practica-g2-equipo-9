@@ -59,21 +59,13 @@ public class FuncionalidadesNomina {
         //Seleccionar trabajador
         System.out.println("Selecciona trabajador a liquidar:");
 
-        for (Trabajador trabajador: Trabajador.getTrabajadores()){
-
-            System.out.println(trabajador);
-        }
+        System.out.println(Trabajador.mostrarTrabajadores());
         System.out.println("Ingresa codigo del trabajador: ");
         long codigo = entrada.nextInt();//codigo de empleado
 
         //buscamos el codigo del trabajador
-        Trabajador trabajadorSeleccionado=null;
-        for (Trabajador trabajador: Trabajador.getTrabajadores()){
-            if(trabajador.getCodigo()==codigo){
-                trabajadorSeleccionado=trabajador;
-                break;
-            }
-        }
+        Trabajador trabajadorSeleccionado=Trabajador.seleccionarTrabajador(codigo);
+
 
         System.out.println(FuncionalidadesNomina.nominaEmpleado(mesSeleccionado,trabajadorSeleccionado));
 
