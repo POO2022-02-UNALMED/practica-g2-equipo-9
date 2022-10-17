@@ -78,6 +78,7 @@ public class FuncionalidadesFacturacion {
                             break;
                         }
                     }
+                    System.out.println("Hola");
                     //Pedido pedido=new Pedido(trabajadorSeleccionado,null,"NO VENDIDO",productosPedidos,);
 
                     }
