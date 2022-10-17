@@ -98,6 +98,27 @@ public class Trabajador extends Empleado implements Sueldo{
         return "Codigo: "+this.getCodigo()+", Nombre: "+super.getNombre()+ ", Fecha de vinculacion: "+super.getFechaVinculacion();
     }
 
+    public static String mostrarTrabajadores(){ //Muestra todos los trabajadores
+        String s="";
+        for (Trabajador trabajador: Trabajador.getTrabajadores()){
+            s+="\n"+trabajador;
+        }
+        return s;
+    }
+    public static Trabajador seleccionarTrabajador(long codigo){//Escoge un trabajador por el codigo unico que tiene asignado
+        Trabajador trabajadorSeleccionado=null;
+        for (Trabajador trabajador: Trabajador.getTrabajadores()){
+            if(trabajador.getCodigo()==codigo){
+                trabajadorSeleccionado=trabajador;
+                break;
+            }
+        }
+        return trabajadorSeleccionado;
+    }
+
+
+
+
 }
  
 
