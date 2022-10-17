@@ -3,6 +3,7 @@ package uiMain;
 import java.time.LocalDate;
 
 import gestorAplicacion.gestion.Espacio;
+import gestorAplicacion.gestion.Producto;
 import gestorAplicacion.gestion.Servicio;
 
 import java.util.ArrayList;
@@ -88,7 +89,19 @@ public class FuncionalidadesReserva {
         System.out.println("6. Energizantes");
         System.out.println("7. Otros");
 
+        opcion = sc.nextInt();
+        while (opcion> 7 || opcion< 1){
+            System.out.println("Por favor ingrese una opcion valdia");
+            opcion = sc.nextInt();
+        }
+        switch (opcion){
+            case 1:
+                for (int i = 0; i < 5; i++) {
+                    System.out.println(i+". "+Producto.getBebidasAlcoholicas().get(i).getNombre()+"Precio: "+Producto.getBebidasAlcoholicas().get(i).getPrecioVenta());
+                }
 
+
+        }
 
 
 
