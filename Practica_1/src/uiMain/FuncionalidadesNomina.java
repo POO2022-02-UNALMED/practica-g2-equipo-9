@@ -97,10 +97,18 @@ public class FuncionalidadesNomina {
         for(Producto e: productosVendioEmpleado){
             nombres.add(e.getNombre());
         }
-        String productos="";
-        for (Producto e: productosVendioEmpleado){
-            productos+="\n";
+        String nombreYcantidad="";
+        for(String nombreProducto: nombres){
+            long contadorDeProducto=0;
+            for(Producto producto: productosVendioEmpleado){
+                if(nombreProducto.equals(producto.getNombre())){
+                  contadorDeProducto++;
+                }
+            }
+            nombreYcantidad+="\n "+nombreProducto+": "+contadorDeProducto;
         }
+
+
 
         //SERVICIOS QUE VENDIO
         ArrayList<Servicio> serviciosVendioEmpleado= new ArrayList<>();
@@ -111,6 +119,21 @@ public class FuncionalidadesNomina {
                 }
             }
         }
+        HashMap<Integer, String> meses = new HashMap<Integer, String>();
+        meses.put(1, "Enero");
+        meses.put(2, "Febrero");
+        meses.put(3, "Marzo");
+        meses.put(4, "Abril");
+        meses.put(5, "Mayo");
+        meses.put(6, "Junio");
+        meses.put(7, "Julio");
+        meses.put(8, "Agosto");
+        meses.put(9, "Septiembre");
+        meses.put(10, "Octubre");
+        meses.put(11, "Noviembre");
+        meses.put(12, "Diciembre");
+
+        double total=trabajadorSeleccionado.getSueldo()+comisionTrabajador;
         String s="";
         s+="\n "+
                 "\n "+
@@ -119,13 +142,13 @@ public class FuncionalidadesNomina {
                 "\n ================================================================== "+
                 "\n  "+
                 "\n Servicios vendidos: "+serviciosVendioEmpleado.size()+
-                "\n Productos vendidos: "+productosVendioEmpleado.size()+
+                "\n Cantidad de productos vendidos: "+productosVendioEmpleado.size()+
+                "\n lista de productos vendidos por el empleado :"+ nombreYcantidad+
+                "\n Sueldo base: "+trabajadorSeleccionado.getSueldo()+
                 "\n La comision por producto vendido es del "+Sueldo.porcentajeComision*100+"%"+
                 "\n Comision por productos vendidos: "+comisionTrabajador+" $"+
                 "\n "+
-                "\n Sueldo base: "+trabajadorSeleccionado.getSueldo()+
-                "\n "+
-                "\n El";
+                "\n El sueldo total a pagar del mes de"+meses.get(mesSeleccionado)+"es de: "+total;
 
 
 
