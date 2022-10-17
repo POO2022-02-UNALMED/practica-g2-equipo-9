@@ -4,15 +4,11 @@ package uiMain;
 import java.util.Scanner;
 import gestorAplicacion.gestion.Pedido;
 import gestorAplicacion.gestion.Producto;
-import gestorAplicacion.gestion.Administracion;
 import gestorAplicacion.usuarios.Cliente;
-import gestorAplicacion.usuarios.Empleado;
-import gestorAplicacion.usuarios.Gerente;
 import gestorAplicacion.usuarios.Trabajador;
-import gestorAplicacion.usuarios.Usuario;
 
 public class interfazGenerica {
-    static Scanner entrada= new Scanner(System.in);
+    /*static Scanner entrada= new Scanner(System.in);
     static long leerNumero(){ //leer numero
         return entrada.nextLong();
     }
@@ -23,63 +19,174 @@ public class interfazGenerica {
     }
 
     public static void main(String[] args) {
-        Cliente cliente1= new Cliente("sergio");
-        Producto producto1=new Producto("Coca cola");
-        Producto producto2=new Producto("Pepsi");
+        Cliente cliente1= new Cliente("Sergio");
+        Trabajador trabajador1=new Trabajador("Sebas");
+        Trabajador trabajador2=new Trabajador("Juan David");
+        Producto producto1=new Producto("Coca cola", 200);
+        Producto producto2=new Producto("Pepsi", 300);
+
+
         Administracion admin=new Administracion();
+
         int opcion;
         do {
             System.out.println("Que operacion desea realizar?");
             System.out.println("1. Ingresar pedido");
-            System.out.println("2. Salir del sistema");
-            opcion =(int) leerNumero();
+            System.out.println("2. Mostrar pedidos");
+            System.out.println("3. Salir del sistema");
+            opcion = (int) leerNumero();
 
             switch(opcion){
                 case 1:ingresarPedido(admin); break;
-                case 2:break;
+                case 2:mostrarPedido(admin); break;
+                case 3:break;
             }
-        }while(opcion !=2);
+        }while(opcion !=3);
+
+    }
+    public static void ingresarPedido(Administracion admin){
+        int opcion;
+        do {
+            Trabajador trabajador;
+            Pedido pedido;
+            Cliente cliente;
+            Producto producto;
+            do {
+                System.out.println(admin.mostrarTrabajadores());
+                System.out.println("Escoger codigo trabajador:");
+                opcion = (int) leerNumero();
+                trabajador = admin.buscarTrabajador(opcion);
+                if (trabajador==null){
+                    System.out.println("Codigo invalido, ingrese de nuevo un numero");
+                }
+            } while (trabajador != null);
+            System.out.println("Presiona para:");
+            System.out.println("1. Ingresar pedido a cliente existente");
+            System.out.println("2. Ingresar pedido a cliente nuevo");
+            System.out.println("3. Regresar");
+            switch (opcion) {
+                case 1:{
+                    String cadena="";
+                    int i=1;
+                    for (Cliente e: trabajador.getVentasDia()){
+                        cadena+="\nCliente "+i+
+                                "\n"+e.descripcionCliente();
+                        i++;
+                    }
+                    do{
+                        System.out.println("clientes disponibles");
+                        System.out.println(cadena);
+                        System.out.println("Ingresa codigo cliente a quien le ingresaras pedido");
+                        opcion=(int)leerNumero();
+                        cliente=admin.buscarCliente(opcion);
+                        if (cliente==null){
+                            System.out.println("Codigo invalido, ingrese de nuevo un numero");
+                        }
+                    }while(cliente != null);
+                    do{
+                        System.out.println("Presione para");
+                        System.out.println("1. Ingresar producto a cliente escogido: ");
+                        System.out.println("2. Regresar");
+                        opcion=(int)leerNumero();
+                        if (opcion==1){
+                            do{
+                                for(Producto e: Administracion.getInventario()){
+                                    System.out.println(e.getCodigo()+e.getNombre());
+                                }
+                                System.out.println("Ingresa codigo de un producto");
+                                opcion=(int)leerNumero();
+                                producto=admin.buscarProducto(opcion);
+                            }while(producto!=null);
+                        }
+                    }while(opcion!=2);
+
+                }
+                    break;
+                case 2:
+                    break;
+                case 3:
+                    break;
+            }
+        }while(opcion !=3);
+    }
+
+    static void mostrarPedido(Administracion admin){
+
+
+    }
+    /*
+    static void seleccionar(Administracion admin){
+        while(true){
+            System.out.println("1. Mostrar lista de clientes activos");
+            System.out.println("2. Regresar");
+            long opcion2 = leerNumero();
+            if (opcion2==1){
+                System.out.println("listado de clientes: ");
+                System.out.println(admin.mostrarClientes());
+                System.out.println("Ingresa codigo cliente: ");
+                long codigo = leerNumero();
+                Cliente cliente=admin.buscarCliente(codigo);
+                if (cliente != null) {
+                    System.out.println("Codigo valido");
+                    Pedido pedido = admin.crearPedido();
+                    cliente.ingresarPedido(pedido);
+                    while (true) {
+                        System.out.println("1. Ingresa producto");
+                        System.out.println("2. Terminar pedido");
+                        long opcion3 = leerNumero();
+                        if (opcion3 == 1) {
+                            System.out.println("Producos disponibles:");
+                            System.out.println(admin.mostrarProductos());
+                            System.out.println("Ingresa nombre producto");
+                            String nombre=leerString();
+                            Producto producto= admin.buscarProducto(nombre);
+                            if (producto==null){
+                                System.out.println("Producto no esta");
+                            }
+                            else{
+                                pedido.ingresarProducto(producto);
+                                System.out.println("Producto si esta");
+                            }
+
+                        } else if (opcion3 == 2) {
+                            System.out.println(pedido.mostrarProductos());
+                            break;
+                        } else {
+                            System.out.println("Opcion no valida");
+                        }
+                    }
+                }
+                else {
+                    System.out.println("Ingrese un codigo valido");
+                }
+            }
+            else if(opcion2==2){
+                break;
+            }
+            else{
+                System.out.println("Ingrese una opcion valida");
+            }
+        }
+    }
+    static void seleccionarTrabajador(){
 
     }
     static void ingresarPedido(Administracion admin){
+
             while(true){
                 System.out.println("1. Ingresar producto a cliente nuevo");
                 System.out.println("2. Ingresar producto a cliente existente");
                 System.out.println("3. Regresar");
                 long opcion=leerNumero();
+
                 if (opcion==1){
-
+                    System.out.println("Ingresar nombre: ");
+                    String nombre=leerString();
+                    admin.crearCliente(nombre);
+                    seleccionar(admin);
                 }
-                else if(opcion==2){
-                        System.out.println("Ingresa codigo cliente");
-                        long codigo=leerNumero();
-
-                        if(admin.buscarCliente(codigo)!=null){
-                            Pedido a=Pedido.crearPedido();
-                            admin.buscarCliente(codigo).ingresarPedido(a);
-                            while(true){
-                                System.out.println("1. Ingresa producto");
-                                System.out.println("2. Terminar pedido");
-                                System.out.println("3. Cobrar pedido");
-                                long opcion2=leerNumero();
-                                if (opcion2==1){
-                                    System.out.println("Ingresa nombre producto");
-                                    String nombre=leerString();
-                                    if (admin.buscarProducto(nombre)!=null) {
-                                        a.ingresarProducto(admin.buscarProducto(nombre));
-                                    }
-                                }
-                                else if (opcion2==2){
-                                    break;
-                                }
-                                else if (opcion2==3){
-                                    
-                                }
-                                else{
-                                    System.out.println("Opcion no valida");
-                                }
-                            }
-
+                else if(opcion==2) {
+                    seleccionar(admin);
 
                 }
                 else if(opcion==3){
@@ -89,10 +196,8 @@ public class interfazGenerica {
                     System.out.println("Ingresa una opcion valida:");
                 }
             }
-
-
-        }
     }
+
 
 
     /*public static Scanner input = new Scanner(System.in);
