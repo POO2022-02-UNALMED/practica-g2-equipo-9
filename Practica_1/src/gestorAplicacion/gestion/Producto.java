@@ -11,7 +11,7 @@ public class Producto {
     private Trabajador trabajador;
     private Pedido pedido;
     private Cliente cliente;
-    private String estado; //agregue estado de producto, "VENDIDO", "NO VENDIDO"
+    private String estado; //agregue estado de producto, "Vendido", "No vendido", "Reservado"
     private String nombre;
     private double precioCompra;
     private double precioVenta;
@@ -19,8 +19,6 @@ public class Producto {
     private LocalDate fechaVencimiento;
     private LocalDate fechaIngreso;
     private LocalDate fechaVenta;
-    private int disponibles;
-    private int reservados;
 
     private int tipo; //"1. Bebidas alcoholicas", "2. Bebidas no alcoholicas", "3. Comida", "4. Snacks", "5. Cigarrillos", "6. Energizantes", "7. Otros"
 
@@ -56,7 +54,7 @@ public class Producto {
         this.codigo = Producto.numeroProducto;
     }
 
-    public Producto(Trabajador trabajador, Pedido pedido, String estado, String nombre, int precioCompra, int precioVenta, LocalDate fechaVencimiento, LocalDate fechaIngreso, LocalDate fechaVenta, int disponibles, int reservados) {
+    public Producto(Trabajador trabajador, Pedido pedido, String estado, String nombre, int precioCompra, int precioVenta, LocalDate fechaVencimiento, LocalDate fechaIngreso, LocalDate fechaVenta) {
         this.trabajador = trabajador;
         this.pedido = pedido;
         this.estado = estado;
@@ -67,13 +65,11 @@ public class Producto {
         this.fechaVencimiento = fechaVencimiento;
         this.fechaIngreso = fechaIngreso;
         this.fechaVenta = fechaVenta;
-        this.disponibles = disponibles;
-        this.reservados = reservados;
         productos.add(this);
         Producto.categorizarProdcuto(this);
     }
 
-    public Producto(Trabajador trabajador, Pedido pedido, Cliente cliente, String estado, String nombre, double precioCompra, double precioVenta, LocalDate fechaVencimiento, LocalDate fechaIngreso, LocalDate fechaVenta, int disponibles, int reservados, int tipo) {
+    public Producto(Trabajador trabajador, Pedido pedido, Cliente cliente, String estado, String nombre, double precioCompra, double precioVenta, LocalDate fechaVencimiento, LocalDate fechaIngreso, LocalDate fechaVenta, int tipo) {
         Producto.numeroProducto++;
         this.trabajador = trabajador;
         this.pedido = pedido;
@@ -86,8 +82,6 @@ public class Producto {
         this.fechaVencimiento = fechaVencimiento;
         this.fechaIngreso = fechaIngreso;
         this.fechaVenta = fechaVenta;
-        this.disponibles = disponibles;
-        this.reservados = reservados;
         this.tipo = tipo;
         categorizarProdcuto(this);
     }
@@ -135,22 +129,6 @@ public class Producto {
 
     public void setCodigo(long codigo) {
         this.codigo = codigo;
-    }
-
-    public int getDisponibles() {
-        return disponibles;
-    }
-
-    public void setDisponibles(int disponibles) {
-        this.disponibles = disponibles;
-    }
-
-    public int getReservados() {
-        return reservados;
-    }
-
-    public void setReservados(int reservados) {
-        this.reservados = reservados;
     }
 
     public static long getNumeroProducto() {

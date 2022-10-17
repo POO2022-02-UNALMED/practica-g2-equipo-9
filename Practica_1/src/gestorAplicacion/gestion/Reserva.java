@@ -10,7 +10,7 @@ public class Reserva {
     private int idReserva;
     private String estado; //"Exitosa", "No exitosa"
     private Cliente cliente;
-    private ArrayList<Servicio> serivicios;
+    private ArrayList<Servicio> servicios;
     private LocalDate fechaReserva; // el dia de la ejecucion de la reserva
     private LocalDate fechaCreacion; // el dia que se creo la reserva
     private Pedido pedido;
@@ -21,11 +21,11 @@ public class Reserva {
 
     //CONSTRUCTORES
 
-    public Reserva(String estado, Cliente cliente, ArrayList<Servicio> serivicios, LocalDate fechaReserva, LocalDate fechaCreacion, Pedido pedido) {
+    public Reserva(String estado, Cliente cliente, ArrayList<Servicio> servicios, LocalDate fechaReserva, LocalDate fechaCreacion, Pedido pedido) {
         this.idReserva = numReservas;
         this.estado = estado;
         this.cliente = cliente;
-        this.serivicios = serivicios;
+        this.servicios = servicios;
         this.fechaReserva = fechaReserva;
         this.fechaCreacion = fechaCreacion;
         this.pedido = pedido;
@@ -59,12 +59,12 @@ public class Reserva {
         this.cliente = cliente;
     }
 
-    public ArrayList<Servicio> getSerivicios() {
-        return serivicios;
+    public ArrayList<Servicio> getServicios() {
+        return servicios;
     }
 
-    public void setSerivicios(ArrayList<Servicio> serivicios) {
-        this.serivicios = serivicios;
+    public void setServicios(ArrayList<Servicio> servicios) {
+        this.servicios = servicios;
     }
 
     public LocalDate getFechaReserva() {

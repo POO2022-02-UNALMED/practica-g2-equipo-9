@@ -3,6 +3,7 @@ package uiMain;
 import java.time.LocalDate;
 
 import gestorAplicacion.gestion.Espacio;
+import gestorAplicacion.gestion.Pedido;
 import gestorAplicacion.gestion.Producto;
 import gestorAplicacion.gestion.Servicio;
 
@@ -80,6 +81,8 @@ public class FuncionalidadesReserva {
         } // el ciclo se termina por peticion del usuario o porque ya selecciono todos los servicios disponibles
 
         //PRODUCTOS A AGREGAR EN LA RESERVA Y SU CANTIDAD
+        Pedido pedidoReserva = new Pedido();
+
         System.out.println("A continuacion ingrese los productos que desea en su reserva: ");
         System.out.println("1. Bebidas alcoholicas");
         System.out.println("2. Bebidas no alcoholicas");
@@ -97,9 +100,109 @@ public class FuncionalidadesReserva {
         switch (opcion){
             case 1:
                 for (int i = 0; i < 5; i++) {
-                    System.out.println(i+". "+Producto.getBebidasAlcoholicas().get(i).getNombre()+"Precio: "+Producto.getBebidasAlcoholicas().get(i).getPrecioVenta());
+                    System.out.println(i+". "+Producto.getBebidasAlcoholicas().get(i).getNombre()+" Precio: "+Producto.getBebidasAlcoholicas().get(i).getPrecioVenta());
                 }
+                System.out.println("Ingrese el numero de producto");
+                System.out.println("o ingrese 5 para ver todos los prodductos de esta categoria");
+                int opcionProducto = sc.nextInt();
+                while(opcionProducto<0 || opcionProducto>5){
+                    System.out.println("Por favor ingrese una opcion valida");
+                    opcionProducto = sc.nextInt();
+                }
+                if (opcionProducto<=4){
+                    System.out.println("Por favor ingrese la cantidad");
+                    int cantidadProducto = sc.nextInt();
+                    while(cantidadProducto < 1){
+                        System.out.println("Pro favor ingrese una cantidad mayor o igual a 1");
+                        cantidadProducto = sc.nextInt();
+                    }
+                    for (Producto producto: Producto.getProductos()) {
+                        while(cantidadProducto>1){
+                            if(producto.getNombre().equals(Producto.getBebidasAlcoholicas().get(opcionProducto).getNombre())){
+                                producto.setEstado("Reservado");
+                                pedidoReserva.getProductos().add(producto); // se agrega al ArrayList de los productos el producto seleccionad
+                                --cantidadProducto; // Cuando se agrega un producto se va restando a cantidadProducto para que se agregue exactaente la cantidad requerida por el cliente;
+                            }
+                        }
+                    }
 
+                }
+                if(opcionProducto == 5){
+                    for (int i = 0; i < Producto.getBebidasAlcoholicas().size(); i++) {
+                        System.out.println(i+". "+Producto.getBebidasAlcoholicas().get(i).getNombre()+" Precio: "+Producto.getBebidasAlcoholicas().get(i).getPrecioVenta());
+                    }
+                    if (opcionProducto<Producto.getBebidasAlcoholicas().size()){
+                        System.out.println("Por favor ingrese la cantidad");
+                        int cantidadProducto = sc.nextInt();
+                        while(cantidadProducto < 1){
+                            System.out.println("Pro favor ingrese una cantidad mayor o igual a 1");
+                            cantidadProducto = sc.nextInt();
+                        }
+                        for (Producto producto: Producto.getProductos()) {
+                            while(cantidadProducto>1){
+                                if(producto.getNombre().equals(Producto.getBebidasAlcoholicas().get(opcionProducto).getNombre())){
+                                    producto.setEstado("Reservado");
+                                    pedidoReserva.getProductos().add(producto); // se agrega al ArrayList de los productos el producto seleccionad
+                                    --cantidadProducto; // Cuando se agrega un producto se va restando a cantidadProducto para que se agregue exactaente la cantidad requerida por el cliente;
+                                }
+                            }
+                        }
+                    }
+                }
+                break;
+
+            case 2:
+                for (int i = 0; i < 5; i++) {
+                    System.out.println(i+". "+Producto.getBebidasNoAlcoholicas().get(i).getNombre()+" Precio: "+Producto.getBebidasNoAlcoholicas().get(i).getPrecioVenta());
+                }
+                System.out.println("Ingrese el numero de producto");
+                System.out.println("o ingrese 5 para ver todos los prodductos de esta categoria");
+                opcionProducto = sc.nextInt();
+                while(opcionProducto<0 || opcionProducto>5){
+                    System.out.println("Por favor ingrese una opcion valida");
+                    opcionProducto = sc.nextInt();
+                }
+                if (opcionProducto<=4){
+                    System.out.println("Por favor ingrese la cantidad");
+                    int cantidadProducto = sc.nextInt();
+                    while(cantidadProducto < 1){
+                        System.out.println("Pro favor ingrese una cantidad mayor o igual a 1");
+                        cantidadProducto = sc.nextInt();
+                    }
+                    for (Producto producto: Producto.getProductos()) {
+                        while(cantidadProducto>1){
+                            if(producto.getNombre().equals(Producto.getBebidasNoAlcoholicas().get(opcionProducto).getNombre())){
+                                producto.setEstado("Reservado");
+                                pedidoReserva.getProductos().add(producto); // se agrega al ArrayList de los productos el producto seleccionad
+                                --cantidadProducto; // Cuando se agrega un producto se va restando a cantidadProducto para que se agregue exactaente la cantidad requerida por el cliente;
+                            }
+                        }
+                    }
+
+                }
+                if(opcionProducto == 5){
+                    for (int i = 0; i < Producto.getBebidasNoAlcoholicas().size(); i++) {
+                        System.out.println(i+". "+Producto.getBebidasNoAlcoholicas().get(i).getNombre()+" Precio: "+Producto.getBebidasNoAlcoholicas().get(i).getPrecioVenta());
+                    }
+                    if (opcionProducto<Producto.getBebidasNoAlcoholicas().size()){
+                        System.out.println("Por favor ingrese la cantidad");
+                        int cantidadProducto = sc.nextInt();
+                        while(cantidadProducto < 1){
+                            System.out.println("Pro favor ingrese una cantidad mayor o igual a 1");
+                            cantidadProducto = sc.nextInt();
+                        }
+                        for (Producto producto: Producto.getProductos()) {
+                            while(cantidadProducto>1){
+                                if(producto.getNombre().equals(Producto.getBebidasNoAlcoholicas().get(opcionProducto).getNombre())){
+                                    producto.setEstado("Reservado");
+                                    pedidoReserva.getProductos().add(producto); // se agrega al ArrayList de los productos el producto seleccionad
+                                    --cantidadProducto; // Cuando se agrega un producto se va restando a cantidadProducto para que se agregue exactaente la cantidad requerida por el cliente;
+                                }
+                            }
+                        }
+                    }
+                }
+                break;
 
         }
 

@@ -25,7 +25,21 @@ public class Pedido {
 
     private static ArrayList<Pedido> pedidos= new ArrayList<>();
     private static long numeroPedido=0;
+
     //CONSTRUCTOR
+
+
+    public Pedido() {
+    }
+
+    public Pedido(Cliente cliente, String estadoPedido, ArrayList<Producto> productos, ArrayList<Servicio> servicios, LocalDate fechaPedido, long codigo) {
+        this.cliente = cliente;
+        this.estadoPedido = estadoPedido; //CONSTRUCTOR PARA LA FUNCIONALIDAD realizarReserva
+        this.productos = productos;
+        this.servicios = servicios;
+        this.fechaPedido = fechaPedido;
+        this.codigo = codigo;
+    }
 
     public Pedido(Trabajador trabajador, Cliente cliente, String estadoPedido, ArrayList<Producto> productos, ArrayList<Servicio> servicios, LocalDate fechaPedido) {
         this.trabajador = trabajador;
