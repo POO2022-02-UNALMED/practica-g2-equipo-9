@@ -2,7 +2,8 @@
 package gestorAplicacion.gestion;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
+import java.util.*;
+
 import gestorAplicacion.usuarios.*;
 
 
@@ -24,7 +25,7 @@ public class Producto {
 
     //ATRIBUTOS DE CLASE
 
-    private static ArrayList<Producto> productos=new ArrayList<>();
+    private static ArrayList<Producto> productos=new ArrayList<>(); //ARRAYLIST DONDE SE GUARDAN TODOS LOS PRODUCTOS
     private static long numeroProducto=0;
 
     private static ArrayList<Producto> bebidasAlcoholicas = new ArrayList<>(); // En esta lista va la primera instancia de un nuevo producto de tipo bebidasAlcoholicas, es decir no se puede repetir
@@ -298,4 +299,26 @@ public class Producto {
         }
 
     }
+    public static String mostrarProductos(ArrayList<Producto> listaProductos){//Devuelve un String con los productos y sus cantidades de una lista de productos
+        String s="Productos: "+
+                "\nNombre........Cantidad.......Precio";
+        HashMap<String, Double>nombreYprecio=new HashMap<>();
+        double total=0;
+        ArrayList<String>nombre=new ArrayList<>();
+        for(Producto producto: listaProductos){
+            if(nombreYprecio.containsKey(producto.getNombre())==false){
+                nombreYprecio.put(producto.getNombre(),producto.getPrecioVenta());
+            }
+            nombre.add(producto.getNombre());
+            total+=producto.getPrecioVenta();
+        }
+        long i=1;
+        for(String clave: nombreYprecio.keySet()){
+            s+="\n"+i+". "+clave+"...."+Collections.frequency(nombre,clave)+"......"+nombreYprecio.get(clave)*Collections.frequency(nombre,clave);
+        }
+        s+="\nTotal.................................................."+total;
+    return s;
+    }
+
 }
+

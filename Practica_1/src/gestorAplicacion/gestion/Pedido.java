@@ -14,7 +14,7 @@ public class Pedido {
 
     private Trabajador trabajador;
     private Cliente cliente;
-    private String estadoPedido; // "PAGADO", "NO PAGADO"
+    private String estadoPedido; // "Pagado", "No pagado"
     private ArrayList<Producto> productos = new ArrayList<>();//arraylist de productos pedidos por el cliente
 
     private ArrayList<Servicio> servicios =new ArrayList<>();//arraylist de servicios pedidos por el cliente
@@ -49,6 +49,7 @@ public class Pedido {
         this.servicios = servicios;
         this.fechaPedido = fechaPedido;
         this.codigo = generarCodigo();
+        pedidos.add(this);
     }
 
     //GETTERS Y SETTERS
@@ -133,6 +134,18 @@ public class Pedido {
         return numeroPedido++;
     }
 
+    public static String generarFactura(Pedido pedido, Cliente cliente){
+        String s="";
+        s+= "\n=============FACTURA DEL PEDIDO============="+
+                "\nFactura # "+pedido.getCodigo()+
+                "\nFecha: "+pedido.getFechaPedido()+
+                "\nNombre cliente: "+cliente.getNombre()+
+                "\nVendido por "+pedido.getTrabajador().getNombre()+" con codigo "+pedido.getTrabajador().getCodigo()+
+                "\n"+Producto.mostrarProductos(pedido.getProductos())+
+                "\n"+Servicio.mostrarServicios(pedido.getServicios())+
+                "\n======================================";
+        return s;
+    }
 
 
 

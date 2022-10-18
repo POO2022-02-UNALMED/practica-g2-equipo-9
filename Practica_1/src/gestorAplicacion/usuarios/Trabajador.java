@@ -12,12 +12,15 @@ public class Trabajador extends Empleado implements Sueldo{
     private int saldoFinal;
     private final int seguro = 6;
 
+
+
     private ArrayList<Cliente> ventasDia = new ArrayList<>();//listado de objetos cliente, es decir guarda los clientes con sus respectivos pedidos
 
 
     //ATRIBUTOS DE CLASE
     private static long numeroTrabajador = 0;
     private static ArrayList<Trabajador> trabajadores = new ArrayList<>();
+
 
 
     //CONSTRUCTOR
@@ -87,6 +90,9 @@ public class Trabajador extends Empleado implements Sueldo{
         }
 
     }
+    public double calculoDePrima() {
+        return this.getSueldo()*0.5;
+    }
 
 
     //OTROS METODOS
@@ -100,8 +106,10 @@ public class Trabajador extends Empleado implements Sueldo{
 
     public static String mostrarTrabajadores(){ //Muestra todos los trabajadores
         String s="";
+        int i =1;
         for (Trabajador trabajador: Trabajador.getTrabajadores()){
-            s+="\n"+trabajador;
+            s+="\n"+i+". Codigo: "+trabajador.getCodigo()+" Nombre: "+trabajador.getNombre();
+            i++;
         }
         return s;
     }

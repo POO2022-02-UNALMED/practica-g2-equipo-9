@@ -10,7 +10,7 @@ public class Cliente extends Usuario{
     //ATRIBUTOS DE INSTANCIA
     private int numeroReserva;
     private String estadoReserva;
-    private ArrayList<Pedido> pedidosCliente = new ArrayList<>();//cliente tiene un array de pedidos, va pidiendo cosas y se van guardando aqui
+    private Pedido pedido;//Pedido de cliente
 
 
     //ATRIBUTOS DE CLASE
@@ -23,13 +23,12 @@ public class Cliente extends Usuario{
 
     //CONSTRUCTOR
 
-    public Cliente(long codigo, String nombre, int numeroReserva, String estadoReserva, ArrayList<Pedido> pedidosCliente) {
-        super(generarCodigo(),nombre);
+    public Cliente(String nombre, int numeroReserva, String estadoReserva, Pedido pedido) {
+        super(generarCodigo(), nombre);
         this.numeroReserva = numeroReserva;
         this.estadoReserva = estadoReserva;
-        this.pedidosCliente = pedidosCliente;
+        this.pedido = pedido;
         clientes.add(this);
-
     }
 
 
@@ -76,13 +75,6 @@ public class Cliente extends Usuario{
         Cliente.numeroCliente = numeroCliente;
     }
 
-    public ArrayList<Pedido> getPedidosCliente() {
-        return pedidosCliente;
-    }
-
-    public void setPedidosCliente(ArrayList<Pedido> pedidosCliente) {
-        this.pedidosCliente = pedidosCliente;
-    }
     public static ArrayList<Cliente> getClientes() {
         return clientes;
     }
@@ -91,7 +83,11 @@ public class Cliente extends Usuario{
         Cliente.clientes = clientes;
     }
 
+    public Pedido getPedido() {
+        return pedido;
+    }
 
-
-
+    public void setPedido(Pedido pedido) {
+        this.pedido = pedido;
+    }
 }

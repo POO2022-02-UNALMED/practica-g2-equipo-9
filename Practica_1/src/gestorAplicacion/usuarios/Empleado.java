@@ -88,15 +88,14 @@ public abstract class Empleado extends Usuario {
     }
 
 
+
     //OTROS METODOS
-    public double calculoDePrima() {
-        return this.getSueldo()*0.5;
-    }
+
 
 
     //METODOS ABSTRACTOS
     public abstract String asegurar();
-
+    public abstract double calculoDePrima();
 
 
 }
