@@ -115,26 +115,4 @@ public class Cliente extends Usuario implements Serializable{
     catch (Exception c){
     }
 
-    //SERIALIZACION
-    try{
-        ObjectOutputStream pedidos_datos = new ObjectOutputStream(new FileOutputStream("/pedido.dat"));
-    
-        pedidos_datos.writeObject(pedidosCliente);
-    
-        pedidos_datos.close();
-    
-        ObjectInputStream pedidos_recuperar= new ObjectInputStream(new FileInputStream("/pedido.dat"));
-    
-        //DEVUELVE LOS DATOS EN TIPO ARRAY
-        Pedido[] pedidos_recuperados=(Pedido[]) pedidos_recuperar.readObject();
-    
-        pedidos_recuperar.close();
-    
-        //IMPRIME LOS DATOS DE FORMA INDIVIDUAL
-        for (Pedido p: pedidos_recuperados){
-            System.out.printIn(p);
-        }
-    }
-    catch (Exception p){
-    }
 }
