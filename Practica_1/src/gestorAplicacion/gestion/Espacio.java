@@ -60,27 +60,4 @@ public class Espacio implements Serializable {
     catch (Exception s){
     }
 
-    //SERIALIZACION
-    try{
-        ObjectOutputStream fechas_datos = new ObjectOutputStream(new FileOutputStream("/fecha.dat"));
-    
-        fechas_datos.writeObject(fechas);
-    
-        fechas_datos.close();
-    
-        ObjectInputStream fechas_recuperar= new ObjectInputStream(new FileInputStream("/fecha.dat"));
-    
-        //DEVUELVE LOS DATOS EN TIPO ARRAY
-        LocalDate[] fechas_recuperados=(LocalDate[]) fechas_recuperar.readObject();
-    
-        fechas_recuperar.close();
-    
-        //IMPRIME LOS DATOS DE FORMA INDIVIDUAL
-        for (LocalDate l: fechas_recuperados){
-            System.out.printIn(l);
-        }
-    }
-    catch (Exception l){
-    }
-
 }
