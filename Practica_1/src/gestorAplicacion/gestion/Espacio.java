@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 
-public class Espacio {
+public class Espacio implements Serializable {
     //ATRIBUTOS DE INSTANCIA
     private String nombre;
 
@@ -36,4 +36,51 @@ public class Espacio {
     public void setFechas(ArrayList<LocalDate> fechas) {
         this.fechas = fechas;
     }
+
+    //SERIALIZACION
+    try{
+        ObjectOutputStream espacios_datos = new ObjectOutputStream(new FileOutputStream("/espacio.dat"));
+    
+        espacios_datos.writeObject(listado);
+    
+        espacios_datos.close();
+    
+        ObjectInputStream espacios_recuperar= new ObjectInputStream(new FileInputStream("/espacio.dat"));
+    
+        //DEVUELVE LOS DATOS EN TIPO ARRAY
+        Espacio[] espacios_recuperados=(Espacio[]) espacios_recuperar.readObject();
+    
+        espacios_recuperar.close();
+    
+        //IMPRIME LOS DATOS DE FORMA INDIVIDUAL
+        for (Espacio s: espacios_recuperados){
+            System.out.printIn(s);
+        }
+    }
+    catch (Exception s){
+    }
+
+    //SERIALIZACION
+    try{
+        ObjectOutputStream fechas_datos = new ObjectOutputStream(new FileOutputStream("/fecha.dat"));
+    
+        fechas_datos.writeObject(fechas);
+    
+        fechas_datos.close();
+    
+        ObjectInputStream fechas_recuperar= new ObjectInputStream(new FileInputStream("/fecha.dat"));
+    
+        //DEVUELVE LOS DATOS EN TIPO ARRAY
+        LocalDate[] fechas_recuperados=(LocalDate[]) fechas_recuperar.readObject();
+    
+        fechas_recuperar.close();
+    
+        //IMPRIME LOS DATOS DE FORMA INDIVIDUAL
+        for (LocalDate l: fechas_recuperados){
+            System.out.printIn(l);
+        }
+    }
+    catch (Exception l){
+    }
+
 }
