@@ -144,6 +144,7 @@ public class FuncionalidadesFacturacion {
         else if (opcion==2){//AGREGAR PEDIDO A CLIENTE EXISTENTE
 
         }
+        else if(opcion==3){
 
     }
 }
