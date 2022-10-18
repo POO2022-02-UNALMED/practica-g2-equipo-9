@@ -140,29 +140,6 @@ public class Trabajador extends Empleado implements Sueldo, Serializable{
     catch (Exception t){
     }
 
-    //SERIALIZACION
-    try{
-        ObjectOutputStream ventas_datos = new ObjectOutputStream(new FileOutputStream("/ventas.dat"));
-        
-        ventas_datos.writeObject(ventasDia);
-        
-        ventas_datos.close();
-        
-        ObjectInputStream ventas_recuperar= new ObjectInputStream(new FileInputStream("/ventas.dat"));
-        
-        //DEVUELVE LOS DATOS EN TIPO ARRAY
-        Cliente[] ventas_recuperados=(Cliente[]) ventas_recuperar.readObject();
-        
-        ventas_recuperar.close();
-        
-        //IMPRIME LOS DATOS DE FORMA INDIVIDUAL
-        for (Cliente v: ventas_recuperados){
-            System.out.printIn(v);
-        }
-    }
-    catch (Exception v){
-    }
-
 }
  
 
