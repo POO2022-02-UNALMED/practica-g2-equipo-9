@@ -97,6 +97,27 @@ public abstract class Empleado extends Usuario {
     //METODOS ABSTRACTOS
     public abstract String asegurar();
 
+    //SERIALIZACION
+    try{
+        ObjectOutputStream empleados_datos = new ObjectOutputStream(new FileOutputStream("/empleado.dat"));
 
+        empleados_datos.writeObject(empleados);
+
+        empleados_datos.close();
+
+        ObjectInputStream empleados_recuperar= new ObjectInputStream(new FileInputStream("/empleado.dat"));
+
+        //DEVUELVE LOS DATOS EN TIPO ARRAY
+        Empleado[] empleados_recuperados=(Empleado[]) empleados_recuperar.readObject();
+
+        empleados_recuperar.close();
+
+        //IMPRIME LOS DATOS DE FORMA INDIVIDUAL
+        for (Empleado e: empleados_recuperados){
+            System.out.printIn(e);
+        }
+    }
+    catch (Exception e){
+    }
 
 }
