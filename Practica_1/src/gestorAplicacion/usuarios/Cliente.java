@@ -33,23 +33,37 @@ public class Cliente extends Usuario{
 
 
 
-    //metodos
-
-
+    //OTROS METODOS
 
     private static long generarCodigo(){
 
         return numeroCliente++;
     }
 
-
-
-    public String solicitarReembolso(int id){
-        return "algo";
+    public static String mostrarClientes(){ //Muestra todos los clientes con pedidos "No pagado"
+        String s="";
+        int i =1;
+        for (Cliente cliente: Cliente.getClientes()){
+            if (cliente.pedido.getEstadoPedido().equals("No pagado")){
+                s+="\n"+i+". Codigo de cliente: "+cliente.getCodigo()+" Nombre: "+cliente.getNombre();
+                i++;
+            }
+        }
+        return s;
     }
-    public String solicitarReserva(){
-        return "algo";
+
+    public static Cliente seleccionarCliente(long codigo){//Escoge un cliente por el codigo unico que tiene asignado
+        Cliente clienteSeleccionado=null;
+        for (Cliente cliente: Cliente.getClientes()){
+            if(cliente.getCodigo()==codigo && cliente.getPedido().getEstadoPedido().equals("No pagado")){
+                clienteSeleccionado=cliente;
+                break;
+            }
+        }
+        return clienteSeleccionado;
     }
+
+    //GETTER Y SETTERS
 
     public int getNumeroReserva() {
         return numeroReserva;

@@ -39,67 +39,29 @@ public class FuncionalidadesFacturacion {
 
             System.out.println("Productos disponibles: ");
             //MOSTRAR PRODUCTOS DISPONIBLES Y CANTIDADES
-            SortedSet<String> nombres= new TreeSet<>();
-            for(Producto e: Producto.getProductos()){
-                nombres.add(e.getNombre());
-            }
-            System.out.println("Nombre de producto: Cantidad en el inventario");
-            ArrayList<Producto> productosDisponibles=new ArrayList<>();
-            long contador=1;
-            for(String nombreProducto: nombres){
-                long contadorDeProducto=0;
-                for(Producto producto: Producto.getProductos()){
-                    if(nombreProducto.equals(producto.getNombre()) && producto.getEstado().equals("No vendido")){
-                        contadorDeProducto++;
-                        productosDisponibles.add(producto);
-                    }
-                }
-                System.out.println();
-                System.out.println(contador+". "+nombreProducto+": "+ contadorDeProducto);
-                contador++;
-            }
-            //confirmar que nombre de producto exista
+            System.out.println(Producto.mostrarProductosDisponibles());
+            ArrayList<Producto> productosDisponibles= Producto.productosDisponibles();//PRODUCTOS NO VENDIDOS
+            //CONFIRMAR QUE NOMBRE INGRESADO EXISTA EN EL INVENTARIO
             System.out.println("Escoja nombre de producto:");
             String nombreEscogido= entrada.next();
-            while(true){
-                if (nombres.contains(nombreEscogido)) {
-                    break;
-                }
-                else {
-                    System.out.println("Producto ingresado no disponible, ingrese un nombre valido");
-                    nombreEscogido= entrada.next();
-                }
+            boolean verificarNombre=Producto.verificarProducto(nombreEscogido,productosDisponibles);
+            while(verificarNombre==false){
+                System.out.println("Producto ingresado no disponible, ingrese un nombre valido");
+                nombreEscogido= entrada.next();
+                verificarNombre=Producto.verificarProducto(nombreEscogido,productosDisponibles);
             }
-            //confirmar cantidad de producto
-            System.out.println("Escoja cantidad de producto a pedir:");
+            //CONFIRMAR CANTIDAD DE PRODUCTO
+            System.out.println("Escoja cantidad de producto:");
             long cantidadEscogida= entrada.nextLong();
-            while(true) {
-                long cont = 0;
-                for (Producto producto : productosDisponibles) {
-                    if (producto.getNombre().equals(nombreEscogido)) {
-                        cont++;
-                    }
-                }
-                if (cont >= cantidadEscogida) {
-                    break;
-                }
-                else {
-                    System.out.println("Cantidad ingresada no disponible, ingrese una cantidad valida");
-                    cantidadEscogida=entrada.nextLong();
-                }
+            boolean verificarCantidad=Producto.verificarProducto(nombreEscogido,cantidadEscogida,productosDisponibles);
+            while(verificarCantidad==false){
+                System.out.println("Cantidad no disponible, ingrese una cantidad valida");
+                cantidadEscogida= entrada.nextLong();
+                verificarCantidad=Producto.verificarProducto(nombreEscogido,cantidadEscogida,productosDisponibles);
             }
-            //agregar cantidad de productos
-            ArrayList<Producto> productosEscogidos=new ArrayList<>();
-            long cont=0;
-            for(Producto producto: productosDisponibles){
-                cont++;
-                if(producto.getNombre().equals(nombreEscogido)){
-                    productosEscogidos.add(producto);
-                }
-                if(cont>=cantidadEscogida){
-                    break;
-                }
-            }
+            //AGREGAR CANTIDAD A PRODUCTOS ESCOGIDOS
+            ArrayList<Producto> productosEscogidos=Producto.agregarProducto(nombreEscogido,cantidadEscogida,productosDisponibles);
+
             //agregar servicios
             ArrayList<Servicio>serviciosEscogidos=new ArrayList<>();
             System.out.println();
@@ -108,6 +70,7 @@ public class FuncionalidadesFacturacion {
             System.out.println("2. No agregar servicios");
             int opcion1= entrada.nextInt();
             while(opcion1!=1 || opcion1!=2){
+                System.out.println("Ingrese una opcion valida");
                 opcion1= entrada.nextInt();
             }
             if (opcion1==1){
@@ -142,10 +105,22 @@ public class FuncionalidadesFacturacion {
 
         }
         else if (opcion==2){//AGREGAR PEDIDO A CLIENTE EXISTENTE
-
+            System.out.println("Listado de clientes con pedidos abiertos");
+            System.out.println(Cliente.mostrarClientes());
+            System.out.println("Ingrese un codigo de cliente:");
+            long codigo= entrada.nextLong();
+            Cliente clienteSeleccionado=Cliente.seleccionarCliente(codigo);
+            while(clienteSeleccionado==null){
+                System.out.println("Codigo no valido, ingrese uno nuevo");
+                codigo=entrada.nextLong();
+                clienteSeleccionado=Cliente.seleccionarCliente(codigo);
+            }
+            System.out.println("Descripcion del trabajador que atiende este cliente");
+            System.out.println(clienteSeleccionado.getPedido().getTrabajador());
+            System.out.println();
         }
-        else if(opcion==3){
-
+        else if(opcion==3) {//BUSCAR PEDIDOS "No pagados" QUE VENDRIAN SIENDO LOS PENDIENTES
+        }
     }
 }
 

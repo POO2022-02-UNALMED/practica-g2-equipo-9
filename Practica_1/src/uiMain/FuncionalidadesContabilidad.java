@@ -96,7 +96,7 @@ public class FuncionalidadesContabilidad {
         double totalVentasDeServicios=0;
         double comisionesTotalesServicios=0;
         for (Servicio e: serviciosMes){
-            totalVentasDeServicios+=e.getPrecio;
+            totalVentasDeServicios+=e.getPrecio();
             comisionesTotalesServicios+=e.getPrecio()*Sueldo.porcentajeComisionServicios;
         }
         double pagoTrabajador=0;
