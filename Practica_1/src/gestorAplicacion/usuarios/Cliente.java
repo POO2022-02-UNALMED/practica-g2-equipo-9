@@ -5,7 +5,7 @@ import gestorAplicacion.gestion.Pedido;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class Cliente extends Usuario{
+public class Cliente extends Usuario implements Serializable{
 
     //ATRIBUTOS DE INSTANCIA
     private int numeroReserva;
