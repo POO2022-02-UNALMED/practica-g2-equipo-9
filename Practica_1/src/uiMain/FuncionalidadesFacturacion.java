@@ -62,7 +62,7 @@ public class FuncionalidadesFacturacion {
             //AGREGAR CANTIDAD A PRODUCTOS ESCOGIDOS
             ArrayList<Producto> productosEscogidos=Producto.agregarProducto(nombreEscogido,cantidadEscogida,productosDisponibles);
 
-            //agregar servicios
+            //AGREGAR SERVICIOS
             ArrayList<Servicio>serviciosEscogidos=new ArrayList<>();
             System.out.println();
             System.out.println("Desea agregar servicios:");
@@ -74,20 +74,14 @@ public class FuncionalidadesFacturacion {
                 opcion1= entrada.nextInt();
             }
             if (opcion1==1){
-                //mostrar servicios
-                System.out.println("Nombre del servicio: precio");
-                HashMap<Integer,Servicio> servicios=new HashMap<>();
-                int i=1;
-                for(Servicio servicio: Servicio.values()){
-                    System.out.println(i+". "+servicio+": "+servicio.getPrecio());
-                    servicios.put(i,servicio);
-                    i++;
-                }
+                //MOSTRAR SERVICIOS
+                System.out.println(Servicio.serviciosOfrecidos());//Se muestran los servicios y sus precios
+                HashMap<Integer, Servicio>servicios=Servicio.hashmapServicios();
                 System.out.println("Seleccione cantidad de servicios que desea ingresar");
                 int opcion2= entrada.nextInt();//cantidad de servicios
                 opcion2= entrada.nextInt();
                 for(int e=0; e<opcion2; e++){
-                    System.out.println("Ingrese numero de servicio "+e+1+":");
+                    System.out.println("Ingrese numero del servicio "+e+1+":");
                     int opcion3= entrada.nextInt();
                     while(opcion3<=0 || opcion3> servicios.size()){
                         System.out.println("Numero del servicio no valido, ingrese otro numero");
@@ -100,7 +94,27 @@ public class FuncionalidadesFacturacion {
                 Cliente cliente =new Cliente(nombreCliente,0,null,null);
                 Pedido pedido=new Pedido(trabajadorSeleccionado,cliente,"No pagado",productosEscogidos,serviciosEscogidos, LocalDate.now());
                 cliente.setPedido(pedido);
-                System.out.println(Pedido.generarFactura(pedido,cliente));
+                System.out.println("Ingrese para:");
+                System.out.println("1. Pagar ahora mismo");
+                System.out.println("2. Pagar luego");
+                System.out.println("3. Cancelar pedido");
+                int opcion4= entrada.nextInt();
+                while(opcion4<=0 && opcion4>3){
+                    System.out.println("Opcion invalida, ingrese de nuevo un numero:");
+                    opcion4= entrada.nextInt();
+                }
+                if(opcion4==1){//pagar pedido, cambia estado de pedido a Pagado y estado de productos a Vendido
+                    pedido.pagarPedido();
+                    pedido.generarFactura();
+                }
+                else if(opcion4==2){
+                    pedido.reservarPedido();//reservar pedido, cambia estado de pedido a No pagado y estado de productos a Reservado
+                    pedido.generarFactura();
+                }
+                else if(opcion4==3){
+                    Pedido.getPedidos().remove(pedido);//Remueve el pedido del listado de pedidos
+                }
+
             }
 
         }

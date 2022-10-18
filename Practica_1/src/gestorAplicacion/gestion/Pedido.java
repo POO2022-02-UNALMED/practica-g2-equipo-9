@@ -5,7 +5,7 @@ import gestorAplicacion.usuarios.Cliente;
 import gestorAplicacion.usuarios.Trabajador;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
+import java.util.*;
 
 
 public class Pedido {
@@ -134,17 +134,65 @@ public class Pedido {
         return numeroPedido++;
     }
 
-    public static String generarFactura(Pedido pedido, Cliente cliente){
+
+    public String generarFactura(){
+
+        String productos ="Productos: " +
+                "\nNombre........Cantidad.......Precio";
+        HashMap<String, Double> nombreYprecio = new HashMap<>();
+        double totalProductos = 0;
+        ArrayList<String> nombre = new ArrayList<>();
+        for (Producto producto : this.getProductos()) {
+            if (nombreYprecio.containsKey(producto.getNombre()) == false) {
+                nombreYprecio.put(producto.getNombre(), producto.getPrecioVenta());
+            }
+            nombre.add(producto.getNombre());
+            totalProductos += producto.getPrecioVenta();
+        }
+        long i = 1;
+        for (String clave : nombreYprecio.keySet()) {
+            productos += "\n" + i + ". " + clave + "...." + Collections.frequency(nombre, clave) + "......" + nombreYprecio.get(clave) * Collections.frequency(nombre, clave);
+            i++;
+        }
+
+        productos += "\nTotal de producto:" + totalProductos;
+
+        String servicios="Servicios:" +
+                "\nNombre...........Cantidad.........Precio";
+        int b=1;
+        double totalServicios=0;
+        SortedSet<Servicio> servicioNoRepetido=new TreeSet<>();
+        for(Servicio servicio: this.getServicios()){
+            servicios+="\n"+b+". "+servicio+" "+ Collections.frequency(this.getServicios(),servicio)+"....."+Collections.frequency(this.getServicios(),servicio)* servicio.getPrecio();
+            totalServicios+=servicio.getPrecio();
+            b++;
+        }
+        servicios += "\nTotal de servicios:" + totalServicios;
+
+
         String s="";
         s+= "\n=============FACTURA DEL PEDIDO============="+
-                "\nFactura # "+pedido.getCodigo()+
-                "\nFecha: "+pedido.getFechaPedido()+
-                "\nNombre cliente: "+cliente.getNombre()+
-                "\nVendido por "+pedido.getTrabajador().getNombre()+" con codigo "+pedido.getTrabajador().getCodigo()+
-                "\n"+Producto.mostrarProductos(pedido.getProductos())+
-                "\n"+Servicio.mostrarServicios(pedido.getServicios())+
+                "\nFactura # "+this.getCodigo()+
+                "\nFecha: "+this.getFechaPedido()+
+                "\nNombre cliente: "+this.getCliente().getNombre()+
+                "\nVendido por "+this.getTrabajador().getNombre()+" con codigo "+this.getTrabajador().getCodigo()+
+                "\n"+productos+
+                "\n"+servicios+
+                "\nTotal:"+totalProductos+totalServicios+
                 "\n======================================";
         return s;
+    }
+    public void pagarPedido(){
+        this.setEstadoPedido("Pagado");
+        for(Producto producto: this.getProductos()){
+            producto.setEstado("Vendido");
+        }
+    }
+    public void reservarPedido(){
+        this.setEstadoPedido("No pagado");
+        for(Producto producto: this.getProductos()){
+            producto.setEstado("Reservado");
+        }
     }
 
 

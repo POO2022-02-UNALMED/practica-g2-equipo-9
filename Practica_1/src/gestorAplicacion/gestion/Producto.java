@@ -10,7 +10,7 @@ import gestorAplicacion.usuarios.*;
 public class Producto {
     //ATRIBUTOS INSTANCIA
     private Trabajador trabajador;
-    private Pedido pedido;
+
     private Cliente cliente;
     private String estado; //agregue estado de producto, "Vendido", "No vendido", "Reservado"
     private String nombre;
@@ -54,9 +54,8 @@ public class Producto {
         this.codigo = Producto.numeroProducto;
     }
 
-    public Producto(Trabajador trabajador, Pedido pedido, String estado, String nombre, int precioCompra, int precioVenta, LocalDate fechaVencimiento, LocalDate fechaIngreso, LocalDate fechaVenta) {
+    public Producto(Trabajador trabajador, String estado, String nombre, int precioCompra, int precioVenta, LocalDate fechaVencimiento, LocalDate fechaIngreso, LocalDate fechaVenta) {
         this.trabajador = trabajador;
-        this.pedido = pedido;
         this.estado = estado;
         this.nombre = nombre;
         this.precioCompra = precioCompra;
@@ -69,10 +68,9 @@ public class Producto {
         Producto.categorizarProdcuto(this);
     }
 
-    public Producto(Trabajador trabajador, Pedido pedido, Cliente cliente, String estado, String nombre, double precioCompra, double precioVenta, LocalDate fechaVencimiento, LocalDate fechaIngreso, LocalDate fechaVenta, int tipo) {
+    public Producto(Trabajador trabajador, Cliente cliente, String estado, String nombre, double precioCompra, double precioVenta, LocalDate fechaVencimiento, LocalDate fechaIngreso, LocalDate fechaVenta, int tipo) {
         Producto.numeroProducto++;
         this.trabajador = trabajador;
-        this.pedido = pedido;
         this.cliente = cliente;
         this.estado = estado;
         this.nombre = nombre;
@@ -165,13 +163,6 @@ public class Producto {
         this.trabajador = trabajador;
     }
 
-    public Pedido getPedido() {
-        return pedido;
-    }
-
-    public void setPedido(Pedido pedido) {
-        this.pedido = pedido;
-    }
 
     public String getEstado() {
         return estado;
@@ -299,26 +290,7 @@ public class Producto {
 
     }
 
-    public static String mostrarProductos(ArrayList<Producto> listaProductos) {//Devuelve un String con los productos y sus cantidades de una lista de productos
-        String s = "Productos: " +
-                "\nNombre........Cantidad.......Precio";
-        HashMap<String, Double> nombreYprecio = new HashMap<>();
-        double total = 0;
-        ArrayList<String> nombre = new ArrayList<>();
-        for (Producto producto : listaProductos) {
-            if (nombreYprecio.containsKey(producto.getNombre()) == false) {
-                nombreYprecio.put(producto.getNombre(), producto.getPrecioVenta());
-            }
-            nombre.add(producto.getNombre());
-            total += producto.getPrecioVenta();
-        }
-        long i = 1;
-        for (String clave : nombreYprecio.keySet()) {
-            s += "\n" + i + ". " + clave + "...." + Collections.frequency(nombre, clave) + "......" + nombreYprecio.get(clave) * Collections.frequency(nombre, clave);
-        }
-        s += "\nTotal.................................................." + total;
-        return s;
-    }
+
 
     public static String mostrarProductosDisponibles() {//Inventario, muestra nombre y cantidades disponibles
         String s = "Nombre producto.............cantidad";
@@ -383,5 +355,6 @@ public class Producto {
         }
         return productosEscogidos;
     }
+
 }
 
