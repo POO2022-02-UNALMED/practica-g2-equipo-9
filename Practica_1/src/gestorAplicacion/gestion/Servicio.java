@@ -15,17 +15,13 @@ public enum Servicio implements Serializable{
     //SERIALIZACION
     try{
         ObjectOutputStream servicios_datos = new ObjectOutputStream(new FileOutputStream("/servicio.dat"));
-        
+
+        //DEVUELVE LOS DATOS
         servicio_datos.writeObject(precio);
         
         servicio_datos.close();
         
         ObjectInputStream servicio_recuperar= new ObjectInputStream(new FileInputStream("/servicio.dat"));
-        
-        //DEVUELVE LOS DATOS 
-        servicio_datos.writeObject(precio);
-        
-        ventas_recuperar.close();
     }
     catch (Exception precio){
     }
