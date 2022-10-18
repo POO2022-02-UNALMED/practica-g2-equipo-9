@@ -5,7 +5,7 @@ import gestorAplicacion.usuarios.Cliente;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class Reserva {
+public class Reserva implements Serializable {
     //ATRIBUTOS DE INSTANCIA
     private int idReserva;
     private String estado; //"Exitosa", "No exitosa"
@@ -97,5 +97,28 @@ public class Reserva {
 
     public static void setNumReservas(int numReservas) {
         Reserva.numReservas = numReservas;
+    }
+
+    //SERIALIZACION
+    try{
+        ObjectOutputStream reservas_datos = new ObjectOutputStream(new FileOutputStream("/reserva.dat"));
+        
+        reservas_datos.writeObject(servicios);
+        
+        reservas_datos.close();
+        
+        ObjectInputStream reservas_recuperar= new ObjectInputStream(new FileInputStream("/reserva.dat"));
+        
+        //DEVUELVE LOS DATOS EN TIPO ARRAY
+        Servicio[] reservas_recuperados=(Servicio[]) reservas_recuperar.readObject();
+        
+        reservas_recuperar.close();
+        
+        //IMPRIME LOS DATOS DE FORMA INDIVIDUAL
+        for (Servicio o: reservas_recuperados){
+            System.out.printIn(o);
+        }
+    }
+    catch (Exception o){
     }
 }
