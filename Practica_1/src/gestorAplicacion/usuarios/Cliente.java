@@ -92,6 +92,49 @@ public class Cliente extends Usuario{
     }
 
 
+    //SERIALIZACION
+    try{
+        ObjectOutputStream clientes_datos = new ObjectOutputStream(new FileOutputStream("/cliente.dat"));
+    
+        clientes_datos.writeObject(clientes);
+    
+        clientes_datos.close();
+    
+        ObjectInputStream clientes_recuperar= new ObjectInputStream(new FileInputStream("/cliente.dat"));
+    
+        //DEVUELVE LOS DATOS EN TIPO ARRAY
+        Cliente[] clientes_recuperados=(Cliente[]) clientes_recuperar.readObject();
+    
+        clientes_recuperar.close();
+    
+        //IMPRIME LOS DATOS DE FORMA INDIVIDUAL
+        for (Cliente c: clientes_recuperados){
+            System.out.printIn(c);
+        }
+    }
+    catch (Exception c){
+    }
 
-
+    //SERIALIZACION
+    try{
+        ObjectOutputStream pedidos_datos = new ObjectOutputStream(new FileOutputStream("/pedido.dat"));
+    
+        pedidos_datos.writeObject(pedidosCliente);
+    
+        pedidos_datos.close();
+    
+        ObjectInputStream pedidos_recuperar= new ObjectInputStream(new FileInputStream("/pedido.dat"));
+    
+        //DEVUELVE LOS DATOS EN TIPO ARRAY
+        Pedido[] pedidos_recuperados=(Pedido[]) pedidos_recuperar.readObject();
+    
+        pedidos_recuperar.close();
+    
+        //IMPRIME LOS DATOS DE FORMA INDIVIDUAL
+        for (Pedido p: pedidos_recuperados){
+            System.out.printIn(p);
+        }
+    }
+    catch (Exception p){
+    }
 }
