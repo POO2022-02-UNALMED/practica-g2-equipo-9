@@ -68,10 +68,8 @@ public abstract class Usuario implements Serializable {
         for (Usuario u: usuarios_recuperados){
             System.out.printIn(u);
         }
-
-        catch (Exception u){
-
-        }
+    }
+    catch (Exception u){
     }
 }
 
