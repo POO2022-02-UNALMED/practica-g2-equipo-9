@@ -2,6 +2,7 @@ package gestorAplicacion.usuarios;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.io.Serializable;
 
 public abstract class Empleado extends Usuario {
     //ATRIBUTOS DE INSTANCIA
