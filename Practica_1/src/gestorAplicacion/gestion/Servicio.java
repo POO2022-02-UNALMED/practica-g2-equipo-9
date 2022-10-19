@@ -9,7 +9,7 @@ public enum Servicio {
     private Servicio(float precio){
         this.precio=precio;
     }
-
+    
     public float getPrecio() {
         return precio;
     }
