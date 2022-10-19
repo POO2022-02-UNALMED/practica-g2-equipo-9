@@ -8,7 +8,7 @@ import java.time.LocalDate;
 import java.util.*;
 
 
-public class Pedido {
+public class Pedido implements Serializable {
 
     //ATRIBUTOS DE INSTANCIA
 
@@ -132,6 +132,29 @@ public class Pedido {
     //OTROS METODOS
     public long generarCodigo(){
         return numeroPedido++;
+    }
+
+    //SERIALIZACION
+    try{
+        ObjectOutputStream pedidos_datos = new ObjectOutputStream(new FileOutputStream("/pedido.dat"));
+    
+        pedidos_datos.writeObject(pedidos);
+    
+        pedidos_datos.close();
+    
+        ObjectInputStream pedidos_recuperar= new ObjectInputStream(new FileInputStream("/pedido.dat"));
+    
+        //DEVUELVE LOS DATOS EN TIPO ARRAY
+        Pedido[] pedidos_recuperados=(Pedido[]) pedidos_recuperar.readObject();
+    
+        pedidos_recuperar.close();
+    
+        //IMPRIME LOS DATOS DE FORMA INDIVIDUAL
+        for (Pedido p: pedidos_recuperados){
+            System.out.printIn(p);
+        }
+    }
+    catch (Exception p){
     }
 
 

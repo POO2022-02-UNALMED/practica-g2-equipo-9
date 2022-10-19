@@ -5,7 +5,7 @@ import gestorAplicacion.gestion.Pedido;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class Cliente extends Usuario{
+public class Cliente extends Usuario implements Serializable{
 
     //ATRIBUTOS DE INSTANCIA
     private int numeroReserva;
@@ -101,7 +101,34 @@ public class Cliente extends Usuario{
         return pedido;
     }
 
+
     public void setPedido(Pedido pedido) {
         this.pedido = pedido;
     }
+
+
+    //SERIALIZACION
+    try{
+        ObjectOutputStream clientes_datos = new ObjectOutputStream(new FileOutputStream("/cliente.dat"));
+    
+        clientes_datos.writeObject(clientes);
+    
+        clientes_datos.close();
+    
+        ObjectInputStream clientes_recuperar= new ObjectInputStream(new FileInputStream("/cliente.dat"));
+    
+        //DEVUELVE LOS DATOS EN TIPO ARRAY
+        Cliente[] clientes_recuperados=(Cliente[]) clientes_recuperar.readObject();
+    
+        clientes_recuperar.close();
+    
+        //IMPRIME LOS DATOS DE FORMA INDIVIDUAL
+        for (Cliente c: clientes_recuperados){
+            System.out.printIn(c);
+        }
+    }
+    catch (Exception c){
+    }
+
+
 }

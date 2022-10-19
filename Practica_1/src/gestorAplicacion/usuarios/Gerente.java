@@ -3,7 +3,7 @@ package gestorAplicacion.usuarios;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class Gerente extends Empleado implements Sueldo {
+public class Gerente extends Empleado implements Sueldo, Serializable{
 
     //ATRIBUTOS DE INSTANCIA
 
@@ -70,6 +70,28 @@ public class Gerente extends Empleado implements Sueldo {
         Gerente.gerentes = gerentes;
     }
 
+    //SERIALIZACION
+    try{
+        ObjectOutputStream gerentes_datos = new ObjectOutputStream(new FileOutputStream("/gerente.dat"));
+    
+        gerentes_datos.writeObject(gerentes);
+    
+        gerentes_datos.close();
+    
+        ObjectInputStream gerentes_recuperar= new ObjectInputStream(new FileInputStream("/gerente.dat"));
+    
+        //DEVUELVE LOS DATOS EN TIPO ARRAY
+        Gerente[] gerentes_recuperados=(Gerente[]) gerentes_recuperar.readObject();
+    
+        gerentes_recuperar.close();
+    
+        //IMPRIME LOS DATOS DE FORMA INDIVIDUAL
+        for (Gerentes g: gerentes_recuperados){
+            System.out.printIn(g);
+        }
+    }
+    catch (Exception g){
+    }
 
 
 

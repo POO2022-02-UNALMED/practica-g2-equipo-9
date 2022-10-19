@@ -6,7 +6,7 @@ import gestorAplicacion.gestion.Producto;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class Trabajador extends Empleado implements Sueldo{
+public class Trabajador extends Empleado implements Sueldo, Serializable{
 
     //ATRIBUTOS DE INSTANCIA
     private int saldoFinal;
@@ -125,7 +125,28 @@ public class Trabajador extends Empleado implements Sueldo{
     }
 
 
-
+    //SERIALIZACION
+    try{
+        ObjectOutputStream trabajadores_datos = new ObjectOutputStream(new FileOutputStream("/trabajador.dat"));
+    
+        trabajadores_datos.writeObject(trabajadores);
+    
+        trabajadores_datos.close();
+    
+        ObjectInputStream trabajadores_recuperar= new ObjectInputStream(new FileInputStream("/trabajador.dat"));
+    
+        //DEVUELVE LOS DATOS EN TIPO ARRAY
+        Trabajador[] trabajadores_recuperados=(Trabajador[]) trabajadores_recuperar.readObject();
+    
+        trabajadores_recuperar.close();
+    
+        //IMPRIME LOS DATOS DE FORMA INDIVIDUAL
+        for (Trabajador t: trabajadores_recuperados){
+            System.out.printIn(t);
+        }
+    }
+    catch (Exception t){
+    }
 
 }
  

@@ -7,7 +7,7 @@ import java.util.*;
 import gestorAplicacion.usuarios.*;
 
 
-public class Producto {
+public class Producto implements Serializable {
     //ATRIBUTOS INSTANCIA
     private Trabajador trabajador;
 
@@ -289,6 +289,7 @@ public class Producto {
         }
 
     }
+<<<<<<< HEAD
 
 
 
@@ -356,5 +357,29 @@ public class Producto {
         return productosEscogidos;
     }
 
+}
+
+    //SERIALIZACION
+    try{
+        ObjectOutputStream productos_datos = new ObjectOutputStream(new FileOutputStream("/producto.dat"));
+    
+        productos_datos.writeObject(productos);
+    
+        productos_datos.close();
+    
+        ObjectInputStream prodcutos_recuperar= new ObjectInputStream(new FileInputStream("/producto.dat"));
+    
+        //DEVUELVE LOS DATOS EN TIPO ARRAY
+        Producto[] productos_recuperados=(Producto[]) productos_recuperar.readObject();
+    
+        productos_recuperar.close();
+    
+        //IMPRIME LOS DATOS DE FORMA INDIVIDUAL
+        for (Producto r: productos_recuperados){
+            System.out.printIn(p);
+        }
+    }
+    catch (Exception p){
+    }
 }
 
