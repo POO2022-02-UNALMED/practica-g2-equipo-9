@@ -1,7 +1,7 @@
 
 package gestorAplicacion.gestion;
 
-import gestorAplicacion.usuarios.Cliente;
+import gestorAplicacion.usuarios.pedido;
 import gestorAplicacion.usuarios.Trabajador;
 
 import java.time.LocalDate;
@@ -13,13 +13,13 @@ public class Pedido implements Serializable {
     //ATRIBUTOS DE INSTANCIA
 
     private Trabajador trabajador;
-    private Cliente cliente;
+    private pedido pedido;
     private String estadoPedido; // "Pagado", "No pagado"
-    private ArrayList<Producto> productos = new ArrayList<>();//arraylist de productos pedidos por el cliente
+    private ArrayList<Producto> productos = new ArrayList<>();//arraylist de productos pedidos por el pedido
 
-    private ArrayList<Servicio> servicios =new ArrayList<>();//arraylist de servicios pedidos por el cliente
+    private ArrayList<Servicio> servicios =new ArrayList<>();//arraylist de servicios pedidos por el pedido
     private LocalDate fechaPedido;
-    private long codigo; //cuando se cree, se cree con el mismo ID del cliente
+    private long codigo; //cuando se cree, se cree con el mismo ID del pedido
 
     //ATRIBUTOS DE CLASE
 
@@ -32,8 +32,8 @@ public class Pedido implements Serializable {
     public Pedido() {
     }
 
-    public Pedido(Cliente cliente, String estadoPedido, ArrayList<Producto> productos, ArrayList<Servicio> servicios, LocalDate fechaPedido, long codigo) {
-        this.cliente = cliente;
+    public Pedido(pedido pedido, String estadoPedido, ArrayList<Producto> productos, ArrayList<Servicio> servicios, LocalDate fechaPedido, long codigo) {
+        this.pedido = pedido;
         this.estadoPedido = estadoPedido; //CONSTRUCTOR PARA LA FUNCIONALIDAD realizarReserva
         this.productos = productos;
         this.servicios = servicios;
@@ -41,9 +41,9 @@ public class Pedido implements Serializable {
         this.codigo = codigo;
     }
 
-    public Pedido(Trabajador trabajador, Cliente cliente, String estadoPedido, ArrayList<Producto> productos, ArrayList<Servicio> servicios, LocalDate fechaPedido) {
+    public Pedido(Trabajador trabajador, pedido pedido, String estadoPedido, ArrayList<Producto> productos, ArrayList<Servicio> servicios, LocalDate fechaPedido) {
         this.trabajador = trabajador;
-        this.cliente = cliente;
+        this.pedido = pedido;
         this.estadoPedido = estadoPedido;
         this.productos = productos;
         this.servicios = servicios;
@@ -61,12 +61,12 @@ public class Pedido implements Serializable {
         this.trabajador = trabajador;
     }
 
-    public Cliente getCliente() {
-        return cliente;
+    public pedido getpedido() {
+        return pedido;
     }
 
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
+    public void setpedido(pedido pedido) {
+        this.pedido = pedido;
     }
 
     public static ArrayList<Pedido> getPedidos() {
@@ -134,29 +134,6 @@ public class Pedido implements Serializable {
         return numeroPedido++;
     }
 
-    //SERIALIZACION
-    try{
-        ObjectOutputStream pedidos_datos = new ObjectOutputStream(new FileOutputStream("/pedido.dat"));
-    
-        pedidos_datos.writeObject(pedidos);
-    
-        pedidos_datos.close();
-    
-        ObjectInputStream pedidos_recuperar= new ObjectInputStream(new FileInputStream("/pedido.dat"));
-    
-        //DEVUELVE LOS DATOS EN TIPO ARRAY
-        Pedido[] pedidos_recuperados=(Pedido[]) pedidos_recuperar.readObject();
-    
-        pedidos_recuperar.close();
-    
-        //IMPRIME LOS DATOS DE FORMA INDIVIDUAL
-        for (Pedido p: pedidos_recuperados){
-            System.out.printIn(p);
-        }
-    }
-    catch (Exception p){
-    }
-
 
     public String generarFactura(){
 
@@ -197,7 +174,7 @@ public class Pedido implements Serializable {
         s+= "\n=============FACTURA DEL PEDIDO============="+
                 "\nFactura # "+this.getCodigo()+
                 "\nFecha: "+this.getFechaPedido()+
-                "\nNombre cliente: "+this.getCliente().getNombre()+
+                "\nNombre pedido: "+this.getpedido().getNombre()+
                 "\nVendido por "+this.getTrabajador().getNombre()+" con codigo "+this.getTrabajador().getCodigo()+
                 "\n"+productos+
                 "\n"+servicios+
@@ -218,6 +195,52 @@ public class Pedido implements Serializable {
         }
     }
 
+    //SERIALIZACION
+    public void Save() {
+        try{
+            FileOutputStream archivo_pedidos_datos = new FileInputStream("/pedido.dat");
 
+            ObjectOutputStream pedidos_datos = new ObjectOutputStream(archivo_pedidos_datos);
+        
+            pedidos_datos.writeObject(pedidos);
+        
+            pedidos_datos.close();
+
+            archivo_pedidos_datos.close();
+
+            System.out.println("DATOS GUARDADOS");
+        }
+        
+        catch (Exception p){
+            System.out.println("ERROR");
+        }
+    }
+    
+    public void Load (){
+        try{
+            FileOutputStream archivo_pedidos_recuperar = new FileInputStream("/pedido.dat");
+            
+            ObjectInputStream pedidos_recuperar= new ObjectInputStream(archivo_pedidos_recuperar);
+
+            //DEVUELVE LOS DATOS EN TIPO ARRAY
+            Pedido[] pedidos_recuperados=(Pedido[]) pedidos_recuperar.readObject();
+                
+            pedidos_recuperar.close();
+
+            archivo_pedidos_recuperar.close();
+
+            //IMPRIME LOS DATOS DE FORMA INDIVIDUAL
+            for (Pedido pp: pedidos_recuperados){
+                System.out.println(pp);
+            }
+                
+            System.out.println("DATOS CARGADOS");
+        }
+            
+        catch (Exception pp){
+            System.out.println("ERROR");
+        }
+
+    }
 
 }
