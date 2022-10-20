@@ -356,53 +356,53 @@ public class Producto implements Serializable {
         }
         return productosEscogidos;
     }
+    
+    //SERIALIZACION
+    public void Save() {
+        try{
+            FileOutputStream archivo_productos_datos = new FileInputStream("/producto.dat");
 
-        //SERIALIZACION
-        public void Save() {
-            try{
-                FileOutputStream archivo_productos_datos = new FileInputStream("/producto.dat");
+            ObjectOutputStream productos_datos = new ObjectOutputStream(archivo_productos_datos);
     
-                ObjectOutputStream productos_datos = new ObjectOutputStream(archivo_productos_datos);
+            productos_datos.writeObject(productos);
+    
+            productos_datos.close();
+
+            archivo_productos_datos.close();
+
+            System.out.println("DATOS GUARDADOS");
+        }
+    
+        catch (Exception d){
+            System.out.println("ERROR");
+        }
+    }
+
+    public void Load (){
+        try{
+            FileOutputStream archivo_productos_recuperar = new FileInputStream("/producto.dat");
+        
+            ObjectInputStream productos_recuperar= new ObjectInputStream(archivo_productos_recuperar);
+
+            //DEVUELVE LOS DATOS EN TIPO ARRAY
+            Producto[] productos_recuperados=(Producto[]) productos_recuperar.readObject();
             
-                productos_datos.writeObject(productos);
-            
-                productos_datos.close();
-    
-                archivo_productos_datos.close();
-    
-                System.out.println("DATOS GUARDADOS");
+            productos_recuperar.close();
+
+            archivo_productos_recuperar.close();
+
+            //IMPRIME LOS DATOS DE FORMA INDIVIDUAL
+            for (Producto dd: productos_recuperados){
+                System.out.println(dd);
             }
             
-            catch (Exception d){
-                System.out.println("ERROR");
-            }
+            System.out.println("DATOS CARGADOS");
         }
         
-        public void Load (){
-            try{
-                FileOutputStream archivo_productos_recuperar = new FileInputStream("/producto.dat");
-                
-                ObjectInputStream productos_recuperar= new ObjectInputStream(archivo_productos_recuperar);
-    
-                //DEVUELVE LOS DATOS EN TIPO ARRAY
-                Producto[] productos_recuperados=(Producto[]) productos_recuperar.readObject();
-                    
-                productos_recuperar.close();
-    
-                archivo_productos_recuperar.close();
-    
-                //IMPRIME LOS DATOS DE FORMA INDIVIDUAL
-                for (Producto dd: productos_recuperados){
-                    System.out.println(dd);
-                }
-                    
-                System.out.println("DATOS CARGADOS");
-            }
-                
-            catch (Exception dd){
-                System.out.println("ERROR");
-            }
-    
+        catch (Exception dd){
+            System.out.println("ERROR");
         }
+
+    }
 }
 

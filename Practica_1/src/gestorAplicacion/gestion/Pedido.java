@@ -1,7 +1,7 @@
 
 package gestorAplicacion.gestion;
 
-import gestorAplicacion.usuarios.pedido;
+import gestorAplicacion.usuarios.Cliente;
 import gestorAplicacion.usuarios.Trabajador;
 
 import java.time.LocalDate;
@@ -13,13 +13,13 @@ public class Pedido implements Serializable {
     //ATRIBUTOS DE INSTANCIA
 
     private Trabajador trabajador;
-    private pedido pedido;
+    private Cliente cliente;
     private String estadoPedido; // "Pagado", "No pagado"
-    private ArrayList<Producto> productos = new ArrayList<>();//arraylist de productos pedidos por el pedido
+    private ArrayList<Producto> productos = new ArrayList<>();//arraylist de productos pedidos por el cliente
 
-    private ArrayList<Servicio> servicios =new ArrayList<>();//arraylist de servicios pedidos por el pedido
+    private ArrayList<Servicio> servicios =new ArrayList<>();//arraylist de servicios pedidos por el cliente
     private LocalDate fechaPedido;
-    private long codigo; //cuando se cree, se cree con el mismo ID del pedido
+    private long codigo; //cuando se cree, se cree con el mismo ID del cliente
 
     //ATRIBUTOS DE CLASE
 
@@ -32,8 +32,8 @@ public class Pedido implements Serializable {
     public Pedido() {
     }
 
-    public Pedido(pedido pedido, String estadoPedido, ArrayList<Producto> productos, ArrayList<Servicio> servicios, LocalDate fechaPedido, long codigo) {
-        this.pedido = pedido;
+    public Pedido(Cliente cliente, String estadoPedido, ArrayList<Producto> productos, ArrayList<Servicio> servicios, LocalDate fechaPedido, long codigo) {
+        this.cliente = cliente;
         this.estadoPedido = estadoPedido; //CONSTRUCTOR PARA LA FUNCIONALIDAD realizarReserva
         this.productos = productos;
         this.servicios = servicios;
@@ -41,9 +41,9 @@ public class Pedido implements Serializable {
         this.codigo = codigo;
     }
 
-    public Pedido(Trabajador trabajador, pedido pedido, String estadoPedido, ArrayList<Producto> productos, ArrayList<Servicio> servicios, LocalDate fechaPedido) {
+    public Pedido(Trabajador trabajador, Cliente cliente, String estadoPedido, ArrayList<Producto> productos, ArrayList<Servicio> servicios, LocalDate fechaPedido) {
         this.trabajador = trabajador;
-        this.pedido = pedido;
+        this.cliente = cliente;
         this.estadoPedido = estadoPedido;
         this.productos = productos;
         this.servicios = servicios;
@@ -61,12 +61,12 @@ public class Pedido implements Serializable {
         this.trabajador = trabajador;
     }
 
-    public pedido getpedido() {
-        return pedido;
+    public Cliente getCliente() {
+        return cliente;
     }
 
-    public void setpedido(pedido pedido) {
-        this.pedido = pedido;
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
 
     public static ArrayList<Pedido> getPedidos() {
@@ -174,7 +174,7 @@ public class Pedido implements Serializable {
         s+= "\n=============FACTURA DEL PEDIDO============="+
                 "\nFactura # "+this.getCodigo()+
                 "\nFecha: "+this.getFechaPedido()+
-                "\nNombre pedido: "+this.getpedido().getNombre()+
+                "\nNombre cliente: "+this.getCliente().getNombre()+
                 "\nVendido por "+this.getTrabajador().getNombre()+" con codigo "+this.getTrabajador().getCodigo()+
                 "\n"+productos+
                 "\n"+servicios+
