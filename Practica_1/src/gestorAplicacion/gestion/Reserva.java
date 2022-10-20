@@ -4,6 +4,7 @@ import gestorAplicacion.usuarios.Cliente;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.*;
 
 public class Reserva implements Serializable {
     //ATRIBUTOS DE INSTANCIA
@@ -98,27 +99,55 @@ public class Reserva implements Serializable {
     public static void setNumReservas(int numReservas) {
         Reserva.numReservas = numReservas;
     }
-
+    
+    
     //SERIALIZACION
-    try{
-        ObjectOutputStream reservas_datos = new ObjectOutputStream(new FileOutputStream("/reserva.dat"));
+    public void Save() {
+        try{
+            FileOutputStream archivo_reservas_datos = new FileInputStream("/usuario.dat");
+
+            ObjectOutputStream reservas_datos = new ObjectOutputStream(archivo_reservas_datos);
+    
+            reservas_datos.writeObject(servicios);
+    
+            reservas_datos.close();
+
+            archivo_reservas_datos.close();
+
+            System.out.println("DATOS GUARDADOS");
         
-        reservas_datos.writeObject(servicios);
-        
-        reservas_datos.close();
-        
-        ObjectInputStream reservas_recuperar= new ObjectInputStream(new FileInputStream("/reserva.dat"));
-        
-        //DEVUELVE LOS DATOS EN TIPO ARRAY
-        Servicio[] reservas_recuperados=(Servicio[]) reservas_recuperar.readObject();
-        
-        reservas_recuperar.close();
-        
-        //IMPRIME LOS DATOS DE FORMA INDIVIDUAL
-        for (Servicio o: reservas_recuperados){
-            System.out.printIn(o);
+        }
+    
+        catch (Exception s){
+            System.out.println("ERROR");
         }
     }
-    catch (Exception o){
+
+    public void Load (){
+        try{
+            FileOutputStream archivo_reservas_recuperar = new FileInputStream("/usuario.dat");
+        
+            ObjectInputStream reservas_recuperar= new ObjectInputStream(archivo_reservas_recuperar);
+
+            //DEVUELVE LOS DATOS EN TIPO ARRAY
+            Servicio[] reservas_recuperados=(Usuario[]) reservas_recuperar.readObject();
+            
+            reservas_recuperar.close();
+
+            archivo_reservas_recuperar.close();
+
+            //IMPRIME LOS DATOS DE FORMA INDIVIDUAL
+            for (Usuario ss: reservas_recuperados){
+                System.out.println(ss);
+            }
+            
+            System.out.println("DATOS CARGADOS");
+        }
+        
+        catch (Exception ss){
+            System.out.println("ERROR");
+        }
+
     }
+   
 }
