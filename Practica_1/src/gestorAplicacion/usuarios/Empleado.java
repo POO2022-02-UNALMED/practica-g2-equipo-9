@@ -3,6 +3,7 @@ package gestorAplicacion.usuarios;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.io.Serializable;
+import java.util.*;
 
 public abstract class Empleado extends Usuario {
     //ATRIBUTOS DE INSTANCIA
@@ -99,29 +100,51 @@ public abstract class Empleado extends Usuario {
 
     public abstract double calculoDePrima();
 
-
     //SERIALIZACION
-    try{
-        ObjectOutputStream empleados_datos = new ObjectOutputStream(new FileOutputStream("/empleado.dat"));
+    public void Save() {
+        try{
+            FileOutputStream archivo_empleados_datos = new FileInputStream("/empleado.dat");
 
+            ObjectOutputStream empleados_datos = new ObjectOutputStream(archivo_empleados_datos);
+        
+            empleados_datos.writeObject(usuarios);
+        
+            empleados_datos.close();7
 
-        empleados_datos.writeObject(empleados);
+            archivo_empleados_datos.close();
 
-        empleados_datos.close();
-
-        ObjectInputStream empleados_recuperar= new ObjectInputStream(new FileInputStream("/empleado.dat"));
-
-        //DEVUELVE LOS DATOS EN TIPO ARRAY
-        Empleado[] empleados_recuperados=(Empleado[]) empleados_recuperar.readObject();
-
-        empleados_recuperar.close();
-
-        //IMPRIME LOS DATOS DE FORMA INDIVIDUAL
-        for (Empleado e: empleados_recuperados){
-            System.out.printIn(e);
+            System.out.println("DATOS GUARDADOS");
+        }
+        
+        catch (Exception e){
+            System.out.println("ERROR");
         }
     }
-    catch (Exception e){
-    }
+    
+    public void Load (){
+        try{
+            FileOutputStream archivo_empleados_recuperar = new FileInputStream("/empleado.dat");
+            
+            ObjectInputStream empleados_recuperar= new ObjectInputStream(archivo_empleados_recuperar);
 
+            //DEVUELVE LOS DATOS EN TIPO ARRAY
+            Empleado[] empleados_recuperados=(Empleado[]) empleados_recuperar.readObject();
+            
+            empleados_recuperar.close();
+
+            archivo_empleados_recuperar.close();
+
+            //IMPRIME LOS DATOS DE FORMA INDIVIDUAL
+            for (Usuario ee: empleados_recuperados){
+                System.out.println(ee);
+            }
+                
+            System.out.println("DATOS CARGADOS");
+        }
+            
+        catch (Exception ee){
+            System.out.println("ERROR");
+        }
+
+    }
 }
