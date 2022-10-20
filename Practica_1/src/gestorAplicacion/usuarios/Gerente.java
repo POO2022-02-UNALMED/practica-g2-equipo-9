@@ -2,6 +2,7 @@ package gestorAplicacion.usuarios;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.*;
 
 public class Gerente extends Empleado implements Sueldo, Serializable{
 
@@ -71,28 +72,51 @@ public class Gerente extends Empleado implements Sueldo, Serializable{
     }
 
     //SERIALIZACION
-    try{
-        ObjectOutputStream gerentes_datos = new ObjectOutputStream(new FileOutputStream("/gerente.dat"));
-    
-        gerentes_datos.writeObject(gerentes);
-    
-        gerentes_datos.close();
-    
-        ObjectInputStream gerentes_recuperar= new ObjectInputStream(new FileInputStream("/gerente.dat"));
-    
-        //DEVUELVE LOS DATOS EN TIPO ARRAY
-        Gerente[] gerentes_recuperados=(Gerente[]) gerentes_recuperar.readObject();
-    
-        gerentes_recuperar.close();
-    
-        //IMPRIME LOS DATOS DE FORMA INDIVIDUAL
-        for (Gerentes g: gerentes_recuperados){
-            System.out.printIn(g);
+    public void Save() {
+        try{
+            FileOutputStream archivo_gerentes_datos = new FileInputStream("/gerente.dat");
+
+            ObjectOutputStream gerentes_datos = new ObjectOutputStream(archivo_gerentes_datos);
+        
+            gerentes_datos.writeObject(gerentes));
+        
+            gerentes_datos.close();7
+
+            archivo_gerentes_datos.close();
+
+            System.out.println("DATOS GUARDADOS");
+        }
+        
+        catch (Exception g){
+            System.out.println("ERROR");
         }
     }
-    catch (Exception g){
+    
+    public void Load (){
+        try{
+            FileOutputStream archivo_gerentes_recuperar = new FileInputStream("/gerente.dat");
+            
+            ObjectInputStream gerentes_recuperar= new ObjectInputStream(archivo_gerentes_recuperar);
+
+            //DEVUELVE LOS DATOS EN TIPO ARRAY
+            Gerente[] gerentes_recuperados=(Gerente[]) gerentes_recuperar.readObject();
+            
+            gerentes_recuperar.close();
+            
+            archivo_gerentes_recuperar.close();
+
+            //IMPRIME LOS DATOS DE FORMA INDIVIDUAL
+            for (Gerentes gg: gerentes_recuperados){
+                System.out.printIn(gg);
+            }
+                
+            System.out.println("DATOS CARGADOS");
+        }
+            
+        catch (Exception gg){
+            System.out.println("ERROR");
+        }
+
     }
-
-
 
 }

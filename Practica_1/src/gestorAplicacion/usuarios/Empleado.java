@@ -107,9 +107,9 @@ public abstract class Empleado extends Usuario {
 
             ObjectOutputStream empleados_datos = new ObjectOutputStream(archivo_empleados_datos);
         
-            empleados_datos.writeObject(usuarios);
+            empleados_datos.writeObject(empleados);
         
-            empleados_datos.close();7
+            empleados_datos.close();
 
             archivo_empleados_datos.close();
 

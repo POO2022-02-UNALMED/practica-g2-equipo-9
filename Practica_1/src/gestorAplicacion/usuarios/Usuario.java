@@ -59,7 +59,7 @@ public abstract class Usuario implements Serializable {
         
             usuarios_datos.writeObject(usuarios);
         
-            usuarios_datos.close();7
+            usuarios_datos.close();
 
             archivo_usuarios_datos.close();
 
