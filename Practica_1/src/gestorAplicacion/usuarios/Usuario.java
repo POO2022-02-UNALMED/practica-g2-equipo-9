@@ -2,6 +2,7 @@ package gestorAplicacion.usuarios;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.*;
 
 public abstract class Usuario implements Serializable {
 
@@ -50,26 +51,44 @@ public abstract class Usuario implements Serializable {
     private static void generarCodigo() {}
 
     //SERIALIZACION
-    try{
-        ObjectOutputStream usuarios_datos = new ObjectOutputStream(new FileOutputStream("/usuario.dat"));
+    public void Save() {
+        try{
+            ObjectOutputStream usuarios_datos = new ObjectOutputStream(new FileOutputStream("/usuario.dat"));
+        
+            usuarios_datos.writeObject(usuarios);
+        
+            usuarios_datos.close();
 
-        usuarios_datos.writeObject(usuarios);
-
-        usuarios_datos.close();
-
-        ObjectInputStream usuarios_recuperar= new ObjectInputStream(new FileInputStream("/usuario.dat"));
-
-        //DEVUELVE LOS DATOS EN TIPO ARRAY
-        Usuario[] usuarios_recuperados=(Usuario[]) usuarios_recuperar.readObject();
-
-        usuarios_recuperar.close();
-
-        //IMPRIME LOS DATOS DE FORMA INDIVIDUAL
-        for (Usuario u: usuarios_recuperados){
-            System.out.printIn(u);
+            System.out.println("DATOS GUARDADOS");
+        }
+        
+        catch (Exception u){
+            System.out.println("ERROR");
         }
     }
-    catch (Exception u){
-    }
+    
+        public void Load (){
+            try{
+                ObjectInputStream usuarios_recuperar= new ObjectInputStream(new FileInputStream("/usuario.dat"));
+
+                //DEVUELVE LOS DATOS EN TIPO ARRAY
+                Usuario[] usuarios_recuperados=(Usuario[]) usuarios_recuperar.readObject();
+                
+                usuarios_recuperar.close();
+
+                //IMPRIME LOS DATOS DE FORMA INDIVIDUAL
+                for (Usuario uu: usuarios_recuperados){
+                    System.out.printIn(uu);
+                }
+                
+                System.out.println("DATOS CARGADOS");
+            }
+            
+            catch (Exception uu){
+                System.out.println("ERROR");
+            }
+
+        }
 }
+
 
