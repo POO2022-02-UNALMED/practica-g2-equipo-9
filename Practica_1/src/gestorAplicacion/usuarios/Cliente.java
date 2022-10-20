@@ -1,11 +1,12 @@
-package gestorAplicacion.usuarios;
+package gestorAplicacion.clientes;
 
 import gestorAplicacion.gestion.Pedido;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.*;
 
-public class Cliente extends Usuario implements Serializable{
+public class Cliente extends cliente implements Serializable{
 
     //ATRIBUTOS DE INSTANCIA
     private int numeroReserva;
@@ -106,29 +107,52 @@ public class Cliente extends Usuario implements Serializable{
         this.pedido = pedido;
     }
 
-
     //SERIALIZACION
-    try{
-        ObjectOutputStream clientes_datos = new ObjectOutputStream(new FileOutputStream("/cliente.dat"));
-    
-        clientes_datos.writeObject(clientes);
-    
-        clientes_datos.close();
-    
-        ObjectInputStream clientes_recuperar= new ObjectInputStream(new FileInputStream("/cliente.dat"));
-    
-        //DEVUELVE LOS DATOS EN TIPO ARRAY
-        Cliente[] clientes_recuperados=(Cliente[]) clientes_recuperar.readObject();
-    
-        clientes_recuperar.close();
-    
-        //IMPRIME LOS DATOS DE FORMA INDIVIDUAL
-        for (Cliente c: clientes_recuperados){
-            System.out.printIn(c);
+    public void Save() {
+        try{
+            FileOutputStream archivo_clientes_datos = new FileInputStream("/cliente.dat");
+
+            ObjectOutputStream clientes_datos = new ObjectOutputStream(archivo_clientes_datos);
+        
+            clientes_datos.writeObject(clientes);
+        
+            clientes_datos.close();
+
+            archivo_clientes_datos.close();
+
+            System.out.println("DATOS GUARDADOS");
+        }
+        
+        catch (Exception c){
+            System.out.println("ERROR");
         }
     }
-    catch (Exception c){
-    }
+    
+    public void Load (){
+        try{
+            FileOutputStream archivo_clientes_recuperar = new FileInputStream("/cliente.dat");
+            
+            ObjectInputStream clientes_recuperar= new ObjectInputStream(archivo_clientes_recuperar);
 
+            //DEVUELVE LOS DATOS EN TIPO ARRAY
+            Cliente[] clientes_recuperados=(Cliente[]) clientes_recuperar.readObject();
+                
+            clientes_recuperar.close();
+
+            archivo_clientes_recuperar.close();
+
+            //IMPRIME LOS DATOS DE FORMA INDIVIDUAL
+            for (Cliente cc: clientes_recuperados){
+                System.out.println(cc);
+            }
+                
+            System.out.println("DATOS CARGADOS");
+        }
+            
+        catch (Exception cc){
+            System.out.println("ERROR");
+        }
+
+    }
 
 }
