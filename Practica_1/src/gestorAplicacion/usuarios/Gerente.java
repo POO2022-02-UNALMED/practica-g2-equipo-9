@@ -30,6 +30,7 @@ public class Gerente extends Empleado implements Sueldo, Serializable{
         return "Codigo: "+this.getCodigo()+", Nombre: "+super.getNombre()+ ", Fecha de vinculacion: "+super.getFechaVinculacion();
     }
 
+
     //METODOS ABSTRACTOS
     public String asegurar() {
         LocalDate vinculacion= super.getFechaVinculacion();
@@ -42,6 +43,9 @@ public class Gerente extends Empleado implements Sueldo, Serializable{
             return "Gerente "+ this.getNombre()+" con codigo "+this.getCodigo()+", lo cubre el seguro desde la fecha "+vinculacion+" hasta la fecha "+finVinculacion;
         }
 
+    }
+    public double calculoDePrima() {
+        return this.getSueldo()*0.6;
     }
     //GETTERS Y SETTERS
 

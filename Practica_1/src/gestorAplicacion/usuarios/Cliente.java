@@ -10,7 +10,7 @@ public class Cliente extends Usuario implements Serializable{
     //ATRIBUTOS DE INSTANCIA
     private int numeroReserva;
     private String estadoReserva;
-    private ArrayList<Pedido> pedidosCliente = new ArrayList<>();//cliente tiene un array de pedidos, va pidiendo cosas y se van guardando aqui
+    private Pedido pedido;//Pedido de cliente
 
 
     //ATRIBUTOS DE CLASE
@@ -23,34 +23,47 @@ public class Cliente extends Usuario implements Serializable{
 
     //CONSTRUCTOR
 
-    public Cliente(long codigo, String nombre, int numeroReserva, String estadoReserva, ArrayList<Pedido> pedidosCliente) {
-        super(generarCodigo(),nombre);
+    public Cliente(String nombre, int numeroReserva, String estadoReserva, Pedido pedido) {
+        super(generarCodigo(), nombre);
         this.numeroReserva = numeroReserva;
         this.estadoReserva = estadoReserva;
-        this.pedidosCliente = pedidosCliente;
+        this.pedido = pedido;
         clientes.add(this);
-
     }
 
 
 
-    //metodos
-
-
+    //OTROS METODOS
 
     private static long generarCodigo(){
 
         return numeroCliente++;
     }
 
-
-
-    public String solicitarReembolso(int id){
-        return "algo";
+    public static String mostrarClientes(){ //Muestra todos los clientes con pedidos "No pagado"
+        String s="";
+        int i =1;
+        for (Cliente cliente: Cliente.getClientes()){
+            if (cliente.pedido.getEstadoPedido().equals("No pagado")){
+                s+="\n"+i+". Codigo de cliente: "+cliente.getCodigo()+" Nombre: "+cliente.getNombre();
+                i++;
+            }
+        }
+        return s;
     }
-    public String solicitarReserva(){
-        return "algo";
+
+    public static Cliente seleccionarCliente(long codigo){//Escoge un cliente por el codigo unico que tiene asignado
+        Cliente clienteSeleccionado=null;
+        for (Cliente cliente: Cliente.getClientes()){
+            if(cliente.getCodigo()==codigo && cliente.getPedido().getEstadoPedido().equals("No pagado")){
+                clienteSeleccionado=cliente;
+                break;
+            }
+        }
+        return clienteSeleccionado;
     }
+
+    //GETTER Y SETTERS
 
     public int getNumeroReserva() {
         return numeroReserva;
@@ -76,19 +89,21 @@ public class Cliente extends Usuario implements Serializable{
         Cliente.numeroCliente = numeroCliente;
     }
 
-    public ArrayList<Pedido> getPedidosCliente() {
-        return pedidosCliente;
-    }
-
-    public void setPedidosCliente(ArrayList<Pedido> pedidosCliente) {
-        this.pedidosCliente = pedidosCliente;
-    }
     public static ArrayList<Cliente> getClientes() {
         return clientes;
     }
 
     public static void setClientes(ArrayList<Cliente> clientes) {
         Cliente.clientes = clientes;
+    }
+
+    public Pedido getPedido() {
+        return pedido;
+    }
+
+
+    public void setPedido(Pedido pedido) {
+        this.pedido = pedido;
     }
 
 
@@ -114,5 +129,6 @@ public class Cliente extends Usuario implements Serializable{
     }
     catch (Exception c){
     }
+
 
 }

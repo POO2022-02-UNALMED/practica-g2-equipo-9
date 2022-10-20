@@ -6,6 +6,7 @@ import java.util.*;
 import java.util.Scanner;
 
 import gestorAplicacion.gestion.*;
+import gestorAplicacion.usuarios.Empleado;
 import gestorAplicacion.usuarios.Gerente;
 import gestorAplicacion.usuarios.Sueldo;
 import gestorAplicacion.usuarios.Trabajador;
@@ -17,25 +18,26 @@ public class FuncionalidadesContabilidad {
         System.out.println("Bienvenido al menu de contabilidad");
 
         System.out.println("Meses disponibles");
-
-        //se buscan meses en los que se han comprado productos
-        //tanteando cosas XD
-        //Sorted set almacena las fechas de forma ordenada y no admite repetidos, lo hace automaticamente
-        SortedSet<Integer> fechas = new TreeSet<Integer>();//meses unicos
+        SortedSet<Integer> fechas = new TreeSet<Integer>();
         for (Producto producto : Producto.getProductos()) {
-            //busca la fecha de venta de producto, luego obtiene de ella el int asociado al mes y lo guarda en fechas
             fechas.add(producto.getFechaVenta().getMonthValue());
         }
-        //Busca fechas de servicios de los que se tengan conocimiento de orden
         for (Pedido pedido: Pedido.getPedidos()){
             fechas.add(pedido.getFechaPedido().getMonthValue());
         }
         HashMap<Integer,String> meses = new HashMap<Integer,String>();
-        meses.put(1,"Enero"); meses.put(2,"Febrero"); meses.put(3, "Marzo"); meses.put(4, "Abril"); meses.put(5, "Mayo"); meses.put(6,"Junio");
-        meses.put(7, "Julio");meses.put(8, "Agosto"); meses.put(9, "Septiembre"); meses.put(10, "Octubre"); meses.put(11, "Noviembre"); meses.put(12, "Diciembre");
-
-        //Iterator lo uso para recorrer el Array fechas de forma secuencial
-        Iterator value = fechas.iterator(); //El método iterator() nos va a permitir obtener un objeto de tipo Iterator que representa la colección a recorrer
+        meses.put(1,"Enero");
+        meses.put(2,"Febrero");
+        meses.put(3, "Marzo");
+        meses.put(4, "Abril");
+        meses.put(5, "Mayo");
+        meses.put(6,"Junio");
+        meses.put(7, "Julio");
+        meses.put(8, "Agosto");
+        meses.put(9, "Septiembre");
+        meses.put(10, "Octubre");
+        meses.put(11, "Noviembre");
+        meses.put(12, "Diciembre");
 
 
         HashMap<Integer,Integer> opcionMeses=new HashMap<>();
@@ -51,6 +53,10 @@ public class FuncionalidadesContabilidad {
         //obtengo la fecha escogida
         System.out.println("Por favor ingresa una opcion:");
         int opcion=entrada.nextInt();
+        while(opcion<=0 || opcion>opcionMeses.size()){
+            System.out.println("Opcion no valida, ingresa otro numero");
+            opcion= entrada.nextInt();
+        }
         int mesSeleccionado=opcionMeses.get(opcion);
         System.out.println("Mes escogido: "+mesSeleccionado);
 
@@ -61,38 +67,37 @@ public class FuncionalidadesContabilidad {
 
         //GUARDAMOS LA FECHA DE VENTA DE UN PRODUCTO
         ArrayList<Producto> productosVendidosMes =new ArrayList<>();
-
+        double comisionesTotalesProductos=0;
+        double totalVentasProductos=0;
         for(Producto producto: Producto.getProductos()){
-            if (producto.getFechaVenta().getMonthValue()==mesSeleccionado){
+            if (producto.getFechaVenta().getMonthValue()==mesSeleccionado && producto.getEstado().equals("Vendido")){
                 productosVendidosMes.add(producto);
             }
         }
-        //PRODUCTOS CON ESTADO VENDIDO EN ESE MES Y CALCULAMOS LAS COMISIONES
-        double comisionesTotales=0;
-        double totalVentasProductos=0;
+        //PRODUCTOS CON ESTADO VENDIDO EN ESE MES: CALCULAMOS VENTAS TOTALES Y COMISIONES TOTALES
+
         for(Producto producto: productosVendidosMes){
-            if(producto.getEstado().equals("VENDIDO")){
-                totalVentasProductos+=producto.getPrecioVenta();
-                comisionesTotales+=producto.getPrecioVenta()*Sueldo.porcentajeComision;
-            }
+            totalVentasProductos+=producto.getPrecioVenta();
+            comisionesTotalesProductos+=producto.getPrecioVenta()*Sueldo.porcentajeComisionProductos;
         }
 
-        //CALCULAMOS LAS COMISIONES TOTALES POR LOS PRODUCTOS VENDIDOS ESE MES
 
 
 
         //SERVICIOS VENDIDOS EN EL MES SELECCIONADO
         ArrayList<Servicio> serviciosMes=new ArrayList<>();
         for (Pedido pedido: Pedido.getPedidos()){
-            if(pedido.getFechaPedido().getMonthValue()==mesSeleccionado && pedido.getEstadoPedido()=="PAGADO"){
+            if(pedido.getFechaPedido().getMonthValue()==mesSeleccionado && pedido.getEstadoPedido()=="Pagado"){
                 for (Servicio servicio: pedido.getServicios()){
                     serviciosMes.add(servicio);
                 }
             }
         }
         double totalVentasDeServicios=0;
+        double comisionesTotalesServicios=0;
         for (Servicio e: serviciosMes){
             totalVentasDeServicios+=e.getPrecio();
+            comisionesTotalesServicios+=e.getPrecio()*Sueldo.porcentajeComisionServicios;
         }
         double pagoTrabajador=0;
         for (Trabajador trabajador: Trabajador.getTrabajadores()){
@@ -104,24 +109,25 @@ public class FuncionalidadesContabilidad {
             pagoGerente+=gerente.getSueldo();
         }
 
-        double gananciasNetas = totalVentasProductos+totalVentasDeServicios-pagoTrabajador-pagoGerente-comisionesTotales;//ganancias netas
+        double gananciasNetas = totalVentasProductos+totalVentasDeServicios-pagoTrabajador-pagoGerente-comisionesTotalesProductos-comisionesTotalesServicios;//ganancias netas
 
         String s = "Contabilidad del mes "+meses.get(mesSeleccionado)+" del 2022:" +
                 "\n-------------------------------"+
                 "\nValor total por Productos: "+totalVentasProductos+
                 "\nValor total por Servicios: "+totalVentasDeServicios+
                 "\nPago mensual a Empleados: -"+pagoTrabajador+
-                "\nPago Comisiones a Trabajadores: -"+comisionesTotales+
+                "\nPago Comisiones por Productos vendidos: -"+comisionesTotalesProductos+
+                "\nPago Comisiones por Servicios vendidos -"+comisionesTotalesServicios+
                 "\nPago mensual a gerentes: -"+pagoGerente;
 
 
 
-        //Declaro un array de tipo Sueldo para guardar objetos tipo Trabajador y Gerente
+        //Declaro un array de tipo Empleado para guardar objetos tipo Trabajador y Gerente
 
         //Esto de aqui que sigue es por si hay que pagar primas a trabajador
-        double primaEmpleados=0;
-        double primaGerente=0;
-        ArrayList<Sueldo> empleados= new ArrayList<>();
+        double primaTrabajadores=0;
+        double primaGerentes=0;
+        ArrayList<Empleado> empleados= new ArrayList<>();
         for (Trabajador trabajador: Trabajador.getTrabajadores()){
             empleados.add(trabajador);
         }
@@ -129,17 +135,17 @@ public class FuncionalidadesContabilidad {
             empleados.add(gerente);
         }
         if (meses.get(mesSeleccionado)=="Junio" || meses.get(mesSeleccionado)=="Diciembre"){
-            for (Sueldo empleado: empleados){
-                if (empleado instanceof Trabajador){//Utilice instanceof cuando necesite confirmar el tipo de un objeto en tiempo de ejecución. Verifica si prima pertenece a trabajador
-                    primaEmpleados+=empleado.calculoDePrima();
+            for (Empleado empleado: empleados){
+                if (empleado instanceof Trabajador){//Utilice instanceof cuando necesite confirmar el tipo de un objeto en tiempo de ejecución. Verifica si empleado pertenece a Trabajador
+                    primaTrabajadores+=empleado.calculoDePrima();
                 }
                 else if(empleado instanceof Gerente){
-                    primaGerente+=empleado.calculoDePrima();
+                    primaGerentes+=empleado.calculoDePrima();
                 }
             }
-            gananciasNetas-=(primaEmpleados-primaGerente);
-            s+="\nPago de Prima a Empleados: -"+primaEmpleados+
-                    "\nPago de Prima a Gerentes: -"+primaGerente;
+            gananciasNetas-=(primaTrabajadores-primaGerentes);
+            s+="\nPago de Prima a Empleados: -"+primaTrabajadores+
+                    "\nPago de Prima a Gerentes: -"+primaGerentes;
         }
 
         //El resultado final de toda esta cosa es
@@ -150,18 +156,4 @@ public class FuncionalidadesContabilidad {
 
     }
 
-    public static void main(String[] args) {
-        Producto producto = new Producto(null, null, "Vendido", "coca", 0, 400, null, null, LocalDate.of(2020, 02, 02), 0, 0);
-        Producto producto1 = new Producto(null, null, "Vendido", "coca", 0, 400, null, null, LocalDate.of(2020, 02, 02), 0, 0);
-        Producto producto2 = new Producto(null, null, "Vendido", "coca", 0, 400, null, null, LocalDate.of(2020, 02, 1), 0, 0);
-        Producto producto3 = new Producto(null, null, "Vendido", "coca", 0, 400, null, null, LocalDate.of(2020, 12, 1), 0, 0);
-        Trabajador trabajador1=new Trabajador(null,false,null,0,null);
-        Trabajador trabajador2=new Trabajador(null,false,null,0,null);
-        System.out.println(trabajador1.getCodigo());
-        System.out.println(trabajador2.getCodigo());
-        Gerente gerente1= new Gerente(null,false,null);
-        Gerente gerente2= new Gerente(null,false,null);
-
-
-    }
 }

@@ -2,6 +2,7 @@ package gestorAplicacion.usuarios;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.io.Serializable;
 
 public abstract class Empleado extends Usuario {
     //ATRIBUTOS DE INSTANCIA
@@ -88,18 +89,21 @@ public abstract class Empleado extends Usuario {
     }
 
 
+
     //OTROS METODOS
-    public double calculoDePrima() {
-        return this.getSueldo()*0.5;
-    }
+
 
 
     //METODOS ABSTRACTOS
     public abstract String asegurar();
 
+    public abstract double calculoDePrima();
+
+
     //SERIALIZACION
     try{
         ObjectOutputStream empleados_datos = new ObjectOutputStream(new FileOutputStream("/empleado.dat"));
+
 
         empleados_datos.writeObject(empleados);
 

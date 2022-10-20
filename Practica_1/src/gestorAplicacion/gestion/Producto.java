@@ -2,14 +2,15 @@
 package gestorAplicacion.gestion;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
+import java.util.*;
+
 import gestorAplicacion.usuarios.*;
 
 
 public class Producto implements Serializable {
     //ATRIBUTOS INSTANCIA
     private Trabajador trabajador;
-    private Pedido pedido;
+
     private Cliente cliente;
     private String estado; //agregue estado de producto, "Vendido", "No vendido", "Reservado"
     private String nombre;
@@ -24,8 +25,8 @@ public class Producto implements Serializable {
 
     //ATRIBUTOS DE CLASE
 
-    private static ArrayList<Producto> productos=new ArrayList<>();
-    private static long numeroProducto=0;
+    private static ArrayList<Producto> productos = new ArrayList<>(); //ARRAYLIST DONDE SE GUARDAN TODOS LOS PRODUCTOS
+    private static long numeroProducto = 0;
 
     private static ArrayList<Producto> bebidasAlcoholicas = new ArrayList<>(); // En esta lista va la primera instancia de un nuevo producto de tipo bebidasAlcoholicas, es decir no se puede repetir
     private static ArrayList<Producto> bebidasNoAlcoholicas = new ArrayList<>();// En esta lista va la primera instancia de un nuevo producto de tipo bebidasNoAlcoholicas, es decir no se puede repetir
@@ -45,7 +46,6 @@ public class Producto implements Serializable {
     }
 
 
-    
     //CONSTRUCTOR
 
 
@@ -54,9 +54,8 @@ public class Producto implements Serializable {
         this.codigo = Producto.numeroProducto;
     }
 
-    public Producto(Trabajador trabajador, Pedido pedido, String estado, String nombre, int precioCompra, int precioVenta, LocalDate fechaVencimiento, LocalDate fechaIngreso, LocalDate fechaVenta) {
+    public Producto(Trabajador trabajador, String estado, String nombre, int precioCompra, int precioVenta, LocalDate fechaVencimiento, LocalDate fechaIngreso, LocalDate fechaVenta) {
         this.trabajador = trabajador;
-        this.pedido = pedido;
         this.estado = estado;
         this.nombre = nombre;
         this.precioCompra = precioCompra;
@@ -69,10 +68,9 @@ public class Producto implements Serializable {
         Producto.categorizarProdcuto(this);
     }
 
-    public Producto(Trabajador trabajador, Pedido pedido, Cliente cliente, String estado, String nombre, double precioCompra, double precioVenta, LocalDate fechaVencimiento, LocalDate fechaIngreso, LocalDate fechaVenta, int tipo) {
+    public Producto(Trabajador trabajador, Cliente cliente, String estado, String nombre, double precioCompra, double precioVenta, LocalDate fechaVencimiento, LocalDate fechaIngreso, LocalDate fechaVenta, int tipo) {
         Producto.numeroProducto++;
         this.trabajador = trabajador;
-        this.pedido = pedido;
         this.cliente = cliente;
         this.estado = estado;
         this.nombre = nombre;
@@ -83,21 +81,22 @@ public class Producto implements Serializable {
         this.fechaIngreso = fechaIngreso;
         this.fechaVenta = fechaVenta;
         this.tipo = tipo;
+        productos.add(this);
         categorizarProdcuto(this);
     }
 
-    public static long generarCodigo(){
+    public static long generarCodigo() {
         return numeroProducto++;
     }
 
 
-    public String descripcionProducto(){
-        return "\nNombre: "+this.getNombre()+
-                "\nCodigo: "+this.getCodigo()+
-                "\nPrecio venta: "+this.getPrecioVenta();
+    public String descripcionProducto() {
+        return "\nNombre: " + this.getNombre() +
+                "\nCodigo: " + this.getCodigo() +
+                "\nPrecio venta: " + this.getPrecioVenta();
     }
-    
-         //GETTERS Y SETTERS
+
+    //GETTERS Y SETTERS
 
     public String getNombre() {
         return nombre;
@@ -148,7 +147,6 @@ public class Producto implements Serializable {
     }
 
 
-
     public static ArrayList<Producto> getProductos() {
         return productos;
     }
@@ -165,13 +163,6 @@ public class Producto implements Serializable {
         this.trabajador = trabajador;
     }
 
-    public Pedido getPedido() {
-        return pedido;
-    }
-
-    public void setPedido(Pedido pedido) {
-        this.pedido = pedido;
-    }
 
     public String getEstado() {
         return estado;
@@ -261,8 +252,8 @@ public class Producto implements Serializable {
         Producto.otrosProductos = otrosProductos;
     }
 
-    public static void categorizarProdcuto(Producto producto){ // Este metodo sirve para clasificar los productos segun su tipo y ponerlo en el ArrayList correpondiente si es que este no existe en dicho ArrayList
-        switch (producto.tipo){
+    public static void categorizarProdcuto(Producto producto) { // Este metodo sirve para clasificar los productos segun su tipo y ponerlo en el ArrayList correpondiente si es que este no existe en dicho ArrayList
+        switch (producto.tipo) {
             case 1:
                 Producto.verificarExistenciaCategoria(Producto.bebidasAlcoholicas, producto);
                 break;
@@ -284,8 +275,8 @@ public class Producto implements Serializable {
         }
     }
 
-    public static void verificarExistenciaCategoria(ArrayList<Producto> lista, Producto producto){
-        try{
+    public static void verificarExistenciaCategoria(ArrayList<Producto> lista, Producto producto) {
+        try {
             for (Producto value : lista) {
                 if (value.getNombre().equals(producto.getNombre())) {
                     return;
@@ -298,6 +289,76 @@ public class Producto implements Serializable {
         }
 
     }
+<<<<<<< HEAD
+
+
+
+    public static String mostrarProductosDisponibles() {//Inventario, muestra nombre y cantidades disponibles
+        String s = "Nombre producto.............cantidad";
+        SortedSet<String> productosDisponiblesNoRepetidos = new TreeSet<>();
+        ArrayList<String> productosDisponiblesRepetidos = new ArrayList<>();
+        for (Producto producto : Producto.getProductos()) {
+            if (producto.getEstado().equals("No vendido") && producto.getFechaVenta() == null) {
+                productosDisponiblesNoRepetidos.add(producto.getNombre());
+                productosDisponiblesRepetidos.add(producto.getNombre());
+            }
+        }
+        int i = 1;
+        for (String nombre : productosDisponiblesNoRepetidos) {
+            s += i + ". " + nombre + "................." + Collections.frequency(productosDisponiblesRepetidos, nombre);
+            i++;
+        }
+        return s;
+    }
+
+    public static ArrayList<Producto> productosDisponibles() {
+        ArrayList<Producto> productosDisponibles = new ArrayList<>();
+        for (Producto producto : Producto.getProductos()) {
+            if (producto.getEstado().equals("No vendido") && producto.getFechaVenta() == null) {
+                productosDisponibles.add(producto);
+            }
+        }
+        return productosDisponibles;
+    }
+    public static boolean verificarProducto(String nombre, ArrayList<Producto> listaProductos){//verifica que nombre exista en la lista
+        boolean existe=false;
+        for(Producto producto: listaProductos){
+            if (producto.getNombre().equals(nombre)){
+                existe=true;
+                break;
+            }
+        }
+        return existe;
+    }
+    public static boolean verificarProducto(String nombre, long cantidad, ArrayList<Producto> listaProductos){//verifica que nombre y cantidad exista en la lista
+        boolean existe=false;
+        ArrayList<String>nombresProducto=new ArrayList<>();
+        for(Producto producto: listaProductos){
+            nombresProducto.add(producto.getNombre());
+        }
+        if(cantidad>=0 && cantidad<=Collections.frequency(nombresProducto,nombre)){
+            existe=true;
+        }
+        return existe;
+    }
+
+    public static ArrayList<Producto> agregarProducto(String nombre, long cantidad, ArrayList<Producto> listaProductos){//agrega elementos y devuelve un array
+        ArrayList<Producto> productosEscogidos=new ArrayList<>();
+        long contador=0;
+        for(Producto producto: listaProductos){
+            if(producto.getNombre().equals(nombre)){
+                productosEscogidos.add(producto);
+            }
+            if(contador>=cantidad){
+                break;
+            }
+            contador++;
+        }
+        return productosEscogidos;
+    }
+
+}
+
     //SERIALIZACION
     try{
         ObjectOutputStream productos_datos = new ObjectOutputStream(new FileOutputStream("/producto.dat"));
@@ -321,3 +382,4 @@ public class Producto implements Serializable {
     catch (Exception p){
     }
 }
+
