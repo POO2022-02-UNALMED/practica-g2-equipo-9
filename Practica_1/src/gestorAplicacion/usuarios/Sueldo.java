@@ -1,5 +1,7 @@
 package gestorAplicacion.usuarios;
 
+import java.util.*;
+
 public interface Sueldo implements Serializable{
     public final static double sueldoBase=100;
     public final static double porcentajeComisionProductos=0.2;
@@ -13,17 +15,49 @@ public interface Sueldo implements Serializable{
 
    
     //SERIALIZACION
-    try{
-        ObjectOutputStream sueldos_datos = new ObjectOutputStream(new FileOutputStream("/sueldo.dat"));
+    public void Save() {
+        try{
+            FileOutputStream archivo_sueldos_datos = new FileInputStream("/sueldo.dat");
 
-        //DEVUELVE LOS DATOS
-        sueldos_datos.writeObject(sueldo);
+            ObjectOutputStream sueldos_datos = new ObjectOutputStream(archivo_sueldos_datos);
+    
+
+            sueldos_datos.writeObject(sueldo);
+            
+            sueldos_datos.close();
+
+            archivo_sueldos_datos.close();
+
+            System.out.println("DATOS GUARDADOS");
+        }
         
-        sueldos_datos.close();
-        
-        ObjectInputStream sueldos_recuperar= new ObjectInputStream(new FileInputStream("/sueldo.dat"));
+        catch (Exception sueldo){
+            System.out.println("ERROR");
+        }
     }
-    catch (Exception sueldo){
+    
+    public void Load (){
+        try{
+            FileOutputStream archivo_sueldos_recuperar = new FileInputStream("/sueldo.dat");
+            
+            ObjectInputStream sueldos_recuperar= new ObjectInputStream(archivo_sueldos_recuperar);
+
+            results= sueldos_recuperar.readObject();
+
+            sueldos_recuperar.close();
+
+            archivo_sueldos_recuperar.close();
+
+            //IMPRIME LOS DATOS
+            System.out.println(results);
+                
+            System.out.println("DATOS CARGADOS");
+        }
+            
+        catch (Exception sueldoss){
+            System.out.println("ERROR");
+        }
+
     }
 
 }

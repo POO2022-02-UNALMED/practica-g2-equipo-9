@@ -129,11 +129,15 @@ public class Trabajador extends Empleado implements Sueldo, Serializable{
     //SERIALIZACION
     public void Save() {
         try{
-            ObjectOutputStream trabajadores_datos = new ObjectOutputStream(new FileOutputStream("/trabajador.dat"));
+            FileOutputStream archivo_trabajadores_datos = new FileInputStream("/trabajador.dat");
+
+            ObjectOutputStream trabajadores_datos = new ObjectOutputStream(archivo_trabajadores_datos);
         
             trabajadores_datos.writeObject(trabajadores);
         
             trabajadores_datos.close();
+
+            archivo_trabajadores_datos.close();
 
             System.out.println("DATOS GUARDADOS");
         }
@@ -143,29 +147,31 @@ public class Trabajador extends Empleado implements Sueldo, Serializable{
         }
     }
     
-        public void Load (){
-            try{
-                ObjectInputStream trabajadores_recuperar= new ObjectInputStream(new FileInputStream("/trabajador.dat"));
-
-                //DEVUELVE LOS DATOS EN TIPO ARRAY
-                Trabajador[] trabajadores_recuperados=(Trabajador[]) trabajadores_recuperar.readObject();
-                
-                trabajadores_recuperar.close();
-
-                //IMPRIME LOS DATOS DE FORMA INDIVIDUAL
-                for (Trabajador tt: trabajadores_recuperados){
-
-                    System.out.printIn(tt);
-                }
-                
-                System.out.println("DATOS CARGADOS");
-            }
+    public void Load (){
+        try{
+            FileOutputStream archivo_trabajadores_recuperar = new FileInputStream("/trabajador.dat");
             
-            catch (Exception tt){
-                System.out.println("ERROR");
-            }
+            ObjectInputStream trabajadores_recuperar= new ObjectInputStream(archivo_trabajadores_recuperar);
 
+            //DEVUELVE LOS DATOS EN TIPO ARRAY
+            Trabajador[] trabajadores_recuperados=(Trabajador[]) trabajadores_recuperar.readObject();
+                
+            trabajadores_recuperar.close();
+            archivo_trabajadores_recuperar.close();
+
+            //IMPRIME LOS DATOS DE FORMA INDIVIDUAL
+            for (Trabajador tt: trabajadores_recuperados){
+
+                System.out.println(tt);
+            }
+                
+            System.out.println("DATOS CARGADOS");
         }
+            
+        catch (Exception tt){
+            System.out.println("ERROR");
+        }
+    }
 }
 
 

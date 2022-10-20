@@ -53,11 +53,15 @@ public abstract class Usuario implements Serializable {
     //SERIALIZACION
     public void Save() {
         try{
-            ObjectOutputStream usuarios_datos = new ObjectOutputStream(new FileOutputStream("/usuario.dat"));
+            FileOutputStream archivo_usuarios_datos = new FileInputStream("/usuario.dat");
+
+            ObjectOutputStream usuarios_datos = new ObjectOutputStream(archivo_usuarios_datos);
         
             usuarios_datos.writeObject(usuarios);
         
-            usuarios_datos.close();
+            usuarios_datos.close();7
+
+            archivo_usuarios_datos.close();
 
             System.out.println("DATOS GUARDADOS");
         }
@@ -67,28 +71,32 @@ public abstract class Usuario implements Serializable {
         }
     }
     
-        public void Load (){
-            try{
-                ObjectInputStream usuarios_recuperar= new ObjectInputStream(new FileInputStream("/usuario.dat"));
-
-                //DEVUELVE LOS DATOS EN TIPO ARRAY
-                Usuario[] usuarios_recuperados=(Usuario[]) usuarios_recuperar.readObject();
-                
-                usuarios_recuperar.close();
-
-                //IMPRIME LOS DATOS DE FORMA INDIVIDUAL
-                for (Usuario uu: usuarios_recuperados){
-                    System.out.printIn(uu);
-                }
-                
-                System.out.println("DATOS CARGADOS");
-            }
+    public void Load (){
+        try{
+            FileOutputStream archivo_usuarios_recuperar = new FileInputStream("/usuario.dat");
             
-            catch (Exception uu){
-                System.out.println("ERROR");
-            }
+            ObjectInputStream usuarios_recuperar= new ObjectInputStream(archivo_usuarios_recuperar);
 
+            //DEVUELVE LOS DATOS EN TIPO ARRAY
+            Usuario[] usuarios_recuperados=(Usuario[]) usuarios_recuperar.readObject();
+                
+            usuarios_recuperar.close();
+
+            archivo_usuarios_recuperar.close();
+
+            //IMPRIME LOS DATOS DE FORMA INDIVIDUAL
+            for (Usuario uu: usuarios_recuperados){
+                System.out.println(uu);
+            }
+                
+            System.out.println("DATOS CARGADOS");
         }
+            
+        catch (Exception uu){
+            System.out.println("ERROR");
+        }
+
+    }
 }
 
 
