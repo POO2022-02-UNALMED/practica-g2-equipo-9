@@ -40,17 +40,49 @@ public enum Servicio implements Serializable{
     }
 
     //SERIALIZACION
-    try{
-        ObjectOutputStream servicios_datos = new ObjectOutputStream(new FileOutputStream("/servicio.dat"));
+    public void Save() {
+        try{
+            FileOutputStream archivo_servicios_datos = new FileInputStream("/servicio.dat");
 
-        //DEVUELVE LOS DATOS
-        servicio_datos.writeObject(precio);
+            ObjectOutputStream servicios_datos = new ObjectOutputStream(archivo_servicios_datos);
+    
+
+            servicios_datos.writeObject(servicio);
+            
+            servicios_datos.close();
+
+            archivo_servicios_datos.close();
+
+            System.out.println("DATOS GUARDADOS");
+        }
         
-        servicio_datos.close();
-        
-        ObjectInputStream servicio_recuperar= new ObjectInputStream(new FileInputStream("/servicio.dat"));
+        catch (Exception servicio){
+            System.out.println("ERROR");
+        }
     }
-    catch (Exception precio){
+    
+    public void Load (){
+        try{
+            FileOutputStream archivo_servicios_recuperar = new FileInputStream("/servicio.dat");
+            
+            ObjectInputStream servicios_recuperar= new ObjectInputStream(archivo_servicios_recuperar);
+
+            results= servicios_recuperar.readObject();
+
+            servicios_recuperar.close();
+
+            archivo_servicios_recuperar.close();
+
+            //IMPRIME LOS DATOS
+            System.out.println(results);
+                
+            System.out.println("DATOS CARGADOS");
+        }
+            
+        catch (Exception servicioss){
+            System.out.println("ERROR");
+        }
+
     }
 
 }
