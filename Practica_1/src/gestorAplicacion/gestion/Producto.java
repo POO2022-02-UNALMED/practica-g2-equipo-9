@@ -357,29 +357,52 @@ public class Producto implements Serializable {
         return productosEscogidos;
     }
 
-}
-
-    //SERIALIZACION
-    try{
-        ObjectOutputStream productos_datos = new ObjectOutputStream(new FileOutputStream("/producto.dat"));
+        //SERIALIZACION
+        public void Save() {
+            try{
+                FileOutputStream archivo_productos_datos = new FileInputStream("/producto.dat");
     
-        productos_datos.writeObject(productos);
+                ObjectOutputStream productos_datos = new ObjectOutputStream(archivo_productos_datos);
+            
+                productos_datos.writeObject(productos);
+            
+                productos_datos.close();
     
-        productos_datos.close();
+                archivo_productos_datos.close();
     
-        ObjectInputStream prodcutos_recuperar= new ObjectInputStream(new FileInputStream("/producto.dat"));
-    
-        //DEVUELVE LOS DATOS EN TIPO ARRAY
-        Producto[] productos_recuperados=(Producto[]) productos_recuperar.readObject();
-    
-        productos_recuperar.close();
-    
-        //IMPRIME LOS DATOS DE FORMA INDIVIDUAL
-        for (Producto r: productos_recuperados){
-            System.out.printIn(p);
+                System.out.println("DATOS GUARDADOS");
+            }
+            
+            catch (Exception d){
+                System.out.println("ERROR");
+            }
         }
-    }
-    catch (Exception p){
-    }
+        
+        public void Load (){
+            try{
+                FileOutputStream archivo_productos_recuperar = new FileInputStream("/producto.dat");
+                
+                ObjectInputStream productos_recuperar= new ObjectInputStream(archivo_productos_recuperar);
+    
+                //DEVUELVE LOS DATOS EN TIPO ARRAY
+                Producto[] productos_recuperados=(Producto[]) productos_recuperar.readObject();
+                    
+                productos_recuperar.close();
+    
+                archivo_productos_recuperar.close();
+    
+                //IMPRIME LOS DATOS DE FORMA INDIVIDUAL
+                for (Producto dd: productos_recuperados){
+                    System.out.println(dd);
+                }
+                    
+                System.out.println("DATOS CARGADOS");
+            }
+                
+            catch (Exception dd){
+                System.out.println("ERROR");
+            }
+    
+        }
 }
 
