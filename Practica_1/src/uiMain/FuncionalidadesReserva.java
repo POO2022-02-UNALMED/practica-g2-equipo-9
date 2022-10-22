@@ -40,7 +40,7 @@ public class FuncionalidadesReserva {
                         System.out.println(i+". "+Producto.getBebidasAlcoholicas().get(i).getNombre()+" Precio: "+Producto.getBebidasAlcoholicas().get(i).getPrecioVenta());
                     }
                     System.out.println("Ingrese el numero de producto");
-                    System.out.println("o ingrese 5 para ver todos los prodductos de esta categoria");
+                    System.out.println("o ingrese 5 para ver todos los productos de esta categoria");
                     int opcionProducto = sc.nextInt();
                     while(opcionProducto<0 || opcionProducto>5){
                         System.out.println("Por favor ingrese una opcion valida");
@@ -485,10 +485,6 @@ public class FuncionalidadesReserva {
         //PRODUCTOS A AGREGAR EN LA RESERVA Y SU CANTIDAD
         Pedido pedidoReserva = new Pedido();
         agregarProductos(pedidoReserva);
-
-
-
-
 
 
 

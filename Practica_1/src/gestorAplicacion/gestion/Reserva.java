@@ -99,6 +99,7 @@ public class Reserva implements Serializable {
     public static void setNumReservas(int numReservas) {
         Reserva.numReservas = numReservas;
     }
+<<<<<<< Updated upstream
     
     
     //SERIALIZACION
@@ -150,4 +151,8 @@ public class Reserva implements Serializable {
 
     }
    
+=======
+
+
+>>>>>>> Stashed changes
 }

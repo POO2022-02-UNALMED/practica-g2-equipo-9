@@ -285,7 +285,7 @@ public class Producto implements Serializable {
             lista.add(producto);
 
         } catch (Exception e) {
-            System.out.println("El metodo verificarExistenciaCategoria de la clase producto no se realizo de manera correcta");
+            //System.out.println("El metodo verificarExistenciaCategoria de la clase producto no se realizo de manera correcta");
         }
 
     }
