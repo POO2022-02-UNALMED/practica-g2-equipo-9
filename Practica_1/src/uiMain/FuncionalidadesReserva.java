@@ -14,7 +14,7 @@ import java.util.Scanner;
 
 public class FuncionalidadesReserva {
 
-    public static void agregarProductos(Pedido pedidoReserva){
+    public static void agregarProductos(Pedido pedidoReserva){ // metodo para agregar los productos al pedido asociado a la reserva
         Scanner sc = new Scanner(System.in);
         int opcionCiclo = sc.nextInt();
         while(opcionCiclo != 2){
@@ -431,22 +431,13 @@ public class FuncionalidadesReserva {
             opcion = sc.nextInt();
         }
 
-        Espacio espacioTomado = espaciosDisponibles.get(opcion); // seleciona el espacio del atributo de clase espaciosDisponibles
+        Espacio espacioTomado = espaciosDisponibles.get(opcion); // seleciona el espacio deseado por el usuario
 
 
         System.out.println("A continuacion le presentamos la disponibildiad del espacio: ");
 
-        for (int i = 0; i < 10; i++) { // imprime los primeros 10 dias disponibles
-            System.out.println(i + ". " + espacioTomado.getFechas().get(i));
-        }
-        System.out.println("Escoja una opcion ");
-        opcion = sc.nextInt();
-        while (opcion < 0 || opcion >= 10) {
-            System.out.println("Por favor ingrese una opcion valida: ");
-            opcion = sc.nextInt();
-        }
-        LocalDate fechaTomada = espacioTomado.getFechas().get(opcion);
-        espacioTomado.getFechas().remove(opcion); // se quita la disponibilidad de la fecha seleccionada
+        LocalDate fechaTomada = espacioTomado.seleccionarFecha(10); // le muestra y permite selccionar al usuario uno de los 10 primeros dias disponibles para el espacio tomado
+
         System.out.println("Desea agregar servicios adicionales a la reserva? ");
         System.out.println("1. Si ");
         System.out.println("2. No ");
@@ -457,7 +448,7 @@ public class FuncionalidadesReserva {
         }
         List<Servicio> serviciosDisponibles = Arrays.asList(Servicio.values()); // Convierte el Array de Servicio a ArrayList de Servicio
 
-        while (opcion ==1 || serviciosDisponibles.size()!=0){ // loop para mostrar los serviicios a escoger por el cliente
+        while (opcion ==1 || serviciosDisponibles.size()!=0){ // loop para mostrar los servicios a escoger por el cliente
 
             List<Servicio> serviciosTomados = new ArrayList<>();
             for (int i = 0; i < serviciosDisponibles.size(); i++) {
@@ -484,11 +475,17 @@ public class FuncionalidadesReserva {
 
         //PRODUCTOS A AGREGAR EN LA RESERVA Y SU CANTIDAD
         Pedido pedidoReserva = new Pedido();
-        agregarProductos(pedidoReserva);
+        agregarProductos(pedidoReserva); // se llama al metodo agregar productos
 
 
 
+    }
 
+    public static void modificarReserva(){
+
+    }
+
+    public static void eliminarReserva(){
 
     }
 

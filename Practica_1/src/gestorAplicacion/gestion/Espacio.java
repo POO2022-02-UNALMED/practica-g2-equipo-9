@@ -39,6 +39,26 @@ public class Espacio {
     }
 
 
+    public LocalDate seleccionarFecha( int n){ //metodo para mostrar las primeras n fechas disponibles para un espacio tomado
+        Scanner sc = new Scanner(System.in);
+        for (int i = 0; i < n; i++) {
+            System.out.println(i+". "+this.getFechas().get(i));
+        }
+        System.out.println("Por favor ingrese la opcion correspondiente a la fecha que deas seleccionar");
+        int opcion = sc.nextInt();
+
+        while (opcion<0 || opcion >=n){ //verificar que el usuario ingrese una opcion valida
+            System.out.println("Por favor ingrese una opcion valida");
+            opcion=sc.nextInt();
+        }
+        this.getFechas().remove(opcion); // se quita la disponibilidad de la fecha seleccionada
+
+        return this.getFechas().get(opcion); //retorna la fecha tomada por el usuario
+    }
+    public void reordenarFechas(){ //metodo utilizado para reordenar las fechas disponibles una vez se cancela una reserva de un espacio
+
+
+    }
 
 
 }
