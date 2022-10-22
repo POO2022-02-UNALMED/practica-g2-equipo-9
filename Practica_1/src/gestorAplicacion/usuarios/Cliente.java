@@ -1,4 +1,4 @@
-package gestorAplicacion.clientes;
+package gestorAplicacion.usuarios;
 
 import gestorAplicacion.gestion.Pedido;
 
@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.*;
 
-public class Cliente extends cliente implements Serializable{
+public class Cliente extends Usuario {
 
     //ATRIBUTOS DE INSTANCIA
     private int numeroReserva;
@@ -107,52 +107,6 @@ public class Cliente extends cliente implements Serializable{
         this.pedido = pedido;
     }
 
-    //SERIALIZACION
-    public void Save() {
-        try{
-            FileOutputStream archivo_clientes_datos = new FileInputStream("/cliente.dat");
 
-            ObjectOutputStream clientes_datos = new ObjectOutputStream(archivo_clientes_datos);
-        
-            clientes_datos.writeObject(clientes);
-        
-            clientes_datos.close();
-
-            archivo_clientes_datos.close();
-
-            System.out.println("DATOS GUARDADOS");
-        }
-        
-        catch (Exception c){
-            System.out.println("ERROR");
-        }
-    }
-    
-    public void Load (){
-        try{
-            FileOutputStream archivo_clientes_recuperar = new FileInputStream("/cliente.dat");
-            
-            ObjectInputStream clientes_recuperar= new ObjectInputStream(archivo_clientes_recuperar);
-
-            //DEVUELVE LOS DATOS EN TIPO ARRAY
-            Cliente[] clientes_recuperados=(Cliente[]) clientes_recuperar.readObject();
-                
-            clientes_recuperar.close();
-
-            archivo_clientes_recuperar.close();
-
-            //IMPRIME LOS DATOS DE FORMA INDIVIDUAL
-            for (Cliente cc: clientes_recuperados){
-                System.out.println(cc);
-            }
-                
-            System.out.println("DATOS CARGADOS");
-        }
-            
-        catch (Exception cc){
-            System.out.println("ERROR");
-        }
-
-    }
 
 }

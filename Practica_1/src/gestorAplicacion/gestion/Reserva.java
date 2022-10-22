@@ -6,7 +6,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.*;
 
-public class Reserva implements Serializable {
+public class Reserva  {
     //ATRIBUTOS DE INSTANCIA
     private int idReserva;
     private String estado; //"Exitosa", "No exitosa"
@@ -99,60 +99,7 @@ public class Reserva implements Serializable {
     public static void setNumReservas(int numReservas) {
         Reserva.numReservas = numReservas;
     }
-<<<<<<< Updated upstream
-    
-    
-    //SERIALIZACION
-    public void Save() {
-        try{
-            FileOutputStream archivo_reservas_datos = new FileInputStream("/usuario.dat");
-
-            ObjectOutputStream reservas_datos = new ObjectOutputStream(archivo_reservas_datos);
-    
-            reservas_datos.writeObject(servicios);
-    
-            reservas_datos.close();
-
-            archivo_reservas_datos.close();
-
-            System.out.println("DATOS GUARDADOS");
-        
-        }
-    
-        catch (Exception s){
-            System.out.println("ERROR");
-        }
-    }
-
-    public void Load (){
-        try{
-            FileOutputStream archivo_reservas_recuperar = new FileInputStream("/usuario.dat");
-        
-            ObjectInputStream reservas_recuperar= new ObjectInputStream(archivo_reservas_recuperar);
-
-            //DEVUELVE LOS DATOS EN TIPO ARRAY
-            Servicio[] reservas_recuperados=(Usuario[]) reservas_recuperar.readObject();
-            
-            reservas_recuperar.close();
-
-            archivo_reservas_recuperar.close();
-
-            //IMPRIME LOS DATOS DE FORMA INDIVIDUAL
-            for (Usuario ss: reservas_recuperados){
-                System.out.println(ss);
-            }
-            
-            System.out.println("DATOS CARGADOS");
-        }
-        
-        catch (Exception ss){
-            System.out.println("ERROR");
-        }
-
-    }
-   
-=======
 
 
->>>>>>> Stashed changes
 }
+   

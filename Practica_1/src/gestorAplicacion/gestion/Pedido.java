@@ -8,7 +8,7 @@ import java.time.LocalDate;
 import java.util.*;
 
 
-public class Pedido implements Serializable {
+public class Pedido  {
 
     //ATRIBUTOS DE INSTANCIA
 
@@ -195,52 +195,8 @@ public class Pedido implements Serializable {
         }
     }
 
-    //SERIALIZACION
-    public void Save() {
-        try{
-            FileOutputStream archivo_pedidos_datos = new FileInputStream("/pedido.dat");
 
-            ObjectOutputStream pedidos_datos = new ObjectOutputStream(archivo_pedidos_datos);
-        
-            pedidos_datos.writeObject(pedidos);
-        
-            pedidos_datos.close();
 
-            archivo_pedidos_datos.close();
 
-            System.out.println("DATOS GUARDADOS");
-        }
-        
-        catch (Exception p){
-            System.out.println("ERROR");
-        }
-    }
-    
-    public void Load (){
-        try{
-            FileOutputStream archivo_pedidos_recuperar = new FileInputStream("/pedido.dat");
-            
-            ObjectInputStream pedidos_recuperar= new ObjectInputStream(archivo_pedidos_recuperar);
-
-            //DEVUELVE LOS DATOS EN TIPO ARRAY
-            Pedido[] pedidos_recuperados=(Pedido[]) pedidos_recuperar.readObject();
-                
-            pedidos_recuperar.close();
-
-            archivo_pedidos_recuperar.close();
-
-            //IMPRIME LOS DATOS DE FORMA INDIVIDUAL
-            for (Pedido pp: pedidos_recuperados){
-                System.out.println(pp);
-            }
-                
-            System.out.println("DATOS CARGADOS");
-        }
-            
-        catch (Exception pp){
-            System.out.println("ERROR");
-        }
-
-    }
 
 }
