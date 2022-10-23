@@ -62,8 +62,15 @@ public class Espacio {
             reserva.setFechaReserva(null);
         }
 
+    }
 
-
+    public void actualizarFechas(){ //metodo para eliminar fechas ya vencidas
+        for (LocalDate fecha:
+             fechas) {
+            if(fecha.isBefore(LocalDate.now())){
+                fechas.remove(fecha);
+            }
+        }
     }
 
 

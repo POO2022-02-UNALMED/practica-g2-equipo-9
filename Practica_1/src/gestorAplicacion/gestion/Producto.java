@@ -285,12 +285,10 @@ public class Producto  {
             lista.add(producto);
 
         } catch (Exception e) {
-            //System.out.println("El metodo verificarExistenciaCategoria de la clase producto no se realizo de manera correcta");
+
         }
 
     }
-
-
 
 
     public static String mostrarProductosDisponibles() {//Inventario, muestra nombre y cantidades disponibles

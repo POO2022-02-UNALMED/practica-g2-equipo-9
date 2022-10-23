@@ -518,9 +518,17 @@ public class FuncionalidadesReserva {
         }
     }
 
-    public static void eliminarReserva(Reserva reserva){
-
-
+    public static void cancelarReserva(Reserva reserva){
+        if (LocalDate.now().isAfter(reserva.getFechaReserva())){ //verifica que aun se pueda cancelar la reserva comparandolo con el dia actual
+            reserva.setEstado("Cancelada");
+            for (Producto producto: //ciclo para cambiar el estado a los prductos que estaban en el pedido asociado a la reserva
+                    reserva.getPedido().getProductos()) {
+                producto.setEstado("No vendido");
+            }
+        }
+        else{
+            System.out.println("Ha excedido la fecha limite para cancelar la reserva");
+        }
     }
 
 
