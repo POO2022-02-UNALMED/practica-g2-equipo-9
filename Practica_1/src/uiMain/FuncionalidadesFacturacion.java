@@ -817,50 +817,6 @@ public class FuncionalidadesFacturacion {
         }
     }*/
 
-    public static void main(String[] args) {
 
-        Producto producto1=new Producto(null,"No vendido","pepsi",300,500,null,null,null);
-        Producto producto2=new Producto(null,"No vendido","pepsi",300,500,null,null,null);
-        Producto producto3=new Producto(null,"No vendido","pepsi",300,500,null,null,null);
-        Producto producto4=new Producto(null,"No vendido","pepsi",300,500,null,null,null);
-        Producto producto5=new Producto(null,"No vendido","pepsi",300,500,null,null,null);
-        Producto producto6=new Producto(null,"No vendido","pepsi",300,500,null,null,null);
-        Producto producto7=new Producto(null,"No vendido","pepsi",300,500,null,null,null);
-        Producto producto8=new Producto(null,"No vendido","pepsi",300,500,null,null,null);
-        Producto producto9=new Producto(null,"Reservado","pepsi",300,500,null,null,null);
-        Producto producto10=new Producto(null,"Reservado","pepsi",300,500,null,null,null);
-        Producto producto101=new Producto(null,"Reservado","coca",300,500,null,null,null);
-        Producto producto102=new Producto(null,"Reservado","coca",300,500,null,null,null);
-
-        Producto producto11=new Producto(null,"No vendido","cerveza",300,500,null,null,null);
-        Producto producto12=new Producto(null,"No vendido","cerveza",300,500,null,null,null);
-        Producto producto13=new Producto(null,"No vendido","cerveza",300,500,null,null,null);
-        Producto producto14=new Producto(null,"No vendido","cerveza",300,500,null,null,null);
-        Producto producto15=new Producto(null,"No vendido","cerveza",300,500,null,null,null);
-        Producto producto16=new Producto(null,"No vendido","cerveza",300,500,null,null,null);
-        Producto producto17=new Producto(null,"No vendido","pepsi",300,500,null,null,null);
-        Producto producto18=new Producto(null,"No vendido","pepsi",300,500,null,null,null);
-        Producto producto19=new Producto(null,"No vendido","pepsi",300,500,null,null,null);
-        Producto producto20=new Producto(null,"No vendido","pepsi",300,500,null,null,null);
-        Producto producto21=new Producto(null,"No vendido","pepsi",300,500,null,null,null);
-        Producto producto22=new Producto(null,"No vendido","pepsi",300,500,null,null,null);
-        Producto producto23=new Producto(null,"No vendido","pepsi",300,500,null,null,null);
-        Producto producto24=new Producto(null,"No vendido","pepsi",300,500,null,null,null);
-        Trabajador trabajador1=new Trabajador("Russbell",null,0,null);
-        Trabajador trabajador2=new Trabajador("Sebas",null,0,null);
-        Trabajador trabajador3=new Trabajador("Steven",null,0,null);
-        Trabajador trabajador4=new Trabajador("David",null,0,null);
-        Cliente cliente1=new Cliente();
-        ArrayList<Producto> productos1=new ArrayList<>();
-        productos1.add(producto1);
-        productos1.add(producto2);
-        productos1.add(producto3);
-        productos1.add(producto4);
-        productos1.add(producto5);
-        ArrayList<Servicio> servicios1=new ArrayList<>();
-
-        System.out.println(tomarPedido(trabajador1,cliente1));
-
-    }
 }
 

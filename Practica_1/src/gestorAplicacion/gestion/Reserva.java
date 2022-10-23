@@ -15,8 +15,11 @@ public class Reserva {
     private LocalDate fechaCreacion; // el dia que se creo la reserva
     private Pedido pedido;
 
+    private Espacio espacio;
+
     //ATRIBUTOS DE CLASE
     private static int numReservas = 0; // contador del numero de reservas
+    private int pagoCancelacion=0;
 
 
     //CONSTRUCTORES
@@ -113,4 +116,11 @@ public class Reserva {
         this.pagoCancelacion = pagoCancelacion;
     }
 
+    public Espacio getEspacio() {
+        return espacio;
+    }
+
+    public void setEspacio(Espacio espacio) {
+        this.espacio = espacio;
+    }
 }

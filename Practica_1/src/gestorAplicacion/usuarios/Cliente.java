@@ -3,8 +3,6 @@ package gestorAplicacion.usuarios;
 import gestorAplicacion.gestion.Pedido;
 
 import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.*;
 
 public class Cliente extends Usuario {
 
@@ -30,21 +28,24 @@ public class Cliente extends Usuario {
         clientes.add(this);
     }
 
-<<<<<<< Updated upstream
-    public Cliente(String nombre, int numeroReserva, String estadoReserva, Pedido pedido, ArrayList<Pedido> historialPedidos) {
-        super(generarCodigo(), nombre);
+    public Cliente(){
+
+    }
+
+    public  Cliente(String nombre, int numeroReserva, String estadoReserva, Pedido pedido, ArrayList<Pedido> historialPedidos) {
+        this(nombre);
         this.numeroReserva = numeroReserva;
         this.estadoReserva = estadoReserva;
         this.pedido = pedido;
         this.historialPedidos = historialPedidos;
-        clientes.add(this);
-=======
+        clientes.add(this);}
+
     public Cliente(String nombre, int numeroReserva, String estadoReserva, Pedido pedido) {
         this(nombre); // sobrecarga de metodos
         this.numeroReserva = numeroReserva;
         this.estadoReserva = estadoReserva;
         this.pedido = pedido;
->>>>>>> Stashed changes
+
     }
 
 
