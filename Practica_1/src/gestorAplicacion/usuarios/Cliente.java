@@ -21,30 +21,27 @@ public class Cliente extends Usuario {
     private static long numeroCliente=0;
 
 
-
-
-
     //CONSTRUCTOR
     public Cliente(String nombre){
         super(generarCodigo(), nombre);
         clientes.add(this);
     }
 
-<<<<<<< Updated upstream
+
     public Cliente(String nombre, int numeroReserva, String estadoReserva, Pedido pedido, ArrayList<Pedido> historialPedidos) {
-        super(generarCodigo(), nombre);
+        this(nombre); // sobrecarga de metodos
         this.numeroReserva = numeroReserva;
         this.estadoReserva = estadoReserva;
         this.pedido = pedido;
         this.historialPedidos = historialPedidos;
-        clientes.add(this);
-=======
+        }
+
     public Cliente(String nombre, int numeroReserva, String estadoReserva, Pedido pedido) {
         this(nombre); // sobrecarga de metodos
         this.numeroReserva = numeroReserva;
         this.estadoReserva = estadoReserva;
         this.pedido = pedido;
->>>>>>> Stashed changes
+
     }
 
 

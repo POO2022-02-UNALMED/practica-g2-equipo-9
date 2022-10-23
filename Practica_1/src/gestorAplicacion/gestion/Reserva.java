@@ -26,14 +26,18 @@ public class Reserva  {
 
     //CONSTRUCTORES
 
+    public Reserva(Cliente cliente){
+        this.cliente = cliente;
+        fechaCreacion=LocalDate.now();
+    }
 
-    public Reserva(String estado, Cliente cliente, ArrayList<Servicio> servicios, LocalDate fechaReserva, LocalDate fechaCreacion, Pedido pedido) {
+
+    public Reserva(String estado, Cliente cliente, ArrayList<Servicio> servicios, LocalDate fechaReserva, Pedido pedido) {
+        this(cliente); // sobrecarga de metodos
         this.idReserva = numReservas;
         this.estado = estado;
-        this.cliente = cliente;
         this.servicios = servicios;
         this.fechaReserva = fechaReserva;
-        this.fechaCreacion = fechaCreacion;
         this.pedido = pedido;
         numReservas++;
     }
