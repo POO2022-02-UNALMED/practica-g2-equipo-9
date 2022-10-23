@@ -7,7 +7,7 @@ import java.util.*;
 import gestorAplicacion.usuarios.*;
 
 
-public class Producto  {
+public class Producto {
     //ATRIBUTOS INSTANCIA
     private Trabajador trabajador;
 
@@ -65,7 +65,7 @@ public class Producto  {
         this.fechaIngreso = fechaIngreso;
         this.fechaVenta = fechaVenta;
         productos.add(this);
-        Producto.categorizarProducto(this);
+
     }
 
     public Producto(Trabajador trabajador, Cliente cliente, String estado, String nombre, double precioCompra, double precioVenta, LocalDate fechaVencimiento, LocalDate fechaIngreso, LocalDate fechaVenta, int tipo) {
@@ -82,7 +82,8 @@ public class Producto  {
         this.fechaVenta = fechaVenta;
         this.tipo = tipo;
         productos.add(this);
-        categorizarProducto(this);
+        categorizarProdcuto(this);
+
     }
 
     public static long generarCodigo() {
@@ -252,7 +253,7 @@ public class Producto  {
         Producto.otrosProductos = otrosProductos;
     }
 
-    public static void categorizarProducto(Producto producto) { // Este metodo sirve para clasificar los productos segun su tipo y ponerlo en el ArrayList correpondiente si es que este no existe en dicho ArrayList
+    public static void categorizarProdcuto(Producto producto) { // Este metodo sirve para clasificar los productos segun su tipo y ponerlo en el ArrayList correpondiente si es que este no existe en dicho ArrayList
         switch (producto.tipo) {
             case 1:
                 Producto.verificarExistenciaCategoria(Producto.bebidasAlcoholicas, producto);
@@ -285,76 +286,137 @@ public class Producto  {
             lista.add(producto);
 
         } catch (Exception e) {
-
+            System.out.println("El metodo verificarExistenciaCategoria de la clase producto no se realizo de manera correcta");
         }
 
     }
 
 
-    public static String mostrarProductosDisponibles() {//Inventario, muestra nombre y cantidades disponibles
-        String s = "Nombre producto.............cantidad";
+    public static String mostrarProductosDisponibles(ArrayList<Producto> listaProducto) {//Muestra nombre, cantidad y precio de un array, pero ojo, este metodo no filtra por vendidos
+        String s = "Este es el inventario de productos disponibles para vender:" +
+                "\nNombre, Cantidad, Precio:";
         SortedSet<String> productosDisponiblesNoRepetidos = new TreeSet<>();
         ArrayList<String> productosDisponiblesRepetidos = new ArrayList<>();
-        for (Producto producto : Producto.getProductos()) {
-            if (producto.getEstado().equals("No vendido") && producto.getFechaVenta() == null) {
-                productosDisponiblesNoRepetidos.add(producto.getNombre());
-                productosDisponiblesRepetidos.add(producto.getNombre());
+        HashMap<String, Double> listaPrecios = new HashMap<>();
+        for (Producto producto : listaProducto) {
+            productosDisponiblesNoRepetidos.add(producto.getNombre());
+            productosDisponiblesRepetidos.add(producto.getNombre());
+            if (listaPrecios.containsKey(producto.getNombre()) == false) {
+                listaPrecios.put(producto.getNombre(), producto.getPrecioVenta());
             }
         }
         int i = 1;
         for (String nombre : productosDisponiblesNoRepetidos) {
-            s += i + ". " + nombre + "................." + Collections.frequency(productosDisponiblesRepetidos, nombre);
+            s += "\n" + i + ". Nombre: " + nombre + ", Cantidad: " + Collections.frequency(productosDisponiblesRepetidos, nombre) + ", Precio: " + listaPrecios.get(nombre);
             i++;
         }
         return s;
     }
 
-    public static ArrayList<Producto> productosDisponibles() {
+    public static String mostrarNombresCantidadPrecio(ArrayList<Producto> productosPedidos) { //muestra lista de productos con nombres cantidades y precios hasta el momento
+        String s = "Pedido de Productos: " +
+                "\nNombre, Cantidad, Precio:";
+        SortedSet<String> nombresNoRepetidos = new TreeSet<>();
+        ArrayList<String> nombresRepetidos = new ArrayList<>();
+        HashMap<String, Double> listaPrecios = new HashMap<>();
+        double valorTotal = 0;
+        for (Producto producto : productosPedidos) {
+            nombresNoRepetidos.add(producto.getNombre());
+            nombresRepetidos.add(producto.getNombre());
+            if (listaPrecios.containsKey(producto.getNombre()) == false) {
+                listaPrecios.put(producto.getNombre(), producto.getPrecioVenta());
+            }
+            valorTotal += producto.getPrecioVenta();
+        }
+        int i = 1;
+        for (String nombre : nombresNoRepetidos) {
+            s += "\n" + i + ". Nombre: " + nombre + ", Cantidad: " + Collections.frequency(nombresRepetidos, nombre) + ", Precio: " + Collections.frequency(nombresRepetidos, nombre) * listaPrecios.get(nombre);
+            i++;
+        }
+        s += "\nValor total= " + valorTotal;
+        return s;
+    }
+
+    public static ArrayList<Producto> productosDisponibles(ArrayList<Producto> Inventario) {//Devuelve un arraylist de productos con estado de producto no vendido y fecha null
         ArrayList<Producto> productosDisponibles = new ArrayList<>();
-        for (Producto producto : Producto.getProductos()) {
+        for (Producto producto : Inventario) {
             if (producto.getEstado().equals("No vendido") && producto.getFechaVenta() == null) {
                 productosDisponibles.add(producto);
             }
         }
         return productosDisponibles;
     }
-    public static boolean verificarProducto(String nombre, ArrayList<Producto> listaProductos){//verifica que nombre exista en la lista
-        boolean existe=false;
-        for(Producto producto: listaProductos){
-            if (producto.getNombre().equals(nombre)){
-                existe=true;
+
+    public static boolean verificarProducto(String nombre, ArrayList<Producto> listaProductos) {//verifica que nombre exista en la lista
+        boolean existe = false;
+        for (Producto producto : listaProductos) {
+            if (producto.getNombre().equals(nombre)) {
+                existe = true;
                 break;
             }
-        }
-        return existe;
-    }
-    public static boolean verificarProducto(String nombre, long cantidad, ArrayList<Producto> listaProductos){//verifica que nombre y cantidad exista en la lista
-        boolean existe=false;
-        ArrayList<String>nombresProducto=new ArrayList<>();
-        for(Producto producto: listaProductos){
-            nombresProducto.add(producto.getNombre());
-        }
-        if(cantidad>=0 && cantidad<=Collections.frequency(nombresProducto,nombre)){
-            existe=true;
         }
         return existe;
     }
 
-    public static ArrayList<Producto> agregarProducto(String nombre, long cantidad, ArrayList<Producto> listaProductos){//agrega elementos y devuelve un array
-        ArrayList<Producto> productosEscogidos=new ArrayList<>();
-        long contador=0;
-        for(Producto producto: listaProductos){
-            if(producto.getNombre().equals(nombre)){
-                productosEscogidos.add(producto);
-            }
-            if(contador>=cantidad){
+    public static boolean verificarProducto(String nombre, long cantidad, ArrayList<Producto> listaProductos) {//verifica que nombre y cantidad exista en la lista
+        boolean existe = false;
+        ArrayList<String> nombresProducto = new ArrayList<>();
+        for (Producto producto : listaProductos) {
+            nombresProducto.add(producto.getNombre());
+        }
+        if (cantidad >= 0 && cantidad <= Collections.frequency(nombresProducto, nombre)) {
+            existe = true;
+        }
+        return existe;
+    }
+
+    public static ArrayList<Producto> agregarProducto(String nombre, long cantidad, ArrayList<Producto> listaProductos) {//agrega elementos y devuelve un array
+        ArrayList<Producto> productosEscogidos = new ArrayList<>();
+        long contador = 0;
+        for (Producto producto : listaProductos) {
+            if (contador < cantidad) {
+                if (producto.getNombre().equals(nombre)) {
+                    productosEscogidos.add(producto);
+                    contador++;
+                }
+            } else {
                 break;
             }
-            contador++;
         }
         return productosEscogidos;
     }
 
-
+    public static ArrayList<Producto> recomendarProducto(ArrayList<Producto> listaProductos) {
+        SortedSet<String> nombresNoRepetidos = new TreeSet<>();
+        ArrayList<String> nombresRepetidos = new ArrayList<>();
+        TreeMap<Long, String> cuenta = new TreeMap<>();
+        for (Producto producto : listaProductos) {
+            nombresRepetidos.add(producto.getNombre());
+            nombresNoRepetidos.add(producto.getNombre());
+        }
+        //AGREGAMOS AL TREEMAP Y SE ORDENA AUTOMATICAMENTE
+        for (String nombre : nombresNoRepetidos) {
+            cuenta.put((long) Collections.frequency(nombresRepetidos, nombre), nombre);
+        }
+        ArrayList<Producto> productosRecomendados = new ArrayList<>();
+        if (cuenta.size() >= 3) {
+            String primero = (String) cuenta.values().toArray()[cuenta.size() - 1];
+            String segundo = (String) cuenta.values().toArray()[cuenta.size() - 2];
+            String tercero = (String) cuenta.values().toArray()[cuenta.size() - 3];
+            ArrayList<String> masPedidos = new ArrayList<>();
+            masPedidos.add(primero);
+            masPedidos.add(segundo);
+            masPedidos.add(tercero);
+        } else if (cuenta.size() <= 2) {
+            long primero = (long) cuenta.keySet().toArray()[cuenta.size() - 1];
+            long segundo = (long) cuenta.keySet().toArray()[cuenta.size() - 2];
+        } else if (cuenta.size() == 1) {
+            long primero = (long) cuenta.keySet().toArray()[cuenta.size() - 1];
+        }
+        return productosRecomendados;
+    }
 }
+
+
+
 

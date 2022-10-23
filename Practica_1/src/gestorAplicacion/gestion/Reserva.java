@@ -4,21 +4,16 @@ import gestorAplicacion.usuarios.Cliente;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.*;
 
-public class Reserva  {
+public class Reserva {
     //ATRIBUTOS DE INSTANCIA
     private int idReserva;
-    private String estado; //"Cumplida", "Activa", "Cancelada"
+    private String estado; //"Exitosa", "No exitosa"
     private Cliente cliente;
     private ArrayList<Servicio> servicios;
     private LocalDate fechaReserva; // el dia de la ejecucion de la reserva
     private LocalDate fechaCreacion; // el dia que se creo la reserva
     private Pedido pedido;
-
-    private int pagoCancelacion = 0;
-
-    private Espacio espacio;
 
     //ATRIBUTOS DE CLASE
     private static int numReservas = 0; // contador del numero de reservas
@@ -109,13 +104,6 @@ public class Reserva  {
         Reserva.numReservas = numReservas;
     }
 
-    public Espacio getEspacio() {
-        return espacio;
-    }
-
-    public void setEspacio(Espacio espacio) {
-        this.espacio = espacio;
-    }
 
     public int getPagoCancelacion() {
         return pagoCancelacion;
@@ -125,34 +113,4 @@ public class Reserva  {
         this.pagoCancelacion = pagoCancelacion;
     }
 
-    public int calcularPrecioReserva(){ // metodo para calcular el total a pagar en la reserva
-        int acumulado = 0;
-        for (Servicio servicio: this.servicios // ciclo para sumar los precios de los servicios
-             ) {
-            acumulado+= servicio.getPrecio();
-        }
-
-        for (Producto producto: this.pedido.getProductos() //ciclo para sumar los precios de los productos añadidos a al pedido asociado a la reserva
-             ) {
-            acumulado+= producto.getPrecioVenta();
-        }
-
-        return acumulado; // retorna el acumulado de todo lo sumado anteriormente
-    }
-
-    @Override
-    public String toString() { // metodo para realizar un resumen en la funcionalidadesdeReserva
-        switch (this.getEstado()) {
-            case "Activa":
-                return "Reserva realizada con exito\n" + "El total de su reserva es de: " + this.calcularPrecioReserva() + "\n" +
-                        "Su reserva es para el dia: " + this.getFechaReserva() + "\n" + "Y esta fue creada el dia: " + this.getFechaCreacion();
-            case "Cancelada":
-                return "Su reserva ha sido cancelada con exito\n" + "El valor a pagar por su cancelacion es de: " + this.pagoCancelacion;
-
-            case "Cumplida":
-                return "Esta reserva se ha culminado con exito el dia "+this.getFechaReserva();
-        }
-        return super.toString();
-    }
 }
-   

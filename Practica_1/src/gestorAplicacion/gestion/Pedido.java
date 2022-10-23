@@ -2,13 +2,14 @@
 package gestorAplicacion.gestion;
 
 import gestorAplicacion.usuarios.Cliente;
+import gestorAplicacion.usuarios.Gerente;
 import gestorAplicacion.usuarios.Trabajador;
 
 import java.time.LocalDate;
 import java.util.*;
 
 
-public class Pedido  {
+public class Pedido {
 
     //ATRIBUTOS DE INSTANCIA
 
@@ -20,8 +21,6 @@ public class Pedido  {
     private ArrayList<Servicio> servicios =new ArrayList<>();//arraylist de servicios pedidos por el cliente
     private LocalDate fechaPedido;
     private long codigo; //cuando se cree, se cree con el mismo ID del cliente
-
-    private static int totalPedidos = 0;
 
     //ATRIBUTOS DE CLASE
 
@@ -41,6 +40,7 @@ public class Pedido  {
         this.servicios = servicios;
         this.fechaPedido = fechaPedido;
         this.codigo = codigo;
+        pedidos.add(this);
     }
 
     public Pedido(Trabajador trabajador, Cliente cliente, String estadoPedido, ArrayList<Producto> productos, ArrayList<Servicio> servicios, LocalDate fechaPedido) {
@@ -52,11 +52,11 @@ public class Pedido  {
         this.fechaPedido = fechaPedido;
         this.codigo = generarCodigo();
         pedidos.add(this);
-        Pedido.totalPedidos += 1;
-
     }
 
     //GETTERS Y SETTERS
+
+
     public Trabajador getTrabajador() {
         return trabajador;
     }
@@ -81,15 +81,7 @@ public class Pedido  {
         Pedido.pedidos = pedidos;
     }
 
-    public static int getTotalPedidos() {
-        return pedidos.size();
-    }
-
-    public static void setTotalPedidos(int totalPedidos) {
-        Pedido.totalPedidos = totalPedidos;
-    }
-
-        public String getEstadoPedido() {
+    public String getEstadoPedido() {
         return estadoPedido;
     }
 
@@ -147,8 +139,8 @@ public class Pedido  {
     }
 
 
-    public String generarFactura(){
 
+    public String generarFactura(){
         String productos ="Productos: " +
                 "\nNombre........Cantidad.......Precio";
         HashMap<String, Double> nombreYprecio = new HashMap<>();
@@ -163,7 +155,7 @@ public class Pedido  {
         }
         long i = 1;
         for (String clave : nombreYprecio.keySet()) {
-            productos += "\n" + i + ". " + clave + "...." + Collections.frequency(nombre, clave) + "......" + nombreYprecio.get(clave) * Collections.frequency(nombre, clave);
+            productos += "\n" + i + ". Nombre: " + clave + ", Cantidad pedida: " + Collections.frequency(nombre, clave) + "......" + "Precio: "+nombreYprecio.get(clave) * Collections.frequency(nombre, clave);
             i++;
         }
 
@@ -175,11 +167,16 @@ public class Pedido  {
         double totalServicios=0;
         SortedSet<Servicio> servicioNoRepetido=new TreeSet<>();
         for(Servicio servicio: this.getServicios()){
-            servicios+="\n"+b+". "+servicio+" "+ Collections.frequency(this.getServicios(),servicio)+"....."+Collections.frequency(this.getServicios(),servicio)* servicio.getPrecio();
+            if(servicioNoRepetido.contains(servicio)==false){
+                servicios+="\n"+b+". Servicio: "+servicio+", Cantidad: "+ Collections.frequency(this.getServicios(),servicio)+"....."+"Precio: "+Collections.frequency(this.getServicios(),servicio)* servicio.getPrecio();
+                b++;
+            }
             totalServicios+=servicio.getPrecio();
-            b++;
+            servicioNoRepetido.add(servicio);
+
         }
         servicios += "\nTotal de servicios:" + totalServicios;
+
 
 
         String s="";
@@ -190,8 +187,8 @@ public class Pedido  {
                 "\nVendido por "+this.getTrabajador().getNombre()+" con codigo "+this.getTrabajador().getCodigo()+
                 "\n"+productos+
                 "\n"+servicios+
-                "\nTotal:"+totalProductos+totalServicios+
-                "\n======================================";
+                "\nTotal:"+ (totalProductos+totalServicios)+
+                "\n===========================================";
         return s;
     }
     public void pagarPedido(){
@@ -206,8 +203,6 @@ public class Pedido  {
             producto.setEstado("Reservado");
         }
     }
-
-
 
 
 
