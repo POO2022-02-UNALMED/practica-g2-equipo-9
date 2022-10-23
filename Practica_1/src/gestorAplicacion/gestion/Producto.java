@@ -65,7 +65,7 @@ public class Producto  {
         this.fechaIngreso = fechaIngreso;
         this.fechaVenta = fechaVenta;
         productos.add(this);
-        Producto.categorizarProdcuto(this);
+        Producto.categorizarProducto(this);
     }
 
     public Producto(Trabajador trabajador, Cliente cliente, String estado, String nombre, double precioCompra, double precioVenta, LocalDate fechaVencimiento, LocalDate fechaIngreso, LocalDate fechaVenta, int tipo) {
@@ -82,7 +82,7 @@ public class Producto  {
         this.fechaVenta = fechaVenta;
         this.tipo = tipo;
         productos.add(this);
-        categorizarProdcuto(this);
+        categorizarProducto(this);
     }
 
     public static long generarCodigo() {
@@ -252,7 +252,7 @@ public class Producto  {
         Producto.otrosProductos = otrosProductos;
     }
 
-    public static void categorizarProdcuto(Producto producto) { // Este metodo sirve para clasificar los productos segun su tipo y ponerlo en el ArrayList correpondiente si es que este no existe en dicho ArrayList
+    public static void categorizarProducto(Producto producto) { // Este metodo sirve para clasificar los productos segun su tipo y ponerlo en el ArrayList correpondiente si es que este no existe en dicho ArrayList
         switch (producto.tipo) {
             case 1:
                 Producto.verificarExistenciaCategoria(Producto.bebidasAlcoholicas, producto);
@@ -356,8 +356,7 @@ public class Producto  {
         }
         return productosEscogidos;
     }
-    
-    //SERIALIZACION
+
 
 }
 

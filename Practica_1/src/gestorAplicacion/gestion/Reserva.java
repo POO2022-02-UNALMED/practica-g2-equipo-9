@@ -114,12 +114,12 @@ public class Reserva  {
 
     public int calcularPrecioReserva(){ // metodo para calcular el total a pagar en la reserva
         int acumulado = 0;
-        for (Servicio servicio: servicios // ciclo para sumar los precios de los servicios
+        for (Servicio servicio: this.servicios // ciclo para sumar los precios de los servicios
              ) {
             acumulado+= servicio.getPrecio();
         }
 
-        for (Producto producto: pedido.getProductos() //ciclo para sumar los precios de los productos añadidos a al pedido asociado a la reserva
+        for (Producto producto: this.pedido.getProductos() //ciclo para sumar los precios de los productos añadidos a al pedido asociado a la reserva
              ) {
             acumulado+= producto.getPrecioVenta();
         }

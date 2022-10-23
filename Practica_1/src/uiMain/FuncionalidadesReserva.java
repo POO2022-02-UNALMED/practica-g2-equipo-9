@@ -2,10 +2,7 @@ package uiMain;
 
 import java.time.LocalDate;
 
-import gestorAplicacion.gestion.Espacio;
-import gestorAplicacion.gestion.Pedido;
-import gestorAplicacion.gestion.Producto;
-import gestorAplicacion.gestion.Servicio;
+import gestorAplicacion.gestion.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -412,8 +409,6 @@ public class FuncionalidadesReserva {
             opcionCiclo = sc.nextInt();
         }
 
-
-
     }
 
     public static void realizarReserva() {
@@ -481,11 +476,50 @@ public class FuncionalidadesReserva {
 
     }
 
-    public static void modificarReserva(){
+    public static void modificarReserva(Reserva reserva){
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Que va a modificar ?");
+        System.out.println("1. Modificar el espacio y la fecha.");
+        System.out.println("2. Modificar la fecha de la reserva.");
+        System.out.println("3. Modificar el pedido.");
+        System.out.println("4. Salir y volver atras");
+        int opcion = sc.nextInt();
+        while (opcion<0 || opcion >4){
+            System.out.println("Por favor ingrese una opcion valida");
+            opcion = sc.nextInt();
+        }
+        while(opcion != 4){
+            if (opcion == 1){
+                System.out.println("A continuacion se le mostraran los espacios disponibles");
+                reserva.getEspacio().reordenarFechas(reserva); // elimina la fecha previmente seleccionada y la vuelve a poner en orden en la lista de las fechas disponibles
+                for (int i = 0; i < Espacio.getListado().size(); i++) {
+                    System.out.println(i+". "+Espacio.getListado().get(i).getNombre());
+                }
+                System.out.println("Por favor ingrese una opcion");
+                int opcionEspacio = sc.nextInt();
+                while(opcionEspacio< 0 || opcionEspacio >= Espacio.getListado().size()){
+                    System.out.println("Por favor ingrese una opcion valida");
+                    opcionEspacio= sc.nextInt();
+                }
+                reserva.setEspacio(Espacio.getListado().get(opcionEspacio));
+            }
+            else if (opcion == 2){
+                reserva.getEspacio().reordenarFechas(reserva); // elimina la fecha previmente seleccionada y la vuelve a poner en orden en la lista de las fechas disponibles
+                System.out.println("A continuacion se mostraran las fechas disponibles para su espacio previamente seleccionado");
+                LocalDate nuevaFecha = reserva.getEspacio().seleccionarFecha(10); // Se emplea el metodo para volver a seleccionar la fecha del espacio seleccionado
+                reserva.setFechaReserva(nuevaFecha);
 
+            }
+            else if(opcion == 3){
+                System.out.println("A continuacion podra modificar su pedido");
+                agregarProductos(reserva.getPedido());
+            }
+            opcion = 4;
+        }
     }
 
-    public static void eliminarReserva(){
+    public static void eliminarReserva(Reserva reserva){
+
 
     }
 

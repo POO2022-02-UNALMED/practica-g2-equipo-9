@@ -44,7 +44,7 @@ public class Espacio {
         for (int i = 0; i < n; i++) {
             System.out.println(i+". "+this.getFechas().get(i));
         }
-        System.out.println("Por favor ingrese la opcion correspondiente a la fecha que deas seleccionar");
+        System.out.println("Por favor ingrese la opcion correspondiente a la fecha que desea seleccionar");
         int opcion = sc.nextInt();
 
         while (opcion<0 || opcion >=n){ //verificar que el usuario ingrese una opcion valida
@@ -52,10 +52,16 @@ public class Espacio {
             opcion=sc.nextInt();
         }
         this.getFechas().remove(opcion); // se quita la disponibilidad de la fecha seleccionada
-
         return this.getFechas().get(opcion); //retorna la fecha tomada por el usuario
     }
-    public void reordenarFechas(){ //metodo utilizado para reordenar las fechas disponibles una vez se cancela una reserva de un espacio
+    public void reordenarFechas(Reserva reserva){ //metodo utilizado para reordenar las fechas disponibles una vez se cancela o modifica una reserva de un espacio
+        for (int i = 0; i < fechas.size(); i++) {
+            if(fechas.get(i).isBefore(reserva.getFechaReserva()) && fechas.get(i+1).isAfter(reserva.getFechaReserva())){
+                fechas.add(i+1, reserva.getFechaReserva());
+            }
+            reserva.setFechaReserva(null);
+        }
+
 
 
     }
