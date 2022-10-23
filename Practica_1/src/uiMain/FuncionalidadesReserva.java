@@ -473,7 +473,6 @@ public class FuncionalidadesReserva {
         agregarProductos(pedidoReserva); // se llama al metodo agregar productos
 
 
-
     }
 
     public static void modificarReserva(Reserva reserva){
@@ -527,8 +526,11 @@ public class FuncionalidadesReserva {
             }
         }
         else{
+            reserva.setEstado("Cancelada");
             System.out.println("Ha excedido la fecha limite para cancelar la reserva");
+            reserva.setPagoCancelacion(100); // se pone una multa de 100 por cancelar la reserva o no cumplirla para las fechas establecidas
         }
+        System.out.println(reserva.toString());
     }
 
 

@@ -26,6 +26,7 @@ public class Reserva  {
 
     //CONSTRUCTORES
 
+
     public Reserva(String estado, Cliente cliente, ArrayList<Servicio> servicios, LocalDate fechaReserva, LocalDate fechaCreacion, Pedido pedido) {
         this.idReserva = numReservas;
         this.estado = estado;
@@ -110,6 +111,14 @@ public class Reserva  {
 
     public void setEspacio(Espacio espacio) {
         this.espacio = espacio;
+    }
+
+    public int getPagoCancelacion() {
+        return pagoCancelacion;
+    }
+
+    public void setPagoCancelacion(int pagoCancelacion) {
+        this.pagoCancelacion = pagoCancelacion;
     }
 
     public int calcularPrecioReserva(){ // metodo para calcular el total a pagar en la reserva

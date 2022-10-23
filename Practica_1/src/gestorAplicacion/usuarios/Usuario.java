@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.*;
 
-public abstract class Usuario implements Serializable {
+public abstract class Usuario {
 
     //ATRIBUTOS DE INSTANCIA
     protected long codigo;
@@ -50,53 +50,9 @@ public abstract class Usuario implements Serializable {
     //OTROS METODOS
     private static void generarCodigo() {}
 
-    //SERIALIZACION
-    public void Save() {
-        try{
-            FileOutputStream archivo_usuarios_datos = new FileInputStream("/usuario.dat");
 
-            ObjectOutputStream usuarios_datos = new ObjectOutputStream(archivo_usuarios_datos);
-        
-            usuarios_datos.writeObject(usuarios);
-        
-            usuarios_datos.close();
-
-            archivo_usuarios_datos.close();
-
-            System.out.println("DATOS GUARDADOS");
-        }
-        
-        catch (Exception u){
-            System.out.println("ERROR");
-        }
-    }
     
-    public void Load (){
-        try{
-            FileOutputStream archivo_usuarios_recuperar = new FileInputStream("/usuario.dat");
-            
-            ObjectInputStream usuarios_recuperar= new ObjectInputStream(archivo_usuarios_recuperar);
 
-            //DEVUELVE LOS DATOS EN TIPO ARRAY
-            Usuario[] usuarios_recuperados=(Usuario[]) usuarios_recuperar.readObject();
-                
-            usuarios_recuperar.close();
-
-            archivo_usuarios_recuperar.close();
-
-            //IMPRIME LOS DATOS DE FORMA INDIVIDUAL
-            for (Usuario uu: usuarios_recuperados){
-                System.out.println(uu);
-            }
-                
-            System.out.println("DATOS CARGADOS");
-        }
-            
-        catch (Exception uu){
-            System.out.println("ERROR");
-        }
-
-    }
 }
 
 
