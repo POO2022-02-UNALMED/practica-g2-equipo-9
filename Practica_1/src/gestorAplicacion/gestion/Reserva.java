@@ -24,9 +24,16 @@ public class Reserva {
 
     //CONSTRUCTORES
 
+
+    public Reserva() {
+        this.fechaCreacion = LocalDate.now();
+        this.idReserva = numReservas;
+        numReservas++;
+    }
+
     public Reserva(Cliente cliente){
+        this();
         this.cliente = cliente;
-        fechaCreacion=LocalDate.now();
     }
 
 

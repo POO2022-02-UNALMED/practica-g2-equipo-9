@@ -424,6 +424,7 @@ public class FuncionalidadesReserva {
             System.out.println("Por favor ingrese una opcion valida");
             opcion = sc.nextInt();
         }
+        Reserva reservaCreada = new Reserva();
         while (opcion == 1){
             System.out.println("Por favor ingrese su id");
             int idCliente = sc.nextInt();
@@ -431,7 +432,8 @@ public class FuncionalidadesReserva {
                  Cliente.getClientes()) {
                 if (cliente.getCodigo()==idCliente){
                     System.out.println("Bienvenido "+cliente.getNombre());
-                    Reserva reservaCreada = new Reserva(cliente);
+                    reservaCreada.setCliente(cliente);
+                    //Reserva reservaCreada = new Reserva(cliente);
                     opcion = 0;
                 }
                 else if (cliente.equals(Cliente.getClientes().get(-1))) {
@@ -444,9 +446,10 @@ public class FuncionalidadesReserva {
             System.out.println("Por favor ingrese su nombre");
             String nombreCliente = sc.next();
             Cliente cliente = new Cliente(nombreCliente);
-            Reserva reservaCreada = new Reserva(cliente);
+            reservaCreada.setCliente(cliente);
             System.out.println("Su registro a sido exitoso");
             opcion = 0;
+
         }
 
         System.out.println("Por favor escoja un sitio a reservar disponible");
@@ -493,7 +496,8 @@ public class FuncionalidadesReserva {
             }
             serviciosTomados.add(serviciosDisponibles.get(opcionServicio)); // se añade al ArrayList el serivicio tomado
             serviciosDisponibles.remove((Integer)opcionServicio); // se elimina de servicios disponibles ya que fue tomado previamente
-            System.out.println(serviciosTomados);
+            System.out.println("SERIVICIOS DISPONIBLES  ");
+            System.out.println(serviciosDisponibles);
             System.out.println("Desea agregar mas servicios ?");
             System.out.println("1. Si");
             System.out.println("2. No");
@@ -508,6 +512,10 @@ public class FuncionalidadesReserva {
         //PRODUCTOS A AGREGAR EN LA RESERVA Y SU CANTIDAD
         Pedido pedidoReserva = new Pedido();
         agregarProductos(pedidoReserva); // se llama al metodo agregar productos
+        reservaCreada.setPedido(pedidoReserva);
+        reservaCreada.setFechaReserva(fechaTomada);
+        reservaCreada.setServicios((ArrayList<Servicio>) serviciosTomados);
+
 
     }
 
@@ -652,10 +660,6 @@ public class FuncionalidadesReserva {
         new Producto("speed max", "No vendido", 1, 2, 6);
         new Producto("speed max", "No vendido", 1, 2, 6);
         new Producto("speed max", "No vendido", 1, 2, 6);
-
-
-
-
 
 
         realizarReserva();
