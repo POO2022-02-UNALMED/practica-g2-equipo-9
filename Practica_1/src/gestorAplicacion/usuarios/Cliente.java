@@ -25,7 +25,12 @@ public class Cliente extends Usuario {
 
 
     //CONSTRUCTOR
+    public Cliente(String nombre){
+        super(generarCodigo(), nombre);
+        clientes.add(this);
+    }
 
+<<<<<<< Updated upstream
     public Cliente(String nombre, int numeroReserva, String estadoReserva, Pedido pedido, ArrayList<Pedido> historialPedidos) {
         super(generarCodigo(), nombre);
         this.numeroReserva = numeroReserva;
@@ -33,6 +38,13 @@ public class Cliente extends Usuario {
         this.pedido = pedido;
         this.historialPedidos = historialPedidos;
         clientes.add(this);
+=======
+    public Cliente(String nombre, int numeroReserva, String estadoReserva, Pedido pedido) {
+        this(nombre); // sobrecarga de metodos
+        this.numeroReserva = numeroReserva;
+        this.estadoReserva = estadoReserva;
+        this.pedido = pedido;
+>>>>>>> Stashed changes
     }
 
 
@@ -40,8 +52,8 @@ public class Cliente extends Usuario {
     //OTROS METODOS
 
     private static long generarCodigo(){
-
-        return numeroCliente++;
+        numeroCliente++;
+        return numeroCliente;
     }
 
     public static String mostrarClientes(){ //Muestra todos los clientes con pedidos "No pagado"
