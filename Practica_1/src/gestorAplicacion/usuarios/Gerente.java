@@ -22,6 +22,13 @@ public class Gerente extends Empleado implements Sueldo, Serializable{
         gerentes.add(this);
     }
 
+   /* // SOBRE CARGA DEL CONSTRUCTOR.
+    //  No toma parámetros y llama al constructor usando valores predeterminados.
+    public Gerente() {
+        this("NN", false, null);
+    }*/
+
+
     //OTROS METODOS
     public static long generarCodigo(){
         return numeroGerente++;

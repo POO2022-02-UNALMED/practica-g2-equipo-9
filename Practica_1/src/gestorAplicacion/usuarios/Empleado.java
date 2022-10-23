@@ -11,7 +11,6 @@ public abstract class Empleado extends Usuario {
     protected double sueldo;
     protected boolean estadoIngreso;
 
-
     protected LocalDate fechaVinculacion; //fecha cuando se creo el empleado
 
     protected LocalDate fechaIngreso; //fecha cuando ingreso el empleado
