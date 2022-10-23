@@ -5,13 +5,13 @@ import gestorAplicacion.gestion.Pedido;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class Cliente extends Usuario implements Serializable{
+public class Cliente extends Usuario {
 
     //ATRIBUTOS DE INSTANCIA
     private int numeroReserva;
     private String estadoReserva;
     private Pedido pedido;//Pedido de cliente
-
+    private ArrayList<Pedido> pedidos=new ArrayList<>();
 
     //ATRIBUTOS DE CLASE
     private static ArrayList<Cliente> clientes=new ArrayList<>();
@@ -22,6 +22,10 @@ public class Cliente extends Usuario implements Serializable{
 
 
     //CONSTRUCTOR
+
+    public Cliente() {
+        super(0, "N/A");
+    }
 
     public Cliente(String nombre, int numeroReserva, String estadoReserva, Pedido pedido) {
         super(generarCodigo(), nombre);
@@ -107,28 +111,6 @@ public class Cliente extends Usuario implements Serializable{
     }
 
 
-    //SERIALIZACION
-    try{
-        ObjectOutputStream clientes_datos = new ObjectOutputStream(new FileOutputStream("/cliente.dat"));
-    
-        clientes_datos.writeObject(clientes);
-    
-        clientes_datos.close();
-    
-        ObjectInputStream clientes_recuperar= new ObjectInputStream(new FileInputStream("/cliente.dat"));
-    
-        //DEVUELVE LOS DATOS EN TIPO ARRAY
-        Cliente[] clientes_recuperados=(Cliente[]) clientes_recuperar.readObject();
-    
-        clientes_recuperar.close();
-    
-        //IMPRIME LOS DATOS DE FORMA INDIVIDUAL
-        for (Cliente c: clientes_recuperados){
-            System.out.printIn(c);
-        }
-    }
-    catch (Exception c){
-    }
 
 
 }

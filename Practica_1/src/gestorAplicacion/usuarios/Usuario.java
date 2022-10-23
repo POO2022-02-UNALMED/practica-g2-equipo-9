@@ -3,7 +3,7 @@ package gestorAplicacion.usuarios;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public abstract class Usuario implements Serializable {
+public abstract class Usuario {
 
     //ATRIBUTOS DE INSTANCIA
     protected long codigo;
@@ -49,27 +49,6 @@ public abstract class Usuario implements Serializable {
     //OTROS METODOS
     private static void generarCodigo() {}
 
-    //SERIALIZACION
-    try{
-        ObjectOutputStream usuarios_datos = new ObjectOutputStream(new FileOutputStream("/usuario.dat"));
 
-        usuarios_datos.writeObject(usuarios);
-
-        usuarios_datos.close();
-
-        ObjectInputStream usuarios_recuperar= new ObjectInputStream(new FileInputStream("/usuario.dat"));
-
-        //DEVUELVE LOS DATOS EN TIPO ARRAY
-        Usuario[] usuarios_recuperados=(Usuario[]) usuarios_recuperar.readObject();
-
-        usuarios_recuperar.close();
-
-        //IMPRIME LOS DATOS DE FORMA INDIVIDUAL
-        for (Usuario u: usuarios_recuperados){
-            System.out.printIn(u);
-        }
-    }
-    catch (Exception u){
-    }
 }
 

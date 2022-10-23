@@ -1,9 +1,12 @@
 package gestorAplicacion.usuarios;
 
+import gestorAplicacion.gestion.Pedido;
+import gestorAplicacion.gestion.Producto;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class Gerente extends Empleado implements Sueldo, Serializable{
+public class Gerente extends Empleado implements Sueldo{
 
     //ATRIBUTOS DE INSTANCIA
 
@@ -14,10 +17,11 @@ public class Gerente extends Empleado implements Sueldo, Serializable{
     private static ArrayList<Gerente>gerentes=new ArrayList<>();
 
 
+
     //CONSTRUCTOR
 
-    public Gerente(String nombre, boolean estadoIngreso, LocalDate fechaIngreso) {
-        super(generarCodigo(), nombre, "Gerente", Sueldo.sueldoBase*2, estadoIngreso, fechaIngreso);
+    public Gerente(String nombre, LocalDate fechaIngreso) {
+        super(generarCodigo(), nombre, "Gerente", Sueldo.sueldoBase*2, fechaIngreso);
         gerentes.add(this);
     }
 
@@ -69,30 +73,6 @@ public class Gerente extends Empleado implements Sueldo, Serializable{
     public static void setGerentes(ArrayList<Gerente> gerentes) {
         Gerente.gerentes = gerentes;
     }
-
-    //SERIALIZACION
-    try{
-        ObjectOutputStream gerentes_datos = new ObjectOutputStream(new FileOutputStream("/gerente.dat"));
-    
-        gerentes_datos.writeObject(gerentes);
-    
-        gerentes_datos.close();
-    
-        ObjectInputStream gerentes_recuperar= new ObjectInputStream(new FileInputStream("/gerente.dat"));
-    
-        //DEVUELVE LOS DATOS EN TIPO ARRAY
-        Gerente[] gerentes_recuperados=(Gerente[]) gerentes_recuperar.readObject();
-    
-        gerentes_recuperar.close();
-    
-        //IMPRIME LOS DATOS DE FORMA INDIVIDUAL
-        for (Gerentes g: gerentes_recuperados){
-            System.out.printIn(g);
-        }
-    }
-    catch (Exception g){
-    }
-
 
 
 }

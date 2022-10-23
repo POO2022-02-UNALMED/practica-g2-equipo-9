@@ -2,13 +2,14 @@
 package gestorAplicacion.gestion;
 
 import gestorAplicacion.usuarios.Cliente;
+import gestorAplicacion.usuarios.Gerente;
 import gestorAplicacion.usuarios.Trabajador;
 
 import java.time.LocalDate;
 import java.util.*;
 
 
-public class Pedido implements Serializable {
+public class Pedido {
 
     //ATRIBUTOS DE INSTANCIA
 
@@ -39,6 +40,7 @@ public class Pedido implements Serializable {
         this.servicios = servicios;
         this.fechaPedido = fechaPedido;
         this.codigo = codigo;
+        pedidos.add(this);
     }
 
     public Pedido(Trabajador trabajador, Cliente cliente, String estadoPedido, ArrayList<Producto> productos, ArrayList<Servicio> servicios, LocalDate fechaPedido) {
@@ -53,6 +55,8 @@ public class Pedido implements Serializable {
     }
 
     //GETTERS Y SETTERS
+
+
     public Trabajador getTrabajador() {
         return trabajador;
     }
@@ -134,32 +138,9 @@ public class Pedido implements Serializable {
         return numeroPedido++;
     }
 
-    //SERIALIZACION
-    try{
-        ObjectOutputStream pedidos_datos = new ObjectOutputStream(new FileOutputStream("/pedido.dat"));
-    
-        pedidos_datos.writeObject(pedidos);
-    
-        pedidos_datos.close();
-    
-        ObjectInputStream pedidos_recuperar= new ObjectInputStream(new FileInputStream("/pedido.dat"));
-    
-        //DEVUELVE LOS DATOS EN TIPO ARRAY
-        Pedido[] pedidos_recuperados=(Pedido[]) pedidos_recuperar.readObject();
-    
-        pedidos_recuperar.close();
-    
-        //IMPRIME LOS DATOS DE FORMA INDIVIDUAL
-        for (Pedido p: pedidos_recuperados){
-            System.out.printIn(p);
-        }
-    }
-    catch (Exception p){
-    }
 
 
     public String generarFactura(){
-
         String productos ="Productos: " +
                 "\nNombre........Cantidad.......Precio";
         HashMap<String, Double> nombreYprecio = new HashMap<>();
@@ -174,7 +155,7 @@ public class Pedido implements Serializable {
         }
         long i = 1;
         for (String clave : nombreYprecio.keySet()) {
-            productos += "\n" + i + ". " + clave + "...." + Collections.frequency(nombre, clave) + "......" + nombreYprecio.get(clave) * Collections.frequency(nombre, clave);
+            productos += "\n" + i + ". Nombre: " + clave + ", Cantidad pedida: " + Collections.frequency(nombre, clave) + "......" + "Precio: "+nombreYprecio.get(clave) * Collections.frequency(nombre, clave);
             i++;
         }
 
@@ -186,11 +167,16 @@ public class Pedido implements Serializable {
         double totalServicios=0;
         SortedSet<Servicio> servicioNoRepetido=new TreeSet<>();
         for(Servicio servicio: this.getServicios()){
-            servicios+="\n"+b+". "+servicio+" "+ Collections.frequency(this.getServicios(),servicio)+"....."+Collections.frequency(this.getServicios(),servicio)* servicio.getPrecio();
+            if(servicioNoRepetido.contains(servicio)==false){
+                servicios+="\n"+b+". Servicio: "+servicio+", Cantidad: "+ Collections.frequency(this.getServicios(),servicio)+"....."+"Precio: "+Collections.frequency(this.getServicios(),servicio)* servicio.getPrecio();
+                b++;
+            }
             totalServicios+=servicio.getPrecio();
-            b++;
+            servicioNoRepetido.add(servicio);
+
         }
         servicios += "\nTotal de servicios:" + totalServicios;
+
 
 
         String s="";
@@ -201,8 +187,8 @@ public class Pedido implements Serializable {
                 "\nVendido por "+this.getTrabajador().getNombre()+" con codigo "+this.getTrabajador().getCodigo()+
                 "\n"+productos+
                 "\n"+servicios+
-                "\nTotal:"+totalProductos+totalServicios+
-                "\n======================================";
+                "\nTotal:"+ (totalProductos+totalServicios)+
+                "\n===========================================";
         return s;
     }
     public void pagarPedido(){

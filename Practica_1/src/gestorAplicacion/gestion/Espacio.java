@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 
-public class Espacio implements Serializable {
+public class Espacio {
     //ATRIBUTOS DE INSTANCIA
     private String nombre;
 
@@ -37,27 +37,6 @@ public class Espacio implements Serializable {
         this.fechas = fechas;
     }
 
-    //SERIALIZACION
-    try{
-        ObjectOutputStream espacios_datos = new ObjectOutputStream(new FileOutputStream("/espacio.dat"));
-    
-        espacios_datos.writeObject(listado);
-    
-        espacios_datos.close();
-    
-        ObjectInputStream espacios_recuperar= new ObjectInputStream(new FileInputStream("/espacio.dat"));
-    
-        //DEVUELVE LOS DATOS EN TIPO ARRAY
-        Espacio[] espacios_recuperados=(Espacio[]) espacios_recuperar.readObject();
-    
-        espacios_recuperar.close();
-    
-        //IMPRIME LOS DATOS DE FORMA INDIVIDUAL
-        for (Espacio s: espacios_recuperados){
-            System.out.printIn(s);
-        }
-    }
-    catch (Exception s){
-    }
+
 
 }

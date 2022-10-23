@@ -6,7 +6,7 @@ import gestorAplicacion.gestion.Producto;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class Trabajador extends Empleado implements Sueldo, Serializable{
+public class Trabajador extends Empleado implements Sueldo{
 
     //ATRIBUTOS DE INSTANCIA
     private int saldoFinal;
@@ -25,18 +25,18 @@ public class Trabajador extends Empleado implements Sueldo, Serializable{
 
     //CONSTRUCTOR
 
-    public Trabajador(String nombre, boolean estadoIngreso, LocalDate fechaIngreso, int saldoFinal, ArrayList<Cliente> ventasDia) {
-        super(generarCodigo(), nombre,"trabajador", Sueldo.sueldoBase, estadoIngreso, fechaIngreso);
+    public Trabajador(String nombre, LocalDate fechaIngreso, int saldoFinal, ArrayList<Cliente> ventasDia) {
+        super(generarCodigo(), nombre,"trabajador", Sueldo.sueldoBase, fechaIngreso);
         this.saldoFinal = saldoFinal;
         this.ventasDia = ventasDia;
         trabajadores.add(this);
     }
 
-
-
-
-
-
+    public Trabajador(String nombre, LocalDate fechaVinculacion, LocalDate fechaIngreso, int saldoFinal, ArrayList<Cliente> ventasDia) {
+        super(generarCodigo(), nombre, "Trabajador", Sueldo.sueldoBase, fechaVinculacion, fechaIngreso);
+        this.saldoFinal = saldoFinal;
+        this.ventasDia = ventasDia;
+    }
     //GETTERS Y SETTERS
 
     public int getSaldoFinal() {
@@ -108,7 +108,7 @@ public class Trabajador extends Empleado implements Sueldo, Serializable{
         String s="";
         int i =1;
         for (Trabajador trabajador: Trabajador.getTrabajadores()){
-            s+="\n"+i+". Codigo: "+trabajador.getCodigo()+" Nombre: "+trabajador.getNombre();
+            s+="\n"+i+". Codigo: "+trabajador.getCodigo()+", Nombre: "+trabajador.getNombre();
             i++;
         }
         return s;
@@ -125,28 +125,7 @@ public class Trabajador extends Empleado implements Sueldo, Serializable{
     }
 
 
-    //SERIALIZACION
-    try{
-        ObjectOutputStream trabajadores_datos = new ObjectOutputStream(new FileOutputStream("/trabajador.dat"));
-    
-        trabajadores_datos.writeObject(trabajadores);
-    
-        trabajadores_datos.close();
-    
-        ObjectInputStream trabajadores_recuperar= new ObjectInputStream(new FileInputStream("/trabajador.dat"));
-    
-        //DEVUELVE LOS DATOS EN TIPO ARRAY
-        Trabajador[] trabajadores_recuperados=(Trabajador[]) trabajadores_recuperar.readObject();
-    
-        trabajadores_recuperar.close();
-    
-        //IMPRIME LOS DATOS DE FORMA INDIVIDUAL
-        for (Trabajador t: trabajadores_recuperados){
-            System.out.printIn(t);
-        }
-    }
-    catch (Exception t){
-    }
+
 
 }
  
