@@ -3,6 +3,7 @@ package uiMain;
 import java.time.LocalDate;
 
 import gestorAplicacion.gestion.*;
+import gestorAplicacion.usuarios.Cliente;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -414,13 +415,46 @@ public class FuncionalidadesReserva {
     public static void realizarReserva() {
         Scanner sc = new Scanner(System.in);
         System.out.println("Bienvenido al menu para realizar una Reserva");
+        System.out.println("Es usted un cliente registrado ?");
+        System.out.println("1. Si");
+        System.out.println("2. No");
+        int opcion = sc.nextInt();
+        while(opcion != 1 && opcion!= 2){
+            System.out.println("Por favor ingrese una opcion valida");
+            opcion = sc.nextInt();
+        }
+        while (opcion == 1){
+            System.out.println("Por favor ingrese su id");
+            int idCliente = sc.nextInt();
+            for (Cliente cliente:
+                 Cliente.getClientes()) {
+                if (cliente.getCodigo()==idCliente){
+                    System.out.println("Bienvenido "+cliente.getNombre());
+                    Reserva reservaCreada = new Reserva(cliente);
+                    opcion = 0;
+                }
+                else if (cliente.equals(Cliente.getClientes().get(-1))) {
+                    System.out.println("Usuario no encontrado por favor verifique el id");
+                }
+            }
+        }
+
+        while (opcion ==2){
+            System.out.println("Por favor ingrese su nombre");
+            String nombreCliente = sc.next();
+            Cliente cliente = new Cliente(nombreCliente);
+            Reserva reservaCreada = new Reserva(cliente);
+            System.out.println("Su registro a sido exitoso");
+            opcion = 0;
+        }
+
         System.out.println("Por favor escoja un sitio a reservar disponible");
         ArrayList<Espacio> espaciosDisponibles = Espacio.getListado();
         for (int i = 0; i < espaciosDisponibles.size(); i++) { // ciclo para mostrar los espacios disponibles
             System.out.println(i + ". " + espaciosDisponibles.get(i).getNombre());
         }
         System.out.println("Ingrese su opcion: ");
-        int opcion = sc.nextInt();
+
         while (opcion < 0 || opcion >= (espaciosDisponibles.size())) {
             System.out.println("Por favor ingrese una opcion valida: ");
             opcion = sc.nextInt();
@@ -515,6 +549,7 @@ public class FuncionalidadesReserva {
             }
             opcion = 4;
         }
+        System.out.println(reserva.toString());
     }
 
     public static void cancelarReserva(Reserva reserva){
@@ -531,6 +566,10 @@ public class FuncionalidadesReserva {
             reserva.setPagoCancelacion(100); // se pone una multa de 100 por cancelar la reserva o no cumplirla para las fechas establecidas
         }
         System.out.println(reserva.toString());
+    }
+
+    public static void main(String[] args) {
+        realizarReserva();
     }
 
 
