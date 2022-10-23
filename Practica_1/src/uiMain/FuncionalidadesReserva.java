@@ -2,10 +2,7 @@ package uiMain;
 
 import java.time.LocalDate;
 
-import gestorAplicacion.gestion.Espacio;
-import gestorAplicacion.gestion.Pedido;
-import gestorAplicacion.gestion.Producto;
-import gestorAplicacion.gestion.Servicio;
+import gestorAplicacion.gestion.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -14,7 +11,7 @@ import java.util.Scanner;
 
 public class FuncionalidadesReserva {
 
-    public static void agregarProductos(Pedido pedidoReserva){
+    public static void agregarProductos(Pedido pedidoReserva){ // metodo para agregar los productos al pedido asociado a la reserva
         Scanner sc = new Scanner(System.in);
         int opcionCiclo = sc.nextInt();
         while(opcionCiclo != 2){
@@ -40,7 +37,7 @@ public class FuncionalidadesReserva {
                         System.out.println(i+". "+Producto.getBebidasAlcoholicas().get(i).getNombre()+" Precio: "+Producto.getBebidasAlcoholicas().get(i).getPrecioVenta());
                     }
                     System.out.println("Ingrese el numero de producto");
-                    System.out.println("o ingrese 5 para ver todos los prodductos de esta categoria");
+                    System.out.println("o ingrese 5 para ver todos los productos de esta categoria");
                     int opcionProducto = sc.nextInt();
                     while(opcionProducto<0 || opcionProducto>5){
                         System.out.println("Por favor ingrese una opcion valida");
@@ -412,8 +409,6 @@ public class FuncionalidadesReserva {
             opcionCiclo = sc.nextInt();
         }
 
-
-
     }
 
     public static void realizarReserva() {
@@ -431,22 +426,13 @@ public class FuncionalidadesReserva {
             opcion = sc.nextInt();
         }
 
-        Espacio espacioTomado = espaciosDisponibles.get(opcion); // seleciona el espacio del atributo de clase espaciosDisponibles
+        Espacio espacioTomado = espaciosDisponibles.get(opcion); // seleciona el espacio deseado por el usuario
 
 
         System.out.println("A continuacion le presentamos la disponibildiad del espacio: ");
 
-        for (int i = 0; i < 10; i++) { // imprime los primeros 10 dias disponibles
-            System.out.println(i + ". " + espacioTomado.getFechas().get(i));
-        }
-        System.out.println("Escoja una opcion ");
-        opcion = sc.nextInt();
-        while (opcion < 0 || opcion >= 10) {
-            System.out.println("Por favor ingrese una opcion valida: ");
-            opcion = sc.nextInt();
-        }
-        LocalDate fechaTomada = espacioTomado.getFechas().get(opcion);
-        espacioTomado.getFechas().remove(opcion); // se quita la disponibilidad de la fecha seleccionada
+        LocalDate fechaTomada = espacioTomado.seleccionarFecha(10); // le muestra y permite selccionar al usuario uno de los 10 primeros dias disponibles para el espacio tomado
+
         System.out.println("Desea agregar servicios adicionales a la reserva? ");
         System.out.println("1. Si ");
         System.out.println("2. No ");
@@ -457,7 +443,7 @@ public class FuncionalidadesReserva {
         }
         List<Servicio> serviciosDisponibles = Arrays.asList(Servicio.values()); // Convierte el Array de Servicio a ArrayList de Servicio
 
-        while (opcion ==1 || serviciosDisponibles.size()!=0){ // loop para mostrar los serviicios a escoger por el cliente
+        while (opcion ==1 || serviciosDisponibles.size()!=0){ // loop para mostrar los servicios a escoger por el cliente
 
             List<Servicio> serviciosTomados = new ArrayList<>();
             for (int i = 0; i < serviciosDisponibles.size(); i++) {
@@ -484,16 +470,65 @@ public class FuncionalidadesReserva {
 
         //PRODUCTOS A AGREGAR EN LA RESERVA Y SU CANTIDAD
         Pedido pedidoReserva = new Pedido();
-        agregarProductos(pedidoReserva);
+        agregarProductos(pedidoReserva); // se llama al metodo agregar productos
 
 
 
+    }
 
+    public static void modificarReserva(Reserva reserva){
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Que va a modificar ?");
+        System.out.println("1. Modificar el espacio y la fecha.");
+        System.out.println("2. Modificar la fecha de la reserva.");
+        System.out.println("3. Modificar el pedido.");
+        System.out.println("4. Salir y volver atras");
+        int opcion = sc.nextInt();
+        while (opcion<0 || opcion >4){
+            System.out.println("Por favor ingrese una opcion valida");
+            opcion = sc.nextInt();
+        }
+        while(opcion != 4){
+            if (opcion == 1){
+                System.out.println("A continuacion se le mostraran los espacios disponibles");
+                reserva.getEspacio().reordenarFechas(reserva); // elimina la fecha previmente seleccionada y la vuelve a poner en orden en la lista de las fechas disponibles
+                for (int i = 0; i < Espacio.getListado().size(); i++) {
+                    System.out.println(i+". "+Espacio.getListado().get(i).getNombre());
+                }
+                System.out.println("Por favor ingrese una opcion");
+                int opcionEspacio = sc.nextInt();
+                while(opcionEspacio< 0 || opcionEspacio >= Espacio.getListado().size()){
+                    System.out.println("Por favor ingrese una opcion valida");
+                    opcionEspacio= sc.nextInt();
+                }
+                reserva.setEspacio(Espacio.getListado().get(opcionEspacio));
+            }
+            else if (opcion == 2){
+                reserva.getEspacio().reordenarFechas(reserva); // elimina la fecha previmente seleccionada y la vuelve a poner en orden en la lista de las fechas disponibles
+                System.out.println("A continuacion se mostraran las fechas disponibles para su espacio previamente seleccionado");
+                LocalDate nuevaFecha = reserva.getEspacio().seleccionarFecha(10); // Se emplea el metodo para volver a seleccionar la fecha del espacio seleccionado
+                reserva.setFechaReserva(nuevaFecha);
 
+            }
+            else if(opcion == 3){
+                System.out.println("A continuacion podra modificar su pedido");
+                agregarProductos(reserva.getPedido());
+            }
+            opcion = 4;
+        }
+    }
 
-
-
-
+    public static void cancelarReserva(Reserva reserva){
+        if (LocalDate.now().isAfter(reserva.getFechaReserva())){ //verifica que aun se pueda cancelar la reserva comparandolo con el dia actual
+            reserva.setEstado("Cancelada");
+            for (Producto producto: //ciclo para cambiar el estado a los prductos que estaban en el pedido asociado a la reserva
+                    reserva.getPedido().getProductos()) {
+                producto.setEstado("No vendido");
+            }
+        }
+        else{
+            System.out.println("Ha excedido la fecha limite para cancelar la reserva");
+        }
     }
 
 

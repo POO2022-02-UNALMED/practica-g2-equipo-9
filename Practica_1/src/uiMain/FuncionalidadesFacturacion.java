@@ -744,7 +744,7 @@ public class FuncionalidadesFacturacion {
                 System.out.println(serviciosEscogidos);
                 System.out.println("Ingresar nombre del cliente:");
                 String nombreCliente= entrada.next();
-                Cliente cliente =new Cliente(nombreCliente,0,null,null);
+                Cliente cliente =new Cliente(nombreCliente,0,null,null, null);
                 Pedido pedido=new Pedido(trabajadorSeleccionado,cliente,"No pagado",productosEscogidos,serviciosEscogidos, LocalDate.now());
                 cliente.setPedido(pedido);
                 System.out.println("Ingrese para:");

@@ -2,12 +2,14 @@ package gestorAplicacion.usuarios;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.io.Serializable;
+import java.util.*;
 
 public abstract class Empleado extends Usuario {
     //ATRIBUTOS DE INSTANCIA
     protected String cargo;
     protected double sueldo;
-
+    protected boolean estadoIngreso;
 
     protected LocalDate fechaVinculacion; //fecha cuando se creo el empleado
 
@@ -20,23 +22,17 @@ public abstract class Empleado extends Usuario {
 
     //CONSTRUCTOR
 
-    public Empleado(long codigo, String nombre, String cargo, double sueldo, LocalDate fechaIngreso) {
+    public Empleado(long codigo, String nombre, String cargo, double sueldo, boolean estadoIngreso, LocalDate fechaIngreso) {
         super(codigo, nombre);
         this.cargo = cargo;
         this.sueldo = sueldo;
+        this.estadoIngreso = estadoIngreso;
         this.fechaVinculacion = LocalDate.now();
         this.fechaIngreso = fechaIngreso;
         empleados.add(this);
     }
 
-    public Empleado(long codigo, String nombre, String cargo, double sueldo, LocalDate fechaVinculacion, LocalDate fechaIngreso) {
-        super(codigo, nombre);
-        this.cargo = cargo;
-        this.sueldo = sueldo;
-        this.fechaVinculacion = fechaVinculacion;
-        this.fechaIngreso = fechaIngreso;
-        empleados.add(this);
-    }
+
     //GETTERS Y SETTERS
 
 
@@ -48,6 +44,13 @@ public abstract class Empleado extends Usuario {
         this.cargo = cargo;
     }
 
+    public boolean isEstadoIngreso() {
+        return estadoIngreso;
+    }
+
+    public void setEstadoIngreso(boolean estadoIngreso) {
+        this.estadoIngreso = estadoIngreso;
+    }
 
     public LocalDate getFechaVinculacion() {
         return fechaVinculacion;
@@ -96,7 +99,51 @@ public abstract class Empleado extends Usuario {
 
     public abstract double calculoDePrima();
 
+    //SERIALIZACION
+    public void Save() {
+        try{
+            FileOutputStream archivo_empleados_datos = new FileInputStream("/empleado.dat");
 
+            ObjectOutputStream empleados_datos = new ObjectOutputStream(archivo_empleados_datos);
+        
+            empleados_datos.writeObject(empleados);
+        
+            empleados_datos.close();
 
+            archivo_empleados_datos.close();
 
+            System.out.println("DATOS GUARDADOS");
+        }
+        
+        catch (Exception e){
+            System.out.println("ERROR");
+        }
+    }
+    
+    public void Load (){
+        try{
+            FileOutputStream archivo_empleados_recuperar = new FileInputStream("/empleado.dat");
+            
+            ObjectInputStream empleados_recuperar= new ObjectInputStream(archivo_empleados_recuperar);
+
+            //DEVUELVE LOS DATOS EN TIPO ARRAY
+            Empleado[] empleados_recuperados=(Empleado[]) empleados_recuperar.readObject();
+            
+            empleados_recuperar.close();
+
+            archivo_empleados_recuperar.close();
+
+            //IMPRIME LOS DATOS DE FORMA INDIVIDUAL
+            for (Usuario ee: empleados_recuperados){
+                System.out.println(ee);
+            }
+                
+            System.out.println("DATOS CARGADOS");
+        }
+            
+        catch (Exception ee){
+            System.out.println("ERROR");
+        }
+
+    }
 }

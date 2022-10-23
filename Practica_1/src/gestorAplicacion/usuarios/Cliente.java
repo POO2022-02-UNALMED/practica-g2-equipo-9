@@ -4,6 +4,7 @@ import gestorAplicacion.gestion.Pedido;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.*;
 
 public class Cliente extends Usuario {
 
@@ -11,10 +12,12 @@ public class Cliente extends Usuario {
     private int numeroReserva;
     private String estadoReserva;
     private Pedido pedido;//Pedido de cliente
-    private ArrayList<Pedido> pedidos=new ArrayList<>();
+
 
     //ATRIBUTOS DE CLASE
     private static ArrayList<Cliente> clientes=new ArrayList<>();
+
+    private ArrayList<Pedido> historialPedidos = new ArrayList<Pedido>();
     private static long numeroCliente=0;
 
 
@@ -23,15 +26,12 @@ public class Cliente extends Usuario {
 
     //CONSTRUCTOR
 
-    public Cliente() {
-        super(0, "N/A");
-    }
-
-    public Cliente(String nombre, int numeroReserva, String estadoReserva, Pedido pedido) {
+    public Cliente(String nombre, int numeroReserva, String estadoReserva, Pedido pedido, ArrayList<Pedido> historialPedidos) {
         super(generarCodigo(), nombre);
         this.numeroReserva = numeroReserva;
         this.estadoReserva = estadoReserva;
         this.pedido = pedido;
+        this.historialPedidos = historialPedidos;
         clientes.add(this);
     }
 
@@ -110,6 +110,15 @@ public class Cliente extends Usuario {
         this.pedido = pedido;
     }
 
+    public String informacion() {
+        return "El cliente " + this.nombre + " con número de reserva " + this.numeroReserva+ " y estado de la reserva "
+                + this.estadoReserva + "Ha hecho "
+                + this.historialPedidos.size() + " pedidos en el sistema.";
+    }
+
+    public void agregarPedidoHistorial(Pedido pedido) {
+        historialPedidos.add(pedido);
+    }
 
 
 
