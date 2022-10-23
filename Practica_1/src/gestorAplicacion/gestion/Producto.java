@@ -54,6 +54,17 @@ public class Producto {
         this.codigo = Producto.numeroProducto;
     }
 
+    public Producto(String nombre, String estado, int precioCompra, int precioVenta, int tipo){
+        this();
+        this.nombre = nombre;
+        this.estado=estado;
+        this.precioCompra = precioCompra;
+        this.precioVenta = precioVenta;
+        this.tipo = tipo;
+        categorizarProdcuto(this);
+
+    }
+
     public Producto(Trabajador trabajador, String estado, String nombre, int precioCompra, int precioVenta, LocalDate fechaVencimiento, LocalDate fechaIngreso, LocalDate fechaVenta) {
         this.trabajador = trabajador;
         this.estado = estado;

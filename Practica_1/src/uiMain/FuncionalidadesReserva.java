@@ -13,6 +13,7 @@ import java.util.Scanner;
 public class FuncionalidadesReserva {
 
     public static void agregarProductos(Pedido pedidoReserva){ // metodo para agregar los productos al pedido asociado a la reserva
+        System.out.println("Por favor ingrese 1 para empezar");
         Scanner sc = new Scanner(System.in);
         int opcionCiclo = sc.nextInt();
         while(opcionCiclo != 2){
@@ -454,6 +455,8 @@ public class FuncionalidadesReserva {
             System.out.println(i + ". " + espaciosDisponibles.get(i).getNombre());
         }
         System.out.println("Ingrese su opcion: ");
+        List<Servicio> serviciosDisponibles = Arrays.asList(Servicio.values());
+        opcion = sc.nextInt();
 
         while (opcion < 0 || opcion >= (espaciosDisponibles.size())) {
             System.out.println("Por favor ingrese una opcion valida: ");
@@ -475,11 +478,10 @@ public class FuncionalidadesReserva {
             System.out.println("Por favor ingrese una opcion valdia");
             opcion = sc.nextInt();
         }
-        List<Servicio> serviciosDisponibles = Arrays.asList(Servicio.values()); // Convierte el Array de Servicio a ArrayList de Servicio
+         // Convierte el Array de Servicio a ArrayList de Servicio
+        List<Servicio> serviciosTomados = new ArrayList<>();
+        while (opcion ==1 && !serviciosDisponibles.isEmpty()){ // loop para mostrar los servicios a escoger por el cliente
 
-        while (opcion ==1 || serviciosDisponibles.size()!=0){ // loop para mostrar los servicios a escoger por el cliente
-
-            List<Servicio> serviciosTomados = new ArrayList<>();
             for (int i = 0; i < serviciosDisponibles.size(); i++) {
                 System.out.println(i+". "+serviciosDisponibles.get(i));
             }
@@ -490,7 +492,8 @@ public class FuncionalidadesReserva {
                 opcionServicio = sc.nextInt();
             }
             serviciosTomados.add(serviciosDisponibles.get(opcionServicio)); // se añade al ArrayList el serivicio tomado
-            serviciosDisponibles.remove(opcionServicio); // se elimina de servicios disponibles ya que fue tomado previamente
+            serviciosDisponibles.remove((Integer)opcionServicio); // se elimina de servicios disponibles ya que fue tomado previamente
+            System.out.println(serviciosTomados);
             System.out.println("Desea agregar mas servicios ?");
             System.out.println("1. Si");
             System.out.println("2. No");
@@ -505,8 +508,6 @@ public class FuncionalidadesReserva {
         //PRODUCTOS A AGREGAR EN LA RESERVA Y SU CANTIDAD
         Pedido pedidoReserva = new Pedido();
         agregarProductos(pedidoReserva); // se llama al metodo agregar productos
-
-
 
     }
 
@@ -567,6 +568,96 @@ public class FuncionalidadesReserva {
     }
 
     public static void main(String[] args) {
+        Espacio sala1 = new Espacio("Sala 1");
+        Espacio sala2 = new Espacio("Sala 2");
+        Espacio sala3 = new Espacio("Sala 3");
+        Espacio sala4 = new Espacio("Sala 4");
+        Espacio sala5 = new Espacio("Sala 5");
+        Espacio sala6 = new Espacio("Sala 6");
+        Espacio sala7 = new Espacio("Sala 7");
+        Espacio sala8 = new Espacio("Sala 8");
+        Espacio sala9 = new Espacio("Sala 9");
+
+        new Producto("coca cola 250ml", "No vendido", 1, 2, 2);
+        new Producto("Sprite", "No vendido", 1, 2, 2);
+        new Producto("H20", "No vendido", 1, 2, 2);
+        new Producto("Bretana", "No vendido", 1, 2, 2);
+        new Producto("coca cola 250ml", "No vendido", 1, 2, 2);
+        new Producto("Swchepes", "No vendido", 1, 2, 2);
+        new Producto("coca cola 250ml", "No vendido", 1, 2, 2);
+        new Producto("Kola Roman", "No vendido", 1, 2, 2);
+        new Producto("coca cola 250ml", "No vendido", 1, 2, 2);
+        new Producto("Hit mango", "No vendido", 1, 2, 2);
+        new Producto("Hit mora", "No vendido", 1, 2, 2);
+        new Producto("Smirnoff ice 1L", "No vendido", 2, 5, 1);
+        new Producto("Nuvo", "No vendido", 2, 5, 1);
+        new Producto("Black and White", "No vendido", 2, 5, 1);
+        new Producto("Smirnoff ice 1L", "No vendido", 2, 5, 1);
+        new Producto("Something Special", "No vendido", 2, 5, 1);
+        new Producto("Double Black", "No vendido", 2, 5, 1);
+        new Producto("Red Label", "No vendido", 2, 5, 1);
+        new Producto("Double Black", "No vendido", 2, 5, 1);
+        new Producto("Red Label", "No vendido", 2, 5, 1);
+        new Producto("Blue Label", "No vendido", 2, 5, 1);
+        new Producto("Buchanan's", "No vendido", 2, 5, 1);
+        new Producto("Arguardiente Antioqueno", "No vendido", 2, 5, 1);
+        new Producto("Old par", "No vendido", 5, 10, 1);
+        new Producto("Desgranado", "No vendido", 1, 2, 3);
+        new Producto("hamburguesa", "No vendido", 1, 2, 3);
+        new Producto("pizza", "No vendido", 1, 2, 3);
+        new Producto("Salchipapa", "No vendido", 1, 2, 3);
+        new Producto("Hot Dog", "No vendido", 1, 2, 3);
+        new Producto("pizza", "No vendido", 1, 2, 3);
+        new Producto("Lasagna", "No vendido", 1, 2, 3);
+        new Producto("hamburguesa", "No vendido", 1, 2, 3);
+        new Producto("pan", "No vendido", 1, 2, 3);
+        new Producto("hamburguesa", "No vendido", 1, 2, 3);
+        new Producto("ensalada", "No vendido", 1, 2, 3);
+        new Producto("rosquitas", "No vendido", 1, 2, 4);
+        new Producto("papitas", "No vendido", 1, 2, 4);
+        new Producto("mani sal", "No vendido", 1, 2, 4);
+        new Producto("almendras", "No vendido", 1, 2, 4);
+        new Producto("crispetas", "No vendido", 1, 2, 4);
+        new Producto("mani pasas", "No vendido", 1, 2, 4);
+        new Producto("mani dulce", "No vendido", 1, 2, 4);
+        new Producto("Manguito", "No vendido", 1, 2, 4);
+        new Producto("Detodito", "No vendido", 1, 2, 4);
+        new Producto("Malboro", "No vendido", 1, 2, 5);
+        new Producto("boston", "No vendido", 1, 2, 5);
+        new Producto("Piel Roja", "No vendido", 1, 2, 5);
+
+        new Producto("belmont", "No vendido", 1, 2, 5);
+        new Producto("Lucky Strike", "No vendido", 1, 2, 5);
+        new Producto("Rumba", "No vendido", 1, 2, 5);
+        new Producto("Lucky Strike", "No vendido", 1, 2, 5);
+        new Producto("Star Lite", "No vendido", 1, 2, 5);
+        new Producto("Shefield green", "No vendido", 1, 2, 5);
+        new Producto("belmont", "No vendido", 1, 2, 5);
+        new Producto("Red Bull", "No vendido", 1, 2, 6);
+        new Producto("Sparta", "No vendido", 1, 2, 6);
+        new Producto("Red Bull", "No vendido", 1, 2, 6);
+        new Producto("Bang", "No vendido", 1, 2, 6);
+        new Producto("Monster", "No vendido", 1, 2, 6);
+        new Producto("Blue", "No vendido", 1, 2, 6);
+        new Producto("RockStar", "No vendido", 1, 2, 6);
+        new Producto("RockStar", "No vendido", 1, 2, 6);
+        new Producto("RockStar", "No vendido", 1, 2, 6);
+        new Producto("RockStar", "No vendido", 1, 2, 6);
+        new Producto("Monster", "No vendido", 1, 2, 6);
+        new Producto("vive 100", "No vendido", 1, 2, 6);
+        new Producto("vive 100", "No vendido", 1, 2, 6);
+        new Producto("vive 100", "No vendido", 1, 2, 6);
+        new Producto("vive 100", "No vendido", 1, 2, 6);
+        new Producto("speed max", "No vendido", 1, 2, 6);
+        new Producto("speed max", "No vendido", 1, 2, 6);
+        new Producto("speed max", "No vendido", 1, 2, 6);
+        new Producto("speed max", "No vendido", 1, 2, 6);
+
+
+
+
+
+
         realizarReserva();
     }
 

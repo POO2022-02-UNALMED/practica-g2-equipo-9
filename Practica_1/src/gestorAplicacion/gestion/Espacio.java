@@ -38,7 +38,16 @@ public class Espacio {
         this.fechas = fechas;
     }
 
-    public LocalDate seleccionarFecha( int n){ //metodo para mostrar las primeras n fechas disponibles para un espacio tomado
+    //CONSTRUCTORES
+
+
+    public Espacio(String nombre) {
+        this.nombre = nombre;
+        this.generarFechasDisponibles();
+        Espacio.listado.add(this);
+    }
+
+    public LocalDate seleccionarFecha(int n){ //metodo para mostrar las primeras n fechas disponibles para un espacio tomado
         Scanner sc = new Scanner(System.in);
         for (int i = 0; i < n; i++) {
             System.out.println(i+". "+this.getFechas().get(i));
@@ -72,6 +81,12 @@ public class Espacio {
         }
     }
 
+    public void generarFechasDisponibles(){ // metodo para generar fechas disponibles una vez se crea un espacio
+        this.fechas.add(LocalDate.now());
+        for (int i = 1; i < 30; i++) {
+            this.fechas.add(LocalDate.now().plusDays(i));
+        }
+    }
 
 
 }
