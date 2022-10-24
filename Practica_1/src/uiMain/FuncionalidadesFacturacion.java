@@ -34,10 +34,13 @@ public class FuncionalidadesFacturacion {
             trabajadorSeleccionado = Trabajador.seleccionarTrabajador(codigoTrabajador);
         }
         System.out.println();
+
+        //CLIENTE
         Cliente cliente = null;
         String nombreCliente;
         long codigoCliente;
 
+        //PEDIDO
         Pedido pedido=null;
         long codigoPedido;
 
@@ -66,14 +69,12 @@ public class FuncionalidadesFacturacion {
             if (opcion == 1) {
                 cliente=new Cliente();
                 pedido=tomarPedido(trabajadorSeleccionado, cliente);
-                System.out.println(pedido.generarFactura());
             } else if (opcion == 2) {
                 System.out.println("Ingresar nombre para registrar cliente:");
                 nombreCliente= entrada.next();
                 cliente=new Cliente(nombreCliente);
                 pedido=tomarPedido(trabajadorSeleccionado,cliente);
                 cliente.getHistorialPedidos().add(pedido);
-                System.out.println(pedido.generarFactura());
             } else if (opcion == 3) {
                 Cliente.mostrarClientesRegistrados();
                 System.out.println();
@@ -88,7 +89,6 @@ public class FuncionalidadesFacturacion {
                     cliente=Cliente.seleccionarCliente(codigoCliente);
                 }
                 pedido=tomarPedido(trabajadorSeleccionado,cliente);
-                pedido.generarFactura();
             } else if (opcion == 4) {
                 //MUESTRA EL LISTADO DE TRABAJADORES
                 System.out.println("============================================================");
@@ -127,7 +127,7 @@ public class FuncionalidadesFacturacion {
                 System.out.println("1. Pagar");
                 System.out.println("2. Volver/No hacer nada");
                 opcion= entrada.nextInt();
-                while(opcion!=1 &&opcion!=2){
+                while(opcion!=1 && opcion!=0){
                     System.out.println("Opcion invalida, seleccione una opcion correcta:");
                     opcion= entrada.nextInt();
                 }
@@ -136,18 +136,16 @@ public class FuncionalidadesFacturacion {
                     for(Producto producto: pedido.getProductos()){
                         producto.setEstado("Vendido");
                     }
-                    System.out.println(pedido.generarFactura());
-                    System.out.println();
-                    System.out.println("Pedido pagado exitosamente, presiona 2 para finalizar");
-                    opcion= entrada.nextInt();
-                }
-                else if(opcion==2){
                 }
             }
             else if(opcion==6){
                 salir=true;
             }
+            if (pedido!=null){
+                System.out.println(pedido.generarFactura());
+            }
         }
+
     }
 
     public static Pedido tomarPedido(Trabajador trabajadorSeleccionado, Cliente cliente) {
@@ -253,6 +251,7 @@ public class FuncionalidadesFacturacion {
                         producto.setCliente(cliente);
                     }
                     pedido = new Pedido(trabajadorSeleccionado, cliente, "Pagado", productosPedidos, serviciosPedidos, LocalDate.now());
+                    cliente.getHistorialPedidos().add(pedido);
                     salir = true;
                 }
             }
@@ -722,6 +721,19 @@ public class FuncionalidadesFacturacion {
         return productosPedidos;
     }
 
+    public static void main(String[] args) {
+        Trabajador trabajador=new Trabajador("Russbell",LocalDate.of(2022,02,02));
+        Trabajador trabajador1=new Trabajador("Sergio",LocalDate.of(2022,02,02));
+        Trabajador trabajador2=new Trabajador("Mafre",LocalDate.of(2022,02,02));
 
+        Cliente cliente1=new Cliente("Miguel");
+        Producto producto2=new Producto("Pepsi","No vendido",500,0);
+        Producto producto5=new Producto("Pepsi","No vendido",500,0);
+        Producto producto6=new Producto("Pepsi","No vendido",500,0);
+        Producto producto3=new Producto("Coca cola","No vendido",500,0);
+        Producto producto4=new Producto("Coca cola","No vendido",500,0);
+
+        opcionesDePedido();
+    }
 }
 

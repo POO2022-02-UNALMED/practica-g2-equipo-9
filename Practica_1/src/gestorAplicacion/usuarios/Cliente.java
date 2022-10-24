@@ -44,7 +44,8 @@ public class Cliente extends Usuario implements Serializable {
         this.numeroReserva = numeroReserva;
         this.estadoReserva = estadoReserva;
         this.historialPedidos = historialPedidos;
-        clientes.add(this);}
+        clientes.add(this);
+    }
 
     public Cliente(String nombre, int numeroReserva, String estadoReserva) {
         this(nombre); // sobrecarga de metodos
