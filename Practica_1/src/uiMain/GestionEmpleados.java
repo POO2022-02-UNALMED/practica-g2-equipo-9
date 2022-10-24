@@ -37,29 +37,34 @@ public class GestionEmpleados {
         	
         }
         else if(opcion == 2){
-        	//contratar un trabajador
+        	//contratar setun trabajador
         	
-        	ArrayList<Empleado> empleados= new ArrayList<>();
-            for (Trabajador trabajador: Trabajador.getTrabajadores()){
-                empleados.add(trabajador);
-            }
-        }
-        else if(opcion == 3) {
-<<<<<<< Updated upstream
+        	Empleado E[] = new Empleado[1];
         	
-			for(int i=0; i<Empleado.getEmpleados().size();i++) {
-=======
-        	//info del algun trabajador
-		//	for(int i=0; i<empleados.length;i++) {
->>>>>>> Stashed changes
+        	String nombre = "";
+        	String cargo = "";
+        	int sueldo =0;
+        	
+        	for(int i=0; i<E.length;i++) {
+        		System.out.println("Ingresar Nombre");
+        		nombre = sc.nextLine();
+        		System.out.println("Ingresar Cargo");
+        		cargo = sc.nextLine();
+        		System.out.println("Ingresar sueldo");
+        		sueldo = sc.nextInt();
+        		
         		
         	}
         }
-	//}
+        else if(opcion == 3) {
+        	//info del algun trabajador
+        	
+				
+        	}
+        }
 	
 	
-	
-	
+
 	// contratar un nuevo empleado;
 	
 	static void ContratarEmpleado(){
