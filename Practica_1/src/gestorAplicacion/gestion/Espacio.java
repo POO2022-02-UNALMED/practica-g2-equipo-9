@@ -122,7 +122,7 @@ public class Espacio {
 
             //IMPRIME LOS DATOS DE FORMA INDIVIDUAL
             for (Espacio ess: espacios_recuperados){
-                System.out.println(ess);
+                return ess;
             }
 
         }
