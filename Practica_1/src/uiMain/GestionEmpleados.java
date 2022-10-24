@@ -39,6 +39,7 @@ public class GestionEmpleados {
         else if(opcion == 2){
         	//contratar setun trabajador
         	
+<<<<<<< HEAD
         	Empleado E[] = new Empleado[1];
         	
         	String nombre = "";
@@ -53,6 +54,21 @@ public class GestionEmpleados {
         		System.out.println("Ingresar sueldo");
         		sueldo = sc.nextInt();
         		
+=======
+        	ArrayList<Empleado> empleados= new ArrayList<>();
+            for (Trabajador trabajador: Trabajador.getTrabajadores()){
+                empleados.add(trabajador);
+            }
+        }
+        else if(opcion == 3) {
+
+        	
+			for(int i=0; i<Empleado.getEmpleados().size();i++) {
+
+        	//info del algun trabajador
+		//	for(int i=0; i<empleados.length;i++) {
+
+>>>>>>> 4820f3d0056e920b178fdd19f4dae9e5652caacf
         		
         	}
         }
@@ -67,12 +83,11 @@ public class GestionEmpleados {
 
 	// contratar un nuevo empleado;
 	
-	static void ContratarEmpleado(){
+	//static void ContratarEmpleado(){
 			
 	}
 	// despides algun empleado
-	static void DespedirEmpleado() {
-		
-		}
-	
+	//static void DespedirEmpleado() {}
 }
+	
+
