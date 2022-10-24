@@ -2,6 +2,7 @@ package uiMain;
 
 import gestorAplicacion.gestion.Pedido;
 import gestorAplicacion.gestion.Producto;
+import gestorAplicacion.gestion.Reserva;
 import gestorAplicacion.usuarios.*;
 
 
@@ -47,6 +48,7 @@ public class FuncionalidadInformacion {
             System.out.println(" 1. Pedidos.");
             System.out.println(" 2. Productos.");
             System.out.println(" 3. Empleados.");
+            System.out.println(" 4. Reservas.");
             System.out.println(" 0. Volver al menu principal\n");
 
             opcion = readString();
@@ -60,6 +62,9 @@ public class FuncionalidadInformacion {
                     break;
                 case "3":
                     info_empleados();
+                    break;
+                case "4":
+                    info_reservas();
                     break;
                 case "0":
                     break;
@@ -171,10 +176,12 @@ public class FuncionalidadInformacion {
                     "\n+++++++++++++++++++++++++++++++++");
 
             System.out.println("Informacion sobre empleados");
+            System.out.println("Lista de Empleados");
 
             for (int i = 0; i < listaempleados.size(); ++i) {
                 System.out.println(" " + (i + 1) + ". " + listaempleados.get(i).getNombre());
             }
+            //System.out.println("Lista de Empleados");
             System.out.println("\n 0. Regresar.");
 
             try {
@@ -202,5 +209,46 @@ public class FuncionalidadInformacion {
 
     }
 
+    static void info_reservas() {
+
+        int opcion_reservas;
+        ArrayList<Reserva> listareservas = Reserva.getReservas();
+        opcion_reservas = -1;
+
+        do {
+            System.out.println(
+                    "\n+++++++++++++++++++++++++++++++++");
+
+            System.out.println("Informacion sobre reservas");
+            System.out.println("Lista de Reservas realizadas");
+
+            for (int i = 0; i < listareservas.size(); ++i) {
+                System.out.println(" " + (i + 1) + ". " + listareservas.get(i).getIdReserva());
+            }
+            //System.out.println("Lista de Reservas realizadas");
+            System.out.println("\n 0. Regresar.");
+
+            try {
+                opcion_reservas = Integer.parseInt(FuncionalidadInformacion.readString());
+            } catch (Exception e) {
+                System.out.println("\nPor favor introduzca una opción valida");
+                pressEnter();
+            }
+            if ((opcion_reservas - 1 >= listareservas.size()) || (opcion_reservas < 0)) {
+                System.out.println("Introduzca una opción valida");
+                pressEnter();
+                continue;
+            }
+            if (opcion_reservas == 0) {
+                continue;
+            }
+            if (opcion_reservas != -1) {
+                System.out.println(listareservas.get(opcion_reservas - 1));
+                pressEnter();
+                opcion_reservas = -1;
+            }
+
+        }while (!(opcion_reservas == 0));
+    }
 }
 

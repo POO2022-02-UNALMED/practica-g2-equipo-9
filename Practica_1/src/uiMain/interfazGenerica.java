@@ -45,16 +45,17 @@ public class interfazGenerica {
         System.out.println("Ingresando al sistema...\n");
         while (true){
             System.out.println("---SISTEMA DE DISCOTECA---\n");
-            System.out.println("Que accion desea realizar ?\n");
+            System.out.println("Que acción desea realizar ?\n");
             System.out.println("1. Crear una nueva reserva");
             System.out.println("2. Modificar o cancelar una reserva ya existente");
             System.out.println("3. Opciones de Pedido/Facturar");
             System.out.println("4. Balance generar de ventas");
             System.out.println("5. Opciones Administrador");
-            System.out.println("6. Salir Y GUARDAR del sistema");
+            System.out.println("6. Historial de pedidos, productos, reservas y empleados");
+            System.out.println("7. Salir Y GUARDAR del sistema");
             opcion = sc.nextInt();
 
-            while(opcion<1 || opcion>6){
+            while(opcion<1 || opcion>7){
                 System.out.println("Por favor ingrese una opcion valida");
                 opcion=sc.nextInt();
             }
@@ -74,7 +75,11 @@ public class interfazGenerica {
                 case 5:
 
                     break;
+
                 case 6:
+                    FuncionalidadInformacion.Informacion();
+                    break;
+                case 7:
                     //SERIALIZA TODOS LOS OBJETOS CREADOS HASTA AHORA Y LOS GUARDA
                     Serializador.serializarTodo();
                     System.out.println("Saliendo del sistema...\n");
