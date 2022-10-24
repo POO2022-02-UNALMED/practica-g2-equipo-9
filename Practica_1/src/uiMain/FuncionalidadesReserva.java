@@ -13,10 +13,17 @@ import java.util.Scanner;
 public class FuncionalidadesReserva {
 
     public static void agregarProductos(Pedido pedidoReserva){ // metodo para agregar los productos al pedido asociado a la reserva
-        System.out.println("Por favor ingrese 1 para empezar");
+        System.out.println("Ahora a agregar los productos que quiere en su reserva");
+        System.out.println("Ingrese 1 para ver las categorias de los productos");
         Scanner sc = new Scanner(System.in);
         int opcionCiclo = sc.nextInt();
         while(opcionCiclo != 2){
+            System.out.println("Su pedido hasta el momento es :");
+            for (Producto producto:
+                 pedidoReserva.getProductos()) {
+                System.out.println(producto.descripcionProducto());
+
+            }
             System.out.println("A continuacion ingrese los productos que desea en su reserva: ");
             System.out.println("1. Bebidas alcoholicas");
             System.out.println("2. Bebidas no alcoholicas");
@@ -30,7 +37,7 @@ public class FuncionalidadesReserva {
 
             int opcion = sc.nextInt();
             while (opcion> 7 || opcion< 1){
-                System.out.println("Por favor ingrese una opcion valdia");
+                System.out.println("Por favor ingrese una opcion valida");
                 opcion = sc.nextInt();
             }
             switch (opcion){
@@ -53,13 +60,16 @@ public class FuncionalidadesReserva {
                             cantidadProducto = sc.nextInt();
                         }
                         for (Producto producto: Producto.getProductos()) {
-                            while(cantidadProducto>1){
+
                                 if(producto.getNombre().equals(Producto.getBebidasAlcoholicas().get(opcionProducto).getNombre())){
                                     producto.setEstado("Reservado");
                                     pedidoReserva.getProductos().add(producto); // se agrega al ArrayList de los productos el producto seleccionad
                                     --cantidadProducto; // Cuando se agrega un producto se va restando a cantidadProducto para que se agregue exactaente la cantidad requerida por el cliente;
+                                    if(cantidadProducto == 0){
+                                        break;
+                                    }
                                 }
-                            }
+
                         }
 
                     }
@@ -76,13 +86,15 @@ public class FuncionalidadesReserva {
                                 cantidadProducto = sc.nextInt();
                             }
                             for (Producto producto: Producto.getProductos()) {
-                                while(cantidadProducto>1){
                                     if(producto.getNombre().equals(Producto.getBebidasAlcoholicas().get(opcionProducto).getNombre())){
                                         producto.setEstado("Reservado");
                                         pedidoReserva.getProductos().add(producto); // se agrega al ArrayList de los productos el producto seleccionad
                                         --cantidadProducto; // Cuando se agrega un producto se va restando a cantidadProducto para que se agregue exactaente la cantidad requerida por el cliente;
+                                        if(cantidadProducto == 0){
+                                            break;
+                                        }
                                     }
-                                }
+
                             }
                         }
                     }
@@ -107,13 +119,14 @@ public class FuncionalidadesReserva {
                             cantidadProducto = sc.nextInt();
                         }
                         for (Producto producto: Producto.getProductos()) {
-                            while(cantidadProducto>1){
                                 if(producto.getNombre().equals(Producto.getBebidasNoAlcoholicas().get(opcionProducto).getNombre())){
                                     producto.setEstado("Reservado");
                                     pedidoReserva.getProductos().add(producto); // se agrega al ArrayList de los productos el producto seleccionad
                                     --cantidadProducto; // Cuando se agrega un producto se va restando a cantidadProducto para que se agregue exactaente la cantidad requerida por el cliente;
+                                    if(cantidadProducto == 0){
+                                        break;
+                                    }
                                 }
-                            }
                         }
 
                     }
@@ -129,13 +142,16 @@ public class FuncionalidadesReserva {
                                 cantidadProducto = sc.nextInt();
                             }
                             for (Producto producto: Producto.getProductos()) {
-                                while(cantidadProducto>1){
+
                                     if(producto.getNombre().equals(Producto.getBebidasNoAlcoholicas().get(opcionProducto).getNombre())){
                                         producto.setEstado("Reservado");
                                         pedidoReserva.getProductos().add(producto); // se agrega al ArrayList de los productos el producto seleccionad
                                         --cantidadProducto; // Cuando se agrega un producto se va restando a cantidadProducto para que se agregue exactaente la cantidad requerida por el cliente;
+                                        if(cantidadProducto == 0){
+                                            break;
+                                        }
                                     }
-                                }
+
                             }
                         }
                     }
@@ -159,13 +175,16 @@ public class FuncionalidadesReserva {
                             cantidadProducto = sc.nextInt();
                         }
                         for (Producto producto: Producto.getProductos()) {
-                            while(cantidadProducto>1){
+
                                 if(producto.getNombre().equals(Producto.getComidas().get(opcionProducto).getNombre())){
                                     producto.setEstado("Reservado");
                                     pedidoReserva.getProductos().add(producto); // se agrega al ArrayList de los productos el producto seleccionad
                                     --cantidadProducto; // Cuando se agrega un producto se va restando a cantidadProducto para que se agregue exactaente la cantidad requerida por el cliente;
+                                    if(cantidadProducto == 0){
+                                        break;
+                                    }
                                 }
-                            }
+
                         }
 
                     }
@@ -181,13 +200,16 @@ public class FuncionalidadesReserva {
                                 cantidadProducto = sc.nextInt();
                             }
                             for (Producto producto: Producto.getProductos()) {
-                                while(cantidadProducto>1){
+
                                     if(producto.getNombre().equals(Producto.getComidas().get(opcionProducto).getNombre())){
                                         producto.setEstado("Reservado");
                                         pedidoReserva.getProductos().add(producto); // se agrega al ArrayList de los productos el producto seleccionad
                                         --cantidadProducto; // Cuando se agrega un producto se va restando a cantidadProducto para que se agregue exactaente la cantidad requerida por el cliente;
+                                        if(cantidadProducto == 0){
+                                            break;
+                                        }
                                     }
-                                }
+
                             }
                         }
                     }
@@ -211,13 +233,16 @@ public class FuncionalidadesReserva {
                             cantidadProducto = sc.nextInt();
                         }
                         for (Producto producto: Producto.getProductos()) {
-                            while(cantidadProducto>1){
+
                                 if(producto.getNombre().equals(Producto.getSnacks().get(opcionProducto).getNombre())){
                                     producto.setEstado("Reservado");
                                     pedidoReserva.getProductos().add(producto); // se agrega al ArrayList de los productos el producto seleccionad
                                     --cantidadProducto; // Cuando se agrega un producto se va restando a cantidadProducto para que se agregue exactaente la cantidad requerida por el cliente;
+                                    if(cantidadProducto == 0){
+                                        break;
+                                    }
                                 }
-                            }
+
                         }
 
                     }
@@ -233,13 +258,16 @@ public class FuncionalidadesReserva {
                                 cantidadProducto = sc.nextInt();
                             }
                             for (Producto producto: Producto.getProductos()) {
-                                while(cantidadProducto>1){
+
                                     if(producto.getNombre().equals(Producto.getSnacks().get(opcionProducto).getNombre())){
                                         producto.setEstado("Reservado");
                                         pedidoReserva.getProductos().add(producto); // se agrega al ArrayList de los productos el producto seleccionad
                                         --cantidadProducto; // Cuando se agrega un producto se va restando a cantidadProducto para que se agregue exactaente la cantidad requerida por el cliente;
+                                        if(cantidadProducto == 0){
+                                            break;
+                                        }
                                     }
-                                }
+
                             }
                         }
                     }
@@ -263,13 +291,16 @@ public class FuncionalidadesReserva {
                             cantidadProducto = sc.nextInt();
                         }
                         for (Producto producto: Producto.getProductos()) {
-                            while(cantidadProducto>1){
+
                                 if(producto.getNombre().equals(Producto.getCigarrillos().get(opcionProducto).getNombre())){
                                     producto.setEstado("Reservado");
                                     pedidoReserva.getProductos().add(producto); // se agrega al ArrayList de los productos el producto seleccionad
                                     --cantidadProducto; // Cuando se agrega un producto se va restando a cantidadProducto para que se agregue exactaente la cantidad requerida por el cliente;
+                                    if(cantidadProducto == 0){
+                                        break;
+                                    }
                                 }
-                            }
+
                         }
 
                     }
@@ -285,13 +316,16 @@ public class FuncionalidadesReserva {
                                 cantidadProducto = sc.nextInt();
                             }
                             for (Producto producto: Producto.getProductos()) {
-                                while(cantidadProducto>1){
+
                                     if(producto.getNombre().equals(Producto.getCigarrillos().get(opcionProducto).getNombre())){
                                         producto.setEstado("Reservado");
                                         pedidoReserva.getProductos().add(producto); // se agrega al ArrayList de los productos el producto seleccionad
                                         --cantidadProducto; // Cuando se agrega un producto se va restando a cantidadProducto para que se agregue exactaente la cantidad requerida por el cliente;
+                                        if(cantidadProducto == 0){
+                                            break;
+                                        }
                                     }
-                                }
+
                             }
                         }
                     }
@@ -315,13 +349,16 @@ public class FuncionalidadesReserva {
                             cantidadProducto = sc.nextInt();
                         }
                         for (Producto producto: Producto.getProductos()) {
-                            while(cantidadProducto>1){
+
                                 if(producto.getNombre().equals(Producto.getEnergizantes().get(opcionProducto).getNombre())){
                                     producto.setEstado("Reservado");
                                     pedidoReserva.getProductos().add(producto); // se agrega al ArrayList de los productos el producto seleccionad
                                     --cantidadProducto; // Cuando se agrega un producto se va restando a cantidadProducto para que se agregue exactaente la cantidad requerida por el cliente;
+                                    if(cantidadProducto == 0){
+                                        break;
+                                    }
                                 }
-                            }
+
                         }
 
                     }
@@ -343,7 +380,6 @@ public class FuncionalidadesReserva {
                                 cantidadProducto = sc.nextInt();
                             }
                             for (Producto producto: Producto.getProductos()) {
-                                while(cantidadProducto>1){
                                     if(producto.getNombre().equals(Producto.getEnergizantes().get(opcionProducto).getNombre()) && producto.getEstado().equals("No vendido")){
                                         producto.setEstado("Reservado");
                                         pedidoReserva.getProductos().add(producto); // se agrega al ArrayList de los productos el producto seleccionad
@@ -352,7 +388,7 @@ public class FuncionalidadesReserva {
                                             break;
                                         }
                                     }
-                                }
+
                             }
                         }
                     }
@@ -376,13 +412,16 @@ public class FuncionalidadesReserva {
                             cantidadProducto = sc.nextInt();
                         }
                         for (Producto producto: Producto.getProductos()) {
-                            while(cantidadProducto>=1){
+
                                 if(producto.getNombre().equals(Producto.getOtrosProductos().get(opcionProducto).getNombre()) && producto.getEstado().equals("No vendido")){
                                     producto.setEstado("Reservado");
                                     pedidoReserva.getProductos().add(producto); // se agrega al ArrayList de los productos el producto seleccionad
                                     --cantidadProducto; // Cuando se agrega un producto se va restando a cantidadProducto para que se agregue exactaente la cantidad requerida por el cliente;
+                                    if(cantidadProducto == 0){
+                                        break;
+                                    }
                                 }
-                            }
+
                         }
 
                     }
@@ -545,10 +584,12 @@ public class FuncionalidadesReserva {
         //PRODUCTOS A AGREGAR EN LA RESERVA Y SU CANTIDAD
         Pedido pedidoReserva = new Pedido();
         agregarProductos(pedidoReserva); // se llama al metodo agregar productos
+        reservaCreada.setEspacio(espacioTomado);
         reservaCreada.setPedido(pedidoReserva);
         reservaCreada.setFechaReserva(fechaTomada);
         reservaCreada.setServicios(serviciosTomados);
         reservaCreada.setEstado("Activa");
+        reservaCreada.getCliente().setReserva(reservaCreada);
         System.out.println(reservaCreada.toString());
 
     }
@@ -567,7 +608,7 @@ public class FuncionalidadesReserva {
         }
         while(opcion != 4){
             if (opcion == 1){
-                System.out.println("A continuacion se le mostraran los espacios disponibles");
+                System.out.println("A continuacion se le mostraran los espacios disponibles\n");
                 reserva.getEspacio().reordenarFechas(reserva); // elimina la fecha previmente seleccionada y la vuelve a poner en orden en la lista de las fechas disponibles
                 for (int i = 0; i < Espacio.getListado().size(); i++) {
                     System.out.println(i+". "+Espacio.getListado().get(i).getNombre());
@@ -575,21 +616,34 @@ public class FuncionalidadesReserva {
                 System.out.println("Por favor ingrese una opcion");
                 int opcionEspacio = sc.nextInt();
                 while(opcionEspacio< 0 || opcionEspacio >= Espacio.getListado().size()){
-                    System.out.println("Por favor ingrese una opcion valida");
+                    System.out.println("Por favor ingrese una opcion valida\n");
                     opcionEspacio= sc.nextInt();
                 }
-                reserva.setEspacio(Espacio.getListado().get(opcionEspacio));
+                Espacio espacioTomado =  Espacio.getListado().get(opcionEspacio);
+                System.out.println("A continuacion le presentamos la disponibildiad del espacio: \n");
+
+
+                LocalDate fechaTomada =  espacioTomado.seleccionarFecha(10);
+                reserva.setFechaReserva(fechaTomada);
+                reserva.setEspacio(espacioTomado);
+                System.out.println("Su reserva se ha modificado con exito!\n");
+                System.out.println(reserva.toString());
+
             }
             else if (opcion == 2){
                 reserva.getEspacio().reordenarFechas(reserva); // elimina la fecha previmente seleccionada y la vuelve a poner en orden en la lista de las fechas disponibles
-                System.out.println("A continuacion se mostraran las fechas disponibles para su espacio previamente seleccionado");
+                System.out.println("A continuacion se mostraran las fechas disponibles para su espacio previamente seleccionado\n");
                 LocalDate nuevaFecha = reserva.getEspacio().seleccionarFecha(10); // Se emplea el metodo para volver a seleccionar la fecha del espacio seleccionado
                 reserva.setFechaReserva(nuevaFecha);
+                System.out.println("Su reserva se ha modificado con exito!\n");
+                System.out.println(reserva.toString());
 
             }
             else if(opcion == 3){
-                System.out.println("A continuacion podra modificar su pedido");
+                System.out.println("A continuacion podra modificar su pedido\n");
                 agregarProductos(reserva.getPedido());
+                System.out.println("Su reserva se ha modificado con exito!\n");
+                System.out.println(reserva.toString());
             }
             opcion = 4;
         }
@@ -604,7 +658,7 @@ public class FuncionalidadesReserva {
             }
         }
         else{
-            System.out.println("Ha excedido la fecha limite para cancelar la reserva");
+            System.out.println("Ha excedido la fecha limite para cancelar la reserva\n");
         }
         System.out.println(reserva.toString());
     }
@@ -614,11 +668,84 @@ public class FuncionalidadesReserva {
         Espacio sala2 = new Espacio("Sala 2");
         Espacio sala3 = new Espacio("Sala 3");
 
+        new Producto("coca cola 250ml", "No vendido", 1, 2, 2);
+        new Producto("Sprite", "No vendido", 1, 2, 2);
+        new Producto("H20", "No vendido", 1, 2, 2);
+        new Producto("Bretana", "No vendido", 1, 2, 2);
+        new Producto("coca cola 250ml", "No vendido", 1, 2, 2);
+        new Producto("Swchepes", "No vendido", 1, 2, 2);
+        new Producto("coca cola 250ml", "No vendido", 1, 2, 2);
+        new Producto("Kola Roman", "No vendido", 1, 2, 2);
+        new Producto("coca cola 250ml", "No vendido", 1, 2, 2);
+        new Producto("Hit mango", "No vendido", 1, 2, 2);
+        new Producto("Hit mora", "No vendido", 1, 2, 2);
+        new Producto("Smirnoff ice 1L", "No vendido", 2, 5, 1);
+        new Producto("Nuvo", "No vendido", 2, 5, 1);
+        new Producto("Black and White", "No vendido", 2, 5, 1);
+        new Producto("Smirnoff ice 1L", "No vendido", 2, 5, 1);
+        new Producto("Something Special", "No vendido", 2, 5, 1);
+        new Producto("Double Black", "No vendido", 2, 5, 1);
+        new Producto("Red Label", "No vendido", 2, 5, 1);
+        new Producto("Double Black", "No vendido", 2, 5, 1);
+        new Producto("Red Label", "No vendido", 2, 5, 1);
+        new Producto("Blue Label", "No vendido", 2, 5, 1);
+        new Producto("Buchanan's", "No vendido", 2, 5, 1);
+        new Producto("Arguardiente Antioqueno", "No vendido", 2, 5, 1);
+        new Producto("Old par", "No vendido", 5, 10, 1);
+        new Producto("Desgranado", "No vendido", 1, 2, 3);
+        new Producto("hamburguesa", "No vendido", 1, 2, 3);
+        new Producto("pizza", "No vendido", 1, 2, 3);
+        new Producto("Salchipapa", "No vendido", 1, 2, 3);
+        new Producto("Hot Dog", "No vendido", 1, 2, 3);
+        new Producto("pizza", "No vendido", 1, 2, 3);
+        new Producto("Lasagna", "No vendido", 1, 2, 3);
+        new Producto("hamburguesa", "No vendido", 1, 2, 3);
+        new Producto("pan", "No vendido", 1, 2, 3);
+        new Producto("hamburguesa", "No vendido", 1, 2, 3);
+        new Producto("ensalada", "No vendido", 1, 2, 3);
+        new Producto("rosquitas", "No vendido", 1, 2, 4);
+        new Producto("papitas", "No vendido", 1, 2, 4);
+        new Producto("mani sal", "No vendido", 1, 2, 4);
+        new Producto("almendras", "No vendido", 1, 2, 4);
+        new Producto("crispetas", "No vendido", 1, 2, 4);
+        new Producto("mani pasas", "No vendido", 1, 2, 4);
+        new Producto("mani dulce", "No vendido", 1, 2, 4);
+        new Producto("Manguito", "No vendido", 1, 2, 4);
+        new Producto("Detodito", "No vendido", 1, 2, 4);
+        new Producto("Malboro", "No vendido", 1, 2, 5);
+        new Producto("boston", "No vendido", 1, 2, 5);
+        new Producto("Piel Roja", "No vendido", 1, 2, 5);
 
-
-
-
+        new Producto("belmont", "No vendido", 1, 2, 5);
+        new Producto("Lucky Strike", "No vendido", 1, 2, 5);
+        new Producto("Rumba", "No vendido", 1, 2, 5);
+        new Producto("Lucky Strike", "No vendido", 1, 2, 5);
+        new Producto("Star Lite", "No vendido", 1, 2, 5);
+        new Producto("Shefield green", "No vendido", 1, 2, 5);
+        new Producto("belmont", "No vendido", 1, 2, 5);
+        new Producto("Red Bull", "No vendido", 1, 2, 6);
+        new Producto("Sparta", "No vendido", 1, 2, 6);
+        new Producto("Red Bull", "No vendido", 1, 2, 6);
+        new Producto("Bang", "No vendido", 1, 2, 6);
+        new Producto("Monster", "No vendido", 1, 2, 6);
+        new Producto("Blue", "No vendido", 1, 2, 6);
+        new Producto("RockStar", "No vendido", 1, 2, 6);
+        new Producto("RockStar", "No vendido", 1, 2, 6);
+        new Producto("RockStar", "No vendido", 1, 2, 6);
+        new Producto("RockStar", "No vendido", 1, 2, 6);
+        new Producto("Monster", "No vendido", 1, 2, 6);
+        new Producto("vive 100", "No vendido", 1, 2, 6);
+        new Producto("vive 100", "No vendido", 1, 2, 6);
+        new Producto("vive 100", "No vendido", 1, 2, 6);
+        new Producto("vive 100", "No vendido", 1, 2, 6);
+        new Producto("speed max", "No vendido", 1, 2, 6);
+        new Producto("speed max", "No vendido", 1, 2, 6);
+        new Producto("speed max", "No vendido", 1, 2, 6);
+        new Producto("speed max", "No vendido", 1, 2, 6);
+        Cliente cliente1 = new Cliente("Jose Fernandez");
         realizarReserva();
+        modificarReserva(cliente1.getReserva());
+
     }
 
 

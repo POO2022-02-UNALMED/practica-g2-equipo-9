@@ -1,6 +1,7 @@
 package gestorAplicacion.usuarios;
 
 import gestorAplicacion.gestion.Pedido;
+import gestorAplicacion.gestion.Reserva;
 
 import java.util.ArrayList;
 
@@ -9,6 +10,7 @@ public class Cliente extends Usuario {
     //ATRIBUTOS DE INSTANCIA
     private int numeroReserva;
     private String estadoReserva;
+    private Reserva reserva;
     private Pedido pedido;//Pedido de cliente
 
 
@@ -115,6 +117,13 @@ public class Cliente extends Usuario {
         return pedido;
     }
 
+    public Reserva getReserva() {
+        return reserva;
+    }
+
+    public void setReserva(Reserva reserva) {
+        this.reserva = reserva;
+    }
 
     public void setPedido(Pedido pedido) {
         this.pedido = pedido;
