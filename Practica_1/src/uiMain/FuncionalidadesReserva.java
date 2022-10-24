@@ -596,7 +596,8 @@ public class FuncionalidadesReserva {
 
     public static void modificarReserva(Reserva reserva){
         Scanner sc = new Scanner(System.in);
-        System.out.println("Que va a modificar ?");
+        System.out.println("============================================================\n");
+        System.out.println("Que va a modificar ?\n");
         System.out.println("1. Modificar el espacio y la fecha.");
         System.out.println("2. Modificar la fecha de la reserva.");
         System.out.println("3. Modificar el pedido.");
@@ -608,6 +609,7 @@ public class FuncionalidadesReserva {
         }
         while(opcion != 4){
             if (opcion == 1){
+                System.out.println("============================================================\n");
                 System.out.println("A continuacion se le mostraran los espacios disponibles\n");
                 reserva.getEspacio().reordenarFechas(reserva); // elimina la fecha previmente seleccionada y la vuelve a poner en orden en la lista de las fechas disponibles
                 for (int i = 0; i < Espacio.getListado().size(); i++) {
