@@ -2,6 +2,9 @@
 package uiMain;
 
 import java.util.Scanner;
+
+import baseDatos.Deserializador;
+import baseDatos.Serializador;
 import gestorAplicacion.gestion.Pedido;
 import gestorAplicacion.gestion.Producto;
 import gestorAplicacion.usuarios.Cliente;
@@ -12,6 +15,11 @@ import javax.management.MBeanAttributeInfo;
 public class interfazGenerica {
 
     public static void main(String[] args) {
+
+        
+        //SE INICIA EL DESERIALIZADOR Y SUELTA TODOS LOS OBJETOS CREADOS
+        Deserializador.deserializarTodo();
+
         System.out.println("\nBienvenido a...\n\n");
 
         System.out.println(" _____  _____   ____  _____     ______          _        _______\n" +
@@ -33,7 +41,7 @@ public class interfazGenerica {
             System.out.println("3. ");
             System.out.println("4. ");
             System.out.println("5. ");
-            System.out.println("6. Salir del sistema");
+            System.out.println("6. Salir Y GUARDAR del sistema");
             opcion = sc.nextInt();
 
             while(opcion<1 || opcion>6){
@@ -53,6 +61,8 @@ public class interfazGenerica {
                 case 5:
                     break;
                 case 6:
+                    //SERIALIZA TODOS LOS OBJETOS CREADOS HASTA AHORA Y LOS GUARDA
+                    Serializador.serializarTodo();
                     System.out.println("Saliendo del sistema...\n");
                     sc.close();
                     System.exit(0);
