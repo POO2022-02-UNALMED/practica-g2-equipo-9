@@ -32,6 +32,12 @@ public abstract class Empleado extends Usuario {
         this.fechaIngreso = fechaIngreso;
         empleados.add(this);
     }
+    
+    
+    public String toString() {
+    	
+    	return nombre+","+cargo+","+sueldo+","+estadoIngreso+","+fechaIngreso+","+codigo;
+    }
 
 
     //GETTERS Y SETTERS
