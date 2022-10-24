@@ -31,7 +31,7 @@ public abstract class Empleado extends Usuario {
     
     public String toString() {
     	
-    	return nombre+","+cargo+","+sueldo+","+estadoIngreso+","+fechaIngreso+","+codigo;
+    	return nombre+","+cargo+","+sueldo+","+","+fechaIngreso+","+codigo;
     }
 
 

@@ -13,7 +13,6 @@ public class Producto {
     private Cliente cliente;
     private String estado; //agregue estado de producto, "Vendido", "No vendido", "Reservado"
     private String nombre;
-    private double precioCompra;
     private double precioVenta;
     private long codigo;
 
@@ -47,22 +46,20 @@ public class Producto {
         productos.add(this);
     }
 
-    public Producto(String nombre, String estado, int precioCompra, int precioVenta, int tipo){
+    public Producto(String nombre, String estado, int precioVenta, int tipo){
         this();
         this.nombre = nombre;
         this.estado=estado;
-        this.precioCompra = precioCompra;
         this.precioVenta = precioVenta;
         this.tipo = tipo;
         categorizarProducto(this);
 
     }
 
-    public Producto(Trabajador trabajador, String estado, String nombre, int precioCompra, int precioVenta, LocalDate fechaVenta) {
+    public Producto(Trabajador trabajador, String estado, String nombre, int precioVenta, LocalDate fechaVenta) {
         this.trabajador = trabajador;
         this.estado = estado;
         this.nombre = nombre;
-        this.precioCompra = precioCompra;
         this.precioVenta = precioVenta;
         this.codigo = generarCodigo();
         this.fechaVenta = fechaVenta;
@@ -70,13 +67,12 @@ public class Producto {
 
     }
 
-    public Producto(Trabajador trabajador, Cliente cliente, String estado, String nombre, double precioCompra, double precioVenta, LocalDate fechaVenta, int tipo) {
+    public Producto(Trabajador trabajador, Cliente cliente, String estado, String nombre, double precioVenta, LocalDate fechaVenta, int tipo) {
         Producto.numeroProducto++;
         this.trabajador = trabajador;
         this.cliente = cliente;
         this.estado = estado;
         this.nombre = nombre;
-        this.precioCompra = precioCompra;
         this.precioVenta = precioVenta;
         this.codigo = Producto.numeroProducto;
         this.fechaVenta = fechaVenta;
@@ -107,14 +103,6 @@ public class Producto {
         this.nombre = nombre;
     }
 
-    public double getPrecioCompra() {
-        return precioCompra;
-    }
-
-    public void setPrecioCompra(double precioCompra) {
-        this.precioCompra = precioCompra;
-    }
-
     public double getPrecioVenta() {
         return precioVenta;
     }
@@ -138,8 +126,6 @@ public class Producto {
     public static void setNumeroProducto(long numeroProducto) {
         Producto.numeroProducto = numeroProducto;
     }
-
-
 
 
     public static ArrayList<Producto> getProductos() {
