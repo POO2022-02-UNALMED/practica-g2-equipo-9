@@ -125,52 +125,7 @@ public class Trabajador extends Empleado implements Sueldo{
         return trabajadorSeleccionado;
     }
 
-    //SERIALIZACION
-    public void Save() {
-        try{
-            FileOutputStream archivo_trabajadores_datos = new FileInputStream("/trabajador.dat");
 
-            ObjectOutputStream trabajadores_datos = new ObjectOutputStream(archivo_trabajadores_datos);
-        
-            trabajadores_datos.writeObject(trabajadores);
-        
-            trabajadores_datos.close();
-
-            archivo_trabajadores_datos.close();
-
-            System.out.println("DATOS GUARDADOS");
-        }
-        
-        catch (Exception t){
-            System.out.println("ERROR");
-        }
-    }
-    
-    public void Load (){
-        try{
-            FileOutputStream archivo_trabajadores_recuperar = new FileInputStream("/trabajador.dat");
-            
-            ObjectInputStream trabajadores_recuperar= new ObjectInputStream(archivo_trabajadores_recuperar);
-
-            //DEVUELVE LOS DATOS EN TIPO ARRAY
-            Trabajador[] trabajadores_recuperados=(Trabajador[]) trabajadores_recuperar.readObject();
-                
-            trabajadores_recuperar.close();
-            archivo_trabajadores_recuperar.close();
-
-            //IMPRIME LOS DATOS DE FORMA INDIVIDUAL
-            for (Trabajador tt: trabajadores_recuperados){
-
-                System.out.println(tt);
-            }
-                
-            System.out.println("DATOS CARGADOS");
-        }
-            
-        catch (Exception tt){
-            System.out.println("ERROR");
-        }
-    }
 
 
 

@@ -77,45 +77,5 @@ public enum Servicio {
         return existe;
     }
 
-    //SERIALIZACION
-    public void Save() {
-        try{
-            FileOutputStream archivo_servicios_datos = new FileInputStream("/servicio.dat");
-
-            ObjectOutputStream servicios_datos = new ObjectOutputStream(archivo_servicios_datos);
-    
-
-            servicios_datos.writeObject(servicio);
-            
-            servicios_datos.close();
-
-            archivo_servicios_datos.close();
-        }
-        
-        catch (Exception servicio){
-        }
-    }
-    
-    public void Load (){
-        try{
-            FileOutputStream archivo_servicios_recuperar = new FileInputStream("/servicio.dat");
-            
-            ObjectInputStream servicios_recuperar= new ObjectInputStream(archivo_servicios_recuperar);
-
-            results= servicios_recuperar.readObject();
-
-            servicios_recuperar.close();
-
-            archivo_servicios_recuperar.close();
-
-            //DEVUELVE LOS DATOS
-            return results;
-        }
-            
-        catch (Exception servicioss){
-        }
-
-    }
-
 
 }
