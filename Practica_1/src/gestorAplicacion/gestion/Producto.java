@@ -429,6 +429,48 @@ public class Producto {
         }
         return productosRecomendados;
     }
+
+    //SERIALIZACION
+    public void Save() {
+        try{
+            FileOutputStream archivo_productos_datos = new FileInputStream("/producto.dat");
+
+            ObjectOutputStream productos_datos = new ObjectOutputStream(archivo_productos_datos);
+    
+            productos_datos.writeObject(productos);
+    
+            productos_datos.close();
+
+            archivo_productos_datos.close();
+        }
+    
+        catch (Exception d){
+        }
+    }
+
+    public void Load (){
+        try{
+            FileOutputStream archivo_productos_recuperar = new FileInputStream("/producto.dat");
+        
+            ObjectInputStream productos_recuperar= new ObjectInputStream(archivo_productos_recuperar);
+
+            //DEVUELVE LOS DATOS EN TIPO ARRAY
+            Producto[] productos_recuperados=(Producto[]) productos_recuperar.readObject();
+            
+            productos_recuperar.close();
+
+            archivo_productos_recuperar.close();
+
+            //DEVUELVE LOS DATOS DE FORMA INDIVIDUAL
+            for (Producto dd: productos_recuperados){
+                return dd;
+            }
+        }
+        
+        catch (Exception dd){
+        }
+
+    }
 }
 
 

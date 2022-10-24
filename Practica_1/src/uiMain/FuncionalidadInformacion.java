@@ -2,9 +2,13 @@ package uiMain;
 
 import gestorAplicacion.gestion.Pedido;
 import gestorAplicacion.gestion.Producto;
+import gestorAplicacion.usuarios.*;
+
 
 import java.util.ArrayList;
 import java.util.Scanner;
+
+
 
 public class FuncionalidadInformacion {
 
@@ -34,7 +38,7 @@ public class FuncionalidadInformacion {
         System.out.println("+++++++++++++++++++++++++++++++");
         System.out.println("Sistema de Información del bar");
         System.out.println("----------o---------o----------");
-        System.out.println("Inf. Sobre los pedidos y productos");
+        System.out.println("Inf. Sobre los pedidos, productos y empleados");
         System.out.println("++++++++++++++++++++++++++++++++");
 
         String opcion;
@@ -42,6 +46,7 @@ public class FuncionalidadInformacion {
 
             System.out.println(" 1. Pedidos.");
             System.out.println(" 2. Productos.");
+            System.out.println(" 3. Empleados.");
             System.out.println(" 0. Volver al menu principal\n");
 
             opcion = readString();
@@ -52,6 +57,9 @@ public class FuncionalidadInformacion {
                     break;
                 case "2":
                     info_productos();
+                    break;
+                case "3":
+                    info_empleados();
                     break;
                 case "0":
                     break;
@@ -150,6 +158,47 @@ public class FuncionalidadInformacion {
             }
 
         } while (!(opcion_producto == 0));
+
+    }
+
+    static void info_empleados(){
+        int opcion_empleados;
+        ArrayList<Empleado> listaempleados = Empleado.getEmpleados();
+        opcion_empleados = -1;
+
+        do {
+            System.out.println(
+                    "\n+++++++++++++++++++++++++++++++++");
+
+            System.out.println("Informacion sobre empleados");
+
+            for (int i = 0; i < listaempleados.size(); ++i) {
+                System.out.println(" " + (i + 1) + ". " + listaempleados.get(i).getNombre());
+            }
+            System.out.println("\n 0. Regresar.");
+
+            try {
+                opcion_empleados = Integer.parseInt(FuncionalidadInformacion.readString());
+            } catch (Exception e) {
+                System.out.println("\nPor favor introduzca una opción valida");
+                pressEnter();
+            }
+            if ((opcion_empleados - 1 >= listaempleados.size()) || (opcion_empleados < 0)) {
+                System.out.println("Por favor introduzca un numero valido");
+                pressEnter();
+                continue;
+
+            }
+            if (opcion_empleados == 0) {
+                continue;
+            }
+            if (opcion_empleados != -1) {
+                System.out.println(listaempleados.get(opcion_empleados - 1).informacion());
+                pressEnter();
+                opcion_empleados = -1;
+            }
+
+        }while (!(opcion_empleados == 0));
 
     }
 
