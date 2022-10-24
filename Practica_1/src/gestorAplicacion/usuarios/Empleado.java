@@ -30,11 +30,11 @@ public abstract class Empleado extends Usuario implements Serializable {
         this.fechaIngreso = fechaIngreso;
         empleados.add(this);
     }
-    
-    
+
+
+    @Override //ligadura dinamica
     public String toString() {
-    	
-    	return nombre+","+cargo+","+sueldo+","+","+fechaIngreso+","+codigo;
+        return "Usuario de tipo Empleado\n"+"Nombre "+this.getNombre()+"\n"+"Codigo de usuario: "+this.getCodigo();
     }
 
 
@@ -105,6 +105,7 @@ public abstract class Empleado extends Usuario implements Serializable {
     public abstract String asegurar();
 
     public abstract double calculoDePrima();
+
 
 
 

@@ -93,7 +93,7 @@ public class Trabajador extends Empleado implements Sueldo, Serializable {
         return numeroTrabajador++;
     }
 
-    public String toString(){
+    public String toString(){ //ligadura dinamica
         return "Codigo: "+this.getCodigo()+", Nombre: "+super.getNombre()+ ", Fecha de vinculacion: "+super.getFechaIngreso();
     }
 
@@ -116,6 +116,7 @@ public class Trabajador extends Empleado implements Sueldo, Serializable {
         }
         return trabajadorSeleccionado;
     }
+
 
 
 

@@ -57,8 +57,10 @@ public abstract class Usuario  implements Serializable {
     //OTROS METODOS
     private static void generarCodigo() {}
 
-
-
+    @Override
+    public String toString() {
+        return "Objeto de tipo Usuario\n"+"Nombre: "+this.nombre+"\n"+"Codio de usuario: "+this.codigo;
+    }
 }
 
 
