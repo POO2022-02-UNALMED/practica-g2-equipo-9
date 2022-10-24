@@ -60,16 +60,28 @@ public class Espacio {
             System.out.println("Por favor ingrese una opcion valida");
             opcion=sc.nextInt();
         }
+        LocalDate fechaTomada = this.getFechas().get(opcion);
         this.getFechas().remove(opcion); // se quita la disponibilidad de la fecha seleccionada
-        return this.getFechas().get(opcion); //retorna la fecha tomada por el usuario
+        return fechaTomada; //retorna la fecha tomada por el usuario
     }
     public void reordenarFechas(Reserva reserva){ //metodo utilizado para reordenar las fechas disponibles una vez se cancela o modifica una reserva de un espacio
         for (int i = 0; i < fechas.size(); i++) {
             if(fechas.get(i).isBefore(reserva.getFechaReserva()) && fechas.get(i+1).isAfter(reserva.getFechaReserva())){
                 fechas.add(i+1, reserva.getFechaReserva());
+                break;
             }
-            reserva.setFechaReserva(null);
+            else if (fechas.get(i).isBefore(reserva.getFechaReserva()) && i==fechas.size()-1) {
+                fechas.add(reserva.getFechaReserva());
+                break;
+            }
+            else if (fechas.get(i).isAfter(reserva.getFechaReserva()) && i==0) {
+                fechas.add(0, reserva.getFechaReserva());
+                break;
+
+            }
+
         }
+        System.out.println(fechas);
 
     }
 

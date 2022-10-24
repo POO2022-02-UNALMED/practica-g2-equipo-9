@@ -52,6 +52,7 @@ public class Producto {
     public Producto() {
         Producto.numeroProducto++;
         this.codigo = Producto.numeroProducto;
+        productos.add(this);
     }
 
     public Producto(String nombre, String estado, int precioCompra, int precioVenta, int tipo){
@@ -297,7 +298,7 @@ public class Producto {
             lista.add(producto);
 
         } catch (Exception e) {
-            System.out.println("El metodo verificarExistenciaCategoria de la clase producto no se realizo de manera correcta");
+
         }
 
     }
