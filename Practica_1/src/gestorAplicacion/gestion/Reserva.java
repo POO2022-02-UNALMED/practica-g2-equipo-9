@@ -4,6 +4,7 @@ import gestorAplicacion.usuarios.Cliente;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.*;
 
 public class Reserva {
     //ATRIBUTOS DE INSTANCIA
@@ -159,5 +160,48 @@ public class Reserva {
                 return "Esta reserva se ha culminado con exito el dia "+this.getFechaReserva();
         }
         return super.toString();
+    }
+
+    //SERIALIZACION
+    public void Save() {
+        try{
+            FileOutputStream archivo_reservas_datos = new FileInputStream("/usuario.dat");
+
+            ObjectOutputStream reservas_datos = new ObjectOutputStream(archivo_reservas_datos);
+    
+            reservas_datos.writeObject(servicios);
+    
+            reservas_datos.close();
+
+            archivo_reservas_datos.close();
+        
+        }
+    
+        catch (Exception s){
+        }
+    }
+
+    public void Load (){
+        try{
+            FileOutputStream archivo_reservas_recuperar = new FileInputStream("/usuario.dat");
+        
+            ObjectInputStream reservas_recuperar= new ObjectInputStream(archivo_reservas_recuperar);
+
+            //DEVUELVE LOS DATOS EN TIPO ARRAY
+            Servicio[] reservas_recuperados=(Usuario[]) reservas_recuperar.readObject();
+            
+            reservas_recuperar.close();
+
+            archivo_reservas_recuperar.close();
+
+            //IMPRIME LOS DATOS DE FORMA INDIVIDUAL
+            for (Usuario ss: reservas_recuperados){
+                return ss;
+            }
+        }
+        
+        catch (Exception ss){
+        }
+
     }
 }
