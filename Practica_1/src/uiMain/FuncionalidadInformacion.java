@@ -39,7 +39,7 @@ public class FuncionalidadInformacion {
         System.out.println("+++++++++++++++++++++++++++++++");
         System.out.println("Sistema de Información del bar");
         System.out.println("----------o---------o----------");
-        System.out.println("Inf. Sobre los pedidos, productos y empleados");
+        System.out.println("Historial sobre los pedidos, productos, reserva\n e información sobre los empleados");
         System.out.println("++++++++++++++++++++++++++++++++");
 
         String opcion;
