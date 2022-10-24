@@ -12,8 +12,11 @@ import javax.management.MBeanAttributeInfo;
 public class interfazGenerica {
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
     public static void main(String[] args) {
