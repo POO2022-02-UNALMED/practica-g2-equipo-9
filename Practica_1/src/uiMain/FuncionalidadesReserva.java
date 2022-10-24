@@ -68,10 +68,10 @@ public class FuncionalidadesReserva {
                                     if(cantidadProducto == 0){
                                         break;
                                     }
-                                    if (producto.equals(Producto.getProductos().get(-1))){
-                                        System.out.println("Hiceron falta agregar "+cantidadProducto+" debido a falta de disponibilidad del producto seleccionado");
-                                    }
                                 }
+                            if(cantidadProducto !=0 && producto.equals(Producto.getProductos().get(Producto.getProductos().size()-1)) ){
+                                System.out.println("Hiceron falta por agregar "+ cantidadProducto+" debido a falta de unidades disponibles");
+                            }
 
                         }
 
@@ -96,10 +96,10 @@ public class FuncionalidadesReserva {
                                         if(cantidadProducto == 0){
                                             break;
                                         }
-                                        if (producto.equals(Producto.getProductos().get(-1))){
-                                            System.out.println("Hiceron falta agregar "+cantidadProducto+" debido a falta de disponibilidad del producto seleccionado");
-                                        }
                                     }
+                                if(cantidadProducto !=0 && producto.equals(Producto.getProductos().get(Producto.getProductos().size()-1)) ){
+                                    System.out.println("Hiceron falta por agregar "+ cantidadProducto+" debido a falta de unidades disponibles");
+                                }
 
                             }
                         }
@@ -132,10 +132,10 @@ public class FuncionalidadesReserva {
                                     if(cantidadProducto == 0){
                                         break;
                                     }
-                                    if (producto.equals(Producto.getProductos().get(-1))){
-                                        System.out.println("Hiceron falta agregar "+cantidadProducto+" debido a falta de disponibilidad del producto seleccionado");
-                                    }
                                 }
+                            if(cantidadProducto !=0 && producto.equals(Producto.getProductos().get(Producto.getProductos().size()-1)) ){
+                                System.out.println("Hiceron falta por agregar "+ cantidadProducto+" debido a falta de unidades disponibles");
+                            }
                         }
 
                     }
@@ -159,10 +159,10 @@ public class FuncionalidadesReserva {
                                         if(cantidadProducto == 0){
                                             break;
                                         }
-                                        if (producto.equals(Producto.getProductos().get(-1))){
-                                            System.out.println("Hiceron falta agregar "+cantidadProducto+" debido a falta de disponibilidad del producto seleccionado");
-                                        }
                                     }
+                                if(cantidadProducto !=0 && producto.equals(Producto.getProductos().get(Producto.getProductos().size()-1)) ){
+                                    System.out.println("Hiceron falta por agregar "+ cantidadProducto+" debido a falta de unidades disponibles");
+                                }
 
                             }
                         }
@@ -195,10 +195,10 @@ public class FuncionalidadesReserva {
                                     if(cantidadProducto == 0){
                                         break;
                                     }
-                                    if (producto.equals(Producto.getProductos().get(-1))){
-                                        System.out.println("Hiceron falta agregar "+cantidadProducto+" debido a falta de disponibilidad del producto seleccionado");
-                                    }
                                 }
+                            if(cantidadProducto !=0 && producto.equals(Producto.getProductos().get(Producto.getProductos().size()-1)) ){
+                                System.out.println("Hiceron falta por agregar "+ cantidadProducto+" debido a falta de unidades disponibles");
+                            }
 
                         }
 
@@ -223,10 +223,10 @@ public class FuncionalidadesReserva {
                                         if(cantidadProducto == 0){
                                             break;
                                         }
-                                        if (producto.equals(Producto.getProductos().get(-1))){
-                                            System.out.println("Hiceron falta agregar "+cantidadProducto+" debido a falta de disponibilidad del producto seleccionado");
-                                        }
                                     }
+                                if(cantidadProducto !=0 && producto.equals(Producto.getProductos().get(Producto.getProductos().size()-1)) ){
+                                    System.out.println("Hiceron falta por agregar "+ cantidadProducto+" debido a falta de unidades disponibles");
+                                }
 
                             }
                         }
@@ -259,10 +259,10 @@ public class FuncionalidadesReserva {
                                     if(cantidadProducto == 0){
                                         break;
                                     }
-                                    if (producto.equals(Producto.getProductos().get(-1))){
-                                        System.out.println("Hiceron falta agregar "+cantidadProducto+" debido a falta de disponibilidad del producto seleccionado");
-                                    }
                                 }
+                            if(cantidadProducto !=0 && producto.equals(Producto.getProductos().get(Producto.getProductos().size()-1)) ){
+                                System.out.println("Hiceron falta por agregar "+ cantidadProducto+" debido a falta de unidades disponibles");
+                            }
 
                         }
 
@@ -287,10 +287,10 @@ public class FuncionalidadesReserva {
                                         if(cantidadProducto == 0){
                                             break;
                                         }
-                                        if (producto.equals(Producto.getProductos().get(-1))){
-                                            System.out.println("Hiceron falta agregar "+cantidadProducto+" debido a falta de disponibilidad del producto seleccionado");
-                                        }
                                     }
+                                if(cantidadProducto !=0 && producto.equals(Producto.getProductos().get(Producto.getProductos().size()-1)) ){
+                                    System.out.println("Hiceron falta por agregar "+ cantidadProducto+" debido a falta de unidades disponibles");
+                                }
 
                             }
                         }
@@ -323,10 +323,10 @@ public class FuncionalidadesReserva {
                                     if(cantidadProducto == 0){
                                         break;
                                     }
-                                    if (producto.equals(Producto.getProductos().get(-1))){
-                                        System.out.println("Hiceron falta agregar "+cantidadProducto+" debido a falta de disponibilidad del producto seleccionado");
-                                    }
                                 }
+                            if(cantidadProducto !=0 && producto.equals(Producto.getProductos().get(Producto.getProductos().size()-1)) ){
+                                System.out.println("Hiceron falta por agregar "+ cantidadProducto+" debido a falta de unidades disponibles");
+                            }
 
                         }
 
@@ -351,10 +351,10 @@ public class FuncionalidadesReserva {
                                         if(cantidadProducto == 0){
                                             break;
                                         }
-                                        if (producto.equals(Producto.getProductos().get(-1))){
-                                            System.out.println("Hiceron falta agregar "+cantidadProducto+" debido a falta de disponibilidad del producto seleccionado");
-                                        }
                                     }
+                                if(cantidadProducto !=0 && producto.equals(Producto.getProductos().get(Producto.getProductos().size()-1)) ){
+                                    System.out.println("Hiceron falta por agregar "+ cantidadProducto+" debido a falta de unidades disponibles");
+                                }
 
                             }
                         }
@@ -387,10 +387,10 @@ public class FuncionalidadesReserva {
                                     if(cantidadProducto == 0){
                                         break;
                                     }
-                                    if (producto.equals(Producto.getProductos().get(-1))){
-                                        System.out.println("Hiceron falta agregar "+cantidadProducto+" debido a falta de disponibilidad del producto seleccionado");
-                                    }
                                 }
+                            if(cantidadProducto !=0 && producto.equals(Producto.getProductos().get(Producto.getProductos().size()-1)) ){
+                                System.out.println("Hiceron falta por agregar "+ cantidadProducto+" debido a falta de unidades disponibles");
+                            }
 
                         }
 
@@ -420,10 +420,10 @@ public class FuncionalidadesReserva {
                                         if (cantidadProducto == 0){
                                             break;
                                         }
-                                        if (producto.equals(Producto.getProductos().get(-1))){
-                                            System.out.println("Hiceron falta agregar "+cantidadProducto+" debido a falta de disponibilidad del producto seleccionado");
-                                        }
                                     }
+                                if(cantidadProducto !=0 && producto.equals(Producto.getProductos().get(Producto.getProductos().size()-1)) ){
+                                    System.out.println("Hiceron falta por agregar "+ cantidadProducto+" debido a falta de unidades disponibles");
+                                }
 
                             }
                         }
@@ -456,9 +456,9 @@ public class FuncionalidadesReserva {
                                     if(cantidadProducto == 0){
                                         break;
                                     }
-                                    if (producto.equals(Producto.getProductos().get(-1))){
-                                        System.out.println("Hiceron falta agregar "+cantidadProducto+" debido a falta de disponibilidad del producto seleccionado");
-                                    }
+                                }
+                                if(cantidadProducto !=0 && producto.equals(Producto.getProductos().get(Producto.getProductos().size()-1)) ){
+                                    System.out.println("Hiceron falta por agregar "+ cantidadProducto+" debido a falta de unidades disponibles");
                                 }
 
                         }
@@ -490,9 +490,9 @@ public class FuncionalidadesReserva {
                                     if(cantidadProducto ==0){
                                         break;
                                     }
-                                    if (producto.equals(Producto.getProductos().get(Producto.getProductos().size()-1))){
-                                        System.out.println("Hiceron falta agregar "+cantidadProducto+" debido a falta de disponibilidad del producto seleccionado");
-                                    }
+                                }
+                                if(cantidadProducto !=0 && producto.equals(Producto.getProductos().get(Producto.getProductos().size()-1)) ){
+                                    System.out.println("Hiceron falta por agregar "+ cantidadProducto+" debido a falta de unidades disponibles");
                                 }
 
                             }
