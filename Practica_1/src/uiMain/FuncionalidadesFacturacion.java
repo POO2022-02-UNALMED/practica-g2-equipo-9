@@ -719,8 +719,6 @@ public class FuncionalidadesFacturacion {
     }
 
     public static void main(String[] args) {
-        Trabajador trabajador1=new Trabajador("Sergio,")
-        opcionesDePedido();
     }
 
 }
