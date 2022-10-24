@@ -397,6 +397,8 @@ public class Producto {
         return productosEscogidos;
     }
 
+
+
     public static ArrayList<Producto> recomendarProducto(ArrayList<Producto> listaProductos) {
         SortedSet<String> nombresNoRepetidos = new TreeSet<>();
         ArrayList<String> nombresRepetidos = new ArrayList<>();

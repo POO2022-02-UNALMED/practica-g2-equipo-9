@@ -21,15 +21,15 @@ public class Cliente extends Usuario {
 
 
 
-
     //CONSTRUCTOR
+
     public Cliente(String nombre){
         super(generarCodigo(), nombre);
         clientes.add(this);
     }
 
     public Cliente(){
-
+        super(-1, "N/A");
     }
 
     public  Cliente(String nombre, int numeroReserva, String estadoReserva, Pedido pedido, ArrayList<Pedido> historialPedidos) {
@@ -57,22 +57,19 @@ public class Cliente extends Usuario {
         return numeroCliente;
     }
 
-    public static String mostrarClientes(){ //Muestra todos los clientes con pedidos "No pagado"
+    public static String mostrarClientesRegistrados(){ //Muestra todos los clientes con pedidos "No pagado"
         String s="";
         int i =1;
         for (Cliente cliente: Cliente.getClientes()){
-            if (cliente.pedido.getEstadoPedido().equals("No pagado")){
-                s+="\n"+i+". Codigo de cliente: "+cliente.getCodigo()+" Nombre: "+cliente.getNombre();
-                i++;
-            }
+            s+="\n"+i+". Codigo de cliente: "+cliente.getCodigo()+", Nombre: "+cliente.getNombre();
+            i++;
         }
         return s;
     }
-
     public static Cliente seleccionarCliente(long codigo){//Escoge un cliente por el codigo unico que tiene asignado
         Cliente clienteSeleccionado=null;
         for (Cliente cliente: Cliente.getClientes()){
-            if(cliente.getCodigo()==codigo && cliente.getPedido().getEstadoPedido().equals("No pagado")){
+            if(cliente.getCodigo()==codigo){
                 clienteSeleccionado=cliente;
                 break;
             }
@@ -123,6 +120,14 @@ public class Cliente extends Usuario {
         this.pedido = pedido;
     }
 
+    public ArrayList<Pedido> getHistorialPedidos() {
+        return historialPedidos;
+    }
+
+    public void setHistorialPedidos(ArrayList<Pedido> historialPedidos) {
+        this.historialPedidos = historialPedidos;
+    }
+
     public String informacion() {
         return "El cliente " + this.nombre + " con número de reserva " + this.numeroReserva+ " y estado de la reserva "
                 + this.estadoReserva + "Ha hecho "
@@ -132,6 +137,7 @@ public class Cliente extends Usuario {
     public void agregarPedidoHistorial(Pedido pedido) {
         historialPedidos.add(pedido);
     }
+
 
 
 
