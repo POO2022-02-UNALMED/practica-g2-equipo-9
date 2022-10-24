@@ -45,13 +45,13 @@ public class GestionEmpleados {
             }
         }
         else if(opcion == 3) {
-<<<<<<< Updated upstream
+
         	
 			for(int i=0; i<Empleado.getEmpleados().size();i++) {
-=======
+
         	//info del algun trabajador
 		//	for(int i=0; i<empleados.length;i++) {
->>>>>>> Stashed changes
+
         		
         	}
         }
@@ -62,12 +62,11 @@ public class GestionEmpleados {
 	
 	// contratar un nuevo empleado;
 	
-	static void ContratarEmpleado(){
+	//static void ContratarEmpleado(){
 			
 	}
 	// despides algun empleado
-	static void DespedirEmpleado() {
-		
-		}
-	
+	//static void DespedirEmpleado() {}
 }
+	
+

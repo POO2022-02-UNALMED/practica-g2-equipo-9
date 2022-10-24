@@ -68,6 +68,9 @@ public class FuncionalidadesReserva {
                                     if(cantidadProducto == 0){
                                         break;
                                     }
+                                    if (producto.equals(Producto.getProductos().get(-1))){
+                                        System.out.println("Hiceron falta agregar "+cantidadProducto+" debido a falta de disponibilidad del producto seleccionado");
+                                    }
                                 }
 
                         }
@@ -92,6 +95,9 @@ public class FuncionalidadesReserva {
                                         --cantidadProducto; // Cuando se agrega un producto se va restando a cantidadProducto para que se agregue exactaente la cantidad requerida por el cliente;
                                         if(cantidadProducto == 0){
                                             break;
+                                        }
+                                        if (producto.equals(Producto.getProductos().get(-1))){
+                                            System.out.println("Hiceron falta agregar "+cantidadProducto+" debido a falta de disponibilidad del producto seleccionado");
                                         }
                                     }
 
@@ -126,6 +132,9 @@ public class FuncionalidadesReserva {
                                     if(cantidadProducto == 0){
                                         break;
                                     }
+                                    if (producto.equals(Producto.getProductos().get(-1))){
+                                        System.out.println("Hiceron falta agregar "+cantidadProducto+" debido a falta de disponibilidad del producto seleccionado");
+                                    }
                                 }
                         }
 
@@ -149,6 +158,9 @@ public class FuncionalidadesReserva {
                                         --cantidadProducto; // Cuando se agrega un producto se va restando a cantidadProducto para que se agregue exactaente la cantidad requerida por el cliente;
                                         if(cantidadProducto == 0){
                                             break;
+                                        }
+                                        if (producto.equals(Producto.getProductos().get(-1))){
+                                            System.out.println("Hiceron falta agregar "+cantidadProducto+" debido a falta de disponibilidad del producto seleccionado");
                                         }
                                     }
 
@@ -183,6 +195,9 @@ public class FuncionalidadesReserva {
                                     if(cantidadProducto == 0){
                                         break;
                                     }
+                                    if (producto.equals(Producto.getProductos().get(-1))){
+                                        System.out.println("Hiceron falta agregar "+cantidadProducto+" debido a falta de disponibilidad del producto seleccionado");
+                                    }
                                 }
 
                         }
@@ -207,6 +222,9 @@ public class FuncionalidadesReserva {
                                         --cantidadProducto; // Cuando se agrega un producto se va restando a cantidadProducto para que se agregue exactaente la cantidad requerida por el cliente;
                                         if(cantidadProducto == 0){
                                             break;
+                                        }
+                                        if (producto.equals(Producto.getProductos().get(-1))){
+                                            System.out.println("Hiceron falta agregar "+cantidadProducto+" debido a falta de disponibilidad del producto seleccionado");
                                         }
                                     }
 
@@ -241,6 +259,9 @@ public class FuncionalidadesReserva {
                                     if(cantidadProducto == 0){
                                         break;
                                     }
+                                    if (producto.equals(Producto.getProductos().get(-1))){
+                                        System.out.println("Hiceron falta agregar "+cantidadProducto+" debido a falta de disponibilidad del producto seleccionado");
+                                    }
                                 }
 
                         }
@@ -265,6 +286,9 @@ public class FuncionalidadesReserva {
                                         --cantidadProducto; // Cuando se agrega un producto se va restando a cantidadProducto para que se agregue exactaente la cantidad requerida por el cliente;
                                         if(cantidadProducto == 0){
                                             break;
+                                        }
+                                        if (producto.equals(Producto.getProductos().get(-1))){
+                                            System.out.println("Hiceron falta agregar "+cantidadProducto+" debido a falta de disponibilidad del producto seleccionado");
                                         }
                                     }
 
@@ -299,6 +323,9 @@ public class FuncionalidadesReserva {
                                     if(cantidadProducto == 0){
                                         break;
                                     }
+                                    if (producto.equals(Producto.getProductos().get(-1))){
+                                        System.out.println("Hiceron falta agregar "+cantidadProducto+" debido a falta de disponibilidad del producto seleccionado");
+                                    }
                                 }
 
                         }
@@ -323,6 +350,9 @@ public class FuncionalidadesReserva {
                                         --cantidadProducto; // Cuando se agrega un producto se va restando a cantidadProducto para que se agregue exactaente la cantidad requerida por el cliente;
                                         if(cantidadProducto == 0){
                                             break;
+                                        }
+                                        if (producto.equals(Producto.getProductos().get(-1))){
+                                            System.out.println("Hiceron falta agregar "+cantidadProducto+" debido a falta de disponibilidad del producto seleccionado");
                                         }
                                     }
 
@@ -357,6 +387,9 @@ public class FuncionalidadesReserva {
                                     if(cantidadProducto == 0){
                                         break;
                                     }
+                                    if (producto.equals(Producto.getProductos().get(-1))){
+                                        System.out.println("Hiceron falta agregar "+cantidadProducto+" debido a falta de disponibilidad del producto seleccionado");
+                                    }
                                 }
 
                         }
@@ -386,6 +419,9 @@ public class FuncionalidadesReserva {
                                         --cantidadProducto; // Cuando se agrega un producto se va restando a cantidadProducto para que se agregue exactaente la cantidad requerida por el cliente
                                         if (cantidadProducto == 0){
                                             break;
+                                        }
+                                        if (producto.equals(Producto.getProductos().get(-1))){
+                                            System.out.println("Hiceron falta agregar "+cantidadProducto+" debido a falta de disponibilidad del producto seleccionado");
                                         }
                                     }
 
@@ -420,6 +456,9 @@ public class FuncionalidadesReserva {
                                     if(cantidadProducto == 0){
                                         break;
                                     }
+                                    if (producto.equals(Producto.getProductos().get(-1))){
+                                        System.out.println("Hiceron falta agregar "+cantidadProducto+" debido a falta de disponibilidad del producto seleccionado");
+                                    }
                                 }
 
                         }
@@ -450,6 +489,9 @@ public class FuncionalidadesReserva {
                                     --cantidadProducto; // Cuando se agrega un producto se va restando a cantidadProducto para que se agregue exactaente la cantidad requerida por el cliente;
                                     if(cantidadProducto ==0){
                                         break;
+                                    }
+                                    if (producto.equals(Producto.getProductos().get(Producto.getProductos().size()-1))){
+                                        System.out.println("Hiceron falta agregar "+cantidadProducto+" debido a falta de disponibilidad del producto seleccionado");
                                     }
                                 }
 
