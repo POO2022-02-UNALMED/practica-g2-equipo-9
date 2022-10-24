@@ -120,7 +120,7 @@ public class Espacio {
 
             archivo_espacios_recuperar.close();
 
-            //IMPRIME LOS DATOS DE FORMA INDIVIDUAL
+            //DEVUELVE LOS DATOS DE FORMA INDIVIDUAL
             for (Espacio ess: espacios_recuperados){
                 return ess;
             }
