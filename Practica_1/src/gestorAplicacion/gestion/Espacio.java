@@ -87,6 +87,4 @@ public class Espacio {
             this.fechas.add(LocalDate.now().plusDays(i));
         }
     }
-
-
 }

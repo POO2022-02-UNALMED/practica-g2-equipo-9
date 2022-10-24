@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class Reserva {
     //ATRIBUTOS DE INSTANCIA
     private int idReserva;
-    private String estado; //"Exitosa", "No exitosa"
+    private String estado; //"Activa", "Cancelada", "Cumplida",  "Vencida"
     private Cliente cliente;
     private ArrayList<Servicio> servicios;
     private LocalDate fechaReserva; // el dia de la ejecucion de la reserva
@@ -129,5 +129,35 @@ public class Reserva {
 
     public void setEspacio(Espacio espacio) {
         this.espacio = espacio;
+    }
+
+    public int calcularPrecioReserva(){ // metodo para calcular el total a pagar en la reserva
+        int acumulado = 0;
+        for (Servicio servicio: this.servicios // ciclo para sumar los precios de los servicios
+        ) {
+            acumulado+= servicio.getPrecio();
+        }
+
+        for (Producto producto: this.pedido.getProductos() //ciclo para sumar los precios de los productos añadidos a al pedido asociado a la reserva
+        ) {
+            acumulado+= producto.getPrecioVenta();
+        }
+
+        return acumulado; // retorna el acumulado de todo lo sumado anteriormente
+    }
+
+    @Override
+    public String toString() { // metodo para realizar un resumen en la funcionalidadesdeReserva
+        switch (this.getEstado()) {
+            case "Activa":
+                return "Reserva realizada con exito\n" + "El total de su reserva es de: " + this.calcularPrecioReserva() + "\n" +
+                        "Su reserva es para el dia: " + this.getFechaReserva() + "\n" + "Y esta fue creada el dia: " + this.getFechaCreacion();
+            case "Cancelada":
+                return "Su reserva ha sido cancelada con exito\n" + "El valor a pagar por su cancelacion es de: " + this.pagoCancelacion;
+
+            case "Cumplida":
+                return "Esta reserva se ha culminado con exito el dia "+this.getFechaReserva();
+        }
+        return super.toString();
     }
 }

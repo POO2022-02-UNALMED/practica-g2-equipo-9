@@ -49,7 +49,7 @@ public class FuncionalidadesReserva {
                         System.out.println("Por favor ingrese la cantidad");
                         int cantidadProducto = sc.nextInt();
                         while(cantidadProducto < 1){
-                            System.out.println("Pro favor ingrese una cantidad mayor o igual a 1");
+                            System.out.println("Por favor ingrese una cantidad mayor o igual a 1");
                             cantidadProducto = sc.nextInt();
                         }
                         for (Producto producto: Producto.getProductos()) {
@@ -67,11 +67,12 @@ public class FuncionalidadesReserva {
                         for (int i = 0; i < Producto.getBebidasAlcoholicas().size(); i++) {
                             System.out.println(i+". "+Producto.getBebidasAlcoholicas().get(i).getNombre()+" Precio: "+Producto.getBebidasAlcoholicas().get(i).getPrecioVenta());
                         }
+
                         if (opcionProducto<Producto.getBebidasAlcoholicas().size()){
                             System.out.println("Por favor ingrese la cantidad");
                             int cantidadProducto = sc.nextInt();
                             while(cantidadProducto < 1){
-                                System.out.println("Pro favor ingrese una cantidad mayor o igual a 1");
+                                System.out.println("Por favor ingrese una cantidad mayor o igual a 1");
                                 cantidadProducto = sc.nextInt();
                             }
                             for (Producto producto: Producto.getProductos()) {
@@ -102,7 +103,7 @@ public class FuncionalidadesReserva {
                         System.out.println("Por favor ingrese la cantidad");
                         int cantidadProducto = sc.nextInt();
                         while(cantidadProducto < 1){
-                            System.out.println("Pro favor ingrese una cantidad mayor o igual a 1");
+                            System.out.println("Por favor ingrese una cantidad mayor o igual a 1");
                             cantidadProducto = sc.nextInt();
                         }
                         for (Producto producto: Producto.getProductos()) {
@@ -124,7 +125,7 @@ public class FuncionalidadesReserva {
                             System.out.println("Por favor ingrese la cantidad");
                             int cantidadProducto = sc.nextInt();
                             while(cantidadProducto < 1){
-                                System.out.println("Pro favor ingrese una cantidad mayor o igual a 1");
+                                System.out.println("Por favor ingrese una cantidad mayor o igual a 1");
                                 cantidadProducto = sc.nextInt();
                             }
                             for (Producto producto: Producto.getProductos()) {
@@ -154,7 +155,7 @@ public class FuncionalidadesReserva {
                         System.out.println("Por favor ingrese la cantidad");
                         int cantidadProducto = sc.nextInt();
                         while(cantidadProducto < 1){
-                            System.out.println("Pro favor ingrese una cantidad mayor o igual a 1");
+                            System.out.println("Por favor ingrese una cantidad mayor o igual a 1");
                             cantidadProducto = sc.nextInt();
                         }
                         for (Producto producto: Producto.getProductos()) {
@@ -176,7 +177,7 @@ public class FuncionalidadesReserva {
                             System.out.println("Por favor ingrese la cantidad");
                             int cantidadProducto = sc.nextInt();
                             while(cantidadProducto < 1){
-                                System.out.println("Pro favor ingrese una cantidad mayor o igual a 1");
+                                System.out.println("Por favor ingrese una cantidad mayor o igual a 1");
                                 cantidadProducto = sc.nextInt();
                             }
                             for (Producto producto: Producto.getProductos()) {
@@ -206,7 +207,7 @@ public class FuncionalidadesReserva {
                         System.out.println("Por favor ingrese la cantidad");
                         int cantidadProducto = sc.nextInt();
                         while(cantidadProducto < 1){
-                            System.out.println("Pro favor ingrese una cantidad mayor o igual a 1");
+                            System.out.println("Por favor ingrese una cantidad mayor o igual a 1");
                             cantidadProducto = sc.nextInt();
                         }
                         for (Producto producto: Producto.getProductos()) {
@@ -228,7 +229,7 @@ public class FuncionalidadesReserva {
                             System.out.println("Por favor ingrese la cantidad");
                             int cantidadProducto = sc.nextInt();
                             while(cantidadProducto < 1){
-                                System.out.println("Pro favor ingrese una cantidad mayor o igual a 1");
+                                System.out.println("Por favor ingrese una cantidad mayor o igual a 1");
                                 cantidadProducto = sc.nextInt();
                             }
                             for (Producto producto: Producto.getProductos()) {
@@ -258,7 +259,7 @@ public class FuncionalidadesReserva {
                         System.out.println("Por favor ingrese la cantidad");
                         int cantidadProducto = sc.nextInt();
                         while(cantidadProducto < 1){
-                            System.out.println("Pro favor ingrese una cantidad mayor o igual a 1");
+                            System.out.println("Por favor ingrese una cantidad mayor o igual a 1");
                             cantidadProducto = sc.nextInt();
                         }
                         for (Producto producto: Producto.getProductos()) {
@@ -310,7 +311,7 @@ public class FuncionalidadesReserva {
                         System.out.println("Por favor ingrese la cantidad");
                         int cantidadProducto = sc.nextInt();
                         while(cantidadProducto < 1){
-                            System.out.println("Pro favor ingrese una cantidad mayor o igual a 1");
+                            System.out.println("Por favor ingrese una cantidad entre 1 y 15");
                             cantidadProducto = sc.nextInt();
                         }
                         for (Producto producto: Producto.getProductos()) {
@@ -328,19 +329,28 @@ public class FuncionalidadesReserva {
                         for (int i = 0; i < Producto.getEnergizantes().size(); i++) {
                             System.out.println(i+". "+Producto.getEnergizantes().get(i).getNombre()+" Precio: "+Producto.getEnergizantes().get(i).getPrecioVenta());
                         }
+                        System.out.println("Ingrese el numero de producto\n");
+                        opcionProducto = sc.nextInt();
+                        while(opcionProducto<0 || opcionProducto>=Producto.getEnergizantes().size()){
+                            System.out.println("Por favor ingrese una opcion valida");
+                            opcionProducto = sc.nextInt();
+                        }
                         if (opcionProducto<Producto.getEnergizantes().size()){
                             System.out.println("Por favor ingrese la cantidad");
                             int cantidadProducto = sc.nextInt();
                             while(cantidadProducto < 1){
-                                System.out.println("Pro favor ingrese una cantidad mayor o igual a 1");
+                                System.out.println("Por favor ingrese una cantidad entre y 15");
                                 cantidadProducto = sc.nextInt();
                             }
                             for (Producto producto: Producto.getProductos()) {
                                 while(cantidadProducto>1){
-                                    if(producto.getNombre().equals(Producto.getEnergizantes().get(opcionProducto).getNombre())){
+                                    if(producto.getNombre().equals(Producto.getEnergizantes().get(opcionProducto).getNombre()) && producto.getEstado().equals("No vendido")){
                                         producto.setEstado("Reservado");
                                         pedidoReserva.getProductos().add(producto); // se agrega al ArrayList de los productos el producto seleccionad
-                                        --cantidadProducto; // Cuando se agrega un producto se va restando a cantidadProducto para que se agregue exactaente la cantidad requerida por el cliente;
+                                        --cantidadProducto; // Cuando se agrega un producto se va restando a cantidadProducto para que se agregue exactaente la cantidad requerida por el cliente
+                                        if (cantidadProducto == 0){
+                                            break;
+                                        }
                                     }
                                 }
                             }
@@ -351,8 +361,8 @@ public class FuncionalidadesReserva {
                     for (int i = 0; i < 5; i++) {
                         System.out.println(i+". "+Producto.getOtrosProductos().get(i).getNombre()+" Precio: "+Producto.getOtrosProductos().get(i).getPrecioVenta());
                     }
-                    System.out.println("Ingrese el numero de producto");
-                    System.out.println("o ingrese 5 para ver todos los prodductos de esta categoria");
+                    System.out.println("Ingrese el numero de producto\n");
+                    System.out.println("Ingrese 5 para ver todos los prodductos de esta categoria");
                     opcionProducto = sc.nextInt();
                     while(opcionProducto<0 || opcionProducto>5){
                         System.out.println("Por favor ingrese una opcion valida");
@@ -362,12 +372,12 @@ public class FuncionalidadesReserva {
                         System.out.println("Por favor ingrese la cantidad");
                         int cantidadProducto = sc.nextInt();
                         while(cantidadProducto < 1){
-                            System.out.println("Pro favor ingrese una cantidad mayor o igual a 1");
+                            System.out.println("Por favor ingrese una cantidad mayor o igual a 1");
                             cantidadProducto = sc.nextInt();
                         }
                         for (Producto producto: Producto.getProductos()) {
-                            while(cantidadProducto>1){
-                                if(producto.getNombre().equals(Producto.getOtrosProductos().get(opcionProducto).getNombre())){
+                            while(cantidadProducto>=1){
+                                if(producto.getNombre().equals(Producto.getOtrosProductos().get(opcionProducto).getNombre()) && producto.getEstado().equals("No vendido")){
                                     producto.setEstado("Reservado");
                                     pedidoReserva.getProductos().add(producto); // se agrega al ArrayList de los productos el producto seleccionad
                                     --cantidadProducto; // Cuando se agrega un producto se va restando a cantidadProducto para que se agregue exactaente la cantidad requerida por el cliente;
@@ -380,21 +390,30 @@ public class FuncionalidadesReserva {
                         for (int i = 0; i < Producto.getOtrosProductos().size(); i++) {
                             System.out.println(i+". "+Producto.getOtrosProductos().get(i).getNombre()+" Precio: "+Producto.getOtrosProductos().get(i).getPrecioVenta());
                         }
+                        System.out.println("Ingrese el numero de producto\n");
+                        opcionProducto = sc.nextInt();
+                        while(opcionProducto<0 || opcionProducto>Producto.getOtrosProductos().size()){
+                            System.out.println("Por favor ingrese una opcion valida");
+                            opcionProducto = sc.nextInt();
+                        }
                         if (opcionProducto<Producto.getOtrosProductos().size()){
                             System.out.println("Por favor ingrese la cantidad");
                             int cantidadProducto = sc.nextInt();
                             while(cantidadProducto < 1){
-                                System.out.println("Pro favor ingrese una cantidad mayor o igual a 1");
+                                System.out.println("Por favor ingrese una cantidad entre 1 y 20");
                                 cantidadProducto = sc.nextInt();
                             }
+
                             for (Producto producto: Producto.getProductos()) {
-                                while(cantidadProducto>1){
-                                    if(producto.getNombre().equals(Producto.getOtrosProductos().get(opcionProducto).getNombre())){
-                                        producto.setEstado("Reservado");
-                                        pedidoReserva.getProductos().add(producto); // se agrega al ArrayList de los productos el producto seleccionad
-                                        --cantidadProducto; // Cuando se agrega un producto se va restando a cantidadProducto para que se agregue exactaente la cantidad requerida por el cliente;
+                                if(producto.getNombre().equals(Producto.getOtrosProductos().get(opcionProducto).getNombre()) && producto.getEstado().equals("No vendido")){
+                                    producto.setEstado("Reservado");
+                                    pedidoReserva.getProductos().add(producto); // se agrega al ArrayList de los productos el producto seleccionad
+                                    --cantidadProducto; // Cuando se agrega un producto se va restando a cantidadProducto para que se agregue exactaente la cantidad requerida por el cliente;
+                                    if(cantidadProducto ==0){
+                                        break;
                                     }
                                 }
+
                             }
                         }
                     }
@@ -458,7 +477,7 @@ public class FuncionalidadesReserva {
             System.out.println(i + ". " + espaciosDisponibles.get(i).getNombre());
         }
         System.out.println("Ingrese su opcion: ");
-        List<Servicio> serviciosDisponibles = Arrays.asList(Servicio.values());
+
         opcion = sc.nextInt();
 
         while (opcion < 0 || opcion >= (espaciosDisponibles.size())) {
@@ -482,7 +501,13 @@ public class FuncionalidadesReserva {
             opcion = sc.nextInt();
         }
          // Convierte el Array de Servicio a ArrayList de Servicio
-        List<Servicio> serviciosTomados = new ArrayList<>();
+        //List<Servicio> serviciosDisponibles = Arrays.asList(Servicio.values());
+        ArrayList<Servicio> serviciosDisponibles = new ArrayList<>();
+        for (Servicio servicio:
+             Servicio.values()) {
+            serviciosDisponibles.add(servicio);
+        }
+        ArrayList<Servicio> serviciosTomados = new ArrayList<>();
         while (opcion ==1 && !serviciosDisponibles.isEmpty()){ // loop para mostrar los servicios a escoger por el cliente
 
             for (int i = 0; i < serviciosDisponibles.size(); i++) {
@@ -495,16 +520,20 @@ public class FuncionalidadesReserva {
                 opcionServicio = sc.nextInt();
             }
             serviciosTomados.add(serviciosDisponibles.get(opcionServicio)); // se añade al ArrayList el serivicio tomado
-            serviciosDisponibles.remove((Integer)opcionServicio); // se elimina de servicios disponibles ya que fue tomado previamente
-            System.out.println("SERIVICIOS DISPONIBLES  ");
-            System.out.println(serviciosDisponibles);
-            System.out.println("Desea agregar mas servicios ?");
-            System.out.println("1. Si");
-            System.out.println("2. No");
-            opcionServicio = sc.nextInt();
-            while(opcionServicio != 1 && opcionServicio != 2){
-                System.out.println("Por favor ingrese una opcion valdia");
+            serviciosDisponibles.remove(opcionServicio); // se elimina de servicios disponibles ya que fue tomado previamente
+
+            if (!serviciosDisponibles.isEmpty()){
+                System.out.println("Desea agregar mas servicios ?");
+                System.out.println("1. Si");
+                System.out.println("2. No");
                 opcionServicio = sc.nextInt();
+                while(opcionServicio != 1 && opcionServicio != 2){
+                    System.out.println("Por favor ingrese una opcion valdia");
+                    opcionServicio = sc.nextInt();
+                }
+            }
+            else{
+                System.out.println("Usted ya ha seleccionado todos los servicios disponibles");
             }
             opcion = opcionServicio;
         } // el ciclo se termina por peticion del usuario o porque ya selecciono todos los servicios disponibles
@@ -514,8 +543,9 @@ public class FuncionalidadesReserva {
         agregarProductos(pedidoReserva); // se llama al metodo agregar productos
         reservaCreada.setPedido(pedidoReserva);
         reservaCreada.setFechaReserva(fechaTomada);
-        reservaCreada.setServicios((ArrayList<Servicio>) serviciosTomados);
-
+        reservaCreada.setServicios(serviciosTomados);
+        reservaCreada.setEstado("Activa");
+        System.out.println(reservaCreada.toString());
 
     }
 
@@ -579,87 +609,9 @@ public class FuncionalidadesReserva {
         Espacio sala1 = new Espacio("Sala 1");
         Espacio sala2 = new Espacio("Sala 2");
         Espacio sala3 = new Espacio("Sala 3");
-        Espacio sala4 = new Espacio("Sala 4");
-        Espacio sala5 = new Espacio("Sala 5");
-        Espacio sala6 = new Espacio("Sala 6");
-        Espacio sala7 = new Espacio("Sala 7");
-        Espacio sala8 = new Espacio("Sala 8");
-        Espacio sala9 = new Espacio("Sala 9");
 
-        new Producto("coca cola 250ml", "No vendido", 1, 2, 2);
-        new Producto("Sprite", "No vendido", 1, 2, 2);
-        new Producto("H20", "No vendido", 1, 2, 2);
-        new Producto("Bretana", "No vendido", 1, 2, 2);
-        new Producto("coca cola 250ml", "No vendido", 1, 2, 2);
-        new Producto("Swchepes", "No vendido", 1, 2, 2);
-        new Producto("coca cola 250ml", "No vendido", 1, 2, 2);
-        new Producto("Kola Roman", "No vendido", 1, 2, 2);
-        new Producto("coca cola 250ml", "No vendido", 1, 2, 2);
-        new Producto("Hit mango", "No vendido", 1, 2, 2);
-        new Producto("Hit mora", "No vendido", 1, 2, 2);
-        new Producto("Smirnoff ice 1L", "No vendido", 2, 5, 1);
-        new Producto("Nuvo", "No vendido", 2, 5, 1);
-        new Producto("Black and White", "No vendido", 2, 5, 1);
-        new Producto("Smirnoff ice 1L", "No vendido", 2, 5, 1);
-        new Producto("Something Special", "No vendido", 2, 5, 1);
-        new Producto("Double Black", "No vendido", 2, 5, 1);
-        new Producto("Red Label", "No vendido", 2, 5, 1);
-        new Producto("Double Black", "No vendido", 2, 5, 1);
-        new Producto("Red Label", "No vendido", 2, 5, 1);
-        new Producto("Blue Label", "No vendido", 2, 5, 1);
-        new Producto("Buchanan's", "No vendido", 2, 5, 1);
-        new Producto("Arguardiente Antioqueno", "No vendido", 2, 5, 1);
-        new Producto("Old par", "No vendido", 5, 10, 1);
-        new Producto("Desgranado", "No vendido", 1, 2, 3);
-        new Producto("hamburguesa", "No vendido", 1, 2, 3);
-        new Producto("pizza", "No vendido", 1, 2, 3);
-        new Producto("Salchipapa", "No vendido", 1, 2, 3);
-        new Producto("Hot Dog", "No vendido", 1, 2, 3);
-        new Producto("pizza", "No vendido", 1, 2, 3);
-        new Producto("Lasagna", "No vendido", 1, 2, 3);
-        new Producto("hamburguesa", "No vendido", 1, 2, 3);
-        new Producto("pan", "No vendido", 1, 2, 3);
-        new Producto("hamburguesa", "No vendido", 1, 2, 3);
-        new Producto("ensalada", "No vendido", 1, 2, 3);
-        new Producto("rosquitas", "No vendido", 1, 2, 4);
-        new Producto("papitas", "No vendido", 1, 2, 4);
-        new Producto("mani sal", "No vendido", 1, 2, 4);
-        new Producto("almendras", "No vendido", 1, 2, 4);
-        new Producto("crispetas", "No vendido", 1, 2, 4);
-        new Producto("mani pasas", "No vendido", 1, 2, 4);
-        new Producto("mani dulce", "No vendido", 1, 2, 4);
-        new Producto("Manguito", "No vendido", 1, 2, 4);
-        new Producto("Detodito", "No vendido", 1, 2, 4);
-        new Producto("Malboro", "No vendido", 1, 2, 5);
-        new Producto("boston", "No vendido", 1, 2, 5);
-        new Producto("Piel Roja", "No vendido", 1, 2, 5);
 
-        new Producto("belmont", "No vendido", 1, 2, 5);
-        new Producto("Lucky Strike", "No vendido", 1, 2, 5);
-        new Producto("Rumba", "No vendido", 1, 2, 5);
-        new Producto("Lucky Strike", "No vendido", 1, 2, 5);
-        new Producto("Star Lite", "No vendido", 1, 2, 5);
-        new Producto("Shefield green", "No vendido", 1, 2, 5);
-        new Producto("belmont", "No vendido", 1, 2, 5);
-        new Producto("Red Bull", "No vendido", 1, 2, 6);
-        new Producto("Sparta", "No vendido", 1, 2, 6);
-        new Producto("Red Bull", "No vendido", 1, 2, 6);
-        new Producto("Bang", "No vendido", 1, 2, 6);
-        new Producto("Monster", "No vendido", 1, 2, 6);
-        new Producto("Blue", "No vendido", 1, 2, 6);
-        new Producto("RockStar", "No vendido", 1, 2, 6);
-        new Producto("RockStar", "No vendido", 1, 2, 6);
-        new Producto("RockStar", "No vendido", 1, 2, 6);
-        new Producto("RockStar", "No vendido", 1, 2, 6);
-        new Producto("Monster", "No vendido", 1, 2, 6);
-        new Producto("vive 100", "No vendido", 1, 2, 6);
-        new Producto("vive 100", "No vendido", 1, 2, 6);
-        new Producto("vive 100", "No vendido", 1, 2, 6);
-        new Producto("vive 100", "No vendido", 1, 2, 6);
-        new Producto("speed max", "No vendido", 1, 2, 6);
-        new Producto("speed max", "No vendido", 1, 2, 6);
-        new Producto("speed max", "No vendido", 1, 2, 6);
-        new Producto("speed max", "No vendido", 1, 2, 6);
+
 
 
         realizarReserva();

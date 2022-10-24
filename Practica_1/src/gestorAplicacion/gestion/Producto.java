@@ -61,7 +61,7 @@ public class Producto {
         this.precioCompra = precioCompra;
         this.precioVenta = precioVenta;
         this.tipo = tipo;
-        categorizarProdcuto(this);
+        categorizarProducto(this);
 
     }
 
@@ -93,7 +93,7 @@ public class Producto {
         this.fechaVenta = fechaVenta;
         this.tipo = tipo;
         productos.add(this);
-        categorizarProdcuto(this);
+        categorizarProducto(this);
 
     }
 
@@ -264,7 +264,7 @@ public class Producto {
         Producto.otrosProductos = otrosProductos;
     }
 
-    public static void categorizarProdcuto(Producto producto) { // Este metodo sirve para clasificar los productos segun su tipo y ponerlo en el ArrayList correpondiente si es que este no existe en dicho ArrayList
+    public static void categorizarProducto(Producto producto) { // Este metodo sirve para clasificar los productos segun su tipo y ponerlo en el ArrayList correpondiente si es que este no existe en dicho ArrayList
         switch (producto.tipo) {
             case 1:
                 Producto.verificarExistenciaCategoria(Producto.bebidasAlcoholicas, producto);
