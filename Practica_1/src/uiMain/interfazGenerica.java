@@ -11,8 +11,11 @@ import javax.management.MBeanAttributeInfo;
 
 public class interfazGenerica {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 
 =======
+=======
+>>>>>>> Stashed changes
     public static void main(String[] args) {
         System.out.println("\nBienvenido a...\n\n");
 
