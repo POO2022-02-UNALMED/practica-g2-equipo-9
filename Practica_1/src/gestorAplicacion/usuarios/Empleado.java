@@ -17,6 +17,7 @@ public abstract class Empleado extends Usuario {
     //ATRIBUTOS DE CLASE
 
     private static ArrayList<Empleado> empleados= new ArrayList<>();
+    protected boolean disponibilidad;
 
 
 
@@ -88,11 +89,29 @@ public abstract class Empleado extends Usuario {
         this.setSueldo(this.getSueldo()*(1+porcentajeAumento));
     }
 
+    public boolean getDisponibilidad() {
+        return this.disponibilidad;
+    }
+
+    public void setDisponibilidad(boolean disponibilidad) {
+        this.disponibilidad = disponibilidad;
+    }
+
 
 
     //OTROS METODOS
 
-
+    public String informacion() {
+        if (this.getDisponibilidad()) {
+            return "El Empleado " + this.nombre + "\n" + "Tiene un sueldo de: $" + this.sueldo
+                    + " y desempeña el cargo de " + this.cargo + ".\n" + "Ingreso en la fecha:"+ this.fechaIngreso
+                    + "Está disponible actualmente.";
+        } else {
+            return "El Empleado " + this.nombre +  "\n" + "Tiene un sueldo de: $" + this.sueldo
+                    + " y desempeña el cargo de " + this.cargo + ".\n"  + "Ingreso en la fecha:"+ this.fechaIngreso
+                    + "No está disponible actualmente.";
+        }
+    }
 
     //METODOS ABSTRACTOS
     public abstract String asegurar();
