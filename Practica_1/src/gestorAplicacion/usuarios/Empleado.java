@@ -5,7 +5,10 @@ import java.util.ArrayList;
 import java.io.Serializable;
 import java.util.*;
 
-public abstract class Empleado extends Usuario {
+public abstract class Empleado extends Usuario implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
     //ATRIBUTOS DE INSTANCIA
     protected String cargo;
     protected double sueldo;

@@ -3,11 +3,14 @@ package gestorAplicacion.usuarios;
 import gestorAplicacion.gestion.Pedido;
 import gestorAplicacion.gestion.Reserva;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import java.util.*;
 
-public class Cliente extends Usuario {
+public class Cliente extends Usuario implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     //ATRIBUTOS DE INSTANCIA
     private int numeroReserva;

@@ -1,12 +1,16 @@
 package gestorAplicacion.gestion;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.*;
 
 
-public class Espacio {
+public class Espacio implements Serializable {
+    private static final long serialVersionUID = 1L;
+
+
     //ATRIBUTOS DE INSTANCIA
     private String nombre;
 

@@ -1,13 +1,18 @@
 
 package gestorAplicacion.gestion;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.*;
 
 import gestorAplicacion.usuarios.*;
 
 
-public class Producto {
+public class Producto implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
+
     //ATRIBUTOS INSTANCIA
     private Trabajador trabajador;
     private Cliente cliente;
@@ -398,6 +403,9 @@ public class Producto {
         return productosRecomendados;
     }
 
+    public static void main(String[] args) {
+        Producto a=new Producto(null,"Vendido","Cocacola",500,null);
+    }
 
 }
 

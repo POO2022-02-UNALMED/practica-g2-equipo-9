@@ -3,11 +3,14 @@ package gestorAplicacion.usuarios;
 
 import gestorAplicacion.gestion.Producto;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.*;
 
-public class Trabajador extends Empleado implements Sueldo{
+public class Trabajador extends Empleado implements Sueldo, Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     //ATRIBUTOS DE INSTANCIA
     private int saldoFinal;
@@ -15,13 +18,11 @@ public class Trabajador extends Empleado implements Sueldo{
 
 
 
-    private ArrayList<Cliente> ventasDia = new ArrayList<>();//listado de objetos cliente, es decir guarda los clientes con sus respectivos pedidos
-
-
     //ATRIBUTOS DE CLASE
-    private static long numeroTrabajador = 0;
+
     private static ArrayList<Trabajador> trabajadores = new ArrayList<>();
 
+    private static long numeroTrabajador = 0;
 
 
     //CONSTRUCTOR
@@ -50,13 +51,6 @@ public class Trabajador extends Empleado implements Sueldo{
         return seguro;
     }
 
-    public ArrayList<Cliente> getVentasDia() {
-        return ventasDia;
-    }
-
-    public void setVentasDia(ArrayList<Cliente> ventasDia) {
-        this.ventasDia = ventasDia;
-    }
 
     public static long getNumeroTrabajador() {
         return numeroTrabajador;

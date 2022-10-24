@@ -1,10 +1,13 @@
 package gestorAplicacion.usuarios;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.*;
 
-public abstract class Usuario  {
+public abstract class Usuario  implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     //ATRIBUTOS DE INSTANCIA
     protected long codigo;

@@ -5,11 +5,13 @@ import gestorAplicacion.usuarios.Cliente;
 import gestorAplicacion.usuarios.Gerente;
 import gestorAplicacion.usuarios.Trabajador;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.*;
 
 
-public class Pedido {
+public class Pedido implements Serializable {
+    private static final long serialVersionUID = 1L;
 
     //ATRIBUTOS DE INSTANCIA
 

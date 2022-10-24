@@ -1,10 +1,14 @@
 package gestorAplicacion.usuarios;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.*;
 
-public class Gerente extends Empleado implements Sueldo{
+public class Gerente extends Empleado implements Sueldo, Serializable {
+
+
+    private static final long serialVersionUID = 1L;
 
     //ATRIBUTOS DE INSTANCIA
 

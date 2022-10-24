@@ -36,31 +36,32 @@ public class GestionEmpleados {
         	Scanner sc1 = new Scanner(System.in);
         	
         }
-        else if(opcion == 2){
-        	//contratar setun trabajador
-        	
-<<<<<<< HEAD
-        	Empleado E[] = new Empleado[1];
-        	
-        	String nombre = "";
-        	String cargo = "";
-        	int sueldo =0;
-        	
-        	for(int i=0; i<E.length;i++) {
-        		System.out.println("Ingresar Nombre");
-        		nombre = sc.nextLine();
-        		System.out.println("Ingresar Cargo");
-        		cargo = sc.nextLine();
-        		System.out.println("Ingresar sueldo");
-        		sueldo = sc.nextInt();
-        		
-=======
-        	ArrayList<Empleado> empleados= new ArrayList<>();
-            for (Trabajador trabajador: Trabajador.getTrabajadores()){
-                empleados.add(trabajador);
-            }
-        }
-        else if(opcion == 3) {
+        else if(opcion == 2) {
+			//contratar setun trabajador
+
+
+			Empleado E[] = new Empleado[1];
+
+			String nombre = "";
+			String cargo = "";
+			int sueldo = 0;
+
+			for (int i = 0; i < E.length; i++) {
+				System.out.println("Ingresar Nombre");
+				nombre = sc.nextLine();
+				System.out.println("Ingresar Cargo");
+				cargo = sc.nextLine();
+				System.out.println("Ingresar sueldo");
+				sueldo = sc.nextInt();
+
+
+				ArrayList<Empleado> empleados = new ArrayList<>();
+				for (Trabajador trabajador : Trabajador.getTrabajadores()) {
+					empleados.add(trabajador);
+				}
+			}
+		}
+			else if(opcion == 3) {
 
         	
 			for(int i=0; i<Empleado.getEmpleados().size();i++) {
@@ -68,7 +69,7 @@ public class GestionEmpleados {
         	//info del algun trabajador
 		//	for(int i=0; i<empleados.length;i++) {
 
->>>>>>> 4820f3d0056e920b178fdd19f4dae9e5652caacf
+
         		
         	}
         }
@@ -88,6 +89,6 @@ public class GestionEmpleados {
 	}
 	// despides algun empleado
 	//static void DespedirEmpleado() {}
-}
+
 	
 

@@ -2,11 +2,16 @@ package gestorAplicacion.gestion;
 
 import gestorAplicacion.usuarios.Cliente;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.*;
 
-public class Reserva {
+public class Reserva implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
+
     //ATRIBUTOS DE INSTANCIA
     private int idReserva;
     private String estado; //"Activa", "Cancelada", "Cumplida",  "Vencida"
@@ -21,6 +26,7 @@ public class Reserva {
     //ATRIBUTOS DE CLASE
     private static int numReservas = 0; // contador del numero de reservas
     private int pagoCancelacion=0;
+    private static ArrayList<Reserva> reservas=new ArrayList<>();
 
 
     //CONSTRUCTORES
@@ -30,11 +36,13 @@ public class Reserva {
         this.fechaCreacion = LocalDate.now();
         this.idReserva = numReservas;
         numReservas++;
+        reservas.add(this);
     }
 
     public Reserva(Cliente cliente){
         this();
         this.cliente = cliente;
+        reservas.add(this);
     }
 
 
@@ -46,10 +54,19 @@ public class Reserva {
         this.fechaReserva = fechaReserva;
         this.pedido = pedido;
         numReservas++;
+        reservas.add(this);
     }
 
     //GETTERS Y SETTERS
 
+
+    public static ArrayList<Reserva> getReservas() {
+        return reservas;
+    }
+
+    public static void setReservas(ArrayList<Reserva> reservas) {
+        Reserva.reservas = reservas;
+    }
 
     public int getIdReserva() {
         return idReserva;

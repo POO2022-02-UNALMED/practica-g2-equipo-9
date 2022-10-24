@@ -1,4 +1,6 @@
 package uiMain;
+import baseDatos.Deserializador;
+import baseDatos.Serializador;
 import gestorAplicacion.gestion.Pedido;
 import gestorAplicacion.gestion.Producto;
 import gestorAplicacion.gestion.Servicio;
@@ -31,12 +33,7 @@ public class FuncionalidadesFacturacion {
             codigoTrabajador = entrada.nextInt();
             trabajadorSeleccionado = Trabajador.seleccionarTrabajador(codigoTrabajador);
         }
-        System.out.println("============================================================");
-        System.out.println("Descripcion del trabajador seleccionado:");
-        System.out.println(trabajadorSeleccionado);
-        System.out.println("============================================================");
-
-
+        System.out.println();
         Cliente cliente = null;
         String nombreCliente;
         long codigoCliente;
@@ -68,14 +65,15 @@ public class FuncionalidadesFacturacion {
             opcion = entrada.nextInt();
             if (opcion == 1) {
                 cliente=new Cliente();
-                tomarPedido(trabajadorSeleccionado, cliente);
+                pedido=tomarPedido(trabajadorSeleccionado, cliente);
+                System.out.println(pedido.generarFactura());
             } else if (opcion == 2) {
                 System.out.println("Ingresar nombre para registrar cliente:");
                 nombreCliente= entrada.next();
                 cliente=new Cliente(nombreCliente);
                 pedido=tomarPedido(trabajadorSeleccionado,cliente);
                 cliente.getHistorialPedidos().add(pedido);
-                pedido.generarFactura();
+                System.out.println(pedido.generarFactura());
             } else if (opcion == 3) {
                 Cliente.mostrarClientesRegistrados();
                 System.out.println();
@@ -89,7 +87,8 @@ public class FuncionalidadesFacturacion {
                     codigoCliente=entrada.nextLong();
                     cliente=Cliente.seleccionarCliente(codigoCliente);
                 }
-                tomarPedido(trabajadorSeleccionado,cliente);
+                pedido=tomarPedido(trabajadorSeleccionado,cliente);
+                pedido.generarFactura();
             } else if (opcion == 4) {
                 //MUESTRA EL LISTADO DE TRABAJADORES
                 System.out.println("============================================================");
@@ -137,11 +136,16 @@ public class FuncionalidadesFacturacion {
                     for(Producto producto: pedido.getProductos()){
                         producto.setEstado("Vendido");
                     }
+                    System.out.println(pedido.generarFactura());
+                    System.out.println();
                     System.out.println("Pedido pagado exitosamente, presiona 2 para finalizar");
                     opcion= entrada.nextInt();
                 }
                 else if(opcion==2){
                 }
+            }
+            else if(opcion==6){
+                salir=true;
             }
         }
     }
@@ -717,9 +721,7 @@ public class FuncionalidadesFacturacion {
         }
         return productosPedidos;
     }
-
-    public static void main(String[] args) {
-    }
+    
 
 }
 
