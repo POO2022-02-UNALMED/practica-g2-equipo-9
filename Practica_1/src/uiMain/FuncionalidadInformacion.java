@@ -184,7 +184,7 @@ public class FuncionalidadInformacion {
                 pressEnter();
             }
             if ((opcion_empleados - 1 >= listaempleados.size()) || (opcion_empleados < 0)) {
-                System.out.println("Por favor introduzca un numero valido");
+                System.out.println("Por favor introduzca una opción valida");
                 pressEnter();
                 continue;
 
