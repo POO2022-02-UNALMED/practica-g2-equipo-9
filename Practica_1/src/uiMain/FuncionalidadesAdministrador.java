@@ -192,7 +192,7 @@ public class FuncionalidadesAdministrador {
                 if(opcion==1){
                     mejor.aumentarSueldo(0.1);
                 }
-                System.out.println("El nuevo sueldo del trabajador es:");
+                System.out.println("El nuevo sueldo actual del trabajador es:");
                 System.out.println(mejor.getSueldo());
 
             }

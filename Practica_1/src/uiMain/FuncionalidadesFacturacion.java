@@ -653,7 +653,7 @@ public class FuncionalidadesFacturacion {
                 System.out.println("============================================================");
                 System.out.println();
                 System.out.println("======================MENU DE OPCIONES======================");
-                System.out.println("No hay productos disponibles para vender, debe agregar productos en el inventario en opciones de administrador");
+                System.out.println("No hay productos disponibles para vender");
                 System.out.println("1. Agregar producto y cantidad");
                 System.out.println("2. No agregar mas productos/volver atras");
                 System.out.println("============================================================");
