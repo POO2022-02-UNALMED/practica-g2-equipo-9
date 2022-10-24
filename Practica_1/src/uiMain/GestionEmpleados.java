@@ -2,6 +2,7 @@ package uiMain;
 
 import java.util.*;
 import gestorAplicacion.usuarios.Empleado;
+import gestorAplicacion.usuarios.Trabajador;
 
 public class GestionEmpleados {
 	
@@ -36,15 +37,25 @@ public class GestionEmpleados {
         	
         }
         else if(opcion == 2){
+        	//contratar un trabajador
         	
+        	ArrayList<Empleado> empleados= new ArrayList<>();
+            for (Trabajador trabajador: Trabajador.getTrabajadores()){
+                empleados.add(trabajador);
+            }
         }
         else if(opcion == 3) {
+<<<<<<< Updated upstream
         	
 			for(int i=0; i<Empleado.getEmpleados().size();i++) {
+=======
+        	//info del algun trabajador
+		//	for(int i=0; i<empleados.length;i++) {
+>>>>>>> Stashed changes
         		
         	}
         }
-	}
+	//}
 	
 	
 	
