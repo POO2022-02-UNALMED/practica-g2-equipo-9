@@ -598,6 +598,7 @@ public class FuncionalidadesReserva {
             Cliente cliente = new Cliente(nombreCliente);
             reservaCreada.setCliente(cliente);
             System.out.println("Su registro a sido exitoso");
+            System.out.println(cliente.toString());
             opcion = 0;
 
         }
@@ -686,6 +687,7 @@ public class FuncionalidadesReserva {
         Scanner sc = new Scanner(System.in);
         System.out.println("MODIFICAR RESERVA");
         System.out.println("============================================================\n");
+        System.out.println("BIENVENIDO "+reserva.getCliente().getNombre()+"\n");
         System.out.println("Que desea modificar? \n");
         System.out.println("1. Modificar el espacio y la fecha.");
         System.out.println("2. Modificar la fecha de la reserva.");
@@ -767,7 +769,8 @@ public class FuncionalidadesReserva {
     public static void cancelarReserva(Reserva reserva){
         System.out.println("CANCELACION DE RESERVA");
         System.out.println("============================================================\n");
-        if (LocalDate.now().isAfter(reserva.getFechaReserva())){ //verifica que aun se pueda cancelar la reserva comparandolo con el dia actual
+        System.out.println("BIENVENIDO "+reserva.getCliente().getNombre()+"\n");
+        if (LocalDate.now().isBefore(reserva.getFechaReserva())){ //verifica que aun se pueda cancelar la reserva comparandolo con el dia actual
             reserva.setEstado("Cancelada");
             for (Producto producto: //ciclo para cambiar el estado a los prductos que estaban en el pedido asociado a la reserva
                     reserva.getPedido().getProductos()) {
@@ -775,7 +778,9 @@ public class FuncionalidadesReserva {
             }
         }
         else{
+            reserva.setEstado("Cancelada");
             System.out.println("Ha excedido la fecha limite para cancelar la reserva\n");
+            reserva.setPagoCancelacion(100);
         }
         System.out.println(reserva.toString());
     }
@@ -814,6 +819,7 @@ public class FuncionalidadesReserva {
             for (Cliente cliente:
                     Cliente.getClientes()) {
                 if(cliente.getCodigo()==id){
+
                     cancelarReserva(cliente.getReserva()); ;
                     return;
                 }
@@ -902,7 +908,8 @@ public class FuncionalidadesReserva {
         new Producto("speed max", "No vendido", 2, 6);
         Cliente cliente1 = new Cliente("Jose Fernandez");
         realizarReserva();
-        modificarReserva(cliente1.getReserva());
+        modificarCancelarReserva();
+
 
     }
 

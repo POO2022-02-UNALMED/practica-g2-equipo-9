@@ -168,10 +168,10 @@ public class Reserva implements Serializable {
     public String toString() { // metodo para realizar un resumen en la funcionalidadesdeReserva
         switch (this.getEstado()) {
             case "Activa":
-                return "Reserva realizada con exito\n" + "El total de su reserva es de: " + this.calcularPrecioReserva() + "\n" +
+                return "Reserva realizada con exito!\n" + "El total de su reserva es de: " + this.calcularPrecioReserva() + "\n" +
                         "Su reserva es para el dia: " + this.getFechaReserva() + "\n" + "Y esta fue creada el dia: " + this.getFechaCreacion();
             case "Cancelada":
-                return "Su reserva ha sido cancelada con exito\n" + "El valor a pagar por su cancelacion es de: " + this.pagoCancelacion;
+                return "Su reserva ha sido cancelada con exito!\n" + "El valor a pagar por su cancelacion es de: " + this.pagoCancelacion;
 
             case "Cumplida":
                 return "Esta reserva se ha culminado con exito el dia "+this.getFechaReserva();

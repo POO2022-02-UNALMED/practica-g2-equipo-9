@@ -144,9 +144,8 @@ public class Cliente extends Usuario implements Serializable {
         historialPedidos.add(pedido);
     }
 
-
-
-
-
-
+    @Override
+    public String toString() {
+        return "Usuario de tipo cliente\n"+"Nombre "+this.getNombre()+"\n"+"Codigo de usuario: "+this.getCodigo();
+    }
 }
