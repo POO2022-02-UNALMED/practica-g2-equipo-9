@@ -2,6 +2,7 @@ package uiMain;
 
 import gestorAplicacion.gestion.Pedido;
 import gestorAplicacion.gestion.Producto;
+import gestorAplicacion.gestion.Servicio;
 import gestorAplicacion.usuarios.Trabajador;
 
 import java.sql.SQLOutput;
@@ -151,16 +152,23 @@ public class FuncionalidadesAdministrador {
                 System.out.println("Mes escogido: " + meses.get(mesSeleccionado));
 
                 //Busco trabajador del mes
-                TreeMap<Long, Trabajador> cuenta = new TreeMap<>();
+                TreeMap<Double, Trabajador> cuenta = new TreeMap<>();
                 for (Trabajador trabajador : Trabajador.getTrabajadores()) {
-                    long contador = 0;
+                    double totalVentas= 0;
                     for (Producto producto : Producto.getProductos()) {
                         if (producto.getTrabajador() == trabajador && producto.getEstado().equals("Vendido") && producto.getFechaVenta().getMonthValue()==mesSeleccionado) {
-                            contador++;
+                            totalVentas+=producto.getPrecioVenta();
+                        }
+                    }
+                    for(Pedido pedido: Pedido.getPedidos()){
+                        if(pedido.getFechaPedido().getMonthValue()==mesSeleccionado && pedido.getTrabajador()==trabajador && pedido.getEstadoPedido().equals("Pagado")){
+                            for(Servicio servicio: pedido.getServicios()){
+                                totalVentas+=servicio.getPrecio();
+                            }
                         }
                     }
                     if (cuenta.containsValue(trabajador) == false) {
-                        cuenta.put(contador, trabajador);
+                        cuenta.put(totalVentas, trabajador);
                     }
                 }
                 System.out.println("El trabajador que mas ha vendido es: ");
