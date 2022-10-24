@@ -10,15 +10,13 @@ import gestorAplicacion.usuarios.*;
 public class Producto {
     //ATRIBUTOS INSTANCIA
     private Trabajador trabajador;
-
     private Cliente cliente;
     private String estado; //agregue estado de producto, "Vendido", "No vendido", "Reservado"
     private String nombre;
     private double precioCompra;
     private double precioVenta;
     private long codigo;
-    private LocalDate fechaVencimiento;
-    private LocalDate fechaIngreso;
+
     private LocalDate fechaVenta;
 
     private int tipo; //"1. Bebidas alcoholicas", "2. Bebidas no alcoholicas", "3. Comida", "4. Snacks", "5. Cigarrillos", "6. Energizantes", "7. Otros"
@@ -36,14 +34,8 @@ public class Producto {
     private static ArrayList<Producto> energizantes = new ArrayList<>();// En esta lista va la primera instancia de un nuevo producto de tipo energizantes, es decir no se puede repetir
     private static ArrayList<Producto> otrosProductos = new ArrayList<>();// En esta lista va la primera instancia de un nuevo producto de tipo otrosProductos, es decir no se puede repetir
 
-    //GETTER y SETTER de productos importante para muchas cosas
-    public LocalDate getFechaVenta() {
-        return fechaVenta;
-    }
 
-    public void setFechaVenta(LocalDate fechaVenta) {
-        this.fechaVenta = fechaVenta;
-    }
+
 
 
     //CONSTRUCTOR
@@ -66,21 +58,19 @@ public class Producto {
 
     }
 
-    public Producto(Trabajador trabajador, String estado, String nombre, int precioCompra, int precioVenta, LocalDate fechaVencimiento, LocalDate fechaIngreso, LocalDate fechaVenta) {
+    public Producto(Trabajador trabajador, String estado, String nombre, int precioCompra, int precioVenta, LocalDate fechaVenta) {
         this.trabajador = trabajador;
         this.estado = estado;
         this.nombre = nombre;
         this.precioCompra = precioCompra;
         this.precioVenta = precioVenta;
         this.codigo = generarCodigo();
-        this.fechaVencimiento = fechaVencimiento;
-        this.fechaIngreso = fechaIngreso;
         this.fechaVenta = fechaVenta;
         productos.add(this);
 
     }
 
-    public Producto(Trabajador trabajador, Cliente cliente, String estado, String nombre, double precioCompra, double precioVenta, LocalDate fechaVencimiento, LocalDate fechaIngreso, LocalDate fechaVenta, int tipo) {
+    public Producto(Trabajador trabajador, Cliente cliente, String estado, String nombre, double precioCompra, double precioVenta, LocalDate fechaVenta, int tipo) {
         Producto.numeroProducto++;
         this.trabajador = trabajador;
         this.cliente = cliente;
@@ -89,8 +79,6 @@ public class Producto {
         this.precioCompra = precioCompra;
         this.precioVenta = precioVenta;
         this.codigo = Producto.numeroProducto;
-        this.fechaVencimiento = fechaVencimiento;
-        this.fechaIngreso = fechaIngreso;
         this.fechaVenta = fechaVenta;
         this.tipo = tipo;
         productos.add(this);
@@ -151,13 +139,7 @@ public class Producto {
         Producto.numeroProducto = numeroProducto;
     }
 
-    public void setFechaVencimiento(LocalDate fechaVencimiento) {
-        this.fechaVencimiento = fechaVencimiento;
-    }
 
-    public void setFechaIngreso(LocalDate fechaIngreso) {
-        this.fechaIngreso = fechaIngreso;
-    }
 
 
     public static ArrayList<Producto> getProductos() {
@@ -185,13 +167,6 @@ public class Producto {
         this.estado = estado;
     }
 
-    public LocalDate getFechaVencimiento() {
-        return fechaVencimiento;
-    }
-
-    public LocalDate getFechaIngreso() {
-        return fechaIngreso;
-    }
 
     public Cliente getCliente() {
         return cliente;
@@ -263,6 +238,13 @@ public class Producto {
 
     public static void setOtrosProductos(ArrayList<Producto> otrosProductos) {
         Producto.otrosProductos = otrosProductos;
+    }
+    public LocalDate getFechaVenta() {
+        return fechaVenta;
+    }
+
+    public void setFechaVenta(LocalDate fechaVenta) {
+        this.fechaVenta = fechaVenta;
     }
 
     public static void categorizarProducto(Producto producto) { // Este metodo sirve para clasificar los productos segun su tipo y ponerlo en el ArrayList correpondiente si es que este no existe en dicho ArrayList

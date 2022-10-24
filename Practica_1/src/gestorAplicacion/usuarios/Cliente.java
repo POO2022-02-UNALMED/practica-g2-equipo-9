@@ -13,13 +13,13 @@ public class Cliente extends Usuario {
     private int numeroReserva;
     private String estadoReserva;
     private Reserva reserva;
-    private Pedido pedido;//Pedido de cliente
+
 
 
     //ATRIBUTOS DE CLASE
     private static ArrayList<Cliente> clientes=new ArrayList<>();
 
-    private ArrayList<Pedido> historialPedidos = new ArrayList<Pedido>();
+    private ArrayList<Pedido> historialPedidos = new ArrayList<>();
     private static long numeroCliente=0;
 
 
@@ -36,19 +36,17 @@ public class Cliente extends Usuario {
         super(-1, "N/A");
     }
 
-    public  Cliente(String nombre, int numeroReserva, String estadoReserva, Pedido pedido, ArrayList<Pedido> historialPedidos) {
+    public  Cliente(String nombre, int numeroReserva, String estadoReserva, ArrayList<Pedido> historialPedidos) {
         this(nombre);
         this.numeroReserva = numeroReserva;
         this.estadoReserva = estadoReserva;
-        this.pedido = pedido;
         this.historialPedidos = historialPedidos;
         clientes.add(this);}
 
-    public Cliente(String nombre, int numeroReserva, String estadoReserva, Pedido pedido) {
+    public Cliente(String nombre, int numeroReserva, String estadoReserva) {
         this(nombre); // sobrecarga de metodos
         this.numeroReserva = numeroReserva;
         this.estadoReserva = estadoReserva;
-        this.pedido = pedido;
 
     }
 
@@ -115,9 +113,6 @@ public class Cliente extends Usuario {
         Cliente.clientes = clientes;
     }
 
-    public Pedido getPedido() {
-        return pedido;
-    }
 
     public Reserva getReserva() {
         return reserva;
@@ -127,9 +122,6 @@ public class Cliente extends Usuario {
         this.reserva = reserva;
     }
 
-    public void setPedido(Pedido pedido) {
-        this.pedido = pedido;
-    }
 
     public ArrayList<Pedido> getHistorialPedidos() {
         return historialPedidos;

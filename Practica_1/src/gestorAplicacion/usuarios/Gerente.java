@@ -17,8 +17,8 @@ public class Gerente extends Empleado implements Sueldo{
 
     //CONSTRUCTOR
 
-    public Gerente(String nombre, boolean estadoIngreso, LocalDate fechaIngreso) {
-        super(generarCodigo(), nombre, "Gerente", Sueldo.sueldoBase*2, estadoIngreso, fechaIngreso);
+    public Gerente(String nombre, LocalDate fechaIngreso) {
+        super(generarCodigo(), nombre, "Gerente", Sueldo.sueldoBase*2, fechaIngreso);
         gerentes.add(this);
     }
 
@@ -35,14 +35,14 @@ public class Gerente extends Empleado implements Sueldo{
     }
 
     public String toString(){
-        return "Codigo: "+this.getCodigo()+", Nombre: "+super.getNombre()+ ", Fecha de vinculacion: "+super.getFechaVinculacion();
+        return "Codigo: "+this.getCodigo()+", Nombre: "+super.getNombre()+ ", Fecha de vinculacion: "+super.getFechaIngreso();
     }
 
 
     //METODOS ABSTRACTOS
     public String asegurar() {
-        LocalDate vinculacion= super.getFechaVinculacion();
-        LocalDate finVinculacion= super.getFechaVinculacion().plusYears(this.getSeguro());
+        LocalDate vinculacion= super.getFechaIngreso();
+        LocalDate finVinculacion= super.getFechaIngreso().plusYears(this.getSeguro());
 
         if(LocalDate.now().isAfter(finVinculacion)){
             return "Gerente "+this.getNombre()+" "+" con codigo "+this.getCodigo()+", tiene vencido el seguro, este vencio en la fecha "+finVinculacion;

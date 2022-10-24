@@ -26,10 +26,8 @@ public class Trabajador extends Empleado implements Sueldo{
 
     //CONSTRUCTOR
 
-    public Trabajador(String nombre, boolean estadoIngreso, LocalDate fechaIngreso, int saldoFinal, ArrayList<Cliente> ventasDia) {
-        super(generarCodigo(), nombre,"trabajador", Sueldo.sueldoBase, estadoIngreso, fechaIngreso);
-        this.saldoFinal = saldoFinal;
-        this.ventasDia = ventasDia;
+    public Trabajador(String nombre, LocalDate fechaIngreso) {
+        super(generarCodigo(), nombre,"Trabajador", Sueldo.sueldoBase, fechaIngreso);
         trabajadores.add(this);
     }
 
@@ -80,8 +78,8 @@ public class Trabajador extends Empleado implements Sueldo{
 
     //METODOS ABSTRACTOS
     public String asegurar() {
-        LocalDate vinculacion= super.getFechaVinculacion();
-        LocalDate finVinculacion= super.getFechaVinculacion().plusMonths(this.getSeguro());
+        LocalDate vinculacion= super.getFechaIngreso();
+        LocalDate finVinculacion= super.getFechaIngreso().plusMonths(this.getSeguro());
 
         if(LocalDate.now().isAfter(finVinculacion)){
             return "Trabajador "+this.getNombre()+" "+" con codigo "+this.getCodigo()+" tiene vencido el seguro, este vencio en la fecha "+finVinculacion;
@@ -102,7 +100,7 @@ public class Trabajador extends Empleado implements Sueldo{
     }
 
     public String toString(){
-        return "Codigo: "+this.getCodigo()+", Nombre: "+super.getNombre()+ ", Fecha de vinculacion: "+super.getFechaVinculacion();
+        return "Codigo: "+this.getCodigo()+", Nombre: "+super.getNombre()+ ", Fecha de vinculacion: "+super.getFechaIngreso();
     }
 
     public static String mostrarTrabajadores(){ //Muestra todos los trabajadores

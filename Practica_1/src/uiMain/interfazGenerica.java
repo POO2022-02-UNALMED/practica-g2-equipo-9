@@ -8,5 +8,5 @@ import gestorAplicacion.usuarios.Cliente;
 import gestorAplicacion.usuarios.Trabajador;
 
 public class interfazGenerica {
-    
+
 }

@@ -1,5 +1,6 @@
 package uiMain;
 
+import java.sql.SQLOutput;
 import java.time.LocalDate;
 import java.util.*;
 
@@ -19,61 +20,63 @@ public class FuncionalidadesContabilidad {
         int opcion;
         System.out.println("=========BIENVENIDO AL MENU DE BALANCE DE CONTABILIDAD==========");
         while (salir == false) {
-        System.out.println("Meses disponibles");
-        SortedSet<Integer> fechas = new TreeSet<>();
-        for (Producto producto : Producto.getProductos()) {
-            fechas.add(producto.getFechaVenta().getMonthValue());
-        }
-        for (Pedido pedido: Pedido.getPedidos()){
-            fechas.add(pedido.getFechaPedido().getMonthValue());
-        }
-        HashMap<Integer,String> meses = new HashMap<>();
-        meses.put(1,"Enero");
-        meses.put(2,"Febrero");
-        meses.put(3, "Marzo");
-        meses.put(4, "Abril");
-        meses.put(5, "Mayo");
-        meses.put(6,"Junio");
-        meses.put(7, "Julio");
-        meses.put(8, "Agosto");
-        meses.put(9, "Septiembre");
-        meses.put(10, "Octubre");
-        meses.put(11, "Noviembre");
-        meses.put(12, "Diciembre");
-
-        HashMap<Integer,Integer> opcionMeses=new HashMap<>();
-        System.out.println("Fechas Disponibles:");
-        int i= 1;
-        for (Integer e: fechas){
-            //aqui se muestran las fechas de las que se tiene conocimiento de ventas realizadas
-            System.out.println("["+i+"]"+" "+meses.get(e)+" de "+2022);
-            opcionMeses.put(i,e);
-            i++;
-        }
-        System.out.println("[0] Volver atras");
-
-        System.out.println("Por favor ingresa una opcion:");
-        opcion=entrada.nextInt();
-        while(opcion<0 || opcion>opcionMeses.size()){
-            System.out.println("Opcion no valida, ingresa otro numero");
-            opcion= entrada.nextInt();
-        }
-        if(opcion>0 || opcion<=opcionMeses.size()){
-            int mesSeleccionado=opcionMeses.get(opcion);
-            System.out.println("Mes escogido: "+mesSeleccionado);
-
-            System.out.println(FuncionalidadesContabilidad.calcularGananciasMes(mesSeleccionado,meses));
             System.out.println();
-            System.out.println("Presiona 0 para volver atras y ver la contabilidad de otros meses");
-            opcion= entrada.nextInt();
-            while(opcion!=0){
-                System.out.println("Opcion incorrecta, presione 0 para volver");
+            System.out.println("=====================MESES DISPONIBLES==========================");
+            SortedSet<Integer> fechas = new TreeSet<>();
+            for (Producto producto : Producto.getProductos()) {
+                fechas.add(producto.getFechaVenta().getMonthValue());
+            }
+            for (Pedido pedido: Pedido.getPedidos()){
+                fechas.add(pedido.getFechaPedido().getMonthValue());
+            }
+            HashMap<Integer,String> meses = new HashMap<>();
+            meses.put(1,"Enero");
+            meses.put(2,"Febrero");
+            meses.put(3, "Marzo");
+            meses.put(4, "Abril");
+            meses.put(5, "Mayo");
+            meses.put(6,"Junio");
+            meses.put(7, "Julio");
+            meses.put(8, "Agosto");
+            meses.put(9, "Septiembre");
+            meses.put(10, "Octubre");
+            meses.put(11, "Noviembre");
+            meses.put(12, "Diciembre");
+
+            HashMap<Integer,Integer> opcionMeses=new HashMap<>();
+            System.out.println("Fechas Disponibles:");
+            int i= 1;
+            for (Integer e: fechas){
+                //aqui se muestran las fechas de las que se tiene conocimiento de ventas realizadas
+                System.out.println("["+i+"]"+" "+meses.get(e)+" de "+2022);
+                opcionMeses.put(i,e);
+                i++;
+            }
+            System.out.println("[0] Volver atras");
+
+            System.out.println("Por favor ingresa una opcion:");
+            opcion=entrada.nextInt();
+            while(opcion<0 || opcion>opcionMeses.size()){
+                System.out.println("Opcion no valida, ingresa otro numero");
                 opcion= entrada.nextInt();
             }
-        }
-        if(opcion==0){
-            salir=true;
-        }
+            if(opcion>0 || opcion<=opcionMeses.size()){
+                int mesSeleccionado=opcionMeses.get(opcion);
+                System.out.println("Mes escogido: "+mesSeleccionado);
+
+                System.out.println(FuncionalidadesContabilidad.calcularGananciasMes(mesSeleccionado,meses));
+                System.out.println();
+                System.out.println("Presiona 0 para volver atras y ver la contabilidad de otros meses");
+                opcion= entrada.nextInt();
+                while(opcion!=0){
+                    System.out.println("Opcion incorrecta, presione 0 para volver");
+                    opcion= entrada.nextInt();
+                }
+            }
+            else if(opcion==0){
+                salir=true;
+            }
+
         }
 
     }
@@ -172,9 +175,13 @@ public class FuncionalidadesContabilidad {
     }
 
     public static void main(String[] args) {
-        Producto producto=new Producto();
-
-        System.out.println(LocalDate.now());
+        Trabajador trabajador1=new Trabajador("Sergio",LocalDate.of(2020,01,25));
+        Trabajador trabajador2=new Trabajador("Sergio",LocalDate.of(2020,02,14));
+        Trabajador trabajador3=new Trabajador("Sergio",LocalDate.of(2020,03,18));
+        Trabajador trabajador4=new Trabajador("Sergio",LocalDate.of(2020,04,11));
+        Trabajador trabajador5=new Trabajador("Sergio",LocalDate.of(2020,05,7));
+        Gerente gerente1=new Gerente("Russbell",LocalDate.of(2020,06,1));
+        contabilidad();
     }
 
 }

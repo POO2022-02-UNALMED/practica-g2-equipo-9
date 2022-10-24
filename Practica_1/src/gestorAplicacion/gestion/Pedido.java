@@ -241,21 +241,4 @@ public class Pedido {
         return pedido1;
     }
 
-    public void pagarPedido(){
-        this.setEstadoPedido("Pagado");
-        for(Producto producto: this.getProductos()){
-            producto.setEstado("Vendido");
-        }
-    }
-    public void reservarPedido(){
-        this.setEstadoPedido("No pagado");
-        for(Producto producto: this.getProductos()){
-            producto.setEstado("Reservado");
-        }
-    }
-
-
-
-
-
 }

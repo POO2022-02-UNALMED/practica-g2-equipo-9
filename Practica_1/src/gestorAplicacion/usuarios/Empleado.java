@@ -9,9 +9,6 @@ public abstract class Empleado extends Usuario {
     //ATRIBUTOS DE INSTANCIA
     protected String cargo;
     protected double sueldo;
-    protected boolean estadoIngreso;
-
-    protected LocalDate fechaVinculacion; //fecha cuando se creo el empleado
 
     protected LocalDate fechaIngreso; //fecha cuando ingreso el empleado
     //ATRIBUTOS DE CLASE
@@ -23,12 +20,10 @@ public abstract class Empleado extends Usuario {
 
     //CONSTRUCTOR
 
-    public Empleado(long codigo, String nombre, String cargo, double sueldo, boolean estadoIngreso, LocalDate fechaIngreso) {
+    public Empleado(long codigo, String nombre, String cargo, double sueldo, LocalDate fechaIngreso) {
         super(codigo, nombre);
         this.cargo = cargo;
         this.sueldo = sueldo;
-        this.estadoIngreso = estadoIngreso;
-        this.fechaVinculacion = LocalDate.now();
         this.fechaIngreso = fechaIngreso;
         empleados.add(this);
     }
@@ -49,22 +44,6 @@ public abstract class Empleado extends Usuario {
 
     public void setCargo(String cargo) {
         this.cargo = cargo;
-    }
-
-    public boolean isEstadoIngreso() {
-        return estadoIngreso;
-    }
-
-    public void setEstadoIngreso(boolean estadoIngreso) {
-        this.estadoIngreso = estadoIngreso;
-    }
-
-    public LocalDate getFechaVinculacion() {
-        return fechaVinculacion;
-    }
-
-    public void setFechaVinculacion(LocalDate fechaVinculacion) {
-        this.fechaVinculacion = fechaVinculacion;
     }
 
     public LocalDate getFechaIngreso() {
