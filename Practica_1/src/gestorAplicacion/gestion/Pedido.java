@@ -285,7 +285,7 @@ public class Pedido {
 
             archivo_pedidos_recuperar.close();
 
-            //RETORNA LOS DATOS DE FORMA INDIVIDUAL
+            //DEVUELVE LOS DATOS DE FORMA INDIVIDUAL
             for (Pedido pp: pedidos_recuperados){
                 return pp;
             }
