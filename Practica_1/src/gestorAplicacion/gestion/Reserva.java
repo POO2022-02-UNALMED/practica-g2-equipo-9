@@ -194,7 +194,7 @@ public class Reserva {
 
             archivo_reservas_recuperar.close();
 
-            //IMPRIME LOS DATOS DE FORMA INDIVIDUAL
+            //DEVUELVE LOS DATOS DE FORMA INDIVIDUAL
             for (Usuario ss: reservas_recuperados){
                 return ss;
             }
