@@ -6,19 +6,16 @@ import gestorAplicacion.gestion.Servicio;
 import gestorAplicacion.usuarios.Sueldo;
 import gestorAplicacion.usuarios.Trabajador;
 
-import java.sql.SQLOutput;
-import java.time.LocalDate;
 import java.util.*;
 
 public class FuncionalidadesNomina {
-    //FUNCIONALIDAD NOMINA
     public static void calculoDeNomina(){
         Scanner entrada = new Scanner(System.in);
         System.out.println("=====================BIENVENIDO AL MENU DE NOMINA====================");
         int opcion;
         boolean salir=false;
         while(salir==false){
-            SortedSet<Integer>fechas=new TreeSet<>();
+            SortedSet<Integer> fechas=new TreeSet<>();
             //guardamos las fechas de productos de los que se tengan conocimiento de venta
 
             for(Producto producto: Producto.getProductos()){
@@ -60,7 +57,7 @@ public class FuncionalidadesNomina {
                 System.out.println("Opcion no valida, ingresa de nuevo un numero");
                 opcion= entrada.nextInt();
             }
-            if(opcion==1){
+            if(opcion>=1 && opcion<=opcionMeses.size()){
                 int mesSeleccionado=opcionMeses.get(opcion);
                 System.out.println("Mes escogido: "+meses.get(mesSeleccionado));
 
@@ -79,7 +76,7 @@ public class FuncionalidadesNomina {
                     trabajadorSeleccionado=Trabajador.seleccionarTrabajador(codigo);
                 }
 
-                System.out.println(FuncionalidadesNomina.nominaEmpleado(mesSeleccionado,trabajadorSeleccionado));
+                System.out.println(nominaEmpleado(mesSeleccionado,trabajadorSeleccionado));
                 System.out.println();
                 System.out.println("Presiona 0 para volver atras y ver la contabilidad de otros meses");
                 opcion= entrada.nextInt();
@@ -103,7 +100,7 @@ public class FuncionalidadesNomina {
         ArrayList<String> nombresProductosRepetidos= new ArrayList<>();
         for (Producto producto: Producto.getProductos()){
             if (producto.getFechaVenta().getMonthValue()==mesSeleccionado && producto.getTrabajador()==trabajadorSeleccionado && producto.getEstado().equals("Vendido")){
-                comisionProductosTrabajador+=producto.getPrecioVenta()*Sueldo.porcentajeComisionProductos;
+                comisionProductosTrabajador+=producto.getPrecioVenta()* Sueldo.porcentajeComisionProductos;
                 nombresProductosRepetidos.add(producto.getNombre());
                 nombresProductosNoRepetidos.add(producto.getNombre());
             }
@@ -167,5 +164,4 @@ public class FuncionalidadesNomina {
 
         return s;
     }
-
 }

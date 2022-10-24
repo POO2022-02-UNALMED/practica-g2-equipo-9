@@ -31,7 +31,7 @@ public enum Servicio {
             s+="\n"+i+". Nombre: "+servicio+", cantidad: "+Collections.frequency(serviciosPedidos,servicio)+", Precio: "+Collections.frequency(serviciosPedidos,servicio)*servicio.getPrecio();
             i++;
         }
-        s+="\nValor total: "+valorTotal;
+        s+="\nValor total de servicios: "+valorTotal;
         return s;
     }
     public static String serviciosOfrecidos() {//String que muestra servicios y sus precios

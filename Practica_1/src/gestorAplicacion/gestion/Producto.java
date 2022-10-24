@@ -318,7 +318,7 @@ public class Producto implements Serializable {
             s += "\n" + i + ". Nombre: " + nombre + ", Cantidad: " + Collections.frequency(nombresRepetidos, nombre) + ", Precio: " + Collections.frequency(nombresRepetidos, nombre) * listaPrecios.get(nombre);
             i++;
         }
-        s += "\nValor total= " + valorTotal;
+        s += "\nValor total de productos= " + valorTotal;
         return s;
     }
 
@@ -403,9 +403,7 @@ public class Producto implements Serializable {
         return productosRecomendados;
     }
 
-    public static void main(String[] args) {
-        Producto a=new Producto(null,"Vendido","Cocacola",500,null);
-    }
+
 
 }
 

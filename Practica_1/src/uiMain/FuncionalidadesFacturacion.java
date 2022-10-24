@@ -71,12 +71,12 @@ public class FuncionalidadesFacturacion {
                 pedido=tomarPedido(trabajadorSeleccionado, cliente);
             } else if (opcion == 2) {
                 System.out.println("Ingresar nombre para registrar cliente:");
-                nombreCliente= entrada.next();
+                nombreCliente= entrada.nextLine();;
                 cliente=new Cliente(nombreCliente);
                 pedido=tomarPedido(trabajadorSeleccionado,cliente);
                 cliente.getHistorialPedidos().add(pedido);
             } else if (opcion == 3) {
-                Cliente.mostrarClientesRegistrados();
+                System.out.println(Cliente.mostrarClientesRegistrados());
                 System.out.println();
                 System.out.println("Ingrese codigo de cliente registrado para seleccionarlo:");
                 codigoCliente=entrada.nextLong();
@@ -127,7 +127,7 @@ public class FuncionalidadesFacturacion {
                 System.out.println("1. Pagar");
                 System.out.println("2. Volver/No hacer nada");
                 opcion= entrada.nextInt();
-                while(opcion!=1 && opcion!=0){
+                while(opcion!=1 && opcion!=2){
                     System.out.println("Opcion invalida, seleccione una opcion correcta:");
                     opcion= entrada.nextInt();
                 }
@@ -543,13 +543,13 @@ public class FuncionalidadesFacturacion {
                     System.out.println("============================================================");
                     System.out.println();
                     System.out.println("Ingrese nombre del producto que desea remover:");
-                    nombreEscogido = entrada.next();
+                    nombreEscogido = entrada.nextLine();;
                     boolean verificarNombre = Producto.verificarProducto(nombreEscogido, productosPedidos);
                     while (verificarNombre == false) {
                         System.out.println("Producto ingresado no esta en la lista, ingrese un nombre valido");
                         System.out.println();
                         System.out.println("Ingrese nombre del producto que desea remover:");
-                        nombreEscogido = entrada.next();
+                        nombreEscogido = entrada.nextLine();;
                         verificarNombre = Producto.verificarProducto(nombreEscogido, productosPedidos);
                     }
                     System.out.println("Escoja cantidad de producto que desea remover:");
@@ -680,14 +680,14 @@ public class FuncionalidadesFacturacion {
                 if (opcion == 1) {
                     //SELECCIONAR NOMBRE DE PRODUCTO
                     System.out.println("Escoja nombre de producto:");
-                    nombreEscogido = entrada.next();
+                    nombreEscogido = entrada.nextLine();;
                     //VERIFICA QUE EL PRODUCTO ESTE EN LA LISTA DE PRODUCTOS NO VENDIDOS
                     boolean verificarNombre = Producto.verificarProducto(nombreEscogido, productosNoVendidos);
                     while (verificarNombre == false) {
                         System.out.println("Producto ingresado no disponible, ingrese un nombre valido");
                         System.out.println();
                         System.out.println("Escoja nombre de producto:");
-                        nombreEscogido = entrada.next();
+                        nombreEscogido = entrada.nextLine();;
                         verificarNombre = Producto.verificarProducto(nombreEscogido, productosNoVendidos);
                     }
                     //CONFIRMA QUE LA CANTIDAD DE PRODUCTO INGRESADA ESTE EN LA LISTA DE PRODUCTOS NO VENDIDOS
@@ -722,18 +722,24 @@ public class FuncionalidadesFacturacion {
     }
 
     public static void main(String[] args) {
-        Trabajador trabajador=new Trabajador("Russbell",LocalDate.of(2022,02,02));
-        Trabajador trabajador1=new Trabajador("Sergio",LocalDate.of(2022,02,02));
-        Trabajador trabajador2=new Trabajador("Mafre",LocalDate.of(2022,02,02));
-
-        Cliente cliente1=new Cliente("Miguel");
-        Producto producto2=new Producto("Pepsi","No vendido",500,0);
-        Producto producto5=new Producto("Pepsi","No vendido",500,0);
+        Producto producto2=new Producto("Pepsi","Reservado",500,0);
+        Producto producto5=new Producto("Pepsi","Reservado",500,0);
         Producto producto6=new Producto("Pepsi","No vendido",500,0);
         Producto producto3=new Producto("Coca cola","No vendido",500,0);
         Producto producto4=new Producto("Coca cola","No vendido",500,0);
+        Trabajador trabajador=new Trabajador("Russbell",LocalDate.of(2022,02,02));
+        Trabajador trabajador1=new Trabajador("Sergio",LocalDate.of(2022,02,02));
+        Trabajador trabajador2=new Trabajador("Mafre",LocalDate.of(2022,02,02));
+        Cliente cliente1=new Cliente("Miguel");
 
-        opcionesDePedido();
+        Producto producto=new Producto(trabajador,null,"coca",0,null);
+        System.out.println(Trabajador.getTrabajadores().size());
+        Trabajador.getTrabajadores().remove(trabajador);
+        System.out.println(Trabajador.getTrabajadores().size());
+
+        System.out.println(producto.getTrabajador().getNombre());
+
+
     }
 }
 
