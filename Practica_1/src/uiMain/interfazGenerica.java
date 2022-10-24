@@ -16,7 +16,7 @@ public class interfazGenerica {
 
     public static void main(String[] args) {
 
-        
+
         //SE INICIA EL DESERIALIZADOR Y SUELTA TODOS LOS OBJETOS CREADOS
         Deserializador.deserializarTodo();
 
