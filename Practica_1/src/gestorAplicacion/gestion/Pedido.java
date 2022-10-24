@@ -22,6 +22,8 @@ public class Pedido {
     private LocalDate fechaPedido;
     private long codigo; //cuando se cree, se cree con el mismo ID del cliente
 
+    private static int totalPedidos = 0;
+
     //ATRIBUTOS DE CLASE
 
     private static ArrayList<Pedido> pedidos= new ArrayList<>();
@@ -52,6 +54,7 @@ public class Pedido {
         this.fechaPedido = fechaPedido;
         this.codigo = generarCodigo();
         pedidos.add(this);
+        Pedido.totalPedidos += 1;
     }
 
     //GETTERS Y SETTERS
@@ -84,6 +87,15 @@ public class Pedido {
     public String getEstadoPedido() {
         return estadoPedido;
     }
+
+    public static int getTotalPedidos() {
+        return pedidos.size();
+    }
+
+    public static void setTotalPedidos(int totalPedidos) {
+        Pedido.totalPedidos = totalPedidos;
+    }
+
 
     public void setEstadoPedido(String estadoPedido) {
         this.estadoPedido = estadoPedido;
