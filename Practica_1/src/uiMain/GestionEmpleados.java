@@ -7,7 +7,16 @@ import gestorAplicacion.usuarios.Trabajador;
 public class GestionEmpleados {
 	
 	public static void GE() {
+		
 		Scanner sc = new Scanner(System.in);
+		
+		
+		System.out.println("Buen dia, es usted un Gerente o Administrador?");
+        System.out.println("1. Si");
+        System.out.println("2. No");
+
+		
+		
 		System.out.println("Buen dia admin, que se le ofrece el dia de hoy");
         System.out.println("1. Despedir un empleado");
         System.out.println("2. Contratar un empleado");
