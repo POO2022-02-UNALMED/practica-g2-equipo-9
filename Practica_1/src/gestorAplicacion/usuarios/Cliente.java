@@ -146,7 +146,7 @@ public class Cliente extends Usuario implements Serializable {
     }
 
     @Override
-    public String toString() {
+    public String toString() { //ligadura dinamica
         return "Usuario de tipo cliente\n"+"Nombre "+this.getNombre()+"\n"+"Codigo de usuario: "+this.getCodigo();
     }
 }

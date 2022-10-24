@@ -38,7 +38,7 @@ public class Gerente extends Empleado implements Sueldo, Serializable {
         return numeroGerente++;
     }
 
-    public String toString(){
+    public String toString(){ //ligadura dinamica
         return "Codigo: "+this.getCodigo()+", Nombre: "+super.getNombre()+ ", Fecha de vinculacion: "+super.getFechaIngreso();
     }
 
