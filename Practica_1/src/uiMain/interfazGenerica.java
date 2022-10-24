@@ -53,6 +53,7 @@ public class interfazGenerica {
                     FuncionalidadesReserva.realizarReserva();
                     break;
                 case 2:
+                    FuncionalidadesReserva.modificarCancelarReserva();
                     break;
                 case 3:
                     break;
