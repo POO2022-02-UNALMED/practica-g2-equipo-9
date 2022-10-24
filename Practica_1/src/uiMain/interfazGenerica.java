@@ -49,10 +49,11 @@ public class interfazGenerica {
             System.out.println("1. Crear una nueva reserva");
             System.out.println("2. Modificar o cancelar una reserva ya existente");
             System.out.println("3. Opciones de Pedido/Facturar");
-            System.out.println("4. Balance generar de ventas");
-            System.out.println("5. Opciones Administrador");
-            System.out.println("6. Historial de pedidos, productos, reservas y empleados");
-            System.out.println("7. Salir Y GUARDAR del sistema");
+            System.out.println("4. Balance de ventas");
+            System.out.println("5. Calculo de nomina");
+            System.out.println("6. Opciones de administrador");
+            System.out.println("7. Historial de pedidos, productos, reservas y empleados");
+            System.out.println("8. Salir Y GUARDAR del sistema");
             opcion = sc.nextInt();
 
             while(opcion<1 || opcion>7){
@@ -73,13 +74,15 @@ public class interfazGenerica {
                     FuncionalidadesContabilidad.contabilidad();
                     break;
                 case 5:
-
+                    FuncionalidadesNomina.calculoDeNomina();
                     break;
-
                 case 6:
-                    FuncionalidadInformacion.Informacion();
+                    FuncionalidadesAdministrador.opcionesAdministrador();
                     break;
                 case 7:
+                    FuncionalidadInformacion.Informacion();
+                    break;
+                case 8:
                     //SERIALIZA TODOS LOS OBJETOS CREADOS HASTA AHORA Y LOS GUARDA
                     Serializador.serializarTodo();
                     System.out.println("Saliendo del sistema...\n");

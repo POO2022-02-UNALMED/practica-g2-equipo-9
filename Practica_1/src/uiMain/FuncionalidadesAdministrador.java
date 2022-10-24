@@ -2,8 +2,6 @@ package uiMain;
 
 import gestorAplicacion.gestion.Pedido;
 import gestorAplicacion.gestion.Producto;
-import gestorAplicacion.gestion.Servicio;
-import gestorAplicacion.usuarios.Sueldo;
 import gestorAplicacion.usuarios.Trabajador;
 
 import java.sql.SQLOutput;
@@ -36,12 +34,19 @@ public class FuncionalidadesAdministrador {
             if (opcion == 1) {
                 opcionesEmpleado();
             } else if (opcion == 2) {
-
+                System.out.println("===============================INVENTARIO DE PRODUCTOS DISPONIBLES==========================================");
+                System.out.println();
+                ArrayList<Producto> productosNoVendidos = Producto.productosDisponibles(Producto.getProductos());//Productos con estado "No vendido" y fecha null
+                System.out.println(Producto.mostrarProductosDisponibles(productosNoVendidos));
+                System.out.println();
+                System.out.println("=============================================================================================================");
             } else if (opcion == 3) {
                 salir = true;
             }
         }
     }
+
+
 
     public static void opcionesEmpleado() {
         Scanner entrada = new Scanner(System.in);
@@ -49,24 +54,22 @@ public class FuncionalidadesAdministrador {
         boolean salir = false;
         while (salir == false) {
             System.out.println("=====================OPCIONES DE EMPLEADO===================");
-            System.out.println("1. Ver Nomina de un trabajador");
-            System.out.println("2. Ver seguro de un trabajador");
-            System.out.println("3. Empleado del mes");
-            System.out.println("4. Volver");
+
+            System.out.println("1. Ver seguro de un trabajador");
+            System.out.println("2. Empleado del mes");
+            System.out.println("3. Volver");
             System.out.println("Ingrese una opcion:");
             opcion = entrada.nextInt();
             while (opcion != 1 && opcion != 2 && opcion != 3 && opcion != 4) {
                 System.out.println("=====================OPCIONES DE EMPLEADO===================");
-                System.out.println("1. Ver Nomina de un trabajador");
-                System.out.println("2. Ver seguro de un trabajador");
-                System.out.println("3. Empleado del mes");
-                System.out.println("4. Volver");
+                System.out.println("1. Ver seguro de un trabajador");
+                System.out.println("2. Empleado del mes");
+                System.out.println("3. Volver");
                 System.out.println("Ingrese una opcion:");
                 opcion = entrada.nextInt();
             }
+
             if (opcion == 1) {
-                calculoDeNomina();
-            } else if (opcion == 2) {
                 System.out.println(Trabajador.mostrarTrabajadores());
                 System.out.println();
                 System.out.println("Ingresa codigo de un trabajador");
@@ -85,9 +88,9 @@ public class FuncionalidadesAdministrador {
                 System.out.println("Seguro del trabajador:");
                 System.out.println(trabajador.asegurar());
 
-            } else if (opcion == 3) {
+            } else if (opcion == 2) {
                 empleadoDelMes();
-            } else if (opcion == 4) {
+            } else if (opcion == 3) {
                 salir = true;
             }
 
@@ -190,20 +193,20 @@ public class FuncionalidadesAdministrador {
             }
         }
     }
-    public static void calculoDeNomina(){
+    public static void calculoDeNomina() {
         Scanner entrada = new Scanner(System.in);
         System.out.println("=====================BIENVENIDO AL MENU DE NOMINA====================");
         int opcion;
-        boolean salir=false;
-        while(salir==false){
-            SortedSet<Integer>fechas=new TreeSet<>();
+        boolean salir = false;
+        while (salir == false) {
+            SortedSet<Integer> fechas = new TreeSet<>();
             //guardamos las fechas de productos de los que se tengan conocimiento de venta
 
-            for(Producto producto: Producto.getProductos()){
+            for (Producto producto : Producto.getProductos()) {
                 fechas.add(producto.getFechaVenta().getMonthValue());
             }
             //guardamos las fechas de servicios de los que se tengan conocimiento de venta
-            for(Pedido e: Pedido.getPedidos()){
+            for (Pedido e : Pedido.getPedidos()) {
                 fechas.add(e.getFechaPedido().getMonthValue());
             }
             HashMap<Integer, String> meses = new HashMap<Integer, String>();
@@ -220,27 +223,27 @@ public class FuncionalidadesAdministrador {
             meses.put(11, "Noviembre");
             meses.put(12, "Diciembre");
 
-            HashMap<Integer,Integer> opcionMeses=new HashMap<>();
+            HashMap<Integer, Integer> opcionMeses = new HashMap<>();
 
             System.out.println("Fechas Disponibles:");
-            int i= 1;
-            for (Integer numeroMes: fechas){
+            int i = 1;
+            for (Integer numeroMes : fechas) {
                 //aqui se muestran las fechas de las que se tiene conocimiento de ventas realizadas
-                System.out.println("["+i+"]"+" "+meses.get(numeroMes)+" de "+2022);
-                opcionMeses.put(i,numeroMes);
+                System.out.println("[" + i + "]" + " " + meses.get(numeroMes) + " de " + 2022);
+                opcionMeses.put(i, numeroMes);
                 i++;
             }
             System.out.println("[0] Volver atras");
             //Obtengo la fecha escogida
             System.out.println("Por favor ingresa una opcion:");
-            opcion=entrada.nextInt();
-            while(opcion<0 || opcion>opcionMeses.size()){
+            opcion = entrada.nextInt();
+            while (opcion < 0 || opcion > opcionMeses.size()) {
                 System.out.println("Opcion no valida, ingresa de nuevo un numero");
-                opcion= entrada.nextInt();
+                opcion = entrada.nextInt();
             }
-            if(opcion>=1 && opcion<=opcionMeses.size()){
-                int mesSeleccionado=opcionMeses.get(opcion);
-                System.out.println("Mes escogido: "+meses.get(mesSeleccionado));
+            if (opcion >= 1 && opcion <= opcionMeses.size()) {
+                int mesSeleccionado = opcionMeses.get(opcion);
+                System.out.println("Mes escogido: " + meses.get(mesSeleccionado));
 
                 //Seleccionar trabajador
                 System.out.println("Selecciona trabajador a liquidar:");
@@ -250,37 +253,27 @@ public class FuncionalidadesAdministrador {
 
                 long codigo = entrada.nextInt();//codigo de empleado
                 //buscamos el codigo del trabajador
-                Trabajador trabajadorSeleccionado=Trabajador.seleccionarTrabajador(codigo);
-                while(trabajadorSeleccionado==null){
+                Trabajador trabajadorSeleccionado = Trabajador.seleccionarTrabajador(codigo);
+                while (trabajadorSeleccionado == null) {
                     System.out.println("Codigo de trabajador no existe, ingrese uno valido");
-                    codigo= entrada.nextInt();
-                    trabajadorSeleccionado=Trabajador.seleccionarTrabajador(codigo);
+                    codigo = entrada.nextInt();
+                    trabajadorSeleccionado = Trabajador.seleccionarTrabajador(codigo);
                 }
 
-                System.out.println(FuncionalidadesNomina.nominaEmpleado(mesSeleccionado,trabajadorSeleccionado));
+                System.out.println(FuncionalidadesNomina.nominaEmpleado(mesSeleccionado, trabajadorSeleccionado));
                 System.out.println();
                 System.out.println("Presiona 0 para volver atras y ver la contabilidad de otros meses");
-                opcion= entrada.nextInt();
-                while(opcion!=0){
+                opcion = entrada.nextInt();
+                while (opcion != 0) {
                     System.out.println("Opcion incorrecta, presione 0 para volver");
-                    opcion= entrada.nextInt();
+                    opcion = entrada.nextInt();
                 }
             }
-            if(opcion==0){
-                salir=true;
+            if (opcion == 0) {
+                salir = true;
             }
         }
 
 
-
-    }
-
-    public static void main(String[] args) {
-        TreeMap<Long, String> cuenta = new TreeMap<>();
-        cuenta.put(1L,"yo1");
-        cuenta.put((long) -96,"yo2");
-        cuenta.put((long) 1056,"yo3");
-        System.out.println(cuenta.values().toArray()[cuenta.size() - 1]);
-        System.out.println(cuenta);
     }
 }
