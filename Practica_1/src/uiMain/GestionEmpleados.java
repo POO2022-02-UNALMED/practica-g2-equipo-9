@@ -40,7 +40,7 @@ public class GestionEmpleados {
         }
         else if(opcion == 3) {
         	
-			for(int i=0; i<empleados.length;i++) {
+			for(int i=0; i<Empleado.getEmpleados().size();i++) {
         		
         	}
         }
