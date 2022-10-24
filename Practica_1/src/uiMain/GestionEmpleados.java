@@ -37,8 +37,24 @@ public class GestionEmpleados {
         	
         }
         else if(opcion == 2){
-        	//contratar un trabajador
+        	//contratar setun trabajador
         	
+<<<<<<< HEAD
+        	Empleado E[] = new Empleado[1];
+        	
+        	String nombre = "";
+        	String cargo = "";
+        	int sueldo =0;
+        	
+        	for(int i=0; i<E.length;i++) {
+        		System.out.println("Ingresar Nombre");
+        		nombre = sc.nextLine();
+        		System.out.println("Ingresar Cargo");
+        		cargo = sc.nextLine();
+        		System.out.println("Ingresar sueldo");
+        		sueldo = sc.nextInt();
+        		
+=======
         	ArrayList<Empleado> empleados= new ArrayList<>();
             for (Trabajador trabajador: Trabajador.getTrabajadores()){
                 empleados.add(trabajador);
@@ -52,14 +68,19 @@ public class GestionEmpleados {
         	//info del algun trabajador
 		//	for(int i=0; i<empleados.length;i++) {
 
+>>>>>>> 4820f3d0056e920b178fdd19f4dae9e5652caacf
         		
         	}
         }
-	//}
+        else if(opcion == 3) {
+        	//info del algun trabajador
+        	
+				
+        	}
+        }
 	
 	
-	
-	
+
 	// contratar un nuevo empleado;
 	
 	//static void ContratarEmpleado(){
