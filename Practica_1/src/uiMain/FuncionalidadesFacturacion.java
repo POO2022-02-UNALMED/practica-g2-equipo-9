@@ -14,40 +14,45 @@ public class FuncionalidadesFacturacion {
 
     public static void opcionesDePedido() {
         Scanner entrada = new Scanner(System.in);
-        ArrayList<Producto> productosPedidos = null;
-        ArrayList<Servicio> serviciosPedidos = null;
+
         //MUESTRA EL LISTADO DE TRABAJADORES
+        Trabajador trabajadorSeleccionado;
+        long codigoTrabajador;
         System.out.println("============================================================");
-        System.out.println();
         System.out.println("Lista de trabajadores:");
         System.out.println(Trabajador.mostrarTrabajadores());
         System.out.println("============================================================");
         //SELECCIONAR TRABAJADOR QUE TOMARA EL PEDIDO
         System.out.println("Selecciona el codigo del trabajador que tomara el pedido:");
-        long codigo = entrada.nextInt();//codigo de empleado
-        Trabajador trabajadorSeleccionado = Trabajador.seleccionarTrabajador(codigo);
+        codigoTrabajador = entrada.nextInt();//codigo de empleado
+        trabajadorSeleccionado = Trabajador.seleccionarTrabajador(codigoTrabajador);
         while (trabajadorSeleccionado == null) {
             System.out.println("Codigo de trabajador no existe, ingrese uno valido");
-            codigo = entrada.nextInt();
-            trabajadorSeleccionado = Trabajador.seleccionarTrabajador(codigo);
+            codigoTrabajador = entrada.nextInt();
+            trabajadorSeleccionado = Trabajador.seleccionarTrabajador(codigoTrabajador);
         }
         System.out.println("============================================================");
-        System.out.println();
         System.out.println("Descripcion del trabajador seleccionado:");
         System.out.println(trabajadorSeleccionado);
-        System.out.println();
         System.out.println("============================================================");
 
-        Cliente cliente = null;
 
+        Cliente cliente = null;
+        String nombreCliente;
+        long codigoCliente;
+
+        Pedido pedido=null;
+        long codigoPedido;
 
         boolean salir = false;
         int opcion; //Guardaremos la opcion del usuario
 
-        System.out.println(!salir);
         System.out.println("==========================OPCIONES DE PEDIDO=========================");
         while (salir == false) {
-
+            System.out.println("============================================================");
+            System.out.println("Descripcion del trabajador seleccionado:");
+            System.out.println(trabajadorSeleccionado);
+            System.out.println("============================================================");
             System.out.println();
             System.out.println("======================MENU DE OPCIONES======================");
             System.out.println("Presiona un numero para");
@@ -62,20 +67,86 @@ public class FuncionalidadesFacturacion {
             System.out.println("Ingresa una opcion:");
             opcion = entrada.nextInt();
             if (opcion == 1) {
-
+                cliente=new Cliente();
+                tomarPedido(trabajadorSeleccionado, cliente);
             } else if (opcion == 2) {
-
+                System.out.println("Ingresar nombre para registrar cliente:");
+                nombreCliente= entrada.next();
+                cliente=new Cliente(nombreCliente);
+                pedido=tomarPedido(trabajadorSeleccionado,cliente);
+                cliente.getHistorialPedidos().add(pedido);
+                pedido.generarFactura();
             } else if (opcion == 3) {
-
+                Cliente.mostrarClientesRegistrados();
+                System.out.println();
+                System.out.println("Ingrese codigo de cliente registrado para seleccionarlo:");
+                codigoCliente=entrada.nextLong();
+                cliente=Cliente.seleccionarCliente(codigoCliente);
+                while(cliente==null){
+                    System.out.println("Codigo invalido, ingrese un codigo de cliente existente");
+                    System.out.println();
+                    System.out.println("Ingrese codigo de cliente registrado para seleccionarlo:");
+                    codigoCliente=entrada.nextLong();
+                    cliente=Cliente.seleccionarCliente(codigoCliente);
+                }
+                tomarPedido(trabajadorSeleccionado,cliente);
             } else if (opcion == 4) {
-
+                //MUESTRA EL LISTADO DE TRABAJADORES
+                System.out.println("============================================================");
+                System.out.println("Lista de trabajadores:");
+                System.out.println(Trabajador.mostrarTrabajadores());
+                System.out.println("============================================================");
+                //SELECCIONAR TRABAJADOR QUE TOMARA EL PEDIDO
+                System.out.println("Selecciona el codigo del trabajador que tomara el pedido:");
+                codigoTrabajador = entrada.nextInt();//codigo de empleado
+                trabajadorSeleccionado = Trabajador.seleccionarTrabajador(codigoTrabajador);
+                while (trabajadorSeleccionado == null) {
+                    System.out.println("Codigo de trabajador no existe, ingrese uno valido");
+                    codigoTrabajador = entrada.nextInt();
+                    trabajadorSeleccionado = Trabajador.seleccionarTrabajador(codigoTrabajador);
+                }
+                System.out.println("============================================================");
+                System.out.println("Descripcion del trabajador seleccionado:");
+                System.out.println(trabajadorSeleccionado);
+                System.out.println("============================================================");
             } else if (opcion == 5) {
-
+                //MUESTRA LOS PEDIDOS NO PAGADOS
+                System.out.println(Pedido.mostraPedidos());
+                System.out.println();
+                System.out.println("Seleccione un codigo de pedido");
+                codigoPedido=entrada.nextLong();
+                pedido=Pedido.seleccionarPedido(codigoPedido);
+                while(pedido==null){
+                    System.out.println("codigo equivocado, selecciona un codigo correcto");
+                    System.out.println();
+                    System.out.println("Seleccione un codigo de pedido");
+                    codigoPedido=entrada.nextLong();
+                    pedido=Pedido.seleccionarPedido(codigoPedido);
+                }
+                System.out.println();
+                System.out.println("Desea pagar este pedido?");
+                System.out.println("1. Pagar");
+                System.out.println("2. Volver/No hacer nada");
+                opcion= entrada.nextInt();
+                while(opcion!=1 &&opcion!=2){
+                    System.out.println("Opcion invalida, seleccione una opcion correcta:");
+                    opcion= entrada.nextInt();
+                }
+                if(opcion==1){
+                    pedido.setEstadoPedido("Pagado");
+                    for(Producto producto: pedido.getProductos()){
+                        producto.setEstado("Vendido");
+                    }
+                    System.out.println("Pedido pagado exitosamente, presiona 2 para finalizar");
+                    opcion= entrada.nextInt();
+                }
+                else if(opcion==2){
+                }
             }
         }
     }
 
-    public static String tomarPedido(Trabajador trabajadorSeleccionado, Cliente cliente) {
+    public static Pedido tomarPedido(Trabajador trabajadorSeleccionado, Cliente cliente) {
         Scanner entrada = new Scanner(System.in);
         ArrayList<Producto> productosPedidos = new ArrayList<>();
         ArrayList<Servicio> serviciosPedidos = new ArrayList<>();
@@ -86,17 +157,9 @@ public class FuncionalidadesFacturacion {
         System.out.println(!salir);
         while (salir == false) {
             System.out.println("=====================PRODUCTOS Y SERVICIOS PEDIDOS HASTA EL MOMENTO======================");
-            if (productosPedidos.size() == 0) {
-                System.out.println("No hay productos pedidos");
-            } else {
-                System.out.println(Producto.mostrarNombresCantidadPrecio(productosPedidos));
-            }
+            System.out.println(Producto.mostrarNombresCantidadPrecio(productosPedidos));
             System.out.println();
-            if (serviciosPedidos.size() == 0) {
-                System.out.println("No hay servicios pedidos");
-            } else {
-                System.out.println(Servicio.motrarNombreCantidadPrecio(serviciosPedidos));
-            }
+            System.out.println(Servicio.motrarNombreCantidadPrecio(serviciosPedidos));
             System.out.println("============================================================");
             System.out.println();
             //MOSTRAR PEDIDO QUE LLEVA HASTA EL MOMENTO
@@ -105,24 +168,18 @@ public class FuncionalidadesFacturacion {
             System.out.println("3. Agregar servicios");
             System.out.println("4. Remover servicios del pedido");
             System.out.println("5. Vaciar pedido(productos y servicios)/sigue en el bucle");
-            System.out.println("6. Pagar luego /genera factura/crea objeto/sale del bucle");
-            System.out.println("7. Pagar ya /genera factura/crea objeto/sale del bucle");
-            System.out.println("8. No tomar pedido/sale del bucle");
+            System.out.println("6. No tomar pedido/sale del bucle");
+            System.out.println("Opciones para pagar luego o pagar ya:");
+            System.out.println("7. Pagar luego /genera factura/crea objeto/sale del bucle");
+            System.out.println("8. Pagar ya /genera factura/crea objeto/sale del bucle");
+
             System.out.println("Ingrese una opcion");
             opcion = entrada.nextInt();
-            while (opcion != 1 && opcion != 2 && opcion != 3 && opcion != 4 && opcion != 5 && opcion != 6 && opcion != 7) {
+            while (opcion != 1 && opcion != 2 && opcion != 3 && opcion != 4 && opcion != 5 && opcion != 6 && opcion != 7 && opcion!=8) {
                 System.out.println("=====================PRODUCTOS Y SERVICIOS PEDIDOS======================");
-                if (productosPedidos.size() == 0) {
-                    System.out.println("No hay productos pedidos");
-                } else {
-                    System.out.println(Producto.mostrarNombresCantidadPrecio(productosPedidos));
-                }
+                System.out.println(Producto.mostrarNombresCantidadPrecio(productosPedidos));
                 System.out.println();
-                if (serviciosPedidos.size() == 0) {
-                    System.out.println("No hay servicios pedidos");
-                } else {
-                    System.out.println(Servicio.motrarNombreCantidadPrecio(serviciosPedidos));
-                }
+                System.out.println(Servicio.motrarNombreCantidadPrecio(serviciosPedidos));
                 System.out.println("============================================================");
                 System.out.println();
                 System.out.println("1. Agregar productos");
@@ -130,9 +187,10 @@ public class FuncionalidadesFacturacion {
                 System.out.println("3. Agregar servicios");
                 System.out.println("4. Remover servicios del pedido");
                 System.out.println("5. Vaciar pedido(productos y servicios)/sigue en el bucle");
-                System.out.println("6. Pagar luego /genera factura/crea objeto/sale del bucle");
-                System.out.println("7. Pagar ya /genera factura/crea objeto/sale del bucle");
-                System.out.println("8. No tomar pedido/sale del bucle");
+                System.out.println("6. No tomar pedido/sale del bucle");
+                System.out.println("Opciones para pagar luego o pagar ya:");
+                System.out.println("7. Pagar luego /genera factura/crea objeto/sale del bucle");
+                System.out.println("8. Pagar ya /genera factura/crea objeto/sale del bucle");
                 System.out.println("============================================================");
                 System.out.println("Ingrese una opcion");
                 opcion = entrada.nextInt();
@@ -160,32 +218,7 @@ public class FuncionalidadesFacturacion {
                 }
                 productosPedidos.clear();
                 serviciosPedidos.clear();
-            } else if (opcion == 6) {
-                if (productosPedidos.size() == 0 && serviciosPedidos.size() == 0) {
-                    System.out.println("No has hecho ningun pedido de productos o servicios, ingresa un pedido valido");
-                } else if (productosPedidos.size() >= 0 || serviciosPedidos.size() >= 0) {
-                    cliente = new Cliente();
-                    for (Producto producto : productosPedidos) {
-                        producto.setEstado("Reservado");
-                    }
-                    pedido = new Pedido(trabajadorSeleccionado, cliente, "No pagado", productosPedidos, serviciosPedidos, LocalDate.now());
-                    factura += pedido.generarFactura();
-                    salir = true;
-                }
-
-            } else if (opcion == 7) {
-                if (productosPedidos.size() == 0 && serviciosPedidos.size() == 0) {
-                    System.out.println("No has hecho ningun pedido de productos o servicios, ingresa un pedido valido");
-                } else if (productosPedidos.size() != 0 || serviciosPedidos.size() != 0) {
-                    cliente = new Cliente();
-                    for (Producto producto : productosPedidos) {
-                        producto.setEstado("Vendido");
-                    }
-                    pedido = new Pedido(trabajadorSeleccionado, cliente, "Pagado", productosPedidos, serviciosPedidos, LocalDate.now());
-                    factura += pedido.generarFactura();
-                    salir = true;
-                }
-            } else if (opcion == 8) {
+            }else if (opcion == 6) {
                 for (Producto producto : productosPedidos) {
                     producto.setEstado("No vendido");
                 }
@@ -193,10 +226,36 @@ public class FuncionalidadesFacturacion {
                 serviciosPedidos.clear();
                 salir = true;
             }
+            else if (opcion == 7) {
+                if (productosPedidos.size() == 0 && serviciosPedidos.size() == 0) {
+                    System.out.println("No has hecho ningun pedido de productos o servicios, ingresa un pedido valido");
+                } else if (productosPedidos.size() >= 0 || serviciosPedidos.size() >= 0) {
+                    for (Producto producto : productosPedidos) {
+                        producto.setTrabajador(trabajadorSeleccionado);
+                        producto.setEstado("Reservado");
+                        producto.setCliente(cliente);
+                    }
+                    pedido = new Pedido(trabajadorSeleccionado, cliente, "No pagado", productosPedidos, serviciosPedidos, LocalDate.now());
+                    salir = true;
+                }
+
+            } else if (opcion == 8) {
+                if (productosPedidos.size() == 0 && serviciosPedidos.size() == 0) {
+                    System.out.println("No has hecho ningun pedido de productos o servicios, ingresa un pedido valido");
+                } else if (productosPedidos.size() != 0 || serviciosPedidos.size() != 0) {
+                    for (Producto producto : productosPedidos) {
+                        producto.setTrabajador(trabajadorSeleccionado);
+                        producto.setEstado("Vendido");
+                        producto.setCliente(cliente);
+                    }
+                    pedido = new Pedido(trabajadorSeleccionado, cliente, "Pagado", productosPedidos, serviciosPedidos, LocalDate.now());
+                    salir = true;
+                }
+            }
 
 
         }
-        return factura;
+        return pedido;
     }
     public static ArrayList<Servicio> removerServicios(ArrayList<Producto> productosPedidos, ArrayList<Servicio> serviciosPedidos){
         Scanner entrada = new Scanner(System.in);
@@ -242,6 +301,7 @@ public class FuncionalidadesFacturacion {
                 if (opcion == 1) {
                     salir = true;
                 }
+
             }
             else if(serviciosPedidos.size()>=0){
                 System.out.println();
@@ -249,6 +309,10 @@ public class FuncionalidadesFacturacion {
                 System.out.println(Producto.mostrarNombresCantidadPrecio(productosPedidos));
                 System.out.println();
                 System.out.println(Servicio.motrarNombreCantidadPrecio(serviciosPedidos));
+                System.out.println("============================================================");
+                System.out.println();
+                System.out.println("==========================SERVICIOS QUE SE OFRECEN=======================================");
+                System.out.println(Servicio.serviciosOfrecidos());//Se muestran los servicios y sus precios
                 System.out.println("============================================================");
                 System.out.println();
                 System.out.println("======================MENU DE OPCIONES======================");
@@ -267,57 +331,59 @@ public class FuncionalidadesFacturacion {
                     System.out.println(Servicio.motrarNombreCantidadPrecio(serviciosPedidos));
                     System.out.println("============================================================");
                     System.out.println();
+                    System.out.println("==========================SERVICIOS QUE SE OFRECEN=======================================");
+                    System.out.println(Servicio.serviciosOfrecidos());//Se muestran los servicios y sus precios
+                    System.out.println("============================================================");
+                    System.out.println();
                     System.out.println("======================MENU DE OPCIONES======================");
                     System.out.println("Que operacion desea realizar? presione:");
-                    System.out.println("1. Remover cierta cantidad de producto");//Estado producto= Reservado, Permite otra iteracion del bucle con lo cual podras agregar mas productos
-                    System.out.println("2. Remover todos los productos y salir");
+                    System.out.println("1. Remover cierta cantidad de servicios");//Estado producto= Reservado, Permite otra iteracion del bucle con lo cual podras agregar mas productos
+                    System.out.println("2. Remover todos los servicios y salir");
                     System.out.println("3. Volver atras");
                     System.out.println("============================================================");
                     System.out.println("Ingrese una opcion");
                     opcion = entrada.nextInt();
                 }
                 if(opcion==1){
-
+                    HashMap<Integer, Servicio>servicios=Servicio.hashmapServicios();
+                    System.out.println("Escoger numero de servicio que desea remover:");
+                    numeroServicio=entrada.nextInt();
+                    boolean verificarNumeroServicio=Servicio.verificarServicio(servicios.get(numeroServicio),serviciosPedidos);
+                    while(verificarNumeroServicio==false){
+                        System.out.println("Opcion no valida, ingrese un numero de servicio que este en su pedido");
+                        System.out.println();
+                        System.out.println("Escoger numero de servicio que desea remover:");
+                        numeroServicio=entrada.nextInt();
+                        verificarNumeroServicio=Servicio.verificarServicio(servicios.get(numeroServicio),serviciosPedidos);
+                    }
+                    System.out.println("Ingrese el numero de "+servicios.get(numeroServicio)+" que desea remover de su pedido:");
+                    cantidadEscogida=entrada.nextLong();
+                    boolean verificarCantidad=Servicio.verificarServicio(servicios.get(numeroServicio),cantidadEscogida,serviciosPedidos);
+                    while(verificarCantidad==false){
+                        System.out.println("Cantidad escogida no existe");
+                        System.out.println();
+                        System.out.println("Ingrese el numero de "+servicios.get(numeroServicio)+" que desea remover de su pedido:");
+                        cantidadEscogida=entrada.nextLong();
+                        verificarCantidad=Servicio.verificarServicio(servicios.get(numeroServicio),cantidadEscogida,serviciosPedidos);
+                    }
+                    //REMOVER SERVICIOS
+                    Iterator<Servicio> listaIterada = serviciosPedidos.iterator();
+                    int i = 0;
+                    while (listaIterada.hasNext()) {
+                        Servicio actual = listaIterada.next();
+                        if (actual==servicios.get(numeroServicio) && i < cantidadEscogida) {
+                            listaIterada.remove();
+                            i++;
+                        }
+                    }
                 }
                 else if(opcion==2){
-
+                    serviciosPedidos.clear();
+                    salir=true;
                 }
                 else if(opcion==3){
                     salir=true;
                 }
-            }
-            System.out.println("=====================PRODUCTOS Y SERVICIOS PEDIDOS HASTA EL MOMENTO======================");
-            System.out.println(Producto.mostrarNombresCantidadPrecio(productosPedidos));
-            System.out.println(Servicio.motrarNombreCantidadPrecio(serviciosPedidos));
-            System.out.println("============================================================");
-            System.out.println();
-            System.out.println("==========================SERVICIOS QUE SE OFRECEN=======================================");
-            System.out.println(Servicio.serviciosOfrecidos());//Se muestran los servicios y sus precios
-            System.out.println("============================================================");
-            System.out.println();
-            System.out.println("======================MENU DE OPCIONES======================");
-            System.out.println("No hay productos disponibles para vender, debe agregar productos en el inventario en opciones de administrador");
-            System.out.println("1. Agregar servicio y cantidad");
-            System.out.println("2. No agregar mas servicios/volver atras");
-            System.out.println("============================================================");
-            System.out.println("Ingrese una opcion");
-            opcion = entrada.nextInt();
-            while (opcion != 1 && opcion != 2) {
-                System.out.println("=====================PRODUCTOS Y SERVICIOS PEDIDOS HASTA EL MOMENTO======================");
-                System.out.println(Producto.mostrarNombresCantidadPrecio(productosPedidos));
-                System.out.println(Servicio.motrarNombreCantidadPrecio(serviciosPedidos));
-                System.out.println("============================================================");
-                System.out.println();
-                System.out.println("==========================SERVICIOS QUE SE OFRECEN=======================================");
-                System.out.println(Servicio.serviciosOfrecidos());//Se muestran los servicios y sus precios
-                System.out.println("============================================================");
-                System.out.println();
-                System.out.println("======================MENU DE OPCIONES======================");
-                System.out.println("1. Agregar servicio y cantidad");
-                System.out.println("2. No agregar mas servicios/volver atras");
-                System.out.println("============================================================");
-                System.out.println("Ingrese una opcion");
-                numeroServicio = entrada.nextInt();
             }
         }
         return serviciosPedidos;
@@ -371,7 +437,7 @@ public class FuncionalidadesFacturacion {
                 numeroServicio= entrada.nextInt();
                 while(numeroServicio<1 || numeroServicio>servicios.size()){
                     System.out.println();
-                    System.out.println("Opcion no valida, ingrese un numero correcto");
+                    System.out.println("Opcion no valida, ingrese un numero de servicio correcto");
                     System.out.println();
                     System.out.println("Seleccione NUMERO del servicio que desea ingresar");
                     numeroServicio= entrada.nextInt();
@@ -524,7 +590,6 @@ public class FuncionalidadesFacturacion {
     }
 
     public static ArrayList<Producto> agregarProductos(ArrayList<Producto> productosPedidos, ArrayList<Servicio> serviciosPedidos) {
-        ArrayList<Producto> todosLosProductosDelInventario = Producto.getProductos();//Totdos los productos del inventario
         ArrayList<Producto> productosNoVendidos;
         Scanner entrada = new Scanner(System.in);
         int opcion;
@@ -537,7 +602,7 @@ public class FuncionalidadesFacturacion {
         System.out.println("===========================MENU PARA AGREGAR PRODUCTOS A SU PEDIDO===========================");
 
         while (salir == false) {
-            productosNoVendidos = Producto.productosDisponibles(todosLosProductosDelInventario);//Productos con estado "No vendido" y fecha null
+            productosNoVendidos = Producto.productosDisponibles(Producto.getProductos());//Productos con estado "No vendido" y fecha null
             if (productosNoVendidos.size() == 0) {
                 System.out.println("=====================PRODUCTOS Y SERVICIOS PEDIDOS HASTA EL MOMENTO======================");
                 System.out.println(Producto.mostrarNombresCantidadPrecio(productosPedidos));
@@ -652,171 +717,9 @@ public class FuncionalidadesFacturacion {
         }
         return productosPedidos;
     }
-    /*public static void facturarPedido(){
 
-        Scanner entrada=new Scanner(System.in);
-        System.out.println("Que operacion desea realizar? ");
-        System.out.println("1. Ingresar Pedido a nuevo cliente");
-        System.out.println("2. Agregar Pedido a cliente existente");
-        System.out.println("3. Ver listas de Pedidos no pagados");
-        System.out.println();
-        System.out.println("Ingrese una opcion:");
-        int opcion = entrada.nextInt();
-
-        while(opcion<1 || opcion>3){
-            System.out.println("Opcion invalida, ingrese un numero valido");
-            opcion= entrada.nextInt();
-        }
-        if(opcion==1){ //INGRESAR PEDIDO A CLIENTE NUEVO
-            System.out.println("Lista de trabajadores:");
-            //MUESTRA EL LISTADO DE TRABAJADORES
-            System.out.println(Trabajador.mostrarTrabajadores());
-            System.out.println("Selecciona el codigo del trabajador que tomara el pedido:");
-            long codigo = entrada.nextInt();//codigo de empleado
-            //buscamos el codigo del trabajador
-            Trabajador trabajadorSeleccionado=Trabajador.seleccionarTrabajador(codigo);
-            while(trabajadorSeleccionado==null){
-                System.out.println("Codigo de trabajador no existe, ingrese uno valido");
-                codigo= entrada.nextInt();
-                trabajadorSeleccionado=Trabajador.seleccionarTrabajador(codigo);
-            }
-            System.out.println("Descripcion del trabajador seleccionado:");
-            System.out.println(trabajadorSeleccionado);
-            System.out.println();
-            System.out.println();
-
-            System.out.println("Productos disponibles: ");
-            //MOSTRAR PRODUCTOS DISPONIBLES Y CANTIDADES
-            System.out.println(Producto.mostrarProductosDisponibles());
-            ArrayList<Producto> productosDisponibles= Producto.productosDisponibles();//PRODUCTOS NO VENDIDOS
-            //CONFIRMAR QUE NOMBRE INGRESADO EXISTA EN EL INVENTARIO
-
-
-
-
-            System.out.println("Escoja nombre de producto:");
-            String nombreEscogido= entrada.next();
-            boolean verificarNombre=Producto.verificarProducto(nombreEscogido,productosDisponibles);
-            while(verificarNombre==false){
-                System.out.println("Producto ingresado no disponible, ingrese un nombre valido");
-                nombreEscogido= entrada.next();
-                verificarNombre=Producto.verificarProducto(nombreEscogido,productosDisponibles);
-            }
-            //CONFIRMAR CANTIDAD DE PRODUCTO
-            System.out.println("Escoja cantidad de producto:");
-            long cantidadEscogida= entrada.nextLong();
-            boolean verificarCantidad=Producto.verificarProducto(nombreEscogido,cantidadEscogida,productosDisponibles);
-            while(verificarCantidad==false){
-                System.out.println("Cantidad no disponible, ingrese una cantidad valida");
-                cantidadEscogida= entrada.nextLong();
-                verificarCantidad=Producto.verificarProducto(nombreEscogido,cantidadEscogida,productosDisponibles);
-            }
-            //AGREGAR CANTIDAD A PRODUCTOS ESCOGIDOS
-            ArrayList<Producto> productosEscogidos=Producto.agregarProducto(nombreEscogido,cantidadEscogida,productosDisponibles);
-            System.out.println(productosEscogidos);
-            //AGREGAR SERVICIOS
-            ArrayList<Servicio>serviciosEscogidos=new ArrayList<>();
-            System.out.println();
-            System.out.println("Desea agregar servicios:");
-            System.out.println("1. Agregar servicios");
-            System.out.println("2. No agregar servicios");
-            int opcion1= entrada.nextInt();
-            while(opcion1<1 || opcion1>2){
-                System.out.println("Ingrese una opcion valida");
-                opcion1= entrada.nextInt();
-            }
-            if (opcion1==1){
-                //MOSTRAR SERVICIOS
-                System.out.println(Servicio.serviciosOfrecidos());//Se muestran los servicios y sus precios
-                HashMap<Integer, Servicio>servicios=Servicio.hashmapServicios();
-                System.out.println("Seleccione cantidad de servicios que desea ingresar");
-                int opcion2= entrada.nextInt();//cantidad de servicios
-
-                for(int e=0; e<opcion2; e++){
-                    System.out.println("Ingrese numero del servicio "+(e+1)+":");
-                    int opcion3= entrada.nextInt();
-                    while(opcion3<=0 || opcion3 > servicios.size()){
-                        System.out.println("Numero del servicio no valido, ingrese otro numero");
-                        opcion3= entrada.nextInt();
-                    }
-                    serviciosEscogidos.add(servicios.get(opcion3));
-                }
-                System.out.println(serviciosEscogidos);
-                System.out.println("Ingresar nombre del cliente:");
-                String nombreCliente= entrada.next();
-                Cliente cliente =new Cliente(nombreCliente,0,null,null);
-                Pedido pedido=new Pedido(trabajadorSeleccionado,cliente,"No pagado",productosEscogidos,serviciosEscogidos, LocalDate.now());
-                cliente.setPedido(pedido);
-                System.out.println("Ingrese para:");
-                System.out.println("1. Pagar ahora mismo");
-                System.out.println("2. Pagar luego");
-                System.out.println("3. Cancelar pedido");
-                int opcion4= entrada.nextInt();
-                while(opcion4<=0 && opcion4>3){
-                    System.out.println("Opcion invalida, ingrese de nuevo un numero:");
-                    opcion4= entrada.nextInt();
-                }
-                if(opcion4==1){//pagar pedido, cambia estado de pedido a Pagado y estado de productos a Vendido
-                    pedido.pagarPedido();
-                    System.out.println(pedido.generarFactura());
-                }
-                else if(opcion4==2){
-                    pedido.reservarPedido();//reservar pedido, cambia estado de pedido a No pagado y estado de productos a Reservado
-                    System.out.println(pedido.generarFactura());
-                }
-                else if(opcion4==3){
-                    Pedido.getPedidos().remove(pedido);//Remueve el pedido del listado de pedidos
-                }
-
-            }
-            else if(opcion1==2){
-                System.out.println("Ingresar nombre del cliente:");
-                String nombreCliente= entrada.next();
-                Cliente cliente =new Cliente(nombreCliente,0,null,null);
-                Pedido pedido=new Pedido(trabajadorSeleccionado,cliente,"No pagado",productosEscogidos,serviciosEscogidos, LocalDate.now());
-                cliente.setPedido(pedido);
-                System.out.println("Ingrese para:");
-                System.out.println("1. Pagar ahora mismo");
-                System.out.println("2. Pagar luego");
-                System.out.println("3. Cancelar pedido");
-                int opcion4= entrada.nextInt();
-                while(opcion4<=0 && opcion4>3){
-                    System.out.println("Opcion invalida, ingrese de nuevo un numero:");
-                    opcion4= entrada.nextInt();
-                }
-                if(opcion4==1){//pagar pedido, cambia estado de pedido a Pagado y estado de productos a Vendido
-                    pedido.pagarPedido();
-                    System.out.println(pedido.generarFactura());
-                }
-                else if(opcion4==2){
-                    pedido.reservarPedido();//reservar pedido, cambia estado de pedido a No pagado y estado de productos a Reservado
-                    System.out.println(pedido.generarFactura());
-                }
-                else if(opcion4==3){
-                    Pedido.getPedidos().remove(pedido);//Remueve el pedido del listado de pedidos
-                }
-            }
-
-        }
-        else if (opcion==2){//AGREGAR PEDIDO A CLIENTE EXISTENTE
-            System.out.println("Listado de clientes con pedidos abiertos");
-            System.out.println(Cliente.mostrarClientes());
-            System.out.println("Ingrese un codigo de cliente:");
-            long codigo= entrada.nextLong();
-            Cliente clienteSeleccionado=Cliente.seleccionarCliente(codigo);
-            while(clienteSeleccionado==null){
-                System.out.println("Codigo no valido, ingrese uno nuevo");
-                codigo=entrada.nextLong();
-                clienteSeleccionado=Cliente.seleccionarCliente(codigo);
-            }
-            System.out.println("Descripcion del trabajador que atiende este cliente");
-            System.out.println(clienteSeleccionado.getPedido().getTrabajador());
-            System.out.println();
-        }
-        else if(opcion==3) {//BUSCAR PEDIDOS "No pagados" QUE VENDRIAN SIENDO LOS PENDIENTES
-        }
-    }*/
-
+    public static void main(String[] args) {
+    }
 
 }
 

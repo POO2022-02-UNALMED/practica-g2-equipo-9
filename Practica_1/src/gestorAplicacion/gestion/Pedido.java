@@ -22,6 +22,8 @@ public class Pedido {
     private LocalDate fechaPedido;
     private long codigo; //cuando se cree, se cree con el mismo ID del cliente
 
+    private static int totalPedidos = 0;
+
     //ATRIBUTOS DE CLASE
 
     private static ArrayList<Pedido> pedidos= new ArrayList<>();
@@ -52,6 +54,7 @@ public class Pedido {
         this.fechaPedido = fechaPedido;
         this.codigo = generarCodigo();
         pedidos.add(this);
+        Pedido.totalPedidos += 1;
     }
 
     //GETTERS Y SETTERS
@@ -84,6 +87,15 @@ public class Pedido {
     public String getEstadoPedido() {
         return estadoPedido;
     }
+
+    public static int getTotalPedidos() {
+        return pedidos.size();
+    }
+
+    public static void setTotalPedidos(int totalPedidos) {
+        Pedido.totalPedidos = totalPedidos;
+    }
+
 
     public void setEstadoPedido(String estadoPedido) {
         this.estadoPedido = estadoPedido;
@@ -178,7 +190,6 @@ public class Pedido {
         servicios += "\nTotal de servicios:" + totalServicios;
 
 
-
         String s="";
         s+= "\n=============FACTURA DEL PEDIDO============="+
                 "\nFactura # "+this.getCodigo()+
@@ -191,6 +202,45 @@ public class Pedido {
                 "\n===========================================";
         return s;
     }
+
+    public double sumaProductos(){
+        double sumaTotal=0;
+        for (Producto producto: this.getProductos()){
+            sumaTotal+=producto.getPrecioVenta();
+        }
+        return sumaTotal;
+    }
+    public double sumaServicios(){
+        double sumaTotal=0;
+        for (Servicio servicio: this.getServicios()){
+            sumaTotal+=servicio.getPrecio();
+        }
+        return sumaTotal;
+    }
+    public static String mostraPedidos(){
+        String s="";
+        long i=1;
+        for(Pedido pedido: Pedido.getPedidos()){
+            if(pedido.getEstadoPedido().equals("No pagado")){
+                double productos=pedido.sumaProductos();
+                double servicios=pedido.sumaServicios();
+                s+="\n"+"Codigo de pedido: "+pedido.getCodigo()+", Cliente: "+ pedido.getCliente().getNombre()+", Valor total: "+(productos+servicios);
+                i++;
+            }
+        }
+        return s;
+    }
+    public static Pedido seleccionarPedido(long codigo){
+        Pedido pedido1=null;
+        for(Pedido pedido: Pedido.getPedidos()){
+            if(pedido.getCodigo()==codigo){
+                pedido1=pedido;
+                break;
+            }
+        }
+        return pedido1;
+    }
+
     public void pagarPedido(){
         this.setEstadoPedido("Pagado");
         for(Producto producto: this.getProductos()){

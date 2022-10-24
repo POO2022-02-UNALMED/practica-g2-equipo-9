@@ -1,5 +1,48 @@
 package uiMain;
 
-public class GestionEmpleados {
+import java.util.*;
+import gestorAplicacion.usuarios.*;
 
+public class GestionEmpleados {
+	
+	public static void GE() {
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Buen dia admin, que se le ofrece el dia de hoy");
+        System.out.println("1. Despedir un empleado");
+        System.out.println("2. Contratar un empleado");
+        System.out.println("3. Informacion de algun empleado");
+     
+        int opcion = sc.nextInt();
+        
+        while(opcion != 1 && opcion!= 3){
+         
+        	System.out.println("Por favor ingrese una opcion valida");
+            
+        	opcion = sc.nextInt();
+            
+        	System.out.println("Buen dia admin, que se le ofrece el dia de hoy");
+            System.out.println("1. Despedir un empleado");
+            System.out.println("2. Contratar un empleado");
+            System.out.println("3. Informacion de algun empleado");
+      
+        }
+        while(opcion == 1) {
+        	
+        	DespedirEmpleado();
+        }
+	}
+	
+	
+	
+	
+	// contratar un nuevo empleado;
+	
+	static void ContratarEmpleado(){
+			
+	}
+	// despides algun empleado
+	static void DespedirEmpleado() {
+		
+		}
+	
 }

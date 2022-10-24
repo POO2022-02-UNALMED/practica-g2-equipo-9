@@ -61,4 +61,21 @@ public enum Servicio {
         }
         return a;
     }
+
+    public static boolean verificarServicio(Servicio servicio, ArrayList<Servicio> serviciosPedidos){//Verficicar que el servicio este en la lista de servicios
+        boolean existe=false;
+        if(serviciosPedidos.contains(servicio)){
+            existe=true;
+        }
+        return existe;
+    }
+    public static boolean verificarServicio(Servicio servicio, long cantidadEscogida, ArrayList<Servicio> serviciosPedidos){//Verificar que la cantidad del servicio, exista en la lista de servicios pedidos
+        boolean existe=false;
+        if(cantidadEscogida>=0 && cantidadEscogida<=Collections.frequency(serviciosPedidos,servicio)){
+            existe=true;
+        }
+        return existe;
+    }
+
+
 }

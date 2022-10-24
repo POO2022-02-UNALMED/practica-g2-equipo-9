@@ -435,12 +435,16 @@ public class FuncionalidadesReserva {
     public static void realizarReserva() {
         Scanner sc = new Scanner(System.in);
         System.out.println("Bienvenido al menu para realizar una Reserva");
-        System.out.println("Es usted un cliente registrado ?");
+        System.out.println("Es usted un cliente registrado?");
         System.out.println("1. Si");
         System.out.println("2. No");
         int opcion = sc.nextInt();
         while(opcion != 1 && opcion!= 2){
+        	
             System.out.println("Por favor ingrese una opcion valida");
+            System.out.println("Es usted un cliente registrado?");
+            System.out.println("1. Si");
+            System.out.println("2. No");
             opcion = sc.nextInt();
         }
         Reserva reservaCreada = new Reserva();
