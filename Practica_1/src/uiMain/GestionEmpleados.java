@@ -49,7 +49,7 @@ public class GestionEmpleados {
         	System.out.println(" 1. Contratar empleado");
             System.out.println(" 2. Despedir empleado");
             System.out.println(" 3. Informacion sobre empleado");
-            System.out.println(" 0. Volver al menu principal\n");
+            System.out.println(" 0. Volver al menu anterior\n");
 
             opcion = readString();
 
@@ -78,11 +78,13 @@ public class GestionEmpleados {
                 	
                 	System.out.println(gefe.contratarEmpleado(Nombre,cargo));
                 	
-                	Empleado empleadoNuevo = Empleado.getEmpleados().get(Empleado.getEmpleados().size()-1);
+                	Empleado empleadoNuevo = Empleado.getEmpleados().get(Empleado.getEmpleados().size()+1);
                 	
                 	
                 	
                 	System.out.println(empleadoNuevo.informacion());
+                	
+                	
                 	pressEnter();
                 	
                 	break;
@@ -104,13 +106,12 @@ public class GestionEmpleados {
                 case "3":
                     //info_empleados();
                 	
-                	System.out.println(
-    						"\n----------------------------------------------------------------------------------------------------");
-    				System.out.println("\nPersonal del restaurante");
+    				
+                			System.out.println("\nEmpleados contratados:");
 
     				for (int i = 0; i < Empleado.getEmpleados().size(); i++) {
     					Empleado empleado = Empleado.getEmpleados().get(i);
-    					System.out.println("\nID: " + i);
+    					System.out.println("\n#: " + i);
     					System.out.println(empleado.informacion());
     				}
 
@@ -125,7 +126,7 @@ public class GestionEmpleados {
                     pressEnter();
                     break;
             }
-        } while(!opcion.equals("4"));
+        } while(!opcion.equals("0"));
        
         
     }

@@ -208,7 +208,7 @@ public class FuncionalidadInformacion {
             }
             if (opcion_empleados != -1) {
                 System.out.println(listaempleados.get(opcion_empleados - 1).informacion());
-                pressEnter();
+               pressEnter();
                 opcion_empleados = -1;
             }
 
