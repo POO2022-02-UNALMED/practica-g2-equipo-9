@@ -6,6 +6,7 @@ import gestorAplicacion.gestion.Servicio;
 import gestorAplicacion.usuarios.Sueldo;
 import gestorAplicacion.usuarios.Trabajador;
 
+import java.time.LocalDate;
 import java.util.*;
 
 public class FuncionalidadesNomina {
@@ -75,17 +76,17 @@ public class FuncionalidadesNomina {
                     codigo= entrada.nextInt();
                     trabajadorSeleccionado=Trabajador.seleccionarTrabajador(codigo);
                 }
-
                 System.out.println(nominaEmpleado(mesSeleccionado,trabajadorSeleccionado));
                 System.out.println();
                 System.out.println("Presiona 0 para volver atras y ver la contabilidad de otros meses");
                 opcion= entrada.nextInt();
                 while(opcion!=0){
+                    System.out.println();
                     System.out.println("Opcion incorrecta, presione 0 para volver");
                     opcion= entrada.nextInt();
                 }
             }
-            if(opcion==0){
+            else if(opcion==0){
                 salir=true;
             }
         }
@@ -99,7 +100,8 @@ public class FuncionalidadesNomina {
         SortedSet<String> nombresProductosNoRepetidos= new TreeSet<>();
         ArrayList<String> nombresProductosRepetidos= new ArrayList<>();
         for (Producto producto: Producto.getProductos()){
-            if (producto.getFechaVenta().getMonthValue()==mesSeleccionado && producto.getTrabajador()==trabajadorSeleccionado && producto.getEstado().equals("Vendido")){
+
+            if (producto.getFechaVenta().getMonthValue()==(int)mesSeleccionado && producto.getTrabajador()==trabajadorSeleccionado && producto.getEstado().equals("Vendido")){
                 comisionProductosTrabajador+=producto.getPrecioVenta()* Sueldo.porcentajeComisionProductos;
                 nombresProductosRepetidos.add(producto.getNombre());
                 nombresProductosNoRepetidos.add(producto.getNombre());
@@ -129,7 +131,7 @@ public class FuncionalidadesNomina {
             nombreYcantidadServicios+="\n"+nombre+"....................."+Collections.frequency(nombresServiciosRepetidos,nombre);
         }
 
-        HashMap<Integer, String> meses = new HashMap<Integer, String>();
+        HashMap<Integer, String> meses = new HashMap<>();
         meses.put(1, "Enero");
         meses.put(2, "Febrero");
         meses.put(3, "Marzo");
@@ -157,11 +159,55 @@ public class FuncionalidadesNomina {
                 "\n lista de servicios y cantidades vendidas por el empleado :\n"+ nombreYcantidadServicios+
                 "\n La comision por producto vendido es del "+Sueldo.porcentajeComisionServicios*100+"%"+
                 "\n Por lo que obtiene en comisiones de servicios un total de: "+comisionServiciosTrabajador+
-                "\n El trabajador tiene un sueldo base de: "+trabajadorSeleccionado.getSueldo()+
+                "\n El trabajador tiene un sueldo base de: "+trabajadorSeleccionado.getSueldo();
 
-                "\n "+
-                "\n El sueldo total a pagar del mes de "+meses.get(mesSeleccionado)+"es de: "+total;
 
+        if (meses.get(mesSeleccionado)=="Junio" || meses.get(mesSeleccionado)=="Diciembre"){
+            double primaTrabajador=trabajadorSeleccionado.calculoDePrima();
+            total+=primaTrabajador;
+            s+="\nPago de Prima a Empleados: "+primaTrabajador;
+
+        }
+        s+="\n-------------------------------"+
+                "\n\nEl sueldo total a pagar del mes de "+meses.get(mesSeleccionado)+" es de: "+total;
         return s;
+    }
+
+    public static void main(String[] args) {
+        Trabajador trabajador1=new Trabajador("Sergio", LocalDate.of(2020,01,25));
+        Trabajador trabajador2=new Trabajador("Sergio1",LocalDate.of(2020,02,14));
+        Trabajador trabajador3=new Trabajador("Sergio2",LocalDate.of(2020,03,18));
+        Trabajador trabajador4=new Trabajador("Sergio3",LocalDate.of(2020,04,11));
+        Trabajador trabajador5=new Trabajador("Sergio4",LocalDate.of(2020,05,7));
+        new Producto(trabajador1,"Vendido","vive 100", 600,LocalDate.of(2022,12,12));
+
+        new Producto(trabajador1,"Vendido","vive 100", 600,LocalDate.of(2022,6,12));
+        new Producto(trabajador1,"Vendido","vive 100", 600,LocalDate.of(2022,6,12));
+        new Producto(trabajador1,"Vendido","vive 100", 600,LocalDate.of(2022,6,12));
+        new Producto(trabajador1,"Vendido","vive 100", 600,LocalDate.of(2022,6,12));
+        new Producto(trabajador1,"Vendido","vive 100", 600,LocalDate.of(2022,6,12));
+        new Producto(trabajador1,"Vendido","vive 100", 600,LocalDate.of(2022,6,12));
+        new Producto(trabajador1,"Vendido","vive 100", 600,LocalDate.of(2022,6,12));
+
+        new Producto(trabajador2,"Vendido","Rockstar",700,LocalDate.of(2022,03,17));
+        new Producto(trabajador2,"Vendido","Rockstar",700,LocalDate.of(2022,03,17));
+        new Producto(trabajador2,"Vendido","Rockstar",700,LocalDate.of(2022,03,17));
+        new Producto(trabajador2,"Vendido","Rockstar",700,LocalDate.of(2022,03,17));
+        new Producto(trabajador2,"Vendido","Rockstar",700,LocalDate.of(2022,03,17));
+        new Producto(trabajador2,"Vendido","Rockstar",700,LocalDate.of(2022,03,17));
+        new Producto(trabajador2,"Vendido","Rockstar",700,LocalDate.of(2022,03,17));
+        new Producto(trabajador2,"Vendido","Rockstar",700,LocalDate.of(2022,03,17));
+        new Producto(trabajador3,"Vendido","Rockstar",700,LocalDate.of(2022,03,17));
+        new Producto(trabajador3,"Vendido","Rockstar",700,LocalDate.of(2022,03,17));
+        new Producto(trabajador3,"Vendido","Rockstar",700,LocalDate.of(2022,03,17));
+        new Producto(trabajador3,"Vendido","Rockstar",700,LocalDate.of(2022,03,17));
+        new Producto(trabajador3,"Vendido","Rockstar",700,LocalDate.of(2022,03,17));
+        new Producto(trabajador3,"Vendido","Rockstar",700,LocalDate.of(2022,03,17));
+        new Producto(trabajador3,"Vendido","Rockstar",700,LocalDate.of(2022,03,17));
+        new Producto(trabajador3,"Vendido","Rockstar",700,LocalDate.of(2022,03,17));
+        new Producto(trabajador3,"Vendido","Rockstar",700,LocalDate.of(2022,03,17));
+        new Producto(trabajador3,"Vendido","Rockstar",700,LocalDate.of(2022,03,17));
+        new Producto(trabajador3,"Vendido","Rockstar",700,LocalDate.of(2022,03,17));
+        calculoDeNomina();
     }
 }

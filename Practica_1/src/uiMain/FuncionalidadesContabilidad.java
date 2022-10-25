@@ -62,7 +62,7 @@ public class FuncionalidadesContabilidad {
             }
             if(opcion>0 || opcion<=opcionMeses.size()){
                 int mesSeleccionado=opcionMeses.get(opcion);
-                System.out.println("Mes escogido: "+mesSeleccionado);
+                System.out.println("Mes escogido: "+meses.get(mesSeleccionado));
 
                 System.out.println(FuncionalidadesContabilidad.calcularGananciasMes(mesSeleccionado,meses));
                 System.out.println();
@@ -152,7 +152,7 @@ public class FuncionalidadesContabilidad {
         for (Gerente gerente: Gerente.getGerentes()){
             empleados.add(gerente);
         }
-        if (meses.get(mesSeleccionado)=="Junio" || meses.get(mesSeleccionado)=="Diciembre"){
+        if (meses.get(mesSeleccionado).equals("Junio") || meses.get(mesSeleccionado).equals("Diciembre")){
             for (Empleado empleado: empleados){
                 if (empleado instanceof Trabajador){//Utilice instanceof cuando necesite confirmar el tipo de un objeto en tiempo de ejecución. Verifica si empleado pertenece a Trabajador
                     primaTrabajadores+=empleado.calculoDePrima();
@@ -176,11 +176,40 @@ public class FuncionalidadesContabilidad {
 
     public static void main(String[] args) {
         Trabajador trabajador1=new Trabajador("Sergio",LocalDate.of(2020,01,25));
-        Trabajador trabajador2=new Trabajador("Sergio",LocalDate.of(2020,02,14));
-        Trabajador trabajador3=new Trabajador("Sergio",LocalDate.of(2020,03,18));
-        Trabajador trabajador4=new Trabajador("Sergio",LocalDate.of(2020,04,11));
-        Trabajador trabajador5=new Trabajador("Sergio",LocalDate.of(2020,05,7));
-        Gerente gerente1=new Gerente("Russbell",LocalDate.of(2020,06,1));
+        Trabajador trabajador2=new Trabajador("Sergio1",LocalDate.of(2020,02,14));
+        Trabajador trabajador3=new Trabajador("Sergio2",LocalDate.of(2020,03,18));
+        Trabajador trabajador4=new Trabajador("Sergio3",LocalDate.of(2020,04,11));
+        Trabajador trabajador5=new Trabajador("Sergio4",LocalDate.of(2020,05,7));
+        new Producto(trabajador1,"Vendido","vive 100", 600,LocalDate.of(2022,06,12));
+        new Producto(trabajador1,"Vendido","vive 100", 600,LocalDate.of(2022,06,12));
+        new Producto(trabajador1,"Vendido","vive 100", 600,LocalDate.of(2022,06,12));
+        new Producto(trabajador1,"Vendido","vive 100", 600,LocalDate.of(2022,06,12));
+        new Producto(trabajador1,"Vendido","vive 100", 600,LocalDate.of(2022,06,12));
+        new Producto(trabajador1,"Vendido","vive 100", 600,LocalDate.of(2022,06,12));
+        new Producto(trabajador1,"Vendido","vive 100", 600,LocalDate.of(2022,06,12));
+
+        new Producto(trabajador2,"Vendido","Rockstar",700,LocalDate.of(2022,03,17));
+        new Producto(trabajador2,"Vendido","Rockstar",700,LocalDate.of(2022,03,17));
+        new Producto(trabajador2,"Vendido","Rockstar",700,LocalDate.of(2022,03,17));
+        new Producto(trabajador2,"Vendido","Rockstar",700,LocalDate.of(2022,03,17));
+        new Producto(trabajador2,"Vendido","Rockstar",700,LocalDate.of(2022,03,17));
+        new Producto(trabajador2,"Vendido","Rockstar",700,LocalDate.of(2022,03,17));
+        new Producto(trabajador2,"Vendido","Rockstar",700,LocalDate.of(2022,03,17));
+        new Producto(trabajador2,"Vendido","Rockstar",700,LocalDate.of(2022,03,17));
+        new Producto(trabajador3,"Vendido","Rockstar",700,LocalDate.of(2022,03,17));
+        new Producto(trabajador3,"Vendido","Rockstar",700,LocalDate.of(2022,03,17));
+        new Producto(trabajador3,"Vendido","Rockstar",700,LocalDate.of(2022,03,17));
+        new Producto(trabajador3,"Vendido","Rockstar",700,LocalDate.of(2022,03,17));
+        new Producto(trabajador3,"Vendido","Rockstar",700,LocalDate.of(2022,03,17));
+        new Producto(trabajador3,"Vendido","Rockstar",700,LocalDate.of(2022,03,17));
+        new Producto(trabajador3,"Vendido","Rockstar",700,LocalDate.of(2022,03,17));
+        new Producto(trabajador3,"Vendido","Rockstar",700,LocalDate.of(2022,03,17));
+        new Producto(trabajador3,"Vendido","Rockstar",700,LocalDate.of(2022,03,17));
+        new Producto(trabajador3,"Vendido","Rockstar",700,LocalDate.of(2022,03,17));
+        new Producto(trabajador3,"Vendido","Rockstar",700,LocalDate.of(2022,03,17));
+
+
+        Gerente gerente1=new Gerente("Mafe",LocalDate.of(2020,06,1));
         contabilidad();
     }
 

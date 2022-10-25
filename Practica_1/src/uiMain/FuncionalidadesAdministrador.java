@@ -4,7 +4,6 @@ import gestorAplicacion.gestion.Pedido;
 import gestorAplicacion.gestion.Producto;
 import gestorAplicacion.gestion.Servicio;
 import gestorAplicacion.usuarios.Empleado;
-import gestorAplicacion.usuarios.Gerente;
 import gestorAplicacion.usuarios.Trabajador;
 
 import java.sql.SQLOutput;
@@ -289,3 +288,4 @@ public class FuncionalidadesAdministrador {
 
     }
 }
+
