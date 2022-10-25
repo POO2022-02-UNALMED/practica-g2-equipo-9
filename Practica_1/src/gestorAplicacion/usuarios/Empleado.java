@@ -10,7 +10,7 @@ public abstract class Empleado extends Usuario implements Serializable, Sueldo {
     private static final long serialVersionUID = 1L;
 
     //ATRIBUTOS DE INSTANCIA
-    public String cargo;
+    protected String cargo;
     protected double sueldo;
 
     protected LocalDate fechaIngreso; //fecha cuando ingreso el empleado

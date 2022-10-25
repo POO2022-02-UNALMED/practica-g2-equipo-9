@@ -90,18 +90,18 @@ public class Gerente extends Empleado implements Serializable {
     
     
     
-    public String contratarEmpleado(String nombre, LocalDate fechaIngreso) {
+    public String contratarEmpleado(String nombre) {
 	
     	Empleado empleadoNuevo;
 
 		if (cargo.equals("Mesero")) {
-			empleadoNuevo = new Trabajador(nombre,fechaIngreso);
+			empleadoNuevo = new Trabajador(nombre,LocalDate.now());
 		} else if (cargo.equals("Gerente")) {
-			empleadoNuevo = new Gerente(nombre,fechaIngreso);
+			empleadoNuevo = new Trabajador(nombre,LocalDate.now());
 		} else if (cargo.equals("Striper")) {
-			empleadoNuevo = new Trabajador(nombre,fechaIngreso);
+			empleadoNuevo = new Trabajador(nombre,LocalDate.now());
 		} else {
-			empleadoNuevo = new Trabajador(nombre,fechaIngreso);
+			empleadoNuevo = new Trabajador(nombre,LocalDate.now());
 		}
 
 		ArrayList<Empleado> listaEmpleados = Empleado.getEmpleados();
@@ -129,6 +129,7 @@ public class Gerente extends Empleado implements Serializable {
 		}
 	}
 
+<<<<<<< Updated upstream
 
 
 
@@ -138,5 +139,9 @@ public class Gerente extends Empleado implements Serializable {
         empleado = trabajador;
         empleado.asegurar();
     }
+=======
+    //SERIALIZACION
+
+>>>>>>> Stashed changes
 
 }
