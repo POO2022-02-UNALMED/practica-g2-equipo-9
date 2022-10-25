@@ -9,6 +9,7 @@ import gestorAplicacion.usuarios.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+// Esta funcionalidad muestra el historial de los pedidos, productos, reservas y empleados ingresados al sistema
 
 
 public class FuncionalidadInformacion {
@@ -37,8 +38,8 @@ public class FuncionalidadInformacion {
     public static void Informacion(){
 
         System.out.println("+++++++++++++++++++++++++++++++");
-        System.out.println("Sistema de Información del bar");
-        System.out.println("----------o---------o----------");
+        System.out.println("Sistema del Historial del bar");
+        System.out.println("*******************************");
         System.out.println("Historial sobre los pedidos, productos, reserva\n e información sobre los empleados");
         System.out.println("++++++++++++++++++++++++++++++++");
 
