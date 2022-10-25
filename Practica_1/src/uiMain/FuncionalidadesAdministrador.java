@@ -4,6 +4,7 @@ import gestorAplicacion.gestion.Pedido;
 import gestorAplicacion.gestion.Producto;
 import gestorAplicacion.gestion.Servicio;
 import gestorAplicacion.usuarios.Empleado;
+import gestorAplicacion.usuarios.Gerente;
 import gestorAplicacion.usuarios.Trabajador;
 
 import java.sql.SQLOutput;
@@ -286,16 +287,5 @@ public class FuncionalidadesAdministrador {
         }
 
 
-    }
-
-    public static void main(String[] args) {
-        Trabajador a= new Trabajador("Steven", LocalDate.of(2022,11,10));
-        Empleado b=a;
-
-        System.out.println(b.asegurar());
-
-        System.out.println();
-
-        System.out.println(a.asegurar());
     }
 }
