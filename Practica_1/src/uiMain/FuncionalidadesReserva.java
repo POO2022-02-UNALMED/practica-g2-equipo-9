@@ -4,6 +4,7 @@ import java.time.LocalDate;
 
 import gestorAplicacion.gestion.*;
 import gestorAplicacion.usuarios.Cliente;
+import gestorAplicacion.usuarios.Usuario;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -15,16 +16,12 @@ public class FuncionalidadesReserva {
     public static void agregarProductos(Pedido pedidoReserva){ // metodo para agregar los productos al pedido asociado a la reserva
         System.out.println("AGREGAR PRODUCTOS A LA RESERVA");
         System.out.println("============================================================\n");
-        System.out.println("Ahora a agregar los productos que quiere en su reserva\n");
+        System.out.println("Ahora a agregar los productos que quiere en su reserva");
         System.out.println("Por favor ingrese 1 para ver las categorias de los productos: \n");
         Scanner sc = new Scanner(System.in);
         int opcionCiclo = sc.nextInt();
         while(opcionCiclo != 2){
-            for (Producto producto:
-                 pedidoReserva.getProductos()) {
-                System.out.println(producto.descripcionProducto());
 
-            }
             System.out.println("A continuacion ingrese los productos que desea en su reserva: ");
             System.out.println("1. Bebidas alcoholicas");
             System.out.println("2. Bebidas no alcoholicas");
@@ -593,12 +590,14 @@ public class FuncionalidadesReserva {
         }
 
         while (opcion ==2){
-            System.out.println("Por favor ingrese su nombre");
+            System.out.println("Por favor ingrese solo su nombre");
             String nombreCliente = sc.next();
+            Usuario usuario;
             Cliente cliente = new Cliente(nombreCliente);
+            usuario = cliente;
             reservaCreada.setCliente(cliente);
             System.out.println("Su registro a sido exitoso");
-            System.out.println(cliente.toString());
+            System.out.println(usuario.toString()); //ligadura dinamica
             opcion = 0;
 
         }
@@ -629,7 +628,7 @@ public class FuncionalidadesReserva {
         System.out.println("2. No ");
         opcion = sc.nextInt();
         while(opcion != 1 && opcion != 2){
-            System.out.println("Por favor ingrese una opcion valdia");
+            System.out.println("Por favor ingrese una opcion valida");
             opcion = sc.nextInt();
         }
          // Convierte el Array de Servicio a ArrayList de Servicio
@@ -912,6 +911,7 @@ public class FuncionalidadesReserva {
 
 
     }
+
 
 
 

@@ -85,4 +85,11 @@ public class Gerente extends Empleado implements Sueldo, Serializable {
     //SERIALIZACION
 
 
+    public static void main(String[] args) {
+        Empleado empleado;
+        Trabajador trabajador = new Trabajador("Carlos", LocalDate.now());
+        empleado = trabajador;
+        empleado.asegurar();
+    }
+
 }
