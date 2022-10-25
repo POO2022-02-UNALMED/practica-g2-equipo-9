@@ -42,7 +42,6 @@ public class Reserva implements Serializable {
     public Reserva(Cliente cliente){
         this();
         this.cliente = cliente;
-        reservas.add(this);
     }
 
 
@@ -54,7 +53,6 @@ public class Reserva implements Serializable {
         this.fechaReserva = fechaReserva;
         this.pedido = pedido;
         numReservas++;
-        reservas.add(this);
     }
 
     //GETTERS Y SETTERS
