@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.io.Serializable;
 import java.util.*;
 
-public abstract class Empleado extends Usuario implements Serializable {
+public abstract class Empleado extends Usuario implements Serializable, Sueldo {
 
     private static final long serialVersionUID = 1L;
 
@@ -103,11 +103,11 @@ public abstract class Empleado extends Usuario implements Serializable {
 
     public String asegurar(){
         String s="La fecha de vinculacion del trabajador es: "+this.getFechaIngreso()+
-                "\nEl empleado "+this.getNombre();
+                "\nEl nombre del empleado es "+this.getNombre();
         return s;
     }
-    //METODOS ABSTRACTOS
-    public abstract double calculoDePrima();
+
+
 
 
 

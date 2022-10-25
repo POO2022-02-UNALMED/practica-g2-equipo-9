@@ -8,7 +8,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.*;
 
-public class Trabajador extends Empleado implements Sueldo, Serializable {
+public class Trabajador extends Empleado implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -76,10 +76,10 @@ public class Trabajador extends Empleado implements Sueldo, Serializable {
         LocalDate finVinculacion= super.getFechaIngreso().plusMonths(this.getSeguro());
 
         if(LocalDate.now().isAfter(finVinculacion)){
-            s+="\n con codigo "+this.getCodigo()+" tiene vencido el seguro, este vencio en la fecha "+finVinculacion;
+            s+="con codigo "+this.getCodigo()+" tiene vencido el seguro, este vencio en la fecha "+finVinculacion;
         }
         else{
-            s+="\n con codigo "+this.getCodigo()+" el seguro lo cubre desde la fecha "+this.getFechaIngreso()+" hasta la fecha "+finVinculacion;
+            s+="con codigo "+this.getCodigo()+" el seguro lo cubre desde la fecha "+this.getFechaIngreso()+" hasta la fecha "+finVinculacion;
         }
         return s;
     }
