@@ -161,7 +161,7 @@ public class FuncionalidadesContabilidad {
                     primaGerentes+=empleado.calculoDePrima();
                 }
             }
-            gananciasNetas-=(primaTrabajadores-primaGerentes);
+            gananciasNetas-=(primaTrabajadores+primaGerentes);
             s+="\nPago de Prima a Empleados: -"+primaTrabajadores+
                     "\nPago de Prima a Gerentes: -"+primaGerentes;
         }
