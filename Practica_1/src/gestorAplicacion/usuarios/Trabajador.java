@@ -72,16 +72,16 @@ public class Trabajador extends Empleado implements Sueldo, Serializable {
 
     //METODOS ABSTRACTOS
     public String asegurar() {
-        LocalDate vinculacion= super.getFechaIngreso();
+        String s=super.asegurar();
         LocalDate finVinculacion= super.getFechaIngreso().plusMonths(this.getSeguro());
 
         if(LocalDate.now().isAfter(finVinculacion)){
-            return "Trabajador "+this.getNombre()+" "+" con codigo "+this.getCodigo()+" tiene vencido el seguro, este vencio en la fecha "+finVinculacion;
+            s+="\n con codigo "+this.getCodigo()+" tiene vencido el seguro, este vencio en la fecha "+finVinculacion;
         }
         else{
-            return "Trabajador "+ this.getNombre()+" con codigo "+this.getCodigo()+" el seguro lo cubre desde la fecha "+vinculacion+" hasta la fecha "+finVinculacion;
+            s+="\n con codigo "+this.getCodigo()+" el seguro lo cubre desde la fecha "+this.getFechaIngreso()+" hasta la fecha "+finVinculacion;
         }
-
+        return s;
     }
     public double calculoDePrima() {
         return this.getSueldo()*0.5;
