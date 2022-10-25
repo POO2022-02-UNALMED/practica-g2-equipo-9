@@ -583,7 +583,7 @@ public class FuncionalidadesReserva {
                     //Reserva reservaCreada = new Reserva(cliente);
                     opcion = 0;
                 }
-                else if (cliente.equals(Cliente.getClientes().get(-1))) {
+                else if (cliente.equals(Cliente.getClientes().get(Cliente.getClientes().size()-1))) {
                     System.out.println("Usuario no encontrado por favor verifique el id");
                 }
             }
