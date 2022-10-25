@@ -56,7 +56,7 @@ public class interfazGenerica {
             System.out.println("8. Salir Y GUARDAR del sistema");
             opcion = sc.nextInt();
 
-            while(opcion<1 || opcion>7){
+            while(opcion<1 || opcion>8){
                 System.out.println("Por favor ingrese una opcion valida");
                 opcion=sc.nextInt();
             }
