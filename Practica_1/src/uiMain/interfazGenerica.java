@@ -110,36 +110,36 @@ public class interfazGenerica {
 
 
 
-        new Producto("Aguila","No vendido",700,0);
-        new Producto("Club colombia","Vendido",500,0);
-        new Producto("Heineken","No vendido",500,0);
-        new Producto("Heineken","No vendido",500,0);
-        new Producto("Heineken","No vendido",500,0);
-        new Producto("Heineken","No vendido",500,0);
-        new Producto("Tecate","No vendido",600,0);
-        new Producto("Aguila","No vendido",700,0);
-        new Producto("Club colombia","Vendido",500,0);
-        new Producto("Heineken","No vendido",500,0);
-        new Producto("Heineken","No vendido",500,0);
-        new Producto("Heineken","No vendido",500,0);
-        new Producto("Heineken","No vendido",500,0);
-        new Producto("Tecate","No vendido",600,0);
-        new Producto("Aguila","No vendido",700,0);
-        new Producto("Club colombia","Vendido",500,0);
-        new Producto("Heineken","No vendido",500,0);
-        new Producto("Heineken","No vendido",500,0);
-        new Producto("Heineken","No vendido",500,0);
-        new Producto("Heineken","No vendido",500,0);
-        new Producto("Tecate","No vendido",600,0);
-        new Producto("Aguila","No vendido",700,0);
-        new Producto("Club colombia","Vendido",500,0);
-        new Producto("Heineken","No vendido",500,0);
-        new Producto("Heineken","No vendido",500,0);
-        new Producto("Heineken","No vendido",500,0);
-        new Producto("Heineken","No vendido",500,0);
-        new Producto("Tecate","No vendido",600,0);
-        new Producto("Tecate","No vendido",600,0);
-        new Producto("Tecate","No vendido",600,0);
+        new Producto("Aguila","No vendido",700,1);
+        new Producto("Club colombia","Vendido",500,1);
+        new Producto("Heineken","No vendido",500,1);
+        new Producto("Heineken","No vendido",500,1);
+        new Producto("Heineken","No vendido",500,1);
+        new Producto("Heineken","No vendido",500,1);
+        new Producto("Tecate","No vendido",600,1);
+        new Producto("Aguila","No vendido",700,1);
+        new Producto("Club colombia","Vendido",500,1);
+        new Producto("Heineken","No vendido",500,1);
+        new Producto("Heineken","No vendido",500,1);
+        new Producto("Heineken","No vendido",500,1);
+        new Producto("Heineken","No vendido",500,1);
+        new Producto("Tecate","No vendido",600,1);
+        new Producto("Aguila","No vendido",700,1);
+        new Producto("Club colombia","Vendido",500,1);
+        new Producto("Heineken","No vendido",500,1);
+        new Producto("Heineken","No vendido",500,1);
+        new Producto("Heineken","No vendido",500,1);
+        new Producto("Heineken","No vendido",500,1);
+        new Producto("Tecate","No vendido",600,1);
+        new Producto("Aguila","No vendido",700,1);
+        new Producto("Club colombia","Vendido",500,1);
+        new Producto("Heineken","No vendido",500,1);
+        new Producto("Heineken","No vendido",500,1);
+        new Producto("Heineken","No vendido",500,1);
+        new Producto("Heineken","No vendido",500,1);
+        new Producto("Tecate","No vendido",600,1);
+        new Producto("Tecate","No vendido",600,1);
+        new Producto("Tecate","No vendido",600,1);
 
 
 
