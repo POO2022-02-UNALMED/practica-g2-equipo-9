@@ -101,13 +101,12 @@ public abstract class Empleado extends Usuario implements Serializable {
         }
     }
 
-    //METODOS ABSTRACTOS
     public String asegurar(){
         String s="La fecha de vinculacion del trabajador es: "+this.getFechaIngreso()+
-                "\nEl trabajador "+this.getNombre();
+                "\nEl empleado "+this.getNombre();
         return s;
     }
-
+    //METODOS ABSTRACTOS
     public abstract double calculoDePrima();
 
 

@@ -70,7 +70,7 @@ public class Trabajador extends Empleado implements Sueldo, Serializable {
         Trabajador.trabajadores = trabajadores;
     }
 
-    //METODOS ABSTRACTOS
+
     public String asegurar() {
         String s=super.asegurar();
         LocalDate finVinculacion= super.getFechaIngreso().plusMonths(this.getSeguro());
