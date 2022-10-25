@@ -26,6 +26,10 @@ public class GestionEmpleados {
         readString();
     }
     
+    
+    static Gerente gefe;
+    
+    
 	public static void GE() {
 		
 		/*
@@ -72,13 +76,12 @@ public class GestionEmpleados {
                 	
                 	
                 	
-                	//System.out.println(Gerente.contratarEmpleado(Nombre,));
+                	System.out.println(gefe.contratarEmpleado(Nombre,cargo));
                 	
                 	Empleado empleadoNuevo = Empleado.getEmpleados().get(Empleado.getEmpleados().size()-1);
                 	
                 	
-                	System.out.println(empleadoNuevo);
-                    
+                	
                 	System.out.println(empleadoNuevo.informacion());
                 	pressEnter();
                 	
@@ -92,7 +95,7 @@ public class GestionEmpleados {
     				String cd = readString();
 
     			
-    		//		System.out.println(Gerente.despedirEmpleado(cd));
+    				System.out.println(gefe.despedirEmpleado(cd));
     				
     				pressEnter();
                 	
@@ -122,15 +125,7 @@ public class GestionEmpleados {
                     pressEnter();
                     break;
             }
-        }
-        
-	   
-     
-        while(0 < 1 && 4> 3);{
-         
-        }
-
-
+        } while(!opcion.equals("4"));
        
         
     }

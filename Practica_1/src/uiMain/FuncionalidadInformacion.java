@@ -1,6 +1,7 @@
 package uiMain;
 
 import gestorAplicacion.gestion.Pedido;
+
 import gestorAplicacion.gestion.Producto;
 import gestorAplicacion.gestion.Reserva;
 import gestorAplicacion.usuarios.*;
@@ -50,6 +51,7 @@ public class FuncionalidadInformacion {
             System.out.println(" 2. Productos.");
             System.out.println(" 3. Empleados.");
             System.out.println(" 4. Reservas.");
+            System.out.println(" 5. Gestion Empleados");
             System.out.println(" 0. Volver al menu principal\n");
 
             opcion = readString();
@@ -67,6 +69,10 @@ public class FuncionalidadInformacion {
                 case "4":
                     info_reservas();
                     break;
+                    
+                case "5":
+                	GestionEmpleados.GE();
+                	break;
                 case "0":
                     break;
 
