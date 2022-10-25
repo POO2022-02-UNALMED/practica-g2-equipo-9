@@ -22,11 +22,15 @@ public class FuncionalidadesNomina {
             //guardamos las fechas de productos de los que se tengan conocimiento de venta
 
             for(Producto producto: Producto.getProductos()){
-                fechas.add(producto.getFechaVenta().getMonthValue());
+                if(producto.getFechaVenta()!=null){
+                    fechas.add(producto.getFechaVenta().getMonthValue());
+                }
             }
             //guardamos las fechas de servicios de los que se tengan conocimiento de venta
             for(Pedido e: Pedido.getPedidos()){
-                fechas.add(e.getFechaPedido().getMonthValue());
+                if(e.getFechaPedido()!=null){
+                    fechas.add(e.getFechaPedido().getMonthValue());
+                }
             }
             HashMap<Integer, String> meses = new HashMap<Integer, String>();
             meses.put(1, "Enero");
