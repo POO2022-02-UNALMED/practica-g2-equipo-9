@@ -17,7 +17,7 @@ public class Serializador {
 
         File archivo=new File("");
         try {
-            String path = new File(archivo.getAbsolutePath()) + "/Practica_1/src/baseDatos/temp/" + className + ".txt";
+            String path = new File(archivo.getAbsolutePath()) + "/src/baseDatos/temp/" + className + ".txt";
             // Se crea un fileoutputstream para saber donde serializar los archivos
             FileOutputStream fileOut = new FileOutputStream(path);
             // Se crea un objeto output stream para poder escribir en el archivo

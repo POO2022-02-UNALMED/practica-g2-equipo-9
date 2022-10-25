@@ -52,18 +52,9 @@ public class Espacio implements Serializable {
         Espacio.listado.add(this);
     }
 
-    public LocalDate seleccionarFecha(int n){ //metodo para mostrar las primeras n fechas disponibles para un espacio tomado
-        Scanner sc = new Scanner(System.in);
-        for (int i = 0; i < n; i++) {
-            System.out.println(i+". "+this.getFechas().get(i));
-        }
-        System.out.println("Por favor ingrese la opcion correspondiente a la fecha que desea seleccionar");
-        int opcion = sc.nextInt();
 
-        while (opcion<0 || opcion >=n){ //verificar que el usuario ingrese una opcion valida
-            System.out.println("Por favor ingrese una opcion valida");
-            opcion=sc.nextInt();
-        }
+    public LocalDate seleccionarFecha(int opcion){ //metodo que selecciona la fecha del espacio segun las opcion pasada como parametro
+
         LocalDate fechaTomada = this.getFechas().get(opcion);
         this.getFechas().remove(opcion); // se quita la disponibilidad de la fecha seleccionada
         return fechaTomada; //retorna la fecha tomada por el usuario

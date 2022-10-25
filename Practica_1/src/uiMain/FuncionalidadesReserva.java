@@ -13,6 +13,21 @@ import java.util.Scanner;
 
 public class FuncionalidadesReserva {
 
+    public static int retornarOpcionSeleccionarFecha(Espacio espacio,int n){
+        Scanner sc = new Scanner(System.in);
+        for (int i = 0; i < n; i++) {
+            System.out.println(i+". "+espacio.getFechas().get(i));
+        }
+        System.out.println("Por favor ingrese la opcion correspondiente a la fecha que desea seleccionar");
+        int opcion = sc.nextInt();
+
+        while (opcion<0 || opcion >=n){ //verificar que el usuario ingrese una opcion valida
+            System.out.println("Por favor ingrese una opcion valida");
+            opcion=sc.nextInt();
+        }
+        return opcion;
+    }
+
     public static void agregarProductos(Pedido pedidoReserva){ // metodo para agregar los productos al pedido asociado a la reserva
         System.out.println("AGREGAR PRODUCTOS A LA RESERVA");
         System.out.println("============================================================\n");
@@ -620,8 +635,8 @@ public class FuncionalidadesReserva {
 
 
         System.out.println("A continuacion le presentamos la disponibildiad del espacio: ");
-
-        LocalDate fechaTomada = espacioTomado.seleccionarFecha(10); // le muestra y permite selccionar al usuario uno de los 10 primeros dias disponibles para el espacio tomado
+        //System.out.println("Por favor ingrese la opcion correspondiente a la fecha que desea seleccionar");
+        LocalDate fechaTomada = espacioTomado.seleccionarFecha(retornarOpcionSeleccionarFecha(espacioTomado, 10)); // le muestra y permite selccionar al usuario uno de los 10 primeros dias disponibles para el espacio tomado
 
         System.out.println("Desea agregar servicios adicionales a la reserva? ");
         System.out.println("1. Si ");
@@ -714,8 +729,8 @@ public class FuncionalidadesReserva {
                 Espacio espacioTomado =  Espacio.getListado().get(opcionEspacio);
                 System.out.println("A continuacion le presentamos la disponibildiad del espacio: \n");
 
-
-                LocalDate fechaTomada =  espacioTomado.seleccionarFecha(10);
+                //System.out.println("Por favor ingrese la opcion correspondiente a la fecha que desea seleccionar");
+                LocalDate fechaTomada =  espacioTomado.seleccionarFecha(retornarOpcionSeleccionarFecha(espacioTomado, 10));
                 reserva.setFechaReserva(fechaTomada);
                 reserva.setEspacio(espacioTomado);
                 System.out.println("Su reserva se ha modificado con exito!\n");
@@ -725,7 +740,8 @@ public class FuncionalidadesReserva {
             else if (opcion == 2){
                 reserva.getEspacio().reordenarFechas(reserva); // elimina la fecha previmente seleccionada y la vuelve a poner en orden en la lista de las fechas disponibles
                 System.out.println("A continuacion se mostraran las fechas disponibles para su espacio previamente seleccionado\n");
-                LocalDate nuevaFecha = reserva.getEspacio().seleccionarFecha(10); // Se emplea el metodo para volver a seleccionar la fecha del espacio seleccionado
+                //System.out.println("Por favor ingrese la opcion correspondiente a la fecha que desea seleccionar");
+                LocalDate nuevaFecha = reserva.getEspacio().seleccionarFecha(retornarOpcionSeleccionarFecha(reserva.getEspacio(), 10)); // Se emplea el metodo para volver a seleccionar la fecha del espacio seleccionado
                 reserva.setFechaReserva(nuevaFecha);
                 System.out.println("Su reserva se ha modificado con exito!\n");
                 System.out.println(reserva.toString());
