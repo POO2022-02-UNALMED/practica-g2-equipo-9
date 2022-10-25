@@ -16,15 +16,20 @@ public class FuncionalidadesContabilidad {
         boolean salir = false;
         int opcion;
         System.out.println("=========BIENVENIDO AL MENU DE BALANCE DE CONTABILIDAD==========");
-        while (salir == false) {
-            System.out.println();
-            System.out.println("=====================MESES DISPONIBLES==========================");
+
+        System.out.println();
+        System.out.println("=====================MESES DISPONIBLES==========================");
             SortedSet<Integer> fechas = new TreeSet<>();
             for (Producto producto : Producto.getProductos()) {
-                fechas.add(producto.getFechaVenta().getMonthValue());
+                if(producto.getFechaVenta()!=null){
+                    fechas.add(producto.getFechaVenta().getMonthValue());
+                }
+
             }
             for (Pedido pedido: Pedido.getPedidos()){
-                fechas.add(pedido.getFechaPedido().getMonthValue());
+                if(pedido.getFechaPedido()!=null){
+                    fechas.add(pedido.getFechaPedido().getMonthValue());
+                }
             }
             HashMap<Integer,String> meses = new HashMap<>();
             meses.put(1,"Enero");
@@ -57,26 +62,18 @@ public class FuncionalidadesContabilidad {
                 System.out.println("Opcion no valida, ingresa otro numero");
                 opcion= entrada.nextInt();
             }
-            if(opcion>0 || opcion<=opcionMeses.size()){
+
                 int mesSeleccionado=opcionMeses.get(opcion);
                 System.out.println("Mes escogido: "+meses.get(mesSeleccionado));
 
                 System.out.println(FuncionalidadesContabilidad.calcularGananciasMes(mesSeleccionado,meses));
-                System.out.println();
-                System.out.println("Presiona 0 para volver atras y ver la contabilidad de otros meses");
-                opcion= entrada.nextInt();
-                while(opcion!=0){
-                    System.out.println("Opcion incorrecta, presione 0 para volver");
-                    opcion= entrada.nextInt();
-                }
-            }
-            else if(opcion==0){
-                salir=true;
+
             }
 
-        }
 
-    }
+
+
+
 
     public static String calcularGananciasMes(int mesSeleccionado, HashMap<Integer,String> meses){
 
@@ -85,15 +82,19 @@ public class FuncionalidadesContabilidad {
         double comisionesTotalesProductos=0;
         double totalVentasProductos=0;
         for(Producto producto: Producto.getProductos()){
-            if (producto.getFechaVenta().getMonthValue()==mesSeleccionado && producto.getEstado().equals("Vendido")){
-                productosVendidosMes.add(producto);
+            if(producto.getFechaVenta()!=null){
+                if (producto.getFechaVenta().getMonthValue()==mesSeleccionado && producto.getEstado().equals("Vendido")){
+                    productosVendidosMes.add(producto);
+                }
             }
         }
         //PRODUCTOS CON ESTADO VENDIDO EN ESE MES: CALCULAMOS VENTAS TOTALES Y COMISIONES TOTALES
 
-        for(Producto producto: productosVendidosMes){
-            totalVentasProductos+=producto.getPrecioVenta();
-            comisionesTotalesProductos+=producto.getPrecioVenta()*Sueldo.porcentajeComisionProductos;
+        for(Producto producto: productosVendidosMes) {
+
+                totalVentasProductos += producto.getPrecioVenta();
+                comisionesTotalesProductos += producto.getPrecioVenta() * Sueldo.porcentajeComisionProductos;
+
         }
 
 
@@ -101,10 +102,12 @@ public class FuncionalidadesContabilidad {
 
         //SERVICIOS VENDIDOS EN EL MES SELECCIONADO
         ArrayList<Servicio> serviciosMes=new ArrayList<>();
-        for (Pedido pedido: Pedido.getPedidos()){
-            if(pedido.getFechaPedido().getMonthValue()==mesSeleccionado && pedido.getEstadoPedido()=="Pagado"){
-                for (Servicio servicio: pedido.getServicios()){
-                    serviciosMes.add(servicio);
+        for (Pedido pedido: Pedido.getPedidos()) {
+            if (pedido.getFechaPedido() != null) {
+                if (pedido.getFechaPedido().getMonthValue() == mesSeleccionado && pedido.getEstadoPedido() == "Pagado") {
+                    for (Servicio servicio : pedido.getServicios()) {
+                        serviciosMes.add(servicio);
+                    }
                 }
             }
         }

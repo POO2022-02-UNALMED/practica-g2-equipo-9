@@ -104,13 +104,15 @@ public class FuncionalidadesNomina {
         double comisionProductosTrabajador=0;
         double totalProductos=0;
         for (Producto producto: Producto.getProductos()){
-
-            if (producto.getFechaVenta().getMonthValue()==(int)mesSeleccionado && producto.getTrabajador()==trabajadorSeleccionado && producto.getEstado().equals("Vendido")){
-                comisionProductosTrabajador+=producto.getPrecioVenta()* Sueldo.porcentajeComisionProductos;
-                nombresProductosRepetidos.add(producto.getNombre());
-                nombresProductosNoRepetidos.add(producto.getNombre());
-                totalProductos+=producto.getPrecioVenta();
+            if(producto.getFechaVenta()!=null){
+                if (producto.getFechaVenta().getMonthValue()==(int)mesSeleccionado && producto.getTrabajador()==trabajadorSeleccionado && producto.getEstado().equals("Vendido")){
+                    comisionProductosTrabajador+=producto.getPrecioVenta()* Sueldo.porcentajeComisionProductos;
+                    nombresProductosRepetidos.add(producto.getNombre());
+                    nombresProductosNoRepetidos.add(producto.getNombre());
+                    totalProductos+=producto.getPrecioVenta();
+                }
             }
+
         }
 
         String nombreYcantidadProductos="Nombre del producto..............Cantidad";
@@ -124,14 +126,17 @@ public class FuncionalidadesNomina {
         SortedSet<Servicio> nombresServiciosNoRepetidos= new TreeSet<>();
         ArrayList<Servicio> nombresServiciosRepetidos= new ArrayList<>();
         for(Pedido e: Pedido.getPedidos()){
-            if(e.getFechaPedido().getMonthValue()==mesSeleccionado && e.getTrabajador()==trabajadorSeleccionado && e.getEstadoPedido().equals("Pagado")){
-                for(Servicio servicio: e.getServicios()){
-                    comisionServiciosTrabajador+=servicio.getPrecio()*Sueldo.porcentajeComisionServicios;
-                    nombresServiciosRepetidos.add(servicio);
-                    nombresServiciosNoRepetidos.add(servicio);
-                    totalServicio+=servicio.getPrecio();
+            if(e.getFechaPedido()!=null){
+                if(e.getFechaPedido().getMonthValue()==mesSeleccionado && e.getTrabajador()==trabajadorSeleccionado && e.getEstadoPedido().equals("Pagado")){
+                    for(Servicio servicio: e.getServicios()){
+                        comisionServiciosTrabajador+=servicio.getPrecio()*Sueldo.porcentajeComisionServicios;
+                        nombresServiciosRepetidos.add(servicio);
+                        nombresServiciosNoRepetidos.add(servicio);
+                        totalServicio+=servicio.getPrecio();
+                    }
                 }
             }
+
         }
         String nombreYcantidadServicios="Nombre del servicio..............Cantidad";
         for(Servicio nombre: nombresServiciosNoRepetidos){

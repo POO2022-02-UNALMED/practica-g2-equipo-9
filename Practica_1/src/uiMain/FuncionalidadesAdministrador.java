@@ -112,13 +112,18 @@ public class FuncionalidadesAdministrador {
             //guardamos las fechas de productos de los que se tengan conocimiento de venta
 
             for (Producto producto : Producto.getProductos()) {
-                fechas.add(producto.getFechaVenta().getMonthValue());
+                if(producto.getFechaVenta()!=null){
+                    fechas.add(producto.getFechaVenta().getMonthValue());
+                }
+
             }
             //guardamos las fechas de servicios de los que se tengan conocimiento de venta
             for (Pedido e : Pedido.getPedidos()) {
-                fechas.add(e.getFechaPedido().getMonthValue());
+                if(e.getFechaPedido()!=null){
+                    fechas.add(e.getFechaPedido().getMonthValue());
+                }
             }
-            HashMap<Integer, String> meses = new HashMap<Integer, String>();
+            HashMap<Integer, String> meses = new HashMap<>();
             meses.put(1, "Enero");
             meses.put(2, "Febrero");
             meses.put(3, "Marzo");
@@ -159,14 +164,18 @@ public class FuncionalidadesAdministrador {
                 for (Trabajador trabajador : Trabajador.getTrabajadores()) {
                     double totalVentas= 0;
                     for (Producto producto : Producto.getProductos()) {
-                        if (producto.getTrabajador() == trabajador && producto.getEstado().equals("Vendido") && producto.getFechaVenta().getMonthValue()==mesSeleccionado) {
-                            totalVentas+=producto.getPrecioVenta();
+                        if(producto.getFechaVenta()!=null) {
+                            if (producto.getTrabajador() == trabajador && producto.getEstado().equals("Vendido") && producto.getFechaVenta().getMonthValue() == mesSeleccionado) {
+                                totalVentas += producto.getPrecioVenta();
+                            }
                         }
                     }
                     for(Pedido pedido: Pedido.getPedidos()){
-                        if(pedido.getFechaPedido().getMonthValue()==mesSeleccionado && pedido.getTrabajador()==trabajador && pedido.getEstadoPedido().equals("Pagado")){
-                            for(Servicio servicio: pedido.getServicios()){
-                                totalVentas+=servicio.getPrecio();
+                        if(pedido.getFechaPedido()!=null) {
+                            if (pedido.getFechaPedido().getMonthValue() == mesSeleccionado && pedido.getTrabajador() == trabajador && pedido.getEstadoPedido().equals("Pagado")) {
+                                for (Servicio servicio : pedido.getServicios()) {
+                                    totalVentas += servicio.getPrecio();
+                                }
                             }
                         }
                     }
@@ -178,12 +187,12 @@ public class FuncionalidadesAdministrador {
                 System.out.println();
                 Trabajador mejor = (Trabajador) cuenta.values().toArray()[cuenta.size() - 1];
                 System.out.println(mejor);
-                System.out.println("Con seguro:");
+                System.out.println("Con seguro: ");
                 System.out.println(mejor.asegurar());
                 System.out.println();
                 System.out.printf("===============NOMINA DE EMPLEADO DEL MES===================");
                 System.out.println();
-                System.out.println(nominaEmpleado(mesSeleccionado,mejor));
+                System.out.println(FuncionalidadesNomina.nominaEmpleado(mesSeleccionado,mejor));
                 System.out.println();
                 System.out.println("===========================================================");
                 System.out.println();
@@ -214,13 +223,17 @@ public class FuncionalidadesAdministrador {
             //guardamos las fechas de productos de los que se tengan conocimiento de venta
 
             for (Producto producto : Producto.getProductos()) {
-                fechas.add(producto.getFechaVenta().getMonthValue());
+                if (producto.getFechaVenta() != null) {
+                    fechas.add(producto.getFechaVenta().getMonthValue());
+                }
             }
             //guardamos las fechas de servicios de los que se tengan conocimiento de venta
             for (Pedido e : Pedido.getPedidos()) {
-                fechas.add(e.getFechaPedido().getMonthValue());
+                if(e.getFechaPedido()!=null) {
+                    fechas.add(e.getFechaPedido().getMonthValue());
+                }
             }
-            HashMap<Integer, String> meses = new HashMap<Integer, String>();
+            HashMap<Integer, String> meses = new HashMap<>();
             meses.put(1, "Enero");
             meses.put(2, "Febrero");
             meses.put(3, "Marzo");
