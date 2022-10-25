@@ -5,7 +5,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.*;
 
-public class Gerente extends Empleado implements Serializable {
+public class Gerente extends Empleado implements Sueldo, Serializable {
 
 
     private static final long serialVersionUID = 1L;
@@ -45,17 +45,15 @@ public class Gerente extends Empleado implements Serializable {
 
     //METODOS ABSTRACTOS
     public String asegurar() {
-        String s=super.asegurar();
-
-        LocalDate finVinculacion= super.getFechaIngreso().plusMonths(this.getSeguro());
+        LocalDate vinculacion= super.getFechaIngreso();
+        LocalDate finVinculacion= super.getFechaIngreso().plusYears(this.getSeguro());
 
         if(LocalDate.now().isAfter(finVinculacion)){
-            s+=" con codigo "+this.getCodigo()+" tiene vencido el seguro, este vencio en la fecha "+finVinculacion;
+            return "Gerente "+this.getNombre()+" "+" con codigo "+this.getCodigo()+", tiene vencido el seguro, este vencio en la fecha "+finVinculacion;
         }
         else{
-            s+=" con codigo "+this.getCodigo()+" el seguro lo cubre desde la fecha "+this.getFechaIngreso()+" hasta la fecha "+finVinculacion;
+            return "Gerente "+ this.getNombre()+" con codigo "+this.getCodigo()+", lo cubre el seguro desde la fecha "+vinculacion+" hasta la fecha "+finVinculacion;
         }
-        return s;
 
     }
     public double calculoDePrima() {
@@ -85,11 +83,6 @@ public class Gerente extends Empleado implements Serializable {
     }
     
     
-    
-    
-    
-    
-    
     public String contratarEmpleado(String nombre) {
 	
     	Empleado empleadoNuevo;
@@ -97,7 +90,7 @@ public class Gerente extends Empleado implements Serializable {
 		if (cargo.equals("Mesero")) {
 			empleadoNuevo = new Trabajador(nombre,LocalDate.now());
 		} else if (cargo.equals("Gerente")) {
-			empleadoNuevo = new Trabajador(nombre,LocalDate.now());
+			empleadoNuevo = new Gerente(nombre,LocalDate.now());
 		} else if (cargo.equals("Striper")) {
 			empleadoNuevo = new Trabajador(nombre,LocalDate.now());
 		} else {
@@ -115,6 +108,7 @@ public class Gerente extends Empleado implements Serializable {
 	}
     
     
+    
     public String despedirEmpleado(String empleado) {
 		ArrayList<Empleado> listaEmpleados = Empleado.getEmpleados();
 		int empleadoCodigo;
@@ -129,19 +123,7 @@ public class Gerente extends Empleado implements Serializable {
 		}
 	}
 
-<<<<<<< Updated upstream
-
-
-
-    public static void main(String[] args) {
-        Empleado empleado;
-        Trabajador trabajador = new Trabajador("Carlos", LocalDate.now());
-        empleado = trabajador;
-        empleado.asegurar();
-    }
-=======
     //SERIALIZACION
 
->>>>>>> Stashed changes
 
 }

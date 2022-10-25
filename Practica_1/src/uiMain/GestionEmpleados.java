@@ -72,19 +72,47 @@ public class GestionEmpleados {
                 	
                 	
                 	
+                	//System.out.println(Gerente.contratarEmpleado(Nombre,));
                 	
-                	System.out.println(Gerente.contratarEmpleado(Nombre, Fecha));
+                	Empleado empleadoNuevo = Empleado.getEmpleados().get(Empleado.getEmpleados().size()-1);
                 	
-                	Empleado enpleadoNuevo = Empleado.getEmpleados().get(Empleado.getEmpleados().size()-1);
                 	
-                	System.out.println();
-                    break;
+                	System.out.println(empleadoNuevo);
+                    
+                	System.out.println(empleadoNuevo.informacion());
+                	pressEnter();
+                	
+                	break;
                 case "2":
                     //despedir();
+                	
+                	System.out.println("Despedir empleado\n");
+
+    				System.out.println("Ingrese el Codigo del empleado a despedir: ");
+    				String cd = readString();
+
+    			
+    		//		System.out.println(Gerente.despedirEmpleado(cd));
+    				
+    				pressEnter();
+                	
                 	System.out.println("");
                     break;
                 case "3":
                     //info_empleados();
+                	
+                	System.out.println(
+    						"\n----------------------------------------------------------------------------------------------------");
+    				System.out.println("\nPersonal del restaurante");
+
+    				for (int i = 0; i < Empleado.getEmpleados().size(); i++) {
+    					Empleado empleado = Empleado.getEmpleados().get(i);
+    					System.out.println("\nID: " + i);
+    					System.out.println(empleado.informacion());
+    				}
+
+    				pressEnter();
+                	
                     break;
                 case "0":
                     break;
