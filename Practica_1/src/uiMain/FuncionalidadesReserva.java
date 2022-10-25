@@ -744,7 +744,7 @@ public class FuncionalidadesReserva {
                     opcionModPedido=sc.nextInt();
                 }
                 if(opcionModPedido == 1){
-                    for (Producto producto: //ciclo para cambiar el estado a los prductos que estaban en el pedido asociado a la reserva
+                    for (Producto producto: //ciclo para cambiar el estado a los productos que estaban en el pedido asociado a la reserva
                             reserva.getPedido().getProductos()) {
                         producto.setEstado("No vendido");
                     }

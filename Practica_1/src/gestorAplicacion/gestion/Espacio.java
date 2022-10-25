@@ -85,7 +85,6 @@ public class Espacio implements Serializable {
             }
 
         }
-        System.out.println(fechas);
 
     }
 
