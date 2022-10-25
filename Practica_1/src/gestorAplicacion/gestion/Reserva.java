@@ -7,6 +7,12 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.*;
 
+/*
+* Clase creada para poder crear reservas
+* Una vez un usuario utiliza la funcionalidad crear reserva un obejto de tipo reserva es creado
+* Este Objeto se le asocia atributos de pedido y fecha de acuerdo a lo ingresado por el cliente en la funcionalidad crear reserva o modificar reserva
+*/
+
 public class Reserva implements Serializable {
 
     private static final long serialVersionUID = 1L;

@@ -6,13 +6,18 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.*;
 
+/*
+* Clase hecha para los espacios fisicos de la discoteca
+* Cada reserva debe tener un espacio asociado
+* Las fechas para cada obejto de tipo espacio creado son independientes
+*/
 
 public class Espacio implements Serializable {
     private static final long serialVersionUID = 1L;
 
 
     //ATRIBUTOS DE INSTANCIA
-    private String nombre;
+    private String nombre; //nombre del espacio
 
     private ArrayList<LocalDate> fechas = new ArrayList(); // fechas disponibles para un espacio
     // ATRIBUTOS DE CLASE

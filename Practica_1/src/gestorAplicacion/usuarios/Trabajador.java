@@ -8,6 +8,11 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.*;
 
+/*
+* Clase creada para representar a los meseros de la discoteca
+* Cada trabajador cuenta con un historial de pedidos realizados
+* */
+
 public class Trabajador extends Empleado implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -71,7 +76,7 @@ public class Trabajador extends Empleado implements Serializable {
     }
 
 
-    public String asegurar() {
+    public String asegurar() { //Muestra el seguro del trabajador fecha de inicio y fecha de vencimiento
         String s=super.asegurar();
         LocalDate finVinculacion= super.getFechaIngreso().plusMonths(this.getSeguro());
 
@@ -91,7 +96,7 @@ public class Trabajador extends Empleado implements Serializable {
     //OTROS METODOS
     public static long generarCodigo() {
         return numeroTrabajador++;
-    }
+    } //genera un unico codigo para un trabajador
 
     public String toString(){ //ligadura dinamica
         return "Codigo: "+this.getCodigo()+", Nombre: "+super.getNombre()+ ", Fecha de vinculacion: "+super.getFechaIngreso();

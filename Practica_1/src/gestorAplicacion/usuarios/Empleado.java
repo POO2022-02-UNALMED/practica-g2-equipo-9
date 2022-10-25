@@ -4,6 +4,11 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.io.Serializable;
 import java.util.*;
+/*
+* Clase de la que heredan Trabajador y Gerente
+* Contiene atributos y metodos comunes para los empleados de la discoteca
+*
+* */
 
 public abstract class Empleado extends Usuario implements Serializable, Sueldo {
 
@@ -89,7 +94,7 @@ public abstract class Empleado extends Usuario implements Serializable, Sueldo {
 
     //OTROS METODOS
 
-    public String informacion() {
+    public String informacion() { // retorna la disponibilidad del empleado
         if (this.getDisponibilidad()) {
             return "El Empleado " + this.nombre + "\n" + "Tiene un sueldo de: $" + this.sueldo
                     + " y desempeña el cargo de " + this.cargo + ".\n" + "Ingreso en la fecha:"+ this.fechaIngreso
@@ -101,7 +106,7 @@ public abstract class Empleado extends Usuario implements Serializable, Sueldo {
         }
     }
 
-    public String asegurar(){
+    public String asegurar(){ //muestra la fecha de ingreso y la fecha de finalizacion del seguro
         String s="La fecha de vinculacion del trabajador es: "+this.getFechaIngreso()+
                 "\nEl nombre del empleado es "+this.getNombre();
         return s;

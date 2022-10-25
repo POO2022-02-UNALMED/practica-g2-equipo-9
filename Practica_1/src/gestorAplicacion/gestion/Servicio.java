@@ -3,6 +3,10 @@ package gestorAplicacion.gestion;
 
 import java.util.*;
 
+/*
+* Aqui estan presentes los servicios disponibles ofrecidos en la discoteca
+* */
+
 public enum Servicio {
 
     BARMAN(200),  COCKTAILCHALLENGE(300),MESEROEXCLUSIVO(400), STRIPPER(500);

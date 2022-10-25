@@ -7,6 +7,13 @@ import java.util.*;
 
 import gestorAplicacion.usuarios.*;
 
+/*
+*Clase creada para representar los productos fisicos
+*para cada unidad de cada producto se crea un objeto de tipo Producto
+* Un pedido puede contener muchos productos
+*
+*/
+
 
 public class Producto implements Serializable {
 
@@ -92,7 +99,7 @@ public class Producto implements Serializable {
     }
 
 
-    public String descripcionProducto() {
+    public String descripcionProducto() { //genera una pequeña descripcion del producto en cuestion
         return "\nNombre: " + this.getNombre() +
                 "\nCodigo: " + this.getCodigo() +
                 "\nPrecio venta: " + this.getPrecioVenta();
@@ -261,7 +268,7 @@ public class Producto implements Serializable {
         }
     }
 
-    public static void verificarExistenciaCategoria(ArrayList<Producto> lista, Producto producto) {
+    public static void verificarExistenciaCategoria(ArrayList<Producto> lista, Producto producto) { //verifica si el producto ya estaba en el sistema en caso de que no lo agrega a la lista de su categoria correpondiente
         try {
             for (Producto value : lista) {
                 if (value.getNombre().equals(producto.getNombre())) {

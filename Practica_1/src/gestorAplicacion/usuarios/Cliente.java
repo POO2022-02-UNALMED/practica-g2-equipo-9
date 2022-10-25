@@ -8,6 +8,13 @@ import java.util.ArrayList;
 
 import java.util.*;
 
+/*
+* Clase para representar a los clientes de la discoteca
+* Los clientes pueden generar reservas
+* los pedidos pueden tener un cliente asociado
+*
+* */
+
 public class Cliente extends Usuario implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -58,7 +65,7 @@ public class Cliente extends Usuario implements Serializable {
 
     //OTROS METODOS
 
-    private static long generarCodigo(){
+    private static long generarCodigo(){ // se genera un unico codigo identificador para cada cliente
         numeroCliente++;
         return numeroCliente;
     }

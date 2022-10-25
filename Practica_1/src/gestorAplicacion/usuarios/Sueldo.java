@@ -2,6 +2,12 @@ package gestorAplicacion.usuarios;
 
 import java.util.*;
 
+/*
+* Se agrupan metodos que utiliza la clase empleado para heredar a sus hijas
+* Define algunas constantes aplicables para todos los empleados
+* cada Hijo de empleado define de forma distinta los metodos aqui declarados
+* */
+
 public interface Sueldo {
     public final static double sueldoBase=100;
     public final static double porcentajeComisionProductos=0.2;

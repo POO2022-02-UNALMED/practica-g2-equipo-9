@@ -5,6 +5,10 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.*;
 
+/*
+* Clase creada para representar al gerente o adminitrador de la discoteca
+* */
+
 public class Gerente extends Empleado implements Sueldo, Serializable {
 
 
@@ -56,7 +60,7 @@ public class Gerente extends Empleado implements Sueldo, Serializable {
         }
 
     }
-    public double calculoDePrima() {
+    public double calculoDePrima() { //calcula la prima correspondiente a un gerente
         return this.getSueldo()*0.6;
     }
     //GETTERS Y SETTERS
@@ -83,7 +87,7 @@ public class Gerente extends Empleado implements Sueldo, Serializable {
     }
     
     
-    public String contratarEmpleado(String nombre,String cargo) {
+    public String contratarEmpleado(String nombre,String cargo) { //metodo para contratar un nuevo empleado
 	
     	Empleado empleadoNuevo;
 
@@ -113,7 +117,7 @@ public class Gerente extends Empleado implements Sueldo, Serializable {
     
     
     
-    public String despedirEmpleado(String empleado) {
+    public String despedirEmpleado(String empleado) { // metodo para despedir un empleado
 		ArrayList<Empleado> listaEmpleados = Empleado.getEmpleados();
 		int empleadoCodigo;
 		try {

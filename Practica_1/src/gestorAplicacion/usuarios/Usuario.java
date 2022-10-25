@@ -5,6 +5,12 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.*;
 
+/*
+* Clase padre con los atributos basicos id y nombre
+* Clase de la que heredan todos los tipos de usuarios que se pueden crear
+*
+* */
+
 public abstract class Usuario  implements Serializable {
 
     private static final long serialVersionUID = 1L;

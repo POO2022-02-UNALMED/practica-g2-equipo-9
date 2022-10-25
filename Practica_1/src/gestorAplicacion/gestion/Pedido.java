@@ -8,6 +8,11 @@ import gestorAplicacion.usuarios.Trabajador;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.*;
+/*
+* Clase creada para almacenar los prodcutos deseados por el cliente
+* Tambien puede contener servicios
+* El pedido esta asociado tanto a trabajador como al cliente
+* */
 
 
 public class Pedido implements Serializable {
@@ -154,7 +159,7 @@ public class Pedido implements Serializable {
 
 
 
-    public String generarFactura(){
+    public String generarFactura(){ //genera la factura del pedido realizado
         String productos ="Productos: " +
                 "\nNombre........Cantidad.......Precio";
         HashMap<String, Double> nombreYprecio = new HashMap<>();
@@ -205,21 +210,21 @@ public class Pedido implements Serializable {
         return s;
     }
 
-    public double sumaProductos(){
+    public double sumaProductos(){ // calcula el precio del total de los productos pedidos
         double sumaTotal=0;
         for (Producto producto: this.getProductos()){
             sumaTotal+=producto.getPrecioVenta();
         }
         return sumaTotal;
     }
-    public double sumaServicios(){
+    public double sumaServicios(){ // calcula el precio del total de los servicios pedidos
         double sumaTotal=0;
         for (Servicio servicio: this.getServicios()){
             sumaTotal+=servicio.getPrecio();
         }
         return sumaTotal;
     }
-    public static String mostraPedidos(){
+    public static String mostraPedidos(){ // Muestra los pedidos no pagados
         String s="";
         long i=1;
         for(Pedido pedido: Pedido.getPedidos()){
@@ -232,7 +237,7 @@ public class Pedido implements Serializable {
         }
         return s;
     }
-    public static Pedido seleccionarPedido(long codigo){
+    public static Pedido seleccionarPedido(long codigo){ // ingresa el codigo del pedido y retorna el objeto pedido correspondiente
         Pedido pedido1=null;
         for(Pedido pedido: Pedido.getPedidos()){
             if(pedido.getCodigo()==codigo){
