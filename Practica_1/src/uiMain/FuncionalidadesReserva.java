@@ -168,6 +168,8 @@ public class FuncionalidadesReserva {
                         for (int i = 0; i < Producto.getBebidasNoAlcoholicas().size(); i++) {
                             System.out.println(i+". "+Producto.getBebidasNoAlcoholicas().get(i).getNombre()+" Precio: "+Producto.getBebidasNoAlcoholicas().get(i).getPrecioVenta());
                         }
+                        System.out.println("Ingrese el numero de producto");
+                        opcionProducto = sc.nextInt();
                         if (opcionProducto<Producto.getBebidasNoAlcoholicas().size()){
                             System.out.println("Por favor ingrese la cantidad");
                             int cantidadProducto = sc.nextInt();
@@ -238,6 +240,8 @@ public class FuncionalidadesReserva {
                         for (int i = 0; i < Producto.getComidas().size(); i++) {
                             System.out.println(i+". "+Producto.getComidas().get(i).getNombre()+" Precio: "+Producto.getComidas().get(i).getPrecioVenta());
                         }
+                        System.out.println("Ingrese el numero de producto");
+                        opcionProducto = sc.nextInt();
                         if (opcionProducto<Producto.getComidas().size()){
                             System.out.println("Por favor ingrese la cantidad");
                             int cantidadProducto = sc.nextInt();
@@ -308,6 +312,8 @@ public class FuncionalidadesReserva {
                         for (int i = 0; i < Producto.getSnacks().size(); i++) {
                             System.out.println(i+". "+Producto.getSnacks().get(i).getNombre()+" Precio: "+Producto.getSnacks().get(i).getPrecioVenta());
                         }
+                        System.out.println("Ingrese el numero de producto");
+                        opcionProducto = sc.nextInt();
                         if (opcionProducto<Producto.getSnacks().size()){
                             System.out.println("Por favor ingrese la cantidad");
                             int cantidadProducto = sc.nextInt();
@@ -378,6 +384,8 @@ public class FuncionalidadesReserva {
                         for (int i = 0; i < Producto.getCigarrillos().size(); i++) {
                             System.out.println(i+". "+Producto.getCigarrillos().get(i).getNombre()+" Precio: "+Producto.getCigarrillos().get(i).getPrecioVenta());
                         }
+                        System.out.println("Ingrese el numero de producto\n");
+                        opcionProducto = sc.nextInt();
                         if (opcionProducto<Producto.getCigarrillos().size()){
                             System.out.println("Por favor ingrese la cantidad");
                             int cantidadProducto = sc.nextInt();

@@ -141,6 +141,16 @@ public class interfazGenerica {
         new Producto("Tecate","No vendido",600,1);
         new Producto("Tecate","No vendido",600,1);
 
+        new Producto("fresa", "No vendido" , 2, 7);
+        new Producto("mora", "No vendido" , 2, 7);
+        new Producto("risoto", "No vendido" , 2, 7);
+        new Producto("calabaza", "No vendido" , 2, 7);
+        new Producto("fresa", "No vendido" , 2, 7);
+        new Producto("mora", "No vendido" , 2, 7);
+        new Producto("limon", "No vendido" , 2, 7);
+        new Producto("guanabana", "No vendido" , 2, 7);
+        new Producto("cereza", "No vendido" , 2, 7);
+
 
 
         Cliente miguel=new Cliente("Miguel");

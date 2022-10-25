@@ -265,6 +265,9 @@ public class Producto implements Serializable {
             case 6:
                 Producto.verificarExistenciaCategoria(Producto.energizantes, producto);
                 break;
+            case 7:
+                Producto.verificarExistenciaCategoria(Producto.otrosProductos, producto);
+                break;
         }
     }
 
