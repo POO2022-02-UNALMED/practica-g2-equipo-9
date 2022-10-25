@@ -22,7 +22,7 @@ public class Deserializador {
         File archivo1=new File("");
         try {
             // Creamos una cadena con la ruta del archivo que vamos a cargar
-            String path = new File(archivo1.getAbsolutePath()) + "/Practica_1/src/baseDatos/temp/" + className + ".txt";
+            String path = new File(archivo1.getAbsolutePath()) + "/src/baseDatos/temp/" + className + ".txt";
             System.out.println(path);
             // Utilizamos un file para crear este archivo si no existe aun
             File archivo = new File(path);

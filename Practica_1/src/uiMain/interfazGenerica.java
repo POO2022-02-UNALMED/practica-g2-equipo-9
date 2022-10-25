@@ -18,7 +18,9 @@ public class interfazGenerica {
 
     public static void main(String[] args) {
         //SE INICIA EL DESERIALIZADOR Y SUELTA TODOS LOS OBJETOS CREADOS
+
         Deserializador.deserializarTodo();
+
         Pedido.setNumeroPedido(Pedido.getPedidos().size());
         Producto.setNumeroProducto(Producto.getProductos().size());
         Reserva.setNumReservas(Reserva.getReservas().size());
