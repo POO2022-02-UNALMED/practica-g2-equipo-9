@@ -373,38 +373,6 @@ public class Producto implements Serializable {
 
 
 
-    public static ArrayList<Producto> recomendarProducto(ArrayList<Producto> listaProductos) {
-        SortedSet<String> nombresNoRepetidos = new TreeSet<>();
-        ArrayList<String> nombresRepetidos = new ArrayList<>();
-        TreeMap<Long, String> cuenta = new TreeMap<>();
-        for (Producto producto : listaProductos) {
-            nombresRepetidos.add(producto.getNombre());
-            nombresNoRepetidos.add(producto.getNombre());
-        }
-        //AGREGAMOS AL TREEMAP Y SE ORDENA AUTOMATICAMENTE
-        for (String nombre : nombresNoRepetidos) {
-            cuenta.put((long) Collections.frequency(nombresRepetidos, nombre), nombre);
-        }
-        ArrayList<Producto> productosRecomendados = new ArrayList<>();
-        if (cuenta.size() >= 3) {
-            String primero = (String) cuenta.values().toArray()[cuenta.size() - 1];
-            String segundo = (String) cuenta.values().toArray()[cuenta.size() - 2];
-            String tercero = (String) cuenta.values().toArray()[cuenta.size() - 3];
-            ArrayList<String> masPedidos = new ArrayList<>();
-            masPedidos.add(primero);
-            masPedidos.add(segundo);
-            masPedidos.add(tercero);
-        } else if (cuenta.size() <= 2) {
-            long primero = (long) cuenta.keySet().toArray()[cuenta.size() - 1];
-            long segundo = (long) cuenta.keySet().toArray()[cuenta.size() - 2];
-        } else if (cuenta.size() == 1) {
-            long primero = (long) cuenta.keySet().toArray()[cuenta.size() - 1];
-        }
-        return productosRecomendados;
-    }
-
-
-
 }
 
 
