@@ -10,7 +10,7 @@ public abstract class Empleado extends Usuario implements Serializable {
     private static final long serialVersionUID = 1L;
 
     //ATRIBUTOS DE INSTANCIA
-    protected String cargo;
+    public String cargo;
     protected double sueldo;
 
     protected LocalDate fechaIngreso; //fecha cuando ingreso el empleado
@@ -30,11 +30,11 @@ public abstract class Empleado extends Usuario implements Serializable {
         this.fechaIngreso = fechaIngreso;
         empleados.add(this);
     }
-
-
-    @Override //ligadura dinamica
+    
+    
     public String toString() {
-        return "Usuario de tipo Empleado\n"+"Nombre "+this.getNombre()+"\n"+"Codigo de usuario: "+this.getCodigo();
+    	
+    	return nombre+","+cargo+","+sueldo+","+","+fechaIngreso+","+codigo;
     }
 
 
@@ -109,7 +109,6 @@ public abstract class Empleado extends Usuario implements Serializable {
     }
 
     public abstract double calculoDePrima();
-
 
 
 
