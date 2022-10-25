@@ -1,14 +1,16 @@
 package uiMain;
 
 import java.util.*;
-import gestorAplicacion.usuarios.Empleado;
-import gestorAplicacion.usuarios.Trabajador;
+import gestorAplicacion.usuarios.*;
+//import gestorAplicacion.usuarios.Trabajador;
 
 public class GestionEmpleados {
 	
+	Scanner sc = new Scanner(System.in);
+	
+	
+	
 	public static void GE() {
-		
-		Scanner sc = new Scanner(System.in);
 		
 		
 		System.out.println("Buen dia, es usted un Gerente o Administrador?");
@@ -84,6 +86,7 @@ public class GestionEmpleados {
         }
         else if(opcion == 3) {
         	//info del algun trabajador
+        	
         	
 				
         	}

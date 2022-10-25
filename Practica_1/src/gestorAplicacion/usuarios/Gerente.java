@@ -83,6 +83,51 @@ public class Gerente extends Empleado implements Serializable {
     public static void setGerentes(ArrayList<Gerente> gerentes) {
         Gerente.gerentes = gerentes;
     }
+    
+    
+    
+    
+    
+    
+    
+    public String contratarEmpleado(String nombre, LocalDate fechaIngreso) {
+	
+    	Empleado empleadoNuevo;
+
+		if (cargo.equals("Mesero")) {
+			empleadoNuevo = new Trabajador(nombre,fechaIngreso);
+		} else if (cargo.equals("Gerente")) {
+			empleadoNuevo = new Gerente(nombre,fechaIngreso);
+		} else if (cargo.equals("Striper")) {
+			empleadoNuevo = new Trabajador(nombre,fechaIngreso);
+		} else {
+			empleadoNuevo = new Trabajador(nombre,fechaIngreso);
+		}
+
+		ArrayList<Empleado> listaEmpleados = Empleado.getEmpleados();
+		if (!listaEmpleados.contains(empleadoNuevo)) {
+			listaEmpleados.add(empleadoNuevo);
+			Empleado.setEmpleados(listaEmpleados);
+			return "Empleado " + nombre + " creado con éxito";
+		} else {
+			return "ERROR: El empleado ya se encuentra en la nomina";
+		}
+	}
+    
+    
+    public String despedirEmpleado(String empleado) {
+		ArrayList<Empleado> listaEmpleados = Empleado.getEmpleados();
+		int empleadoCodigo;
+		try {
+			empleadoCodigo = Integer.parseInt(empleado);
+			String nombreEmp = listaEmpleados.get(empleadoCodigo).getNombre();
+			listaEmpleados.remove(empleadoCodigo);
+			Empleado.setEmpleados(listaEmpleados);
+			return "Empleado \"" + nombreEmp + "\" despedido con éxito";
+		} catch (Exception e) {
+			return "ERROR: El empleado que intentas eliminar no trabaja en el restaurante";
+		}
+	}
 
 
 
