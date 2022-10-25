@@ -83,18 +83,22 @@ public class Gerente extends Empleado implements Sueldo, Serializable {
     }
     
     
-    public String contratarEmpleado(String nombre) {
+    public String contratarEmpleado(String nombre,String cargo) {
 	
     	Empleado empleadoNuevo;
 
 		if (cargo.equals("Mesero")) {
 			empleadoNuevo = new Trabajador(nombre,LocalDate.now());
+			empleadoNuevo.cargo = this.cargo;
 		} else if (cargo.equals("Gerente")) {
 			empleadoNuevo = new Gerente(nombre,LocalDate.now());
+			empleadoNuevo.cargo = this.cargo;
 		} else if (cargo.equals("Striper")) {
 			empleadoNuevo = new Trabajador(nombre,LocalDate.now());
+			empleadoNuevo.cargo = this.cargo;
 		} else {
 			empleadoNuevo = new Trabajador(nombre,LocalDate.now());
+			empleadoNuevo.cargo = this.cargo;
 		}
 
 		ArrayList<Empleado> listaEmpleados = Empleado.getEmpleados();
