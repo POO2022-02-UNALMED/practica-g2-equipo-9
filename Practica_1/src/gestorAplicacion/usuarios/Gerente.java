@@ -5,7 +5,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.*;
 
-public class Gerente extends Empleado implements Sueldo, Serializable {
+public class Gerente extends Empleado implements Serializable {
 
 
     private static final long serialVersionUID = 1L;
@@ -50,10 +50,10 @@ public class Gerente extends Empleado implements Sueldo, Serializable {
         LocalDate finVinculacion= super.getFechaIngreso().plusMonths(this.getSeguro());
 
         if(LocalDate.now().isAfter(finVinculacion)){
-            s+="\n con codigo "+this.getCodigo()+" tiene vencido el seguro, este vencio en la fecha "+finVinculacion;
+            s+=" con codigo "+this.getCodigo()+" tiene vencido el seguro, este vencio en la fecha "+finVinculacion;
         }
         else{
-            s+="\n con codigo "+this.getCodigo()+" el seguro lo cubre desde la fecha "+this.getFechaIngreso()+" hasta la fecha "+finVinculacion;
+            s+=" con codigo "+this.getCodigo()+" el seguro lo cubre desde la fecha "+this.getFechaIngreso()+" hasta la fecha "+finVinculacion;
         }
         return s;
 
@@ -83,8 +83,53 @@ public class Gerente extends Empleado implements Sueldo, Serializable {
     public static void setGerentes(ArrayList<Gerente> gerentes) {
         Gerente.gerentes = gerentes;
     }
+    
+    
+    
+    
+    
+    
+    
+    public String contratarEmpleado(String nombre, LocalDate fechaIngreso) {
+	
+    	Empleado empleadoNuevo;
 
-    //SERIALIZACION
+		if (cargo.equals("Mesero")) {
+			empleadoNuevo = new Trabajador(nombre,fechaIngreso);
+		} else if (cargo.equals("Gerente")) {
+			empleadoNuevo = new Gerente(nombre,fechaIngreso);
+		} else if (cargo.equals("Striper")) {
+			empleadoNuevo = new Trabajador(nombre,fechaIngreso);
+		} else {
+			empleadoNuevo = new Trabajador(nombre,fechaIngreso);
+		}
+
+		ArrayList<Empleado> listaEmpleados = Empleado.getEmpleados();
+		if (!listaEmpleados.contains(empleadoNuevo)) {
+			listaEmpleados.add(empleadoNuevo);
+			Empleado.setEmpleados(listaEmpleados);
+			return "Empleado " + nombre + " creado con éxito";
+		} else {
+			return "ERROR: El empleado ya se encuentra en la nomina";
+		}
+	}
+    
+    
+    public String despedirEmpleado(String empleado) {
+		ArrayList<Empleado> listaEmpleados = Empleado.getEmpleados();
+		int empleadoCodigo;
+		try {
+			empleadoCodigo = Integer.parseInt(empleado);
+			String nombreEmp = listaEmpleados.get(empleadoCodigo).getNombre();
+			listaEmpleados.remove(empleadoCodigo);
+			Empleado.setEmpleados(listaEmpleados);
+			return "Empleado \"" + nombreEmp + "\" despedido con éxito";
+		} catch (Exception e) {
+			return "ERROR: El empleado que intentas eliminar no trabaja en el restaurante";
+		}
+	}
+
+
 
 
     public static void main(String[] args) {

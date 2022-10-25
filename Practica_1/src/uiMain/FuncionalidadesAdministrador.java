@@ -3,9 +3,11 @@ package uiMain;
 import gestorAplicacion.gestion.Pedido;
 import gestorAplicacion.gestion.Producto;
 import gestorAplicacion.gestion.Servicio;
+import gestorAplicacion.usuarios.Empleado;
 import gestorAplicacion.usuarios.Trabajador;
 
 import java.sql.SQLOutput;
+import java.time.LocalDate;
 import java.util.*;
 
 import static uiMain.FuncionalidadesNomina.nominaEmpleado;
@@ -82,12 +84,13 @@ public class FuncionalidadesAdministrador {
                     opcion= entrada.nextInt();
                     trabajador=Trabajador.seleccionarTrabajador(opcion);
                 }
+                Empleado empleado=trabajador;
                 System.out.println("Trabajador seleccionado:");
                 System.out.println();
                 System.out.println(trabajador);
                 System.out.println();
                 System.out.println("Seguro del trabajador:");
-                System.out.println(trabajador.asegurar());
+                System.out.println(empleado.asegurar());// Ligadura dinamica
 
             } else if (opcion == 2) {
                 empleadoDelMes();
@@ -283,5 +286,16 @@ public class FuncionalidadesAdministrador {
         }
 
 
+    }
+
+    public static void main(String[] args) {
+        Trabajador a= new Trabajador("Steven", LocalDate.of(2022,11,10));
+        Empleado b=a;
+
+        System.out.println(b.asegurar());
+
+        System.out.println();
+
+        System.out.println(a.asegurar());
     }
 }
