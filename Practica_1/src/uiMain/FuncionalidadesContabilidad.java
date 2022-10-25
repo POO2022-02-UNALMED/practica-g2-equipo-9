@@ -7,10 +7,7 @@ import java.util.*;
 import java.util.Scanner;
 
 import gestorAplicacion.gestion.*;
-import gestorAplicacion.usuarios.Empleado;
-import gestorAplicacion.usuarios.Gerente;
-import gestorAplicacion.usuarios.Sueldo;
-import gestorAplicacion.usuarios.Trabajador;
+import gestorAplicacion.usuarios.*;
 
 public class FuncionalidadesContabilidad {
     //FUNCIONALIDAD CONTABILIDAD
@@ -174,43 +171,6 @@ public class FuncionalidadesContabilidad {
 
     }
 
-    public static void main(String[] args) {
-        Trabajador trabajador1=new Trabajador("Sergio",LocalDate.of(2020,01,25));
-        Trabajador trabajador2=new Trabajador("Sergio1",LocalDate.of(2020,02,14));
-        Trabajador trabajador3=new Trabajador("Sergio2",LocalDate.of(2020,03,18));
-        Trabajador trabajador4=new Trabajador("Sergio3",LocalDate.of(2020,04,11));
-        Trabajador trabajador5=new Trabajador("Sergio4",LocalDate.of(2020,05,7));
-        new Producto(trabajador1,"Vendido","vive 100", 600,LocalDate.of(2022,06,12));
-        new Producto(trabajador1,"Vendido","vive 100", 600,LocalDate.of(2022,06,12));
-        new Producto(trabajador1,"Vendido","vive 100", 600,LocalDate.of(2022,06,12));
-        new Producto(trabajador1,"Vendido","vive 100", 600,LocalDate.of(2022,06,12));
-        new Producto(trabajador1,"Vendido","vive 100", 600,LocalDate.of(2022,06,12));
-        new Producto(trabajador1,"Vendido","vive 100", 600,LocalDate.of(2022,06,12));
-        new Producto(trabajador1,"Vendido","vive 100", 600,LocalDate.of(2022,06,12));
 
-        new Producto(trabajador2,"Vendido","Rockstar",700,LocalDate.of(2022,03,17));
-        new Producto(trabajador2,"Vendido","Rockstar",700,LocalDate.of(2022,03,17));
-        new Producto(trabajador2,"Vendido","Rockstar",700,LocalDate.of(2022,03,17));
-        new Producto(trabajador2,"Vendido","Rockstar",700,LocalDate.of(2022,03,17));
-        new Producto(trabajador2,"Vendido","Rockstar",700,LocalDate.of(2022,03,17));
-        new Producto(trabajador2,"Vendido","Rockstar",700,LocalDate.of(2022,03,17));
-        new Producto(trabajador2,"Vendido","Rockstar",700,LocalDate.of(2022,03,17));
-        new Producto(trabajador2,"Vendido","Rockstar",700,LocalDate.of(2022,03,17));
-        new Producto(trabajador3,"Vendido","Rockstar",700,LocalDate.of(2022,03,17));
-        new Producto(trabajador3,"Vendido","Rockstar",700,LocalDate.of(2022,03,17));
-        new Producto(trabajador3,"Vendido","Rockstar",700,LocalDate.of(2022,03,17));
-        new Producto(trabajador3,"Vendido","Rockstar",700,LocalDate.of(2022,03,17));
-        new Producto(trabajador3,"Vendido","Rockstar",700,LocalDate.of(2022,03,17));
-        new Producto(trabajador3,"Vendido","Rockstar",700,LocalDate.of(2022,03,17));
-        new Producto(trabajador3,"Vendido","Rockstar",700,LocalDate.of(2022,03,17));
-        new Producto(trabajador3,"Vendido","Rockstar",700,LocalDate.of(2022,03,17));
-        new Producto(trabajador3,"Vendido","Rockstar",700,LocalDate.of(2022,03,17));
-        new Producto(trabajador3,"Vendido","Rockstar",700,LocalDate.of(2022,03,17));
-        new Producto(trabajador3,"Vendido","Rockstar",700,LocalDate.of(2022,03,17));
-
-
-        Gerente gerente1=new Gerente("Mafe",LocalDate.of(2020,06,1));
-        contabilidad();
-    }
 
 }

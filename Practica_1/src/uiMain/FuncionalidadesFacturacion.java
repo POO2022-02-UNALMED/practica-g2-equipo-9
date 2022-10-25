@@ -720,26 +720,5 @@ public class FuncionalidadesFacturacion {
         }
         return productosPedidos;
     }
-
-    public static void main(String[] args) {
-        Producto producto2=new Producto("Pepsi","Reservado",500,0);
-        Producto producto5=new Producto("Pepsi","Reservado",500,0);
-        Producto producto6=new Producto("Pepsi","No vendido",500,0);
-        Producto producto3=new Producto("Coca cola","No vendido",500,0);
-        Producto producto4=new Producto("Coca cola","No vendido",500,0);
-        Trabajador trabajador=new Trabajador("Russbell",LocalDate.of(2022,02,02));
-        Trabajador trabajador1=new Trabajador("Sergio",LocalDate.of(2022,02,02));
-        Trabajador trabajador2=new Trabajador("Mafre",LocalDate.of(2022,02,02));
-        Cliente cliente1=new Cliente("Miguel");
-
-        Producto producto=new Producto(trabajador,null,"coca",0,null);
-        System.out.println(Trabajador.getTrabajadores().size());
-        Trabajador.getTrabajadores().remove(trabajador);
-        System.out.println(Trabajador.getTrabajadores().size());
-
-        System.out.println(producto.getTrabajador().getNombre());
-
-
-    }
 }
 

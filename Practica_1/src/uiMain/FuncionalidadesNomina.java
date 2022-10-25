@@ -4,6 +4,7 @@ import gestorAplicacion.gestion.Pedido;
 import gestorAplicacion.gestion.Producto;
 import gestorAplicacion.gestion.Servicio;
 import gestorAplicacion.usuarios.Cliente;
+import gestorAplicacion.usuarios.Gerente;
 import gestorAplicacion.usuarios.Sueldo;
 import gestorAplicacion.usuarios.Trabajador;
 
@@ -183,72 +184,5 @@ public class FuncionalidadesNomina {
 
     public static void main(String[] args) {
 
-        Trabajador trabajador1=new Trabajador("Russbell", LocalDate.of(2020,01,25));
-        Trabajador trabajador2=new Trabajador("Sergio",LocalDate.of(2020,02,14));
-        Trabajador trabajador3=new Trabajador("Elena",LocalDate.of(2020,03,18));
-        Trabajador trabajador4=new Trabajador("Miguel",LocalDate.of(2020,04,11));
-        Trabajador trabajador5=new Trabajador("Jonathan",LocalDate.of(2020,05,7));
-
-        Cliente cliente1=new Cliente();
-        new Producto(trabajador1,"Vendido","vive 100", 600,LocalDate.of(2022,12,12));
-
-        Producto a=new Producto(trabajador2,"Vendido","vive 100", 600,LocalDate.of(2022,6,12));
-        Producto a1=new Producto(trabajador2,"Vendido","vive 100", 600,LocalDate.of(2022,6,12));
-        Producto a2=new Producto(trabajador2,"Vendido","vive 100", 600,LocalDate.of(2022,6,12));
-        Producto a3=new Producto(trabajador2,"Vendido","vive 100", 600,LocalDate.of(2022,6,12));
-        Producto a4=new Producto(trabajador2,"Vendido","vive 100", 600,LocalDate.of(2022,6,12));
-        Producto a5=new Producto(trabajador2,"Vendido","vive 100", 600,LocalDate.of(2022,6,12));
-        Producto a6=new Producto(trabajador2,"Vendido","vive 100", 600,LocalDate.of(2022,6,12));
-        Producto a7=new Producto(trabajador2,"Vendido","vive 100", 600,LocalDate.of(2022,6,12));
-
-        Producto a8=new Producto(trabajador2,"Vendido","Rockstar",700,LocalDate.of(2022,06,17));
-        Producto a9=new Producto(trabajador2,"Vendido","Rockstar",700,LocalDate.of(2022,06,17));
-        Producto a10=new Producto(trabajador2,"Vendido","Rockstar",700,LocalDate.of(2022,06,17));
-        Producto a11=new Producto(trabajador2,"Vendido","Rockstar",700,LocalDate.of(2022,06,17));
-        Producto a12=new Producto(trabajador2,"Vendido","Rockstar",700,LocalDate.of(2022,06,17));
-        Producto a13=new Producto(trabajador2,"Vendido","Rockstar",700,LocalDate.of(2022,06,17));
-        Producto a14=new Producto(trabajador2,"Vendido","Rockstar",700,LocalDate.of(2022,06,17));
-        Producto a15=new Producto(trabajador2,"Vendido","Rockstar",700,LocalDate.of(2022,06,17));
-
-
-        new Producto(trabajador3,"Vendido","Rockstar",700,LocalDate.of(2022,03,17));
-        new Producto(trabajador3,"Vendido","Rockstar",700,LocalDate.of(2022,03,17));
-        new Producto(trabajador3,"Vendido","Rockstar",700,LocalDate.of(2022,03,17));
-        new Producto(trabajador3,"Vendido","Rockstar",700,LocalDate.of(2022,03,17));
-        new Producto(trabajador3,"Vendido","Rockstar",700,LocalDate.of(2022,03,17));
-        new Producto(trabajador3,"Vendido","Rockstar",700,LocalDate.of(2022,03,17));
-        new Producto(trabajador3,"Vendido","Rockstar",700,LocalDate.of(2022,03,17));
-        new Producto(trabajador3,"Vendido","Rockstar",700,LocalDate.of(2022,03,17));
-        new Producto(trabajador3,"Vendido","Rockstar",700,LocalDate.of(2022,03,17));
-        new Producto(trabajador3,"Vendido","Rockstar",700,LocalDate.of(2022,03,17));
-        new Producto(trabajador3,"Vendido","Rockstar",700,LocalDate.of(2022,03,17));
-
-        ArrayList<Producto> productos=new ArrayList<>();
-        productos.add(a1);
-        productos.add(a2);
-        productos.add(a3);
-        productos.add(a4);
-        productos.add(a5);
-        productos.add(a6);
-        productos.add(a7);
-        productos.add(a8);
-        productos.add(a9);
-        productos.add(a10);
-        productos.add(a11);
-        productos.add(a12);
-        productos.add(a13);
-        productos.add(a14);
-        productos.add(a15);
-
-        ArrayList<Servicio> servicios=new ArrayList<>();
-        servicios.add(Servicio.STRIPPER);
-        servicios.add(Servicio.BARMAN);
-        servicios.add(Servicio.COCKTAILCHALLENGE);
-        servicios.add(Servicio.MESEROEXCLUSIVO);
-        servicios.add(Servicio.MESEROEXCLUSIVO);
-
-        Pedido pedido=new Pedido(trabajador2,cliente1,"Pagado",productos,servicios,LocalDate.of(2022,6,12));
-
-        calculoDeNomina();
     }
 }
