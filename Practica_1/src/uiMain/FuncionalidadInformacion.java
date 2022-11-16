@@ -143,7 +143,8 @@ public class FuncionalidadInformacion {
             System.out.println("Seleccione el producto que desea consultar\n");
 
             for (int i = 0; i < listaproductos.size(); ++i) {
-                System.out.println(" " + (i + 1) + ". " + listaproductos.get(i).getNombre());
+                System.out.println(" " + (i + 1) + ". " + listaproductos.get(i).getNombre() +": "+ listaproductos.get(i).getEstado()
+               +", " + listaproductos.get(i).getCodigo());
             }
 
             System.out.println("\n 0. Regresar.");
