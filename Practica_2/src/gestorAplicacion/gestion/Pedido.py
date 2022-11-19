@@ -4,7 +4,7 @@ class Pedido:
     _totalPedidos = 0
     _numeroPedido = 0
 
-def __init__(self, cliente = None,  estadoPedido = "", productos = 0, servicio ="", fechaPedido="", codigo=0  ):
+def __init__(self, cliente = cliente,  estadoPedido = "", productos = 0, servicio ="", fechaPedido="", codigo=0  ):
     self._cliente = cliente
     self._estadoPedido = estadoPedido
     self._producto = productos
