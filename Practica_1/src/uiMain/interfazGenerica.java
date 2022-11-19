@@ -28,7 +28,7 @@ public class interfazGenerica {
         Gerente.setNumeroGerente(Gerente.getGerentes().size());
         Trabajador.setNumeroTrabajador(Trabajador.getTrabajadores().size());
 
-        Espacio sala1 = new Espacio("Sala 1");
+       Espacio sala1 = new Espacio("Sala 1");
         Espacio sala2 = new Espacio("Sala 2");
         Espacio sala3 = new Espacio("Sala 3");
 
@@ -318,6 +318,8 @@ public class interfazGenerica {
 
         //CUANDO SE DESERIALIZA ES IMPORTANTE SETTEAR ESTOS ATRIBUTOS DE CLASE AL TAMAÑO ACTUAL DE LOS RESPECTIVOS ARRAYS QUE CONTIENEN LOS
         //OBJETOS DE LA CLASE, YA QUE TRABAJAMOS CON CODIGOS UNICOS Y CUANDO SE INICIA EL PROGRAMA ESTOS ATRIBUTOS SE DEVUELVEN A CERO
+
+
 
         System.out.println("\nBienvenido a...\n\n");
 

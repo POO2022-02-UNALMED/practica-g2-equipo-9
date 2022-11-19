@@ -1,6 +1,7 @@
 package gestorAplicacion.gestion;
 
 
+import java.io.Serializable;
 import java.util.*;
 
 /*
