@@ -32,15 +32,19 @@ class Empleado(Usuario):
     def setFechaIngreso(self, FechaIngreso):
         self.fechaIngreso = FechaIngreso
 
+    @classmethod
     def getlista_empleados(cls):
         return cls._empleados
 
+    @classmethod
     def setlista_empleados(cls, empleados):
         cls._empleados = empleados
 
+    @classmethod
     def getDisponibilidad(cls):
         return cls.disponibilidad
 
+    @classmethod
     def setDisponibilidad(cls, Disponibilidad):
         cls.disponibilidad = Disponibilidad
 

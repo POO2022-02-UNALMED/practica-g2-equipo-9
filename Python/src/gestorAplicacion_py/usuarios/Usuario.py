@@ -10,10 +10,11 @@ class Usuario():
          
     
         
-
+@classmethod
 def getlista_usuarios(cls):
     return cls._usuarios
 
+@classmethod
 def setlista_usuarios(cls, usuarios):
     cls._usuarios = usuarios
 

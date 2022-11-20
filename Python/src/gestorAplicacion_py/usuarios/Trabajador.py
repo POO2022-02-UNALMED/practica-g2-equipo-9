@@ -7,7 +7,7 @@ class Trabajador(Empleado):
     _numeroTrabajadores = 0
 
     def __init__(self, codigo,nombre,cargo,sueldo,fechaIngreso,saldoFinal,seguro=6):
-        super().__init__(codigo,nombre,cargo,sueldo,fechaIngreso)
+        super().__init__(codigo,nombre,Trabajador,cargo,sueldo,fechaIngreso)
         self._saldoFinal = saldoFinal
         self._seguro = seguro
         # falta colocar generar codigo
@@ -26,14 +26,18 @@ class Trabajador(Empleado):
     def setSeguro(self,seguro):
         self._seguro = seguro
 
+    @classmethod
     def getTrabajadores(cls):
         return cls._trabajadores
 
+    @classmethod
     def setTrabajadores(cls,trabajadores):
         cls._trabajadores = trabajadores
 
+    @classmethod
     def getNumeroTrabajadores(cls):
         return cls._numeroTrabajadores
 
+    @classmethod
     def setNumeroTrabajadores(cls,trabajadores):
         cls._numeroTrabajadores = trabajadores
