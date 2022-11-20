@@ -10,6 +10,7 @@ class Empleado(Usuario):
         self.cargo = cargo
         self.sueldo = sueldo
         self.fechaIngreso = fechaIngreso
+        Usuario._usuarios.append(self)
 
   
 
