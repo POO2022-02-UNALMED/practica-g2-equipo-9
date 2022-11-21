@@ -1,6 +1,6 @@
-from gestorAplicacion_py.usuarios.Empleado import Empleado
+import Empleado
 
-class Gerente(Empleado):
+class Gerente(Empleado.Empleado):
 
     _numeroGerente=0
     _Gerentes = []
@@ -13,7 +13,36 @@ class Gerente(Empleado):
     #preguntar por lo del genetrador de codigo
 
     def generarCodigo(cls):
-        m=cls._numeroGerente+1
-        print (m)
+        return  cls._numeroGerente+1
 
-    generarCodigo
+    #ToString
+    def __str__(self):
+        return "Codigo: ", {self._codigo}, " Nombre ", {self._nombre}, " fecha vinculacion ", {self.fechaIngreso}
+
+    #preguntar por la funcion de asegurar
+
+    def calculoDePrima(self): #Calcula la prima del gerente
+        return self.getSueldo*0.6
+
+    def getSeguro(self):
+        return self._seguro
+       
+    def setSeguro(self, seguro):
+        self._seguro = seguro
+
+    @classmethod
+    def getNumeroGerente(cls):
+        return cls._numeroGerente
+
+    @classmethod
+    def setNumeroGerente(cls,numero):
+        cls._numeroGerente = numero
+
+    @classmethod
+    def getListaGerentes(cls):
+        return cls._Gerentes
+
+    @classmethod
+    def setListaGerentes(cls,lista):
+        cls._Gerentes = lista
+    

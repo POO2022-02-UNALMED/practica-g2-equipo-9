@@ -1,8 +1,8 @@
-from gestorAplicacion_py.usuarios.Empleado import Empleado
-from gestorAplicacion_py.gestion.Producto import Producto
+import Empleado
+#from gestorAplicacion_py.gestion.Producto import Producto
 from datetime import datetime
 
-class Trabajador(Empleado):
+class Trabajador(Empleado.Empleado):
 
     _trabajadores = []
     _numeroTrabajadores = 0
@@ -54,8 +54,8 @@ class Trabajador(Empleado):
 
     @classmethod
     def generarCodigo(cls):
-        m = cls._numeroTrabajadores + 1
-        return m
+        return cls._numeroTrabajadores + 1
+       
 
     #ese tostring hay q ver con que va
 

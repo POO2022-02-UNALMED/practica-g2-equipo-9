@@ -1,6 +1,6 @@
-from usuarios.Usuario import Usuario
+import Usuario
 
-class Empleado(Usuario):
+class Empleado(Usuario.Usuario):
 
     _empleados = []
     disponibilidad = True
