@@ -1,13 +1,14 @@
-from gestorAplicacion_py.usuarios.Empleado import Empleado
-from gestorAplicacion_py.gestion.Producto import Producto
+import Empleado
+#from gestorAplicacion_py.gestion.Producto import Producto
+from datetime import datetime
 
-class Trabajador(Empleado):
+class Trabajador(Empleado.Empleado):
 
     _trabajadores = []
     _numeroTrabajadores = 0
 
     def __init__(self, codigo,nombre,cargo,sueldo,fechaIngreso,saldoFinal,seguro=6):
-        super().__init__(codigo,nombre,Trabajador,cargo,sueldo,fechaIngreso)
+        super().__init__(codigo,nombre,"Trabajador",cargo,sueldo,fechaIngreso)
         self._saldoFinal = saldoFinal
         self._seguro = seguro
         # falta colocar generar codigo
@@ -41,3 +42,21 @@ class Trabajador(Empleado):
     @classmethod
     def setNumeroTrabajadores(cls,trabajadores):
         cls._numeroTrabajadores = trabajadores
+
+
+    def asegurar(self):
+        s =Empleado.asegurar
+        finVinculacion = self.getFechaIngres
+        #preguntar como hacer eso
+
+    def calcularPrima(self):
+        return self.getSeguro*0.5
+
+    @classmethod
+    def generarCodigo(cls):
+        return cls._numeroTrabajadores + 1
+       
+
+    #ese tostring hay q ver con que va
+
+    
