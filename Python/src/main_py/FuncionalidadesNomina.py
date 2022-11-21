@@ -12,8 +12,14 @@ from sortedcontainers import TreeSet
 
 import datetime
 
+from tkinter import *
+from tkinter import ttk
+
+
 
 from treeset import TreeSet
+
+
 
 class FuncionalidadesNomina(Pedido, Producto, Servicio, Cliente, Gerente, Sueldo, Trabajador):
     def __init__(self, entrada, opcion, salir, mesSeleccionado):
@@ -126,7 +132,7 @@ class FuncionalidadesNomina(Pedido, Producto, Servicio, Cliente, Gerente, Sueldo
         ##SERVICIOS QUE VENDIO EL EMPLEADO
         comisionServiciosTrabajador=0
         totalServicio=0
-        ts= SortedSet(nombresServiciosNoRepetidos)
+        ts= SortedSet(nombresServiciosNoRepetidos)9
         nombresServiciosRepetidos= []
         for e in Pedido.getPedidos():
             if e.getFechaPedido()!=None:
@@ -163,3 +169,64 @@ class FuncionalidadesNomina(Pedido, Producto, Servicio, Cliente, Gerente, Sueldo
         s+="\n-------------------------------"+"\n\nEl sueldo total a pagar del mes de "+meses.get(mesSeleccionado)+" es de: "+total
         return s
     
+##Interfaz gráfica
+def VentanaEntrada():
+    ventanaEntrada = Tk()
+    ventanaEntrada.title("Nómina")
+    ventanaEntrada.geometry("700x500")
+    frame=Frame(ventanaEntrada, width=700, height=500)
+    frame.pack(expand=True)
+    label1= Label(frame, text="Empleado:")
+    entrada1= Entry(frame, textvariable= StringVar)
+    label1.place(x=100, y=200, width=200, height=50)
+    entrada1.place(x=350, y=200, width=200, height=50)
+    button2= Button(ventanaEntrada, text="Salir", command=VentanaInicio)
+    button2.place(x=600, y=400)
+    button1= Button(ventanaEntrada, text="Buscar", command=VentanaFechas)
+    button1.place(x=400, y=400)
+
+def VentanaInicio():
+    ventanaInicio = Tk()
+    ventanaInicio.title("Nómina")
+    ventanaInicio.geometry("700x500")
+    button1= Button(ventanaInicio, text="Buscar", command=VentanaEntrada)
+    label= Label(ventanaInicio, text="BIENVENIDO AL MENU DE NOMINA")
+    label.place(x=100, y=150, width=400, height= 100)
+    button1.place(x=600, y=400)
+
+def VentanaFechas():
+    ventanaFechas = Tk()
+    ventanaFechas.title("Nómina")
+    ventanaFechas.geometry("700x500")
+    label= Label(ventanaFechas, text="Fechas disponibles")
+    label.place(x=100, y=100, width=200, height=100)
+    def changed(event):
+        entrada.delete(0,"end")
+        entrada.insert(0, combo.get())
+    valorDefecto= StringVar(value="Fechas disponibles:")
+    combo= ttk.Combobox(ventanaFechas, values=["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"], textvariable= valorDefecto)
+    combo.bind("a", changed)
+    combo.place(x= 350, y=100, width=100, height=50)
+
+    entrada = Entry(ventanaFechas)
+    entrada.place(x=350, y=200, width= 100, height=50)
+
+
+    
+
+
+ventanaInicio = Tk()
+ventanaInicio.title("Nómina")
+ventanaInicio.geometry("700x500")
+button1= Button(ventanaInicio, text="Buscar", command=VentanaEntrada)
+label= Label(ventanaInicio, text="BIENVENIDO AL MENU DE NOMINA")
+label.place(x=100, y=150, width=400, height= 100)
+button1.place(x=600, y=400)
+ventanaInicio.mainloop()
+
+
+
+
+
+
+ventanaInicio.mainloop()
