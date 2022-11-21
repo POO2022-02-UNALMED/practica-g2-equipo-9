@@ -1,25 +1,28 @@
 
-import gestorAplicacion.gestion.Pedido
-import gestorAplicacion.gestion.Producto
-import gestorAplicacion.gestion.Servicio
-import gestorAplicacion.usuarios.Cliente
-import gestorAplicacion.usuarios.Gerente
-import gestorAplicacion.usuarios.Sueldo
-import gestorAplicacion.usuarios.Trabajador
+from gestorAplicacion.gestion import Pedido
+from gestorAplicacion.gestion import Producto
+from gestorAplicacion.gestion import Servicio
+from gestorAplicacion.usuarios import Cliente
+from gestorAplicacion.usuarios import Gerente
+from gestorAplicacion.usuarios import Sueldo
+from gestorAplicacion.usuarios import Trabajador
+
+from sortedcontainers import SortedSet
+from sortedcontainers import TreeSet
 
 import datetime
 
-from sortedcontainers import SortedList, SortedSet
+
 from treeset import TreeSet
 
-class FuncionalidadesNomina():
+class FuncionalidadesNomina(Pedido, Producto, Servicio, Cliente, Gerente, Sueldo, Trabajador):
     def __init__(self, entrada, opcion, salir, mesSeleccionado):
         self.entrada=entrada
         self.opcion=opcion
         self.salir=salir
         self.mesSeleccionado= mesSeleccionado
 
-    def calculoDeNomina(Pedido, Producto, Servicio, Cliente, Gerente, Suelo, Trabajador):
+    def calculoDeNomina():
         entrada = int(input())
         print("=====================BIENVENIDO AL MENU DE NOMINA====================")
         opcion= opcion
@@ -96,16 +99,16 @@ class FuncionalidadesNomina():
 
 
     
-    def nominaEmpleado(Pedido, Producto, Servicio, Cliente, Gerente, Suelo, Trabajador):
+    def nominaEmpleado():
         ##PRODUCTOS QUE VENDIO EL EMPLEADO
 
-        SortedSet(nombresProductosNoRepetidos)= TreeSet()
+        Ts= SortedSet(nombresProductosNoRepetidos)
         nombresProductosRepetidos= []
         comisionProductosTrabajador=0
         totalProductos=0
         for producto in Producto.getProductos():
             if producto.getFechaVenta()!=None:
-                if producto.getFechaVenta().getMonthValue()==mesSeleccionado and producto.getTrabajador()==trabajadorSeleccionado and producto.getEstado().equals("Vendido")
+                if producto.getFechaVenta().getMonthValue()== mesSeleccionado and producto.getTrabajador()==trabajadorSeleccionado and producto.getEstado().equals("Vendido"):
                     comisionProductosTrabajador+=producto.getPrecioVenta()* Sueldo.porcentajeComisionProductos
                     nombresProductosRepetidos.append(producto.getNombre())
                     nombresProductosNoRepetidos.append(producto.getNombre())
@@ -123,7 +126,7 @@ class FuncionalidadesNomina():
         ##SERVICIOS QUE VENDIO EL EMPLEADO
         comisionServiciosTrabajador=0
         totalServicio=0
-        SortedSet(nombresServiciosNoRepetidos)= TreeSet()
+        ts= SortedSet(nombresServiciosNoRepetidos)
         nombresServiciosRepetidos= []
         for e in Pedido.getPedidos():
             if e.getFechaPedido()!=None:
