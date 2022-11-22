@@ -14,6 +14,7 @@ import datetime
 
 from tkinter import *
 from tkinter import ttk
+from tkinter import font
 
 
 
@@ -132,7 +133,7 @@ class FuncionalidadesNomina(Pedido, Producto, Servicio, Cliente, Gerente, Sueldo
         ##SERVICIOS QUE VENDIO EL EMPLEADO
         comisionServiciosTrabajador=0
         totalServicio=0
-        ts= SortedSet(nombresServiciosNoRepetidos)9
+        ts= SortedSet(nombresServiciosNoRepetidos)
         nombresServiciosRepetidos= []
         for e in Pedido.getPedidos():
             if e.getFechaPedido()!=None:
@@ -177,39 +178,45 @@ def VentanaEntrada():
     frame=Frame(ventanaEntrada, width=700, height=500)
     frame.pack(expand=True)
     label1= Label(frame, text="Empleado:")
+    label1.configure(font=("Courier", 15, "bold","italic"))
     entrada1= Entry(frame, textvariable= StringVar)
     label1.place(x=100, y=200, width=200, height=50)
     entrada1.place(x=350, y=200, width=200, height=50)
     button2= Button(ventanaEntrada, text="Salir", command=VentanaInicio)
-    button2.place(x=600, y=400)
+    button2.configure(font=("Arial", 12, "bold"), bg= "grey")
+    button2.place(x=550, y=400, width=100, height=50)
     button1= Button(ventanaEntrada, text="Buscar", command=VentanaFechas)
-    button1.place(x=400, y=400)
+    button1.configure(font=("Arial", 12, "bold"), bg= "grey")
+    button1.place(x=400, y=400, width=100, height=50)
 
 def VentanaInicio():
     ventanaInicio = Tk()
     ventanaInicio.title("Nómina")
     ventanaInicio.geometry("700x500")
     button1= Button(ventanaInicio, text="Buscar", command=VentanaEntrada)
-    label= Label(ventanaInicio, text="BIENVENIDO AL MENU DE NOMINA")
-    label.place(x=100, y=150, width=400, height= 100)
-    button1.place(x=600, y=400)
+    button1.configure(font=("Arial", 12, "bold"), bg= "grey")
+    label= Label(ventanaInicio, text="BIENVENIDO AL MENÚ DE NÓMINA")
+    label.configure(font=("Courier", 20, "bold","italic"))
+    label.place(x=100, y=150, width=500, height= 100)
+    button1.place(x=550, y=400, width=100, height=50)
 
 def VentanaFechas():
     ventanaFechas = Tk()
     ventanaFechas.title("Nómina")
     ventanaFechas.geometry("700x500")
-    label= Label(ventanaFechas, text="Fechas disponibles")
-    label.place(x=100, y=100, width=200, height=100)
+    label= Label(ventanaFechas, text="Fechas disponibles:")
+    label.configure(font=("Courier", 15, "bold","italic"))
+    label.place(x=100, y=100, width=230, height=100)
     def changed(event):
         entrada.delete(0,"end")
         entrada.insert(0, combo.get())
     valorDefecto= StringVar(value="Fechas disponibles:")
     combo= ttk.Combobox(ventanaFechas, values=["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"], textvariable= valorDefecto)
     combo.bind("a", changed)
-    combo.place(x= 350, y=100, width=100, height=50)
+    combo.place(x= 100, y=250, width=100, height=50)
 
     entrada = Entry(ventanaFechas)
-    entrada.place(x=350, y=200, width= 100, height=50)
+    entrada.place(x=250, y=250, width= 200, height=100)
 
 
     
@@ -218,10 +225,12 @@ def VentanaFechas():
 ventanaInicio = Tk()
 ventanaInicio.title("Nómina")
 ventanaInicio.geometry("700x500")
-button1= Button(ventanaInicio, text="Buscar", command=VentanaEntrada)
-label= Label(ventanaInicio, text="BIENVENIDO AL MENU DE NOMINA")
-label.place(x=100, y=150, width=400, height= 100)
-button1.place(x=600, y=400)
+button1= Button(ventanaInicio, text="Iniciar", command=VentanaEntrada)
+button1.configure(font=("Arial", 12, "bold"), bg= "grey")
+label= Label(ventanaInicio, text="BIENVENIDO AL MENÚ DE NÓMINA")
+label.configure(font=("Courier", 20, "bold","italic"))
+label.place(x=100, y=150, width=500, height= 100)
+button1.place(x=550, y=400, width=100, height=50)
 ventanaInicio.mainloop()
 
 
