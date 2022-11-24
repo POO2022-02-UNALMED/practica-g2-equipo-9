@@ -1,6 +1,8 @@
 import Usuario
+import Sueldo
+from datetime import datetime
 
-class Empleado(Usuario.Usuario):
+class Empleado(Usuario,Sueldo):
 
     _empleados = []
     disponibilidad = True
@@ -9,6 +11,7 @@ class Empleado(Usuario.Usuario):
         super().__init__(codigo,nombre)
         self.cargo = cargo
         self.sueldo = sueldo
+        self.fechaVinculacion=
         self.fechaIngreso = fechaIngreso
         Usuario._usuarios.append(self)
 
@@ -20,11 +23,14 @@ class Empleado(Usuario.Usuario):
     def setCargo(self, Cargo):
         self.cargo = Cargo
 
+        
     def getSueldo(self):
         return self.sueldo
 
     def setSueldo(self, Sueldo):
         self.sueldo = Sueldo
+    def aumentarSueldo(self, porcentajeAumento):
+        self.setSueldo(self.getSueldo()*(1+porcentajeAumento))
 
     def getFechaIngreso(self):
         return self.fechaIngreso
@@ -56,7 +62,10 @@ class Empleado(Usuario.Usuario):
          return "El empleado ", self._nombre, " tiene un sueldo de ",self.sueldo, " y desenpeña el cargo de ", self.cargo, "\n", " , ingreso en la fecha ", self.fechaIngreso, " y No esta disponible actualmente."
 
     def asegurar(self):
-        return "La fecha de vinculacion del trabajador es: ", self.fechaIngreso, ".\nEl nombre del Trabajador es: ", self._nombre
+        pass
+    def calculoDePrima():
+        pass
+
 
 
 

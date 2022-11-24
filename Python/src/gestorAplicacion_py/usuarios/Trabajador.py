@@ -2,7 +2,7 @@ import Empleado
 #from gestorAplicacion_py.gestion.Producto import Producto
 from datetime import datetime
 
-class Trabajador(Empleado.Empleado):
+class Trabajador(Empleado):
 
     _trabajadores = []
     _numeroTrabajadores = 0
@@ -45,9 +45,7 @@ class Trabajador(Empleado.Empleado):
 
 
     def asegurar(self):
-        s =Empleado.asegurar
-        finVinculacion = self.getFechaIngres
-        #preguntar como hacer eso
+        vinculacion=
 
     def calcularPrima(self):
         return self.getSeguro*0.5
