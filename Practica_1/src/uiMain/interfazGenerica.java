@@ -19,7 +19,7 @@ public class interfazGenerica {
     public static void main(String[] args) {
         //SE INICIA EL DESERIALIZADOR Y SUELTA TODOS LOS OBJETOS CREADOS
 
-        Deserializador.deserializarTodo();
+       Deserializador.deserializarTodo();
 
         Pedido.setNumeroPedido(Pedido.getPedidos().size());
         Producto.setNumeroProducto(Producto.getProductos().size());
@@ -28,7 +28,12 @@ public class interfazGenerica {
         Gerente.setNumeroGerente(Gerente.getGerentes().size());
         Trabajador.setNumeroTrabajador(Trabajador.getTrabajadores().size());
 
+<<<<<<< Updated upstream
        Espacio sala1 = new Espacio("Sala 1");
+=======
+
+        Espacio sala1 = new Espacio("Sala 1");
+>>>>>>> Stashed changes
         Espacio sala2 = new Espacio("Sala 2");
         Espacio sala3 = new Espacio("Sala 3");
 
