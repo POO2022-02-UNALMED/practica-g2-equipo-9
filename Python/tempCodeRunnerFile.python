@@ -1,0 +1,10 @@
+class ser():
+    def __init__(self,nombre,numero,cedula):
+        self.nombre=nombre
+        self.numero=numero
+        self.cedula=cedula
+
+if __name__ == '__main__':
+    sergio=ser("sergio",301,1143404871)
+
+    print(sergio.cedula)

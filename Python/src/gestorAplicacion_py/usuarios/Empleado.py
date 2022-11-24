@@ -66,6 +66,9 @@ class Empleado(Usuario,Sueldo):
     def calculoDePrima():
         pass
 
+#if __name__ == '__main__':
+#   print(4)
+     
 
 
 

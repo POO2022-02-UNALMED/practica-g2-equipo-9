@@ -1,4 +1,3 @@
-from gestorAplicacion_py.usuarios.Usuario import Usuario
 class Usuario():
 
     _usuarios = []
@@ -37,6 +36,8 @@ class Usuario():
     #otros metodos
     def generarCodigo():
         pass
+
+
 
 
 

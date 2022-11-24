@@ -1,9 +1,7 @@
 from gestorAplicacion_py.usuarios.Empleado import Empleado
-from gestorAplicacion_py.usuarios.Sueldo import Sueldo
 
 
 from datetime import datetime,timedelta
-from dateutil.relativedelta import relativedelta
 
 #from gestorAplicacion_py.gestion.Producto import Producto
 
@@ -17,6 +15,7 @@ class Trabajador(Empleado):
         super().__init__(fechaVinculacion,codigo,nombre,"Trabajador",self.getSueldo)
         self._seguro =6
         Trabajador._trabajadores.append(self)
+        
         
 
 
@@ -53,6 +52,8 @@ class Trabajador(Empleado):
         return cls._numeroTrabajadores + 1
        
 
-    #ese tostring hay q ver con que va
+
+
+
 
     
