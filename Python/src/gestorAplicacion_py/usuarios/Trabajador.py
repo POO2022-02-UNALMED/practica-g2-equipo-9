@@ -1,25 +1,24 @@
-import Empleado
+from gestorAplicacion_py.usuarios.Empleado import Empleado
+from gestorAplicacion_py.usuarios.Sueldo import Sueldo
+
+
+from datetime import datetime,timedelta
+from dateutil.relativedelta import relativedelta
+
 #from gestorAplicacion_py.gestion.Producto import Producto
-from datetime import datetime
+
 
 class Trabajador(Empleado):
 
     _trabajadores = []
-    _numeroTrabajadores = 0
 
-    def __init__(self, codigo,nombre,cargo,sueldo,fechaIngreso,saldoFinal,seguro=6):
-        super().__init__(codigo,nombre,"Trabajador",cargo,sueldo,fechaIngreso)
-        self._saldoFinal = saldoFinal
-        self._seguro = seguro
-        # falta colocar generar codigo
-        Empleado._empleados.append(self)
+
+    def __init__(self,codigo,nombre,fechaVinculacion):
+        super().__init__(fechaVinculacion,codigo,nombre,"Trabajador",self.getSueldo)
+        self._seguro =6
         Trabajador._trabajadores.append(self)
         
-    def getSaldoFinal(self):
-        return self._saldoFinal
 
-    def setSaldoFinal(self,saldoFinal):
-        self._saldoFinal = saldoFinal
 
     def getSeguro(self):
         return self._seguro
@@ -35,20 +34,19 @@ class Trabajador(Empleado):
     def setTrabajadores(cls,trabajadores):
         cls._trabajadores = trabajadores
 
-    @classmethod
-    def getNumeroTrabajadores(cls):
-        return cls._numeroTrabajadores
 
-    @classmethod
-    def setNumeroTrabajadores(cls,trabajadores):
-        cls._numeroTrabajadores = trabajadores
 
 
     def asegurar(self):
-        vinculacion=
+        vinculacion=self.getFechaVinculacion
+        finVinculacion=self.getFechaVinculacion+relativedelta(months=self.getSeguro)
+        if datetime.now()>finVinculacion:
+            return "Trabajador "+self.getNombre()+" tiene vencido el seguro, este vencio en la fecha "+finVinculacion
+        else:
+            return "Trabajador "+self.getNombre()+", lo cubre el seguro desde la fecha "+vinculacion+" hasta la fecha "+finVinculacion
 
     def calcularPrima(self):
-        return self.getSeguro*0.5
+        return self.getSeguro()*0.5
 
     @classmethod
     def generarCodigo(cls):

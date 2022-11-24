@@ -1,5 +1,5 @@
-import Usuario
-import Sueldo
+from gestorAplicacion_py.usuarios.Usuario import Usuario
+from gestorAplicacion_py.usuarios.Sueldo import Sueldo
 from datetime import datetime
 
 class Empleado(Usuario,Sueldo):
@@ -7,36 +7,36 @@ class Empleado(Usuario,Sueldo):
     _empleados = []
     disponibilidad = True
 
-    def __init__(self,codigo,nombre,cargo,sueldo,fechaIngreso):
+    def __init__(self,fechaVinculacion,codigo,nombre,cargo,sueldo):
         super().__init__(codigo,nombre)
-        self.cargo = cargo
-        self.sueldo = sueldo
-        self.fechaVinculacion=
-        self.fechaIngreso = fechaIngreso
+        self._cargo = cargo
+        self._sueldo = sueldo
+        self._fechaVinculacion= fechaVinculacion
         Usuario._usuarios.append(self)
+        
+        
 
   
-
+        
     def getCargo(self):
         return self.cargo
 
-    def setCargo(self, Cargo):
-        self.cargo = Cargo
-
+    def setCargo(self, cargo):
+        self.cargo = cargo
         
     def getSueldo(self):
-        return self.sueldo
+        return self._sueldo
 
-    def setSueldo(self, Sueldo):
-        self.sueldo = Sueldo
+    def setSueldo(self, sueldo):
+        self._sueldo = sueldo
+
     def aumentarSueldo(self, porcentajeAumento):
         self.setSueldo(self.getSueldo()*(1+porcentajeAumento))
 
-    def getFechaIngreso(self):
-        return self.fechaIngreso
-
-    def setFechaIngreso(self, FechaIngreso):
-        self.fechaIngreso = FechaIngreso
+    def getFechaVinculacion(self):
+        return self._fechaVinculacion
+    def setFechaVinculacion(self,fechaVinculacion):
+        self._fechaVinculacion=fechaVinculacion
 
     @classmethod
     def getlista_empleados(cls):
