@@ -1,4 +1,4 @@
-from Usuario import Usuario
+from Python.src.gestorAplicacion_py.usuarios.Usuario import Usuario
 #from Python.src.gestorAplicacion_py.usuarios.Sueldo import Sueldo
 from datetime import datetime
 import os

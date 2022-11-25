@@ -1,9 +1,9 @@
-from Empleado import Empleado
+from Python.src.gestorAplicacion_py.usuarios.Empleado import Empleado
 
 
 from datetime import datetime,timedelta
 
-from gestorAplicacion_py.gestion.Producto import Producto
+from Python.src.gestorAplicacion_py.gestion.Producto import Producto
 
 
 class Trabajador(Empleado):

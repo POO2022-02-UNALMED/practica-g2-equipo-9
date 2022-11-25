@@ -1,5 +1,6 @@
 from tkinter import *
 from tkinter.font import Font
+from Python.src.gestorAplicacion_py.usuarios.Trabajador import Trabajador
 
 
 root = Tk()

@@ -3,7 +3,7 @@ class Producto:
     _productos = []
     _numeroProducto = 0
 
-def __init__(self,trabajador = None, cliente = None, estado ="", fecchaVenta = None, tipo="" ):
+def __init__(self, nombre, precioVenta, codigo, trabajador = None, cliente = None, estado ="", fechaVenta = None, tipo="" ):
     self._trabajador = trabajador
     self._cliente = cliente
     self._estado = estado 
@@ -46,7 +46,7 @@ def getPrecioVenta(self):
 def setPrecioVenta(self, precioVenta):
     self._precioVenta = precioVenta 
 
-def getCodigo(Self):
+def getCodigo(self):
     return self._codigo
 
 def setCodigo(self, codigo):
@@ -73,12 +73,12 @@ def setProductos(cls, productos):
     cls.productos = productos
 
 @classmethod
-    def getNumeroProductos(cls):
-        return cls._numeroProducto
+def getNumeroProductos(cls):
+    return cls._numeroProducto
 
 @classmethod
-    def setNumeroPedido(cls, numeroProducto):
-        cls._numeroProducto = numeroProducto
+def setNumeroPedido(cls, numeroProducto):
+    cls._numeroProducto = numeroProducto
 
 
 
