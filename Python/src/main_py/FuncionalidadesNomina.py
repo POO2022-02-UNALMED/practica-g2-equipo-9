@@ -1,14 +1,14 @@
 
-from gestorAplicacion.gestion import Pedido
-from gestorAplicacion.gestion import Producto
-from gestorAplicacion.gestion import Servicio
-from gestorAplicacion.usuarios import Cliente
-from gestorAplicacion.usuarios import Gerente
-from gestorAplicacion.usuarios import Sueldo
-from gestorAplicacion.usuarios import Trabajador
+from Python.src.gestorAplicacion_py.gestion.Pedido import Pedido
+from Python.src.gestorAplicacion_py.gestion.Producto import Producto
+from Python.src.gestorAplicacion_py.gestion.Servicio import *
+from Python.src.gestorAplicacion_py.usuarios.Cliente import Cliente
+from Python.src.gestorAplicacion_py.usuarios.Gerente import Gerente
+from Python.src.gestorAplicacion_py.usuarios.Sueldo import Sueldo
+from Python.src.gestorAplicacion_py.usuarios.Trabajador import Trabajador
 
 from sortedcontainers import SortedSet
-from sortedcontainers import TreeSet
+#from sortedcontainers import TreeSet
 
 import datetime
 
@@ -18,7 +18,7 @@ from tkinter import font
 
 
 
-from treeset import TreeSet
+#from treeset import TreeSet
 
 
 
@@ -239,3 +239,5 @@ ventanaInicio.mainloop()
 
 
 ventanaInicio.mainloop()
+if __name__ == '__main__':
+    ventanaInicio.mainloop()

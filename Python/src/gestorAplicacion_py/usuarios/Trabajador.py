@@ -1,9 +1,9 @@
-from gestorAplicacion_py.usuarios.Empleado import Empleado
+from Empleado import Empleado
 
 
 from datetime import datetime,timedelta
 
-#from gestorAplicacion_py.gestion.Producto import Producto
+from gestorAplicacion_py.gestion.Producto import Producto
 
 
 class Trabajador(Empleado):
@@ -50,6 +50,7 @@ class Trabajador(Empleado):
     @classmethod
     def generarCodigo(cls):
         return cls._numeroTrabajadores + 1
+
        
 
 

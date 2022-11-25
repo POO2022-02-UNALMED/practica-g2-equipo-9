@@ -1,4 +1,4 @@
-import Usuario
+from Usuario import Usuario
 
 from gestorAplicacion_py.gestion.Pedido import *
 class Cliente(Usuario.Usuario):

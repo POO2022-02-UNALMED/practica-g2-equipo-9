@@ -45,5 +45,6 @@ ventanaPrincipalButon.pack(fill='x', side='bottom')
 
 
 
+if __name__ == '__main__':
+    root.mainloop()
 
-root.mainloop()

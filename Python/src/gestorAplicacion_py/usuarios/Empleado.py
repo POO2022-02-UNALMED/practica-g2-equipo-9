@@ -1,8 +1,11 @@
-from gestorAplicacion_py.usuarios.Usuario import Usuario
-from gestorAplicacion_py.usuarios.Sueldo import Sueldo
+from Usuario import Usuario
+#from Python.src.gestorAplicacion_py.usuarios.Sueldo import Sueldo
 from datetime import datetime
+import os
+def Sueldo():
+    return 0
 
-class Empleado(Usuario,Sueldo):
+class Empleado(Usuario):
 
     _empleados = []
     disponibilidad = True
@@ -66,8 +69,7 @@ class Empleado(Usuario,Sueldo):
     def calculoDePrima():
         pass
 
-#if __name__ == '__main__':
-#   print(4)
+print(os.path.exists('Sueldo.py'))
      
 
 
