@@ -38,7 +38,7 @@ class Trabajador(Empleado):
 
     def asegurar(self):
         vinculacion=self.getFechaVinculacion
-        finVinculacion=self.getFechaVinculacion+relativedelta(months=self.getSeguro)
+        finVinculacion=self.getFechaVinculacion+timedelta(days=self.seguro*30)
         if datetime.now()>finVinculacion:
             return "Trabajador "+self.getNombre()+" tiene vencido el seguro, este vencio en la fecha "+finVinculacion
         else:
@@ -50,6 +50,11 @@ class Trabajador(Empleado):
     @classmethod
     def generarCodigo(cls):
         return cls._numeroTrabajadores + 1
+<<<<<<< Updated upstream
+=======
+    
+
+>>>>>>> Stashed changes
 
        
 
