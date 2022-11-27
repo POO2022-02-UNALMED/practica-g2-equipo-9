@@ -65,4 +65,5 @@ class Trabajador(Empleado):
         return cls._numeroTrabajadores + 1
 
 
+
     
