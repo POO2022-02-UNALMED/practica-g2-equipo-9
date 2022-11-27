@@ -50,13 +50,6 @@ class Trabajador(Empleado):
     @classmethod
     def generarCodigo(cls):
         return cls._numeroTrabajadores + 1
-<<<<<<< Updated upstream
-=======
-    
-
->>>>>>> Stashed changes
-
-       
 
 
 
