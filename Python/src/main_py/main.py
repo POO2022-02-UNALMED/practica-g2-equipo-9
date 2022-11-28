@@ -4,8 +4,7 @@ from tkinter.font import Font
 root = Tk()
 root.resizable(0, 0)  # Manterner la ventana con tamaño fijo
 
-frameP1 = Frame(root, background='black')
-frameP2 = Frame(root, background='black')
+
 
 ##funciones para eventos
 lista_img=[PhotoImage(file='img1.png'), PhotoImage(file='img2.png'), PhotoImage(file='img3.gif'), PhotoImage(file='img4.gif'), PhotoImage(file='img5.png')]
@@ -35,16 +34,19 @@ def evento():
 def salir():
     root.destroy()
 
-
-
 def limpiarVentana():
-    for widget in frameP1.winfo_children():
+    for widget in root.winfo_children():
         widget.destroy()
-    for widget in frameP2.winfo_children():
-        widget.destroy()
+
 
 def dibujar_ventana_inicio():
     limpiarVentana()
+    frameP1 = Frame(root, background='black')
+    frameP2 = Frame(root, background='black')
+
+
+
+
     frameP1.config(width=400, height=400, padx=5, pady=5, borderwidth=2, relief='groove')
     frameP1.pack(side='left')
     frameP2.config(padx=5, borderwidth=2, relief='groove')
@@ -162,24 +164,32 @@ def dibujar_ventana_inicio():
 
     Inicio.add_command(label='Descripcion', command=mostrarDescripcion)
     ventanaPrincipalButon.config(command=dibujar_ventana_usuario)
-user_img = PhotoImage(file='user_img.png')
+
 def dibujar_ventana_usuario():
     limpiarVentana()
-    frameP1.columnconfigure(2);
-    frameP1.rowconfigure(4);
-    imgLabel = Label(frameP2, width=400, height=550);
-    imgLabel.config(image=user_img);
-    imgLabel.pack();
-    regresarBoton = Button(frameP1, text='Regresar al\n menu principal', bg='#0B5345', fg='#A2D9CE',
-                        borderwidth=5, relief='groove')
+    root.title('UN Bar')
 
-    regresarBoton.grid(row=3, column=0);
-    regresarBoton.config(command=dibujar_ventana_inicio)
+    menuBar = Menu(root)
+    root.config(menu=menuBar)
 
-    reservaBoton = Button(frameP1, text='Realizar / Modificar\n Reserva',bg='#0B5345', fg='#A2D9CE',borderwidth=5, relief='groove'  )
-    reservaBoton.config(pady=10)
-    reservaBoton.grid(row=1, column=0)
+    Archivo = Menu(menuBar)
+    menuBar.add_cascade(label="Inicio", menu=Archivo, command=evento)
+    Archivo.add_command(label='Aplicacion')
+    Archivo.add_command(label='Salir', command=dibujar_ventana_inicio)
 
+    Procesos_Consultas = Menu(menuBar)
+    menuBar.add_cascade(label='Procesos y consultas', menu=Procesos_Consultas, command=evento)
+    Procesos_Consultas.add_command(label='Realizar reserva')
+    Procesos_Consultas.add_command(label='Modificar reserva')
+    Procesos_Consultas.add_command(label='Gestionar nomina')
+
+    Ayuda = Menu(menuBar)
+    menuBar.add_cascade(label='Ayuda', menu=Ayuda, command=evento)
+    Ayuda.add_command(label='Acerca de')
+    def aplicacionDialog():
+        pass
+
+user_img = PhotoImage(file='user_img.png')
 
 
 
