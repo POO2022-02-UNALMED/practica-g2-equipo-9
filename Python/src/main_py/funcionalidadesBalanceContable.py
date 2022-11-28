@@ -1,1 +1,0 @@
-from Python.src.gestorAplicacion_py.gestion.Pedido import

@@ -1,23 +1,23 @@
-import Empleado
+from Python.src.gestorAplicacion_py.usuarios.Empleado import Empleado
+from Python.src.gestorAplicacion_py.usuarios.Sueldo import Sueldo
 
-class Gerente(Empleado.Empleado):
+class Gerente(Empleado,Sueldo):
 
     _numeroGerente=0
     _Gerentes = []
 
-    def __init__(self, codigo, nombre, cargo, sueldo, fechaIngreso, _seguro):
-        super().__init__(codigo, nombre, cargo, sueldo, fechaIngreso)
+    _seguro=12
+    def __init__(self, codigo, nombre, cargo, fechaVinculacion):
+        super().__init__(fechaVinculacion,codigo,nombre,"Gerente",Sueldo.sueldoBase*0.5)
 
-        self._seguro = _seguro
+
 
     #preguntar por lo del genetrador de codigo
 
-    def generarCodigo(cls):
-        return  cls._numeroGerente+1
 
     #ToString
     def __str__(self):
-        return "Codigo: ", {self._codigo}, " Nombre ", {self._nombre}, " fecha vinculacion ", {self.fechaIngreso}
+        return "Codigo: ", self.getCodigo(), " Nombre ", self.getNombre(), " fecha vinculacion ", self.getFechaVinculacion()
 
     #preguntar por la funcion de asegurar
 

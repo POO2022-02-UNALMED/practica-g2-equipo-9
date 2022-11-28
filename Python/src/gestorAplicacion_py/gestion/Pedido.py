@@ -36,7 +36,7 @@ class Pedido:
         self._fechaPedido = fechaPedido #fecha del pedido
         self._codigo = codigo           #codigo del pedido
         self._pedidos.append(self)
-        self._numeroPedido+=1
+        Pedido._numeroPedido+=1
 
 
     #GETTERS Y SETTERS
@@ -66,13 +66,12 @@ class Pedido:
         return self._estadoPedido
 
     @staticmethod
-    def getTotalPedidos(self):
-        return self._numeroPedido
+    def getTotalPedidos():
+        return Pedido._numeroPedido
 
     @staticmethod
-    def setTotalPedidos(self, numeroPedido):
-        self._numeroPedido=numeroPedido
-
+    def setTotalPedidos(numeroPedido):
+        Pedido._numeroPedido=numeroPedido
 
     def setEstadoPedido(self, estadoPedido):
         self._estadoPedido = estadoPedido
@@ -102,6 +101,6 @@ class Pedido:
     def setServicios(self, servicios):
         self._servicios = servicios
 
-    
+
 
 

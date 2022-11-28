@@ -18,6 +18,9 @@ class Trabajador(Empleado):
         self._saldoFinal=_saldoFinal
         
         Trabajador._trabajadores.append(self)
+
+
+
         
         
     def getSeguro(self):
@@ -25,6 +28,7 @@ class Trabajador(Empleado):
 
     def setSeguro(self,seguro):
         self._seguro = seguro
+
 
     def getSaldoFinal(self):
         return self._saldoFinal

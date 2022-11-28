@@ -1,10 +1,9 @@
-from Usuario import Usuario
 
-from gestorAplicacion_py.gestion.Pedido import *
-class Cliente(Usuario.Usuario):
+
+from Python.src.gestorAplicacion_py.usuarios.Usuario import Usuario
+class Cliente(Usuario):
 
     _clientes = []
-    _historialpedidos = []
     _numeroCliente = 0
 
 # preguntar que hago con ese constructor
@@ -13,27 +12,18 @@ class Cliente(Usuario.Usuario):
         self._numeroReserva = numeroReserva
         self._estadoReserva = estadoReserva
         self._reserva = reserva
-
         Cliente._clientes.append(self)
-
-    def generarCodigo(cls):
-       return cls._numeroCliente+1
+        Cliente._numeroCliente+=1
 
     @classmethod
     def getClientes(cls):
-        return cls._clientes
+        return Cliente._clientes
+
 
     @classmethod
-    def setClientes(cls,Clientes):
-        cls._clientes = Clientes
+    def setClientes(Clientes):
+        Cliente._clientes = Clientes
 
-    @classmethod
-    def getHistorialPedidos(cls):
-        return cls._historialpedidos
-
-    @classmethod
-    def setHistorialPedidos(cls,historial):
-        cls._historialpedidos = historial
 
     @classmethod
     def getNumeroClientes(cls):
@@ -49,6 +39,7 @@ class Cliente(Usuario.Usuario):
     def setNumeroReserva(self,numeroReserva):
         self._numeroReserva = numeroReserva
 
+
     def getEstadoReserva(self):
         return self._estadoReserva
         
@@ -61,17 +52,9 @@ class Cliente(Usuario.Usuario):
     def setReserva(self,reserva):
         self._reserva = reserva
 
-
-    def agregarPedidoHistorial(Pedido):
-        Cliente._historialpedidos.append(Pedido)
-
-    def informacion(cls,self):
-        return print("El cliente {self._nombre} con número de reserva, {self._numeroReserva}, y estado de la reserva, {self._estadoReserva}, Ha hecho, {cls._historialpedidos} pedidos en el sistema.")
+    def informacion(self):
+        return "Cliente con nombre "+self.getNombre()+" y codigo "+self.getCodigo()
 
 
-    def mostrarClientesRegistrados(cls, self):
-        k = 0
-        while k < len(cls._clientes):
-            return print(cls._clientes[k].self.nombre)
-            k+1
+
 
