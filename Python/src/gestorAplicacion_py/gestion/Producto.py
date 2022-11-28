@@ -108,8 +108,8 @@ class Producto:
     def setProductos(productos):
         Producto._productos=productos
 
-<<<<<<< Updated upstream
-=======
+
+
     def getTrabajador(self):
         return self._trabajador
 
@@ -301,6 +301,3 @@ def agregarProducto(nombre, cantidad, listaProductos):
         else:
             break
     return productosEscogidos
->>>>>>> Stashed changes
-
-
