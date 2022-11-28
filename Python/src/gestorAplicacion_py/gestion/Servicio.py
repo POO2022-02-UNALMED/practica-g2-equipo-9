@@ -1,6 +1,6 @@
 from enum import Enum
 
-class servicip(Enum):
+class servicio(Enum):
     BARMAN=200
     COCKTAILCHALLENGE=300
     MESEROEXCLUSIVO=400
@@ -66,3 +66,5 @@ class servicip(Enum):
         if cantidadEscogida>=0 and cantidadEscogida<=Collections.frequency(serviciosPedidos,servicio):
             existe=True
         return existe
+
+

@@ -10,19 +10,6 @@ from Python.src.gestorAplicacion_py.usuarios import *
 
 class Producto:
 
-    def _initialize_instance_fields(self):
-        
-        self._trabajador = None
-        self._cliente = None
-        self._estado = None
-        self._nombre = None
-        self._precioVenta = 0
-        self._codigo = 0
-        self._fechaVenta = None
-        self._tipo = 0
-
-
-    _SERIALVERSIONUID = 1
 
 
     #ATRIBUTOS INSTANCIA
@@ -44,61 +31,19 @@ class Producto:
 
 
 
-
-
     #CONSTRUCTOR
 
-
-    def __init__(self):
-        self._initialize_instance_fields()
-
-        Producto._numeroProducto += 1
-        self._codigo = Producto._numeroProducto
-        #_productos.append(self)
-
-    def __init__(self, nombre, estado, precioVenta, tipo):
-        self()
+    def __init__(self, nombre, estado, precioVenta,mesVenta,tipo, trabajador,codigo):
         self._nombre = nombre
-        self._estado=estado
+        self._estado=estado #"VENDIDO" "NO VENDIDO"
         self._precioVenta = precioVenta
+        self._mesVenta=mesVenta
         self._tipo = tipo
-        Producto.categorizarProducto(self)
-
-
-    def __init__(self, trabajador, estado, nombre, precioVenta, fechaVenta):
-        self._initialize_instance_fields()
-
         self._trabajador = trabajador
-        self._estado = estado
-        self._nombre = nombre
-        self._precioVenta = precioVenta
-        self._codigo = Producto.generarCodigo()
-        self._fechaVenta = fechaVenta
-        Producto._productos.append(self)
+        self._codigo=codigo
+        self._productos.append(self)
+        Producto._numeroProducto+=1
 
-
-    def __init__(self, trabajador, cliente, estado, nombre, precioVenta, fechaVenta, tipo):
-        self._initialize_instance_fields()
-
-        Producto._numeroProducto += 1
-        self._trabajador = trabajador
-        self._cliente = cliente
-        self._estado = estado
-        self._nombre = nombre
-        self._precioVenta = precioVenta
-        self._codigo = Producto._numeroProducto
-        self._fechaVenta = fechaVenta
-        self._tipo = tipo
-        Producto._productos.append(self)
-        Producto.categorizarProducto(self)
-
-
-    @staticmethod
-    def generarCodigo():
-
-        tempVar = Producto._numeroProducto
-        Producto._numeroProducto += 1
-        return tempVar
 
 
     def descripcionProducto(self):
@@ -112,17 +57,40 @@ class Producto:
     def setNombre(self, nombre):
         self._nombre = nombre
 
+    def getEstado(self):
+        return self._estado
+
+    def setEstado(self, estado):
+        self._estado=estado
+
+
     def getPrecioVenta(self):
         return self._precioVenta
 
     def setPrecioVenta(self, precioVenta):
         self._precioVenta = precioVenta
 
+
+    def getMesVenta(self):
+        return self._mesVenta
+    def seMesVenta(self,mesventa):
+        self._mesVenta=mesventa
+
+
+    def getTipo(self):
+        return self._tipo
+    def setTipo(self,tipo):
+        self._tipo=tipo
+
+    def getTrabajador(self):
+        return self._trabajador
+    def setTrabajador(self,trabajador):
+        self._trabajador=trabajador
+
     def getCodigo(self):
         return self._codigo
-
-    def setCodigo(self, codigo):
-        self._codigo = codigo
+    def setCodigo(self,codigo):
+        self._codigo=codigo
 
     @staticmethod
     def getNumeroProducto():
@@ -132,14 +100,15 @@ class Producto:
     def setNumeroProducto(numeroProducto):
         Producto._numeroProducto = numeroProducto
 
-
     @staticmethod
     def getProductos():
         return Producto._productos
 
     @staticmethod
     def setProductos(productos):
-        Producto._productos = productos
+        Producto._productos=productos
+
+
 
     def getTrabajador(self):
         return self._trabajador
@@ -163,5 +132,172 @@ class Producto:
 
     def getTipo(self):
         return self._tipo
+    
+    @staticmethod
+    def getBebidasAlcoholicas():
+        return bebidasAlcoholicas
+
+    @staticmethod
+    def setBebidasAlcoholicas(bebidasAlcoholicas):
+        Producto.bebidasAlcoholicas = bebidasAlcoholicas
+
+    @staticmethod
+    def getBebidasNoAlcoholicas():
+        return bebidasNoAlcoholicas
+
+    @staticmethod
+    def setBebidasNoAlcoholicas(bebidasNoAlcoholicas):
+        Producto.bebidasNoAlcoholicas = bebidasNoAlcoholicas
+
+    @staticmethod
+    def getComidas():
+        return comidas
+
+    @staticmethod
+    def setComidas(comidas):
+        Producto.comidas = comidas
+
+    @staticmethod
+    def getSnacks():
+        return snacks
+
+    @staticmethod
+    def setSnacks(snacks):
+        Producto.snacks = snacks
+
+    @staticmethod
+    def getCigarrillos():
+        return cigarrillos
+
+    @staticmethod
+    def setCigarrillos(cigarrillos):
+        Producto.cigarrillos = cigarrillos
+
+    @staticmethod
+    def getEnergizantes():
+        return energizantes
+
+    @staticmethod
+    def setEnergizantes(energizantes):
+        Producto.energizantes = energizantes
+
+    @staticmethod
+    def getOtrosProductos():
+        return otrosProductos
+
+    @staticmethod
+    def setOtrosProductos(otrosProductos):
+        Producto.otrosProductos = otrosProductos
+
+    def getFechaVenta(self):
+        return fechaVenta
+
+    def setFechaVenta(self, fechaVenta):
+        self.fechaVenta = fechaVenta
+
+    @staticmethod
+    def categorizarProducto(producto):
+        if producto.tipo == 1:
+            Producto.verificarExistenciaCategoria(Producto.bebidasAlcoholicas, producto)
+        elif producto.tipo == 2:
+            Producto.verificarExistenciaCategoria(Producto.bebidasNoAlcoholicas, producto)
+        elif producto.tipo == 3:
+            Producto.verificarExistenciaCategoria(Producto.comidas, producto)
+        elif producto.tipo == 4:
+            Producto.verificarExistenciaCategoria(Producto.snacks, producto)
+        elif producto.tipo == 5:
+            Producto.verificarExistenciaCategoria(Producto.cigarrillos, producto)
+        elif producto.tipo == 6:
+            Producto.verificarExistenciaCategoria(Producto.energizantes, producto)
+        elif producto.tipo == 7:
+            Producto.verificarExistenciaCategoria(Producto.otrosProductos, producto)
+
+@staticmethod
+def verificarExistenciaCategoria(lista, producto):
+    try:
+        for value in lista:
+            if value.getNombre() is producto.getNombre():
+                return
+        lista.append(producto)
+
+    except Exception as e:
+
+        pass
 
 
+
+@staticmethod
+def mostrarProductosDisponibles(listaProducto):
+    s = "Este es el inventario de productos disponibles para vender:" + "\nNombre, Cantidad, Precio:"
+    productosDisponiblesNoRepetidos = TreeSet()
+    productosDisponiblesRepetidos = []
+    listaPrecios = {}
+    for producto in listaProducto:
+        productosDisponiblesNoRepetidos.add(producto.getNombre())
+        productosDisponiblesRepetidos.append(producto.getNombre())
+        if producto.getNombre() in listaPrecios.keys() == False:
+            listaPrecios[producto.getNombre()] = producto.getPrecioVenta()
+    i = 1
+    for nombre in productosDisponiblesNoRepetidos:
+        s += "\n" + str(i) + ". Nombre: " + nombre + ", Cantidad: " + Collections.frequency(productosDisponiblesRepetidos, nombre) + ", Precio: " + str(listaPrecios[nombre])
+        i += 1
+    return s
+
+@staticmethod
+def mostrarNombresCantidadPrecio(productosPedidos):
+    s = "Pedido de Productos: " + "\nNombre, Cantidad, Precio:"
+    nombresNoRepetidos = TreeSet()
+    nombresRepetidos = []
+    listaPrecios = {}
+    valorTotal = 0
+    for producto in productosPedidos:
+        nombresNoRepetidos.add(producto.getNombre())
+        nombresRepetidos.append(producto.getNombre())
+        if producto.getNombre() in listaPrecios.keys() == False:
+            listaPrecios[producto.getNombre()] = producto.getPrecioVenta()
+        valorTotal += producto.getPrecioVenta()
+    i = 1
+    for nombre in nombresNoRepetidos:
+        s += "\n" + str(i) + ". Nombre: " + nombre + ", Cantidad: " + Collections.frequency(nombresRepetidos, nombre) + ", Precio: " + Collections.frequency(nombresRepetidos, nombre) * listaPrecios[nombre]
+        i += 1
+    s += "\nValor total de productos= " + str(valorTotal)
+    return s
+@staticmethod
+def productosDisponibles(Inventario):
+    productosDisponibles = []
+    for producto in Inventario:
+        if producto.getEstado() is "No vendido" and producto.getFechaVenta() is None:
+            productosDisponibles.append(producto)
+    return productosDisponibles
+
+@staticmethod
+def verificarProducto(nombre, listaProductos):
+    existe = False
+    for producto in listaProductos:
+        if producto.getNombre() is nombre:
+            existe = True
+            break
+    return existe
+
+@staticmethod
+def verificarProducto(nombre, cantidad, listaProductos):
+    existe = False
+    nombresProducto = []
+    for producto in listaProductos:
+        nombresProducto.append(producto.getNombre())
+    if cantidad >= 0 and cantidad <= Collections.frequency(nombresProducto, nombre):
+        existe = True
+    return existe
+
+@staticmethod
+def agregarProducto(nombre, cantidad, listaProductos):
+    productosEscogidos = []
+    contador = 0
+    for producto in listaProductos:
+        if contador < cantidad:
+            if producto.getNombre() is nombre:
+                productosEscogidos.append(producto)
+                contador += 1
+        else:
+            break
+    return productosEscogidos
