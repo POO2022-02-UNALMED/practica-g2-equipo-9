@@ -54,7 +54,7 @@ class Producto:
 
         Producto._numeroProducto += 1
         self._codigo = Producto._numeroProducto
-        gestorAplicacion.gestion.Producto._productos.append(self)
+        #_productos.append(self)
 
     def __init__(self, nombre, estado, precioVenta, tipo):
         self()
@@ -62,7 +62,7 @@ class Producto:
         self._estado=estado
         self._precioVenta = precioVenta
         self._tipo = tipo
-        gestorAplicacion.gestion.Producto.categorizarProducto(self)
+        Producto.categorizarProducto(self)
 
 
     def __init__(self, trabajador, estado, nombre, precioVenta, fechaVenta):
@@ -72,9 +72,9 @@ class Producto:
         self._estado = estado
         self._nombre = nombre
         self._precioVenta = precioVenta
-        self._codigo = gestorAplicacion.gestion.Producto.generarCodigo()
+        self._codigo = Producto.generarCodigo()
         self._fechaVenta = fechaVenta
-        gestorAplicacion.gestion.Producto._productos.append(self)
+        Producto._productos.append(self)
 
 
     def __init__(self, trabajador, cliente, estado, nombre, precioVenta, fechaVenta, tipo):
@@ -89,15 +89,15 @@ class Producto:
         self._codigo = Producto._numeroProducto
         self._fechaVenta = fechaVenta
         self._tipo = tipo
-        gestorAplicacion.gestion.Producto._productos.append(self)
-        gestorAplicacion.gestion.Producto.categorizarProducto(self)
+        Producto._productos.append(self)
+        Producto.categorizarProducto(self)
 
 
     @staticmethod
     def generarCodigo():
 
-        tempVar = gestorAplicacion.gestion.Producto._numeroProducto
-        gestorAplicacion.gestion.Producto._numeroProducto += 1
+        tempVar = Producto._numeroProducto
+        Producto._numeroProducto += 1
         return tempVar
 
 
@@ -126,7 +126,7 @@ class Producto:
 
     @staticmethod
     def getNumeroProducto():
-        return gestorAplicacion.gestion.Producto._numeroProducto
+        return Producto._numeroProducto
 
     @staticmethod
     def setNumeroProducto(numeroProducto):
@@ -135,7 +135,7 @@ class Producto:
 
     @staticmethod
     def getProductos():
-        return gestorAplicacion.gestion.Producto._productos
+        return Producto._productos
 
     @staticmethod
     def setProductos(productos):
