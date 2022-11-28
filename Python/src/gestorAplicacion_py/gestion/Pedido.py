@@ -101,6 +101,84 @@ class Pedido:
     def setServicios(self, servicios):
         self._servicios = servicios
 
+    def setCodigo(self, codigo):
+        self.codigo = codigo
+
+#OTROS METODOS
+    def generarCodigo(self):
+
+        tempVar = numeroPedido
+        numeroPedido += 1
+        return tempVar
+
+
+
+    def generarFactura(self):
+        productos ="Productos: " + "\nNombre........Cantidad.......Precio"
+        nombreYprecio = {}
+        totalProductos = 0
+        nombre = []
+        for producto in self.getProductos():
+            if producto.getNombre() in nombreYprecio.keys() == False:
+                nombreYprecio[producto.getNombre()] = producto.getPrecioVenta()
+            nombre.append(producto.getNombre())
+            totalProductos += producto.getPrecioVenta()
+        i = 1
+        for clave in nombreYprecio.keys():
+            productos += "\n" + str(i) + ". Nombre: " + clave + ", Cantidad pedida: " + Collections.frequency(nombre, clave) + "......" + "Precio: "+str(nombreYprecio[clave] * Collections.frequency(nombre, clave))
+            i += 1
+
+        productos += "\nTotal de producto:" + str(totalProductos)
+
+        servicios ="Servicios:" + "\nNombre...........Cantidad.........Precio"
+        b =1
+        totalServicios =0
+        servicioNoRepetido = TreeSet()
+        for servicio in self.getServicios():
+            if servicioNoRepetido.contains(servicio) == False:
+                servicios+="\n"+str(b)+". Servicio: "+servicio+", Cantidad: "+ Collections.frequency(self.getServicios(),servicio)+"....."+"Precio: "+Collections.frequency(self.getServicios(),servicio)* servicio.getPrecio()
+                b += 1
+            totalServicios+=servicio.getPrecio()
+            servicioNoRepetido.add(servicio)
+
+        servicios += "\nTotal de servicios:" + str(totalServicios)
+
+
+        s =""
+        s+= "\n=============FACTURA DEL PEDIDO============="+ "\nFactura # "+self.getCodigo()+ "\nFecha: "+self.getFechaPedido()+ "\nNombre cliente: "+self.getCliente().getNombre()+ "\nVendido por "+self.getTrabajador().getNombre()+" con codigo "+self.getTrabajador().getCodigo()+ "\n"+productos+ "\n"+servicios+ "\nTotal:"+ str(totalProductos+totalServicios)+ "\n==========================================="
+        return s
+
+    def sumaProductos(self):
+        sumaTotal =0
+        for producto in self.getProductos():
+            sumaTotal+=producto.getPrecioVenta()
+        return sumaTotal
+
+    def sumaServicios(self):
+        sumaTotal =0
+        for servicio in self.getServicios():
+            sumaTotal+=servicio.getPrecio()
+        return sumaTotal
+    @staticmethod
+    def mostraPedidos():
+        s =""
+        i =1
+        for pedido in Pedido.getPedidos():
+            if pedido.getEstadoPedido() is "No pagado":
+                productos =pedido.sumaProductos()
+                servicios =pedido.sumaServicios()
+                s+="\n"+"Codigo de pedido: "+pedido.getCodigo()+", Cliente: "+ pedido.getCliente().getNombre()+", Valor total: "+str(productos+servicios)
+                i += 1
+        return s
+
+    @staticmethod
+    def seleccionarPedido(codigo):
+        pedido1 =None
+        for pedido in Pedido.getPedidos():
+            if pedido.getCodigo()==codigo:
+                pedido1=pedido
+                break
+        return pedido1
 
 
 
