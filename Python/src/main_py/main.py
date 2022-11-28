@@ -4,6 +4,7 @@ from tkinter.font import Font
 
 from Python.src.gestorAplicacion_py.gestion.Producto import Producto
 from Python.src.main_py.funcionalidadesBalanceContable import conseguir_mes
+from Python.src.main_py.funcionalidadesBalanceContable import balance_ventas
 from Python.src.main_py.manejoErrores import Validador
 
 root = Tk()
@@ -194,11 +195,14 @@ def crearMenuUser():
     menuBar.add_cascade(label='Ayuda', menu=Ayuda, command=evento)
     Ayuda.add_command(label='Acerca de')
 
+<<<<<<< Updated upstream
 def dibujar_ventana_usuario():
     limpiarVentana()
     root.title('UN Bar')
     crearMenuUser()
 
+=======
+>>>>>>> Stashed changes
     def aplicacionDialog():
         pass
 
@@ -234,10 +238,13 @@ def realizarReserva():
 def balance():
     limpiarVentana()
     frameUser = Frame(root, bg='gray', width=800, height=550)
+<<<<<<< Updated upstream
     frameUser.pack_propagate(False)
+=======
+    # frameBalance = Frame(frameUser,bg='gray', width=800, height=550)#
+>>>>>>> Stashed changes
     MESES = {"Enero": 1, "Febrero": 2, "Marzo": 3, "Abril": 4, "Mayo": 5, "Junio": 6, "Julio": 7, "Agosto": 8,
-             "Septiembre": 9,
-             "Octubre": 10, "Noviembre": 11, "Diciembre": 12}
+             "Septiembre": 9, "Octubre": 10, "Noviembre": 11, "Diciembre": 12}
 
     cmbMesesVar = StringVar()
 
@@ -253,16 +260,16 @@ def balance():
         validador = Validador()
         # VALIDACIONES:
         validador.validarMesDisponible(mesIndex, mesesDisponibles)
-
         # pasarle la funcion de precio
         if validador.getValidacion():
-            lblResultado.config(text=mesElegido + ": TIENE GANANCIAS CHEVERES")
+            lblResultado.config(text=str(balance_ventas(mesIndex)))
 
     framePrincipal = ttk.Frame(frameUser)
     frameInput = ttk.Frame(framePrincipal)
     frameInputbtn = ttk.Frame(framePrincipal)
     lblTitulo = ttk.Label(framePrincipal, text="Balance Contable", font=("Segoe UI", 20))
-    lblDescripcion = ttk.Label(framePrincipal, text="Descripcion...")
+    lblDescripcion = ttk.Label(framePrincipal,
+                               text="Selecciona un mes del menu desplegable para saber cuanto se ha vendido")
     lblMeses = ttk.Label(frameInput, text="Meses disponibles")
     cmbMeses = ttk.Combobox(frameInput, values=list(MESES.keys()), textvariable=cmbMesesVar)
     btnSubmit = ttk.Button(frameInputbtn, text="Submit", command=submit)
@@ -286,14 +293,18 @@ def balance():
     frameUser.pack()
 
 
+# frameBalance.pack()
+
+
+
 user_img = PhotoImage(file='user_img.png')
 
 
 
 if __name__ == '__main__':
-    producto1 = Producto("coca", "Vendido", 400, 2, None, None, 0)
-    producto2 = Producto("coca1", "Vendido", 500, 2, None, None, 0)
-    producto3 = Producto("coca1", "Vendido", 500, None, None, None, 0)
-    producto3 = Producto("coca1", "Vendido", 500, 3, None, None, 0)
+    producto1 = Producto("coca", "vendido", 400, 2, None, None, 0)
+    producto2 = Producto("coca1", "vendido", 500, 2, None, None, 0)
+    producto3 = Producto("coca1", "vendido", 500, None, None, None, 0)
+    producto4 = Producto("coca1", "vendido", 500, 3, None, None, 0)
     dibujar_ventana_inicio()
     root.mainloop()

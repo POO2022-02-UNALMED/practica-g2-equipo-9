@@ -15,6 +15,7 @@ class VentanaPrincipal(tk.Tk):
         self.geometry("500x450")
         self.option_add("*tearOff", False)
 
+
         #creacion de la barra de menus
         self.menuBar = tk.Menu(self)
         self.config(menu=self.menuBar)

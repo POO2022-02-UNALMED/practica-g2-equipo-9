@@ -35,7 +35,7 @@ class Producto:
 
     def __init__(self, nombre, estado, precioVenta,mesVenta,tipo, trabajador,codigo):
         self._nombre = nombre
-        self._estado=estado #"VENDIDO" "NO VENDIDO"
+        self._estado=estado #"vendido" "no vendido"
         self._precioVenta = precioVenta
         self._mesVenta=mesVenta
         self._tipo = tipo
