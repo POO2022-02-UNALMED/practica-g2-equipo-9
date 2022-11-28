@@ -31,7 +31,7 @@ class Espacio:
 
 
     def _init_(self, nombre):
-        #instance fields found by Java to Python Converter:
+        
         self._nombre = None
         self._fechas = []
 

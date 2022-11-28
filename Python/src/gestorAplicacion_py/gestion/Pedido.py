@@ -12,7 +12,6 @@ from gestorAplicacion.usuarios import Trabajador
 class Pedido:
 
     def _initialize_instance_fields(self):
-        #instance fields found by Java to Python Converter:
         self._trabajador = None
         self._cliente = None
         self._estadoPedido = None
