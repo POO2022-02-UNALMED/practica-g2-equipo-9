@@ -33,11 +33,11 @@ class Producto:
 
     #CONSTRUCTOR
 
-    def __init__(self, nombre, estado, precioVenta, fechaVenta,tipo, trabajador,codigo):
+    def __init__(self, nombre, estado, precioVenta,mesVenta,tipo, trabajador,codigo):
         self._nombre = nombre
         self._estado=estado #"VENDIDO" "NO VENDIDO"
         self._precioVenta = precioVenta
-        self._fechaVenta=fechaVenta
+        self._mesVenta=mesVenta
         self._tipo = tipo
         self._trabajador = trabajador
         self._codigo=codigo
@@ -71,10 +71,10 @@ class Producto:
         self._precioVenta = precioVenta
 
 
-    def getFechaVenta(self):
-        return self._fechaVenta
-    def setFechaVenta(self,fechaventa):
-        self._fechaVenta=fechaventa
+    def getMesVenta(self):
+        return self._mesVenta
+    def seMesVenta(self,mesventa):
+        self._mesVenta=mesventa
 
 
     def getTipo(self):
@@ -102,7 +102,7 @@ class Producto:
 
     @staticmethod
     def getProductos():
-        return Producto._numeroProducto
+        return Producto._productos
 
     @staticmethod
     def setProductos(productos):
