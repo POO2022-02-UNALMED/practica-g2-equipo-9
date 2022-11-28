@@ -195,14 +195,12 @@ def crearMenuUser():
     menuBar.add_cascade(label='Ayuda', menu=Ayuda, command=evento)
     Ayuda.add_command(label='Acerca de')
 
-<<<<<<< Updated upstream
+
 def dibujar_ventana_usuario():
     limpiarVentana()
     root.title('UN Bar')
     crearMenuUser()
 
-=======
->>>>>>> Stashed changes
     def aplicacionDialog():
         pass
 
@@ -237,12 +235,14 @@ def realizarReserva():
 
 def balance():
     limpiarVentana()
+    crearMenuUser()
+
+    # fonts
+    fontNombre = Font(size=15, family='Arial TUR')
+
+    ##cracion de 3 divisiones en ventana
     frameUser = Frame(root, bg='gray', width=800, height=550)
-<<<<<<< Updated upstream
-    frameUser.pack_propagate(False)
-=======
-    # frameBalance = Frame(frameUser,bg='gray', width=800, height=550)#
->>>>>>> Stashed changes
+    frameUser.pack()
     MESES = {"Enero": 1, "Febrero": 2, "Marzo": 3, "Abril": 4, "Mayo": 5, "Junio": 6, "Julio": 7, "Agosto": 8,
              "Septiembre": 9, "Octubre": 10, "Noviembre": 11, "Diciembre": 12}
 
@@ -289,8 +289,6 @@ def balance():
     btnLimpiar.pack(pady=(0, 10), side="right")
 
     lblResultado.pack()
-
-    frameUser.pack()
 
 
 # frameBalance.pack()

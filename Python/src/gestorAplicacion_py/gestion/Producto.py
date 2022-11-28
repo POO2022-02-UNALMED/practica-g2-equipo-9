@@ -266,7 +266,7 @@ def mostrarNombresCantidadPrecio(productosPedidos):
 def productosDisponibles(Inventario):
     productosDisponibles = []
     for producto in Inventario:
-        if producto.getEstado() is "No vendido" and producto.getFechaVenta() is None:
+        if producto.getEstado() == "no vendido" and producto.getFechaVenta() is None:
             productosDisponibles.append(producto)
     return productosDisponibles
 
