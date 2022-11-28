@@ -9,6 +9,11 @@ def conseguir_mes():
                 lista_meses.append(producto.getMesVenta())
     return lista_meses
 
+def balance_ventas(mes):
+    pass
+
+
+
 if __name__=='__main__':
     pass
 

@@ -1,5 +1,10 @@
 from tkinter import *
+from tkinter import ttk
 from tkinter.font import Font
+
+from Python.src.gestorAplicacion_py.gestion.Producto import Producto
+from Python.src.main_py.funcionalidadesBalanceContable import conseguir_mes
+from Python.src.main_py.manejoErrores import Validador
 
 root = Tk()
 root.resizable(0, 0)  # Manterner la ventana con tamaño fijo
@@ -196,6 +201,54 @@ def dibujar_ventana_usuario():
 def balance():
     limpiarVentana()
     frameUser = Frame(root, bg='gray', width=800, height=550)
+    MESES = {"Enero": 1, "Febrero": 2, "Marzo": 3, "Abril": 4, "Mayo": 5, "Junio": 6, "Julio": 7, "Agosto": 8,
+             "Septiembre": 9,
+             "Octubre": 10, "Noviembre": 11, "Diciembre": 12}
+
+    cmbMesesVar = StringVar()
+
+    def limpiar():
+        cmbMeses.set("")
+        lblResultado.config(text="")
+
+    def submit():
+        mesesDisponibles = conseguir_mes()
+        mesElegido = cmbMesesVar.get()
+        mesIndex = MESES[mesElegido] if mesElegido != "" else ""
+        # Creamos objeto validador
+        validador = Validador()
+        # VALIDACIONES:
+        validador.validarMesDisponible(mesIndex, mesesDisponibles)
+
+        # pasarle la funcion de precio
+        if validador.getValidacion():
+            lblResultado.config(text=mesElegido + ": TIENE GANANCIAS CHEVERES")
+
+    framePrincipal = ttk.Frame(frameUser)
+    frameInput = ttk.Frame(framePrincipal)
+    frameInputbtn = ttk.Frame(framePrincipal)
+    lblTitulo = ttk.Label(framePrincipal, text="Balance Contable", font=("Segoe UI", 20))
+    lblDescripcion = ttk.Label(framePrincipal, text="Descripcion...")
+    lblMeses = ttk.Label(frameInput, text="Meses disponibles")
+    cmbMeses = ttk.Combobox(frameInput, values=list(MESES.keys()), textvariable=cmbMesesVar)
+    btnSubmit = ttk.Button(frameInputbtn, text="Submit", command=submit)
+    btnLimpiar = ttk.Button(frameInputbtn, text="Limpiar", command=limpiar)
+    lblResultado = ttk.Label(framePrincipal, text="")
+
+    framePrincipal.pack()
+    lblTitulo.pack(pady=(10, 30))
+    lblDescripcion.pack(pady=(0, 20))
+
+    frameInput.pack()
+    lblMeses.pack(pady=(0, 10), padx=(0, 40), side="left")
+    cmbMeses.pack(pady=(0, 10), side="right")
+
+    frameInputbtn.pack()
+    btnSubmit.pack(pady=(0, 10), padx=(0, 30), side="left")
+    btnLimpiar.pack(pady=(0, 10), side="right")
+
+    lblResultado.pack()
+
     frameUser.pack()
 
 
@@ -204,5 +257,9 @@ user_img = PhotoImage(file='user_img.png')
 
 
 if __name__ == '__main__':
+    producto1 = Producto("coca", "Vendido", 400, 2, None, None, 0)
+    producto2 = Producto("coca1", "Vendido", 500, 2, None, None, 0)
+    producto3 = Producto("coca1", "Vendido", 500, None, None, None, 0)
+    producto3 = Producto("coca1", "Vendido", 500, 3, None, None, 0)
     dibujar_ventana_inicio()
     root.mainloop()

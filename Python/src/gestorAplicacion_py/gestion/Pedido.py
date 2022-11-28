@@ -34,7 +34,7 @@ class Pedido:
         self._productos = productos  #array con productos
         self._servicios = servicios  #array con servicios
         self._fechaPedido = fechaPedido #fecha del pedido
-        self._codigo = codigo           #codigo del pedido
+        self._codigo = codigo          #codigo del pedido
         self._pedidos.append(self)
         Pedido._numeroPedido+=1
 
