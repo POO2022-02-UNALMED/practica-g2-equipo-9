@@ -63,11 +63,6 @@ class Trabajador(Empleado):
     @classmethod
     def generarCodigo(cls):
         return cls._numeroTrabajadores + 1
-    
-
-
-       
-
 
 
 
