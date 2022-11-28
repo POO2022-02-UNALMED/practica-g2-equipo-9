@@ -11,16 +11,8 @@ from Python.src.gestorAplicacion_py.usuarios import Trabajador
 
 class Pedido:
 
-    def _initialize_instance_fields(self):
-        self._trabajador = None
-        self._cliente = None
-        self._estadoPedido = None
-        self._productos = []
-        self._servicios = []
-        self._fechaPedido = None
-        self._codigo = 0
 
-    _SERIALVERSIONUID = 1
+
 
     #ATRIBUTOS DE INSTANCIA
 
@@ -35,37 +27,17 @@ class Pedido:
 
     #CONSTRUCTOR
 
-
-
-    def __init__(self):
-        self._initialize_instance_fields()
-
-
-
-    def __init__(self, cliente, estadoPedido, productos, servicios, fechaPedido, codigo):
-        self._initialize_instance_fields()
-
+    def __init__(self, trabajador, cliente, estadoPedido, productos, servicios, fechaPedido, codigo):
         self._cliente = cliente
-        self._estadoPedido = estadoPedido #CONSTRUCTOR PARA LA FUNCIONALIDAD realizarReserva
-        self._productos = productos
-        self._servicios = servicios
-        self._fechaPedido = fechaPedido
-        self._codigo = codigo
-        gestorAplicacion.gestion.Pedido._pedidos.append(self)
-
-
-    def __init__(self, trabajador, cliente, estadoPedido, productos, servicios, fechaPedido):
-        self._initialize_instance_fields()
-
         self._trabajador = trabajador
-        self._cliente = cliente
-        self._estadoPedido = estadoPedido
-        self._productos = productos
-        self._servicios = servicios
-        self._fechaPedido = fechaPedido
-        self._codigo = self.generarCodigo()
-        gestorAplicacion.gestion.Pedido._pedidos.append(self)
-        Pedido._totalPedidos += 1
+        self._estadoPedido = estadoPedido #CONSTRUCTOR PARA LA FUNCIONALIDAD realizarReserva
+        self._productos = productos  #array con productos
+        self._servicios = servicios  #array con servicios
+        self._fechaPedido = fechaPedido #fecha del pedido
+        self._codigo = codigo           #codigo del pedido
+        self._pedidos.append(self)
+        self._numeroPedido+=1
+
 
     #GETTERS Y SETTERS
 
@@ -83,23 +55,23 @@ class Pedido:
         self._cliente = cliente
 
     @staticmethod
-    def getPedidos():
-        return gestorAplicacion.gestion.Pedido._pedidos
+    def getPedidos(self):
+        return self._pedidos
 
     @staticmethod
-    def setPedidos(pedidos):
-        Pedido._pedidos = pedidos
+    def setPedidos(self,pedidos):
+        self._pedidos=pedidos
 
     def getEstadoPedido(self):
         return self._estadoPedido
 
     @staticmethod
-    def getTotalPedidos():
-        return len(gestorAplicacion.gestion.Pedido._pedidos)
+    def getTotalPedidos(self):
+        return self._numeroPedido
 
     @staticmethod
-    def setTotalPedidos(totalPedidos):
-        Pedido._totalPedidos = totalPedidos
+    def setTotalPedidos(self, numeroPedido):
+        self._numeroPedido=numeroPedido
 
 
     def setEstadoPedido(self, estadoPedido):
@@ -120,16 +92,9 @@ class Pedido:
     def getCodigo(self):
         return self._codigo
 
-    def setCodigo(self, id):
-        self._codigo = self._codigo
+    def setCodigo(self, codigo):
+        self._codigo = codigo
 
-    @staticmethod
-    def getNumeroPedido():
-        return gestorAplicacion.gestion.Pedido._numeroPedido
-
-    @staticmethod
-    def setNumeroPedido(numeroPedido):
-        Pedido._numeroPedido = numeroPedido
 
     def getServicios(self):
         return self._servicios
@@ -137,26 +102,6 @@ class Pedido:
     def setServicios(self, servicios):
         self._servicios = servicios
 
-    def setCodigo(self, codigo):
-        self._codigo = codigo
+    
 
-    #OTROS METODOS
-    def generarCodigo(self):
-
-        tempVar = gestorAplicacion.gestion.Pedido._numeroPedido
-        gestorAplicacion.gestion.Pedido._numeroPedido += 1
-        return tempVar
-
-
-
-    def generarFactura(self):
-        productos ="Productos: " + "\nNombre........Cantidad.......Precio"
-        nombreYprecio = {}
-        totalProductos = 0
-        nombre = []
-        for producto in self.getProductos():
-            if producto.getNombre() in nombreYprecio.keys() == False:
-                nombreYprecio[producto.getNombre()] = producto.getPrecioVenta()
-            nombre.append(producto.getNombre())
-            totalProductos += producto.getPrecioVenta()
 
