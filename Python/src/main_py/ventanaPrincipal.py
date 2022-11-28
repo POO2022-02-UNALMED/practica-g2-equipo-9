@@ -52,7 +52,7 @@ class VentanaPrincipal(tk.Tk):
             self.destroy()
             #volver a ventana de inicio
 
-        
+
 
 
 
