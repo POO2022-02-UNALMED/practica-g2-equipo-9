@@ -108,5 +108,199 @@ class Producto:
     def setProductos(productos):
         Producto._productos=productos
 
+<<<<<<< Updated upstream
+=======
+    def getTrabajador(self):
+        return self._trabajador
+
+    def setTrabajador(self, trabajador):
+        self._trabajador = trabajador
+
+
+    def getEstado(self):
+        return self._estado
+
+    def setEstado(self, estado):
+        self._estado = estado
+
+
+    def getCliente(self):
+        return self._cliente
+
+    def setCliente(self, cliente):
+        self._cliente = cliente
+
+    def getTipo(self):
+        return self._tipo
+    
+    @staticmethod
+    def getBebidasAlcoholicas():
+        return bebidasAlcoholicas
+
+    @staticmethod
+    def setBebidasAlcoholicas(bebidasAlcoholicas):
+        Producto.bebidasAlcoholicas = bebidasAlcoholicas
+
+    @staticmethod
+    def getBebidasNoAlcoholicas():
+        return bebidasNoAlcoholicas
+
+    @staticmethod
+    def setBebidasNoAlcoholicas(bebidasNoAlcoholicas):
+        Producto.bebidasNoAlcoholicas = bebidasNoAlcoholicas
+
+    @staticmethod
+    def getComidas():
+        return comidas
+
+    @staticmethod
+    def setComidas(comidas):
+        Producto.comidas = comidas
+
+    @staticmethod
+    def getSnacks():
+        return snacks
+
+    @staticmethod
+    def setSnacks(snacks):
+        Producto.snacks = snacks
+
+    @staticmethod
+    def getCigarrillos():
+        return cigarrillos
+
+    @staticmethod
+    def setCigarrillos(cigarrillos):
+        Producto.cigarrillos = cigarrillos
+
+    @staticmethod
+    def getEnergizantes():
+        return energizantes
+
+    @staticmethod
+    def setEnergizantes(energizantes):
+        Producto.energizantes = energizantes
+
+    @staticmethod
+    def getOtrosProductos():
+        return otrosProductos
+
+    @staticmethod
+    def setOtrosProductos(otrosProductos):
+        Producto.otrosProductos = otrosProductos
+
+    def getFechaVenta(self):
+        return fechaVenta
+
+    def setFechaVenta(self, fechaVenta):
+        self.fechaVenta = fechaVenta
+
+    @staticmethod
+    def categorizarProducto(producto):
+        if producto.tipo == 1:
+            Producto.verificarExistenciaCategoria(Producto.bebidasAlcoholicas, producto)
+        elif producto.tipo == 2:
+            Producto.verificarExistenciaCategoria(Producto.bebidasNoAlcoholicas, producto)
+        elif producto.tipo == 3:
+            Producto.verificarExistenciaCategoria(Producto.comidas, producto)
+        elif producto.tipo == 4:
+            Producto.verificarExistenciaCategoria(Producto.snacks, producto)
+        elif producto.tipo == 5:
+            Producto.verificarExistenciaCategoria(Producto.cigarrillos, producto)
+        elif producto.tipo == 6:
+            Producto.verificarExistenciaCategoria(Producto.energizantes, producto)
+        elif producto.tipo == 7:
+            Producto.verificarExistenciaCategoria(Producto.otrosProductos, producto)
+
+@staticmethod
+def verificarExistenciaCategoria(lista, producto):
+    try:
+        for value in lista:
+            if value.getNombre() is producto.getNombre():
+                return
+        lista.append(producto)
+
+    except Exception as e:
+
+        pass
+
+
+
+@staticmethod
+def mostrarProductosDisponibles(listaProducto):
+    s = "Este es el inventario de productos disponibles para vender:" + "\nNombre, Cantidad, Precio:"
+    productosDisponiblesNoRepetidos = TreeSet()
+    productosDisponiblesRepetidos = []
+    listaPrecios = {}
+    for producto in listaProducto:
+        productosDisponiblesNoRepetidos.add(producto.getNombre())
+        productosDisponiblesRepetidos.append(producto.getNombre())
+        if producto.getNombre() in listaPrecios.keys() == False:
+            listaPrecios[producto.getNombre()] = producto.getPrecioVenta()
+    i = 1
+    for nombre in productosDisponiblesNoRepetidos:
+        s += "\n" + str(i) + ". Nombre: " + nombre + ", Cantidad: " + Collections.frequency(productosDisponiblesRepetidos, nombre) + ", Precio: " + str(listaPrecios[nombre])
+        i += 1
+    return s
+
+@staticmethod
+def mostrarNombresCantidadPrecio(productosPedidos):
+    s = "Pedido de Productos: " + "\nNombre, Cantidad, Precio:"
+    nombresNoRepetidos = TreeSet()
+    nombresRepetidos = []
+    listaPrecios = {}
+    valorTotal = 0
+    for producto in productosPedidos:
+        nombresNoRepetidos.add(producto.getNombre())
+        nombresRepetidos.append(producto.getNombre())
+        if producto.getNombre() in listaPrecios.keys() == False:
+            listaPrecios[producto.getNombre()] = producto.getPrecioVenta()
+        valorTotal += producto.getPrecioVenta()
+    i = 1
+    for nombre in nombresNoRepetidos:
+        s += "\n" + str(i) + ". Nombre: " + nombre + ", Cantidad: " + Collections.frequency(nombresRepetidos, nombre) + ", Precio: " + Collections.frequency(nombresRepetidos, nombre) * listaPrecios[nombre]
+        i += 1
+    s += "\nValor total de productos= " + str(valorTotal)
+    return s
+@staticmethod
+def productosDisponibles(Inventario):
+    productosDisponibles = []
+    for producto in Inventario:
+        if producto.getEstado() is "No vendido" and producto.getFechaVenta() is None:
+            productosDisponibles.append(producto)
+    return productosDisponibles
+
+@staticmethod
+def verificarProducto(nombre, listaProductos):
+    existe = False
+    for producto in listaProductos:
+        if producto.getNombre() is nombre:
+            existe = True
+            break
+    return existe
+
+@staticmethod
+def verificarProducto(nombre, cantidad, listaProductos):
+    existe = False
+    nombresProducto = []
+    for producto in listaProductos:
+        nombresProducto.append(producto.getNombre())
+    if cantidad >= 0 and cantidad <= Collections.frequency(nombresProducto, nombre):
+        existe = True
+    return existe
+
+@staticmethod
+def agregarProducto(nombre, cantidad, listaProductos):
+    productosEscogidos = []
+    contador = 0
+    for producto in listaProductos:
+        if contador < cantidad:
+            if producto.getNombre() is nombre:
+                productosEscogidos.append(producto)
+                contador += 1
+        else:
+            break
+    return productosEscogidos
+>>>>>>> Stashed changes
 
 
