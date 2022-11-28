@@ -1,4 +1,4 @@
-from gestorAplicacion.usuarios import Cliente
+from Python.src.gestorAplicacion_py.usuarios import Cliente
 
 
 #

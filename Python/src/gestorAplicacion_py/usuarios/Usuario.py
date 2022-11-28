@@ -34,9 +34,8 @@ class Usuario():
         self._nombre=nombre
 
     #otros metodos
-    def generarCodigo():
-        pass
-
+    def generarCodigo(cls):
+        return cls._numeroTrabajadores + 1
 
 
 
