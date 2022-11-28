@@ -194,7 +194,9 @@ def dibujar_ventana_usuario():
         pass
 
 def balance():
-    pass
+    limpiarVentana()
+    frameUser = Frame(root, bg='gray', width=800, height=550)
+    frameUser.pack()
 
 
 user_img = PhotoImage(file='user_img.png')
