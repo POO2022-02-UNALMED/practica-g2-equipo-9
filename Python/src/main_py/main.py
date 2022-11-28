@@ -169,6 +169,9 @@ def dibujar_ventana_usuario():
     limpiarVentana()
     root.title('UN Bar')
 
+    frameUser = Frame(root, bg='black', width=800, height=550)
+    frameUser.pack()
+
     menuBar = Menu(root)
     root.config(menu=menuBar)
 
@@ -182,12 +185,17 @@ def dibujar_ventana_usuario():
     Procesos_Consultas.add_command(label='Realizar reserva')
     Procesos_Consultas.add_command(label='Modificar reserva')
     Procesos_Consultas.add_command(label='Gestionar nomina')
+    Procesos_Consultas.add_command(label='Balance', command=balance)
 
     Ayuda = Menu(menuBar)
     menuBar.add_cascade(label='Ayuda', menu=Ayuda, command=evento)
     Ayuda.add_command(label='Acerca de')
     def aplicacionDialog():
         pass
+
+def balance():
+    pass
+
 
 user_img = PhotoImage(file='user_img.png')
 
