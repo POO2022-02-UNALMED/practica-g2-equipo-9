@@ -7,6 +7,7 @@ from Python.src.main_py.funcionalidadesBalanceContable import conseguir_mes
 from Python.src.main_py.manejoErrores import Validador
 
 root = Tk()
+root.geometry('800x550')
 root.resizable(0, 0)  # Manterner la ventana con tamaño fijo
 
 
@@ -72,8 +73,10 @@ def dibujar_ventana_inicio():
     frameP6 = Frame(frameP2)
     # frameP6.pack_propagate(False)
     frameP6.config(width=400, height=275, bg='#BDBDBD', borderwidth=2, relief='groove')
-    frameP6.columnconfigure(2);
-    frameP6.rowconfigure(2);
+    frameP6.columnconfigure(0, weight=1)
+    frameP6.columnconfigure(1, weight=1)
+    frameP6.rowconfigure(0, weight=1)
+    frameP6.rowconfigure(1, weight=1)
 
     frameP6.pack()
 
@@ -170,12 +173,7 @@ def dibujar_ventana_inicio():
     Inicio.add_command(label='Descripcion', command=mostrarDescripcion)
     ventanaPrincipalButon.config(command=dibujar_ventana_usuario)
 
-def dibujar_ventana_usuario():
-    limpiarVentana()
-    root.title('UN Bar')
-
-    frameUser = Frame(root, bg='black', width=800, height=550)
-    frameUser.pack()
+def crearMenuUser():
 
     menuBar = Menu(root)
     root.config(menu=menuBar)
@@ -187,7 +185,7 @@ def dibujar_ventana_usuario():
 
     Procesos_Consultas = Menu(menuBar)
     menuBar.add_cascade(label='Procesos y consultas', menu=Procesos_Consultas, command=evento)
-    Procesos_Consultas.add_command(label='Realizar reserva')
+    Procesos_Consultas.add_command(label='Realizar reserva', command=realizarReserva)
     Procesos_Consultas.add_command(label='Modificar reserva')
     Procesos_Consultas.add_command(label='Gestionar nomina')
     Procesos_Consultas.add_command(label='Balance', command=balance)
@@ -195,12 +193,48 @@ def dibujar_ventana_usuario():
     Ayuda = Menu(menuBar)
     menuBar.add_cascade(label='Ayuda', menu=Ayuda, command=evento)
     Ayuda.add_command(label='Acerca de')
+
+def dibujar_ventana_usuario():
+    limpiarVentana()
+    root.title('UN Bar')
+    crearMenuUser()
+
     def aplicacionDialog():
         pass
+
+
+def realizarReserva():
+    limpiarVentana()
+    crearMenuUser()
+
+    #fonts
+    fontNombre = Font(size=15, family='Arial TUR' )
+
+
+    ##cracion de 3 divisiones en ventana
+    frameUser = Frame(root, bg='gray', width=800, height=550)
+    frameUser.pack()
+    frameU1 = Frame(frameUser, bg='#0B5345', width=800, height=50 ) #nombre
+    frameU1.pack_propagate(False)
+    frameU1.pack()
+    frameU2 = Frame(frameUser, bg='black', width=800, height=100)# descripcion
+    frameU2.pack()
+    frameU3 = Frame(frameUser, bg='gray', width=800, height=400) #zona interaccion
+    frameU3.pack()
+
+    #widgets internos de cada division
+    frameU11 = Frame(frameU1, width=400, height=30, padx=5, bg='#0B5345')
+    frameU11.pack(side='bottom', pady=10)
+    labelRealizarReserva = Label(frameU11, text='Realizar reserva', font=fontNombre, bg='#0B5345')
+    labelRealizarReserva.config(fg='#A2D9CE')
+    labelRealizarReserva.pack()
+
+
 
 def balance():
     limpiarVentana()
     frameUser = Frame(root, bg='gray', width=800, height=550)
+    frameUser.pack_propagate(False)
     MESES = {"Enero": 1, "Febrero": 2, "Marzo": 3, "Abril": 4, "Mayo": 5, "Junio": 6, "Julio": 7, "Agosto": 8,
              "Septiembre": 9,
              "Octubre": 10, "Noviembre": 11, "Diciembre": 12}
