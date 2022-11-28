@@ -1,4 +1,4 @@
-from gestorAplicacion.usuarios import *
+from Python.src.gestorAplicacion_py.usuarios import *
 
 #
 #*Clase creada para representar los productos fisicos

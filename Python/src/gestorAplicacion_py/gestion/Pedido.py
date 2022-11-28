@@ -1,6 +1,6 @@
-from gestorAplicacion.usuarios import Cliente
-from gestorAplicacion.usuarios import Gerente
-from gestorAplicacion.usuarios import Trabajador
+from Python.src.gestorAplicacion_py.usuarios import Cliente
+from Python.src.gestorAplicacion_py.usuarios import Gerente
+from Python.src.gestorAplicacion_py.usuarios import Trabajador
 
 #
 #* Clase creada para almacenar los prodcutos deseados por el cliente
