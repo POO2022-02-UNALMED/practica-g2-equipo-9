@@ -6,6 +6,7 @@ from Python.src.gestorAplicacion_py.gestion.Producto import Producto
 from Python.src.main_py.funcionalidadesBalanceContable import conseguir_mes
 from Python.src.main_py.funcionalidadesBalanceContable import balance_ventas
 from Python.src.main_py.manejoErrores import Validador
+from Python.src.interfaz_source.fieldFrame import FieldFrame
 
 root = Tk()
 root.geometry('800x550')
@@ -241,8 +242,9 @@ def realizarReserva():
     frameDescripcion = Frame(frameU2, width=600, height=80, bg='#0B5345')
     frameDescripcion.pack(pady=10)
     frameDescripcion.pack_propagate(False)
-    labelDescripcion = Label(frameDescripcion,text='En esta seccion podra crear reservas,\n seleccionando fecha, servicios y productos disponibles', font=fontNombre)
+    labelDescripcion = Label(frameDescripcion,text='En esta seccion podra crear reservas,\n seleccionando fecha, servicios y productos disponibles', font=fontNombre, bg='#0B5345')
     labelDescripcion.pack(pady=15)
+    labelDescripcion.config(fg='#A2D9CE')
 
 
     #Zona de interaccion del usuario
@@ -254,12 +256,61 @@ def ingresarUser(frame):
     labelText = Label(frameContenedor, text='Es usted ?', font=fontNombre)
     labelText.config( bg='#D0D3D4')
     labelText.pack(pady=20, side='top')
-    botonExistente = Button(frameContenedor, text='Usuario regsitrado', font=fontNombre, relief='groove')
-    botonExistente.config(bg='#0B5345', borderwidth=5, fg='#A2D9CE')
+
+    def registered_user(): #Comando usuario existente
+
+        for widget in frameContenedor.winfo_children():
+            widget.destroy()
+
+        frameDatos = FieldFrame(frameContenedor, None, ["Id"],"Usuario registrado", None, [True] )
+        frameDatos.pack()
+
+        botonAceptar = Button(frameDatos, text='Aceptar', pady=15, padx=10, bg='#BDBDBD')
+        botonAceptar.grid(row=3, column=0, pady=30)
+
+        botonBorrar = Button(frameDatos, text='Borrar', pady=15, padx=10, bg='#BDBDBD')
+        botonBorrar.grid(row=3, column=1)
+
+        botonVolver =Button(frameDatos, text='Volver', pady=15, padx=10,bg='#BDBDBD', command=realizarReserva)
+        botonVolver.grid(row=3, column=2)
+
+        def AceptarY():  # comando para usuarios registrados
+            id = frameDatos.getDatos("Id")
+
+    def noRegistered_user():
+        for widget in frameContenedor.winfo_children():
+            widget.destroy()
+
+        frameDatos = FieldFrame(frameContenedor, None, ["Nombre"], "Usuario no registrado", None, [True])
+        frameDatos.pack()
+
+        botonAceptar = Button(frameDatos, text='Aceptar', pady=15, padx=10, bg='#BDBDBD')
+        botonAceptar.grid(row=3, column=0)
+
+        botonBorrar = Button(frameDatos, text='Borrar', pady=15, padx=10, bg='#BDBDBD')
+        botonBorrar.grid(row=3, column=1)
+
+        botonVolver = Button(frameDatos, text='Volver', padx=10, pady=15, bg='#BDBDBD', command=realizarReserva)
+        botonVolver.grid(row=3, column=2)
+
+
+    def AceptarN(): #comando para usuarios no registrados
+        pass
+
+
+    botonExistente = Button(frameContenedor, text='Usuario registrado', font=fontNombre, relief='groove')
+    botonExistente.config(bg='#0B5345', borderwidth=5, fg='#A2D9CE', command=registered_user)
     botonExistente.pack(pady=20)
     botonNuevo = Button(frameContenedor, text='Usuario no registrado', font=fontNombre, relief='groove')
-    botonNuevo.config(bg='#0B5345', borderwidth=5, fg='#A2D9CE')
+    botonNuevo.config(bg='#0B5345', borderwidth=5, fg='#A2D9CE', command=noRegistered_user)
     botonNuevo.pack(pady=20)
+
+
+
+
+
+
+
 
 
 def balance():

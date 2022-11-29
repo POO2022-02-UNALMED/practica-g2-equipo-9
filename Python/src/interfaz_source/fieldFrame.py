@@ -57,12 +57,12 @@ class FieldFrame(Frame):
     def createBut(self, txt, cmd, col, fil):
         boton = Button(self, text=txt, command=cmd)
         boton.grid(column=col, row=fil, padx=(10, 10), pady=(10, 10))
-
+"""
 root = Tk()
 root.title('ventana prueba')
 frame1 = FieldFrame(root, None, ["Nombre", "Cédula", "ID Boleta"],"Información", None, [True, True, True])
 frame1.pack()
-"""
+
 def extraerDatos():
     nombre = frame1.getDatos("Nombre")
     id = frame1.getDatos("Cédula")

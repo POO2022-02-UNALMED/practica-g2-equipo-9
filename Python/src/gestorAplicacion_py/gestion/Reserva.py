@@ -1,5 +1,5 @@
 from Python.src.gestorAplicacion_py.usuarios import Cliente
-
+from datetime import date
 
 #
 #* Clase creada para poder crear reservas
@@ -22,10 +22,6 @@ class Reserva:
         self._pagoCancelacion =0
 
 
-    _SERIALVERSIONUID = 1
-
-
-    #ATRIBUTOS DE INSTANCIA
 
 
     #ATRIBUTOS DE CLASE
@@ -35,14 +31,14 @@ class Reserva:
 
     #CONSTRUCTORES
 
-
+    #ATRIBUTOS DE INSTANCIA
     def __init__(self):
         self._initialize_instance_fields()
 
-        self._fechaCreacion = java.time.LocalDate.now()
-        self._idReserva = gestorAplicacion.gestion.Reserva._numReservas
-        gestorAplicacion.gestion.Reserva._numReservas += 1
-        gestorAplicacion.gestion.Reserva._reservas.append(self)
+        self._fechaCreacion = date.today()
+        self._idReserva = Reserva._numReservas
+        Reserva._numReservas += 1
+        Reserva._reservas.append(self)
 
 
     def __init__(self, cliente):
@@ -52,19 +48,19 @@ class Reserva:
 
     def __init__(self, estado, cliente, servicios, fechaReserva, pedido):
         self(cliente) # sobrecarga de metodos
-        self._idReserva = gestorAplicacion.gestion.Reserva._numReservas
+        self._idReserva = Reserva._numReservas
         self._estado = estado
         self._servicios = servicios
         self._fechaReserva = fechaReserva
         self._pedido = pedido
-        gestorAplicacion.gestion.Reserva._numReservas += 1
+        Reserva._numReservas += 1
 
     #GETTERS Y SETTERS
 
 
     @staticmethod
     def getReservas():
-        return gestorAplicacion.gestion.Reserva._reservas
+        return Reserva._reservas
 
     @staticmethod
     def setReservas(reservas):
@@ -114,7 +110,7 @@ class Reserva:
 
     @staticmethod
     def getNumReservas():
-        return gestorAplicacion.gestion.Reserva._numReservas
+        return Reserva._numReservas
 
     @staticmethod
     def setNumReservas(numReservas):
