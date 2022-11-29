@@ -202,8 +202,6 @@ def crearMenuUser():
     Procesos_Consultas = Menu(menuBar)
     menuBar.add_cascade(label='Procesos y consultas', menu=Procesos_Consultas, command=evento)
     Procesos_Consultas.add_command(label='Realizar reserva', command=realizarReserva)
-    Procesos_Consultas.add_command(label='Modificar reserva')
-    Procesos_Consultas.add_command(label='Gestionar nomina',command=nomina)
     Procesos_Consultas.add_command(label='Balance Contable',command=ejemplo)
 
     Ayuda = Menu(menuBar)
@@ -336,69 +334,6 @@ def ingresarUser(frame):
 
 
 
-
-
-
-def nomina():
-    limpiarVentana()
-    crearMenuUser()
-
-def balance():
-    limpiarVentana()
-    crearMenuUser()
-
-    # fonts
-    fontNombre = Font(size=15, family='Arial TUR')
-
-    ##cracion de 3 divisiones en ventana
-    frameUser = Frame(root, bg='gray', width=800, height=550)
-    frameUser.pack()
-    MESES = {"Enero": 1, "Febrero": 2, "Marzo": 3, "Abril": 4, "Mayo": 5, "Junio": 6, "Julio": 7, "Agosto": 8,
-             "Septiembre": 9, "Octubre": 10, "Noviembre": 11, "Diciembre": 12}
-
-    cmbMesesVar = StringVar()
-
-    def limpiar():
-        cmbMeses.set("")
-        lblResultado.config(text="")
-
-    def submit():
-        mesesDisponibles = conseguir_mes()
-        mesElegido = cmbMesesVar.get()
-        mesIndex = MESES[mesElegido] if mesElegido != "" else ""
-        # Creamos objeto validador
-        validador = Validador()
-        # VALIDACIONES:
-        validador.validarMesDisponible(mesIndex, mesesDisponibles)
-        # pasarle la funcion de precio
-        if validador.getValidacion():
-            lblResultado.config(text=str(balance_ventas(mesIndex)))
-
-    framePrincipal = ttk.Frame(frameUser)
-    frameInput = ttk.Frame(framePrincipal)
-    frameInputbtn = ttk.Frame(framePrincipal)
-    lblTitulo = ttk.Label(framePrincipal, text="Balance Contable", font=("Segoe UI", 20))
-    lblDescripcion = ttk.Label(framePrincipal,
-                               text="Selecciona un mes del menu desplegable para saber cuanto se ha vendido")
-    lblMeses = ttk.Label(frameInput, text="Meses disponibles")
-    cmbMeses = ttk.Combobox(frameInput, values=list(MESES.keys()), textvariable=cmbMesesVar)
-    btnSubmit = ttk.Button(frameInputbtn, text="Submit", command=submit)
-    btnLimpiar = ttk.Button(frameInputbtn, text="Limpiar", command=limpiar)
-    lblResultado = ttk.Label(framePrincipal, text="")
-
-    framePrincipal.pack()
-    lblTitulo.pack(pady=(10, 30))
-    lblDescripcion.pack(pady=(0, 20))
-
-    frameInput.pack()
-    lblMeses.pack(pady=(0, 10), padx=(0, 40), side="left")
-    cmbMeses.pack(pady=(0, 10), side="right")
-
-    frameInputbtn.pack()
-    btnSubmit.pack(pady=(0, 10), padx=(0, 30), side="left")
-    btnLimpiar.pack(pady=(0, 10), side="right")
-
-    lblResultado.pack()
 
 def ejemplo():
     limpiarVentana()
