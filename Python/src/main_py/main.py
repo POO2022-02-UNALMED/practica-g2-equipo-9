@@ -204,33 +204,60 @@ def dibujar_ventana_usuario():
     def aplicacionDialog():
         pass
 
-
+fontNombre = Font(size=15, family='Arial TUR' )
 def realizarReserva():
     limpiarVentana()
     crearMenuUser()
 
     #fonts
-    fontNombre = Font(size=15, family='Arial TUR' )
 
 
-    ##cracion de 3 divisiones en ventana
+    ##crEacion de 3 divisiones en ventana
     frameUser = Frame(root, bg='gray', width=800, height=550)
     frameUser.pack()
     frameU1 = Frame(frameUser, bg='#0B5345', width=800, height=50 ) #nombre
     frameU1.pack_propagate(False)
     frameU1.pack()
-    frameU2 = Frame(frameUser, bg='black', width=800, height=100)# descripcion
+    frameU2 = Frame(frameUser, bg='#909497', width=800, height=100)# descripcion
     frameU2.pack()
-    frameU3 = Frame(frameUser, bg='gray', width=800, height=400) #zona interaccion
+    frameU2.pack_propagate(False)
+    frameU3 = Frame(frameUser, width=800, height=400, pady=20, bg='#909497') #zona interaccion
     frameU3.pack()
+    frameU3.pack_propagate(False)
 
     #widgets internos de cada division
+    #Nombre funcionalidad
     frameU11 = Frame(frameU1, width=400, height=30, padx=5, bg='#0B5345')
     frameU11.pack(side='bottom', pady=10)
     labelRealizarReserva = Label(frameU11, text='Realizar reserva', font=fontNombre, bg='#0B5345')
     labelRealizarReserva.config(fg='#A2D9CE')
     labelRealizarReserva.pack()
 
+    ingresarUser(frameU3)
+
+    #Descripcion funcionalidad
+    frameDescripcion = Frame(frameU2, width=600, height=80, bg='#0B5345')
+    frameDescripcion.pack(pady=10)
+    frameDescripcion.pack_propagate(False)
+    labelDescripcion = Label(frameDescripcion,text='En esta seccion podra crear reservas,\n seleccionando fecha, servicios y productos disponibles', font=fontNombre)
+    labelDescripcion.pack(pady=15)
+
+
+    #Zona de interaccion del usuario
+
+def ingresarUser(frame):
+    frameContenedor = Frame(frame, width=500, height=350, bg='#D0D3D4', borderwidth=5, padx=20, pady=20, relief='groove')
+    frameContenedor.pack()
+    frameContenedor.pack_propagate(False)
+    labelText = Label(frameContenedor, text='Es usted ?', font=fontNombre)
+    labelText.config( bg='#D0D3D4')
+    labelText.pack(pady=20, side='top')
+    botonExistente = Button(frameContenedor, text='Usuario regsitrado', font=fontNombre, relief='groove')
+    botonExistente.config(bg='#0B5345', borderwidth=5, fg='#A2D9CE')
+    botonExistente.pack(pady=20)
+    botonNuevo = Button(frameContenedor, text='Usuario no registrado', font=fontNombre, relief='groove')
+    botonNuevo.config(bg='#0B5345', borderwidth=5, fg='#A2D9CE')
+    botonNuevo.pack(pady=20)
 
 
 def balance():
