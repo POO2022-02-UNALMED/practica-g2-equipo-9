@@ -1,5 +1,7 @@
-from Python.src.gestorAplicacion_py.usuarios.Empleado import Empleado
-from Python.src.gestorAplicacion_py.usuarios.Sueldo import Sueldo
+
+from gestorAplicacion_py.usuarios.Empleado import Empleado
+from gestorAplicacion_py.usuarios.Sueldo import Sueldo
+
 
 class Gerente(Empleado,Sueldo):
 
@@ -7,8 +9,8 @@ class Gerente(Empleado,Sueldo):
     _Gerentes = []
 
     _seguro=12
-    def __init__(self, codigo, nombre, cargo, fechaVinculacion):
-        super().__init__(fechaVinculacion,codigo,nombre,"Gerente",Sueldo.sueldoBase*0.5)
+    def __init__(self, codigo, nombre, cargo, sueldo, fechaIngreso):
+        super().__init__(fechaIngreso,codigo,nombre,"Gerente",Sueldo.sueldoBase*0.5)
 
 
 
@@ -17,7 +19,7 @@ class Gerente(Empleado,Sueldo):
 
     #ToString
     def __str__(self):
-        return "Codigo: ", self.getCodigo(), " Nombre ", self.getNombre(), " fecha vinculacion ", self.getFechaVinculacion()
+        return "Codigo: ", self.getCodigo(), " Nombre ", self.getNombre(), " fecha vinculacion ", self.getFechaIngreso()
 
     #preguntar por la funcion de asegurar
 
@@ -45,4 +47,9 @@ class Gerente(Empleado,Sueldo):
     @classmethod
     def setListaGerentes(cls,lista):
         cls._Gerentes = lista
+    
+    def generarCodigo(cls):
+        return cls._numeroGerente+1
+
+
     
