@@ -177,14 +177,15 @@ def dibujar_ventana_inicio():
     Inicio.add_command(label='Descripcion', command=mostrarDescripcion)
     ventanaPrincipalButon.config(command=dibujar_ventana_usuario)
 
+
 def crearMenuUser():
 
     menuBar = Menu(root)
     root.config(menu=menuBar)
 
     Archivo = Menu(menuBar)
-    menuBar.add_cascade(label="Inicio", menu=Archivo, command=evento)
-    Archivo.add_command(label='Aplicacion')
+    menuBar.add_cascade(label="Archivo", menu=Archivo, command=evento)
+    Archivo.add_command(label='Aplicacion',command=eventoAplicacion)
     Archivo.add_command(label='Salir', command=dibujar_ventana_inicio)
 
     Procesos_Consultas = Menu(menuBar)
@@ -206,6 +207,20 @@ def dibujar_ventana_usuario():
 
     def aplicacionDialog():
         pass
+def eventoAplicacion():
+    limpiarVentana()
+    crearMenuUser()
+    # fonts
+    ##crEacion de 3 divisiones en ventana
+    frameUser = Frame(root, bg='white', width=800, height=550)
+    frameUser.pack()
+    texto="la aplicacion UNbar\n" \
+           "sirve para tomar bebidas\n"
+
+
+    labelRealizarReserva = Label(frameUser, text=texto, bg='#0B5345',font=Font(size=15, family='Arial TUR'))
+    labelRealizarReserva.config(fg='#A2D9CE')
+    labelRealizarReserva.pack()
 
 fontNombre = Font(size=15, family='Arial TUR' )
 def realizarReserva():
@@ -371,7 +386,9 @@ def balance():
     lblResultado.pack()
 
 
-# frameBalance.pack()
+
+
+
 
 
 
