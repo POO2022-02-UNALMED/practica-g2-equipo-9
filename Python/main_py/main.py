@@ -2,11 +2,10 @@ from tkinter import *
 from tkinter import ttk
 from tkinter.font import Font
 
-from Python.src.gestorAplicacion_py.gestion.Producto import Producto
-from Python.src.main_py.funcionalidadesBalanceContable import conseguir_mes
-from Python.src.main_py.funcionalidadesBalanceContable import balance_ventas
-from Python.src.main_py.manejoErrores import Validador
-from Python.src.interfaz_source.fieldFrame import FieldFrame
+from funcionalidadesBalanceContable import conseguir_mes
+from funcionalidadesBalanceContable import balance_ventas
+from manejoErrores import Validador
+from fieldFrame import FieldFrame
 
 root = Tk()
 root.geometry('800x550')
@@ -477,14 +476,7 @@ user_img = PhotoImage(file='user_img.png')
 
 
 if __name__ == '__main__':
-    producto5 = Producto("coca1", 500, None, None, None, "vendido", 1, None)
-    producto5 = Producto("coca1", 500, None, None, None, "vendido", 2, None)
-    producto5 = Producto("coca1", 500, None, None, None, "vendido", 3, None)
-    producto5 = Producto("coca1", 500, None, None, None, "vendido", 3, None)
-    producto5 = Producto("coca1", 500, None, None, None, "vendido", 5, None)
-    producto5 = Producto("coca1", 500, None, None, None, "no vendido", 4, None)
-    producto5 = Producto("coca1", 500, None, None, None, "no vendido", 4, None)
-    print(conseguir_mes())
+
 
     dibujar_ventana_inicio()
     root.mainloop()

@@ -1,4 +1,4 @@
-from Python.src.gestorAplicacion_py.usuarios import Cliente
+
 from datetime import date
 
 #

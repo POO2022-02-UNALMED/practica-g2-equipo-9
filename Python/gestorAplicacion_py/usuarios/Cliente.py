@@ -1,6 +1,5 @@
-from Python.src.gestorAplicacion_py.usuarios.Usuario import Usuario
+from Python.gestorAplicacion_py.usuarios.Usuario import Usuario
 
-from Python.src.gestorAplicacion_py.gestion.Pedido import *
 
 
 

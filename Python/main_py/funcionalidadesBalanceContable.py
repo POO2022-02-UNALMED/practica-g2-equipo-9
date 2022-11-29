@@ -1,10 +1,9 @@
-from Python.src.gestorAplicacion_py.usuarios import *
 
 #
-#*Clase creada para representar los productos fisicos
-#*para cada unidad de cada producto se crea un objeto de tipo Producto
-#* Un pedido puede contener muchos productos
-#*
+# *Clase creada para representar los productos fisicos
+# *para cada unidad de cada producto se crea un objeto de tipo Producto
+# * Un pedido puede contener muchos productos
+# *
 #
 
 
@@ -13,13 +12,11 @@ class Producto:
 
 
 
-    #ATRIBUTOS INSTANCIA
+    # ATRIBUTOS INSTANCIA
 
+    # ATRIBUTOS DE CLASE
 
-
-    #ATRIBUTOS DE CLASE
-
-    _productos = [] #ARRAYLIST DONDE SE GUARDAN TODOS LOS PRODUCTOS
+    _productos = []  # ARRAYLIST DONDE SE GUARDAN TODOS LOS PRODUCTOS
     _numeroProducto = 0
 
     _bebidasAlcoholicas = [] # En esta lista va la primera instancia de un nuevo producto de tipo bebidasAlcoholicas, es decir no se puede repetir
@@ -30,27 +27,26 @@ class Producto:
     _energizantes = [] # En esta lista va la primera instancia de un nuevo producto de tipo energizantes, es decir no se puede repetir
     _otrosProductos = [] # En esta lista va la primera instancia de un nuevo producto de tipo otrosProductos, es decir no se puede repetir
 
-
-
-    #CONSTRUCTOR
+    # CONSTRUCTOR
 
     def __init__(self, nombre, precioVenta, codigo, trabajador=None, cliente=None, estado="", fechaVenta=None, tipo=""):
         self._nombre = nombre
-        self._estado=estado #"vendido" "no vendido"
+        self._estado =estado  # "vendido" "no vendido"
         self._cliente = cliente
         self._precioVenta = precioVenta
         self._fechaVenta = fechaVenta
         self._tipo = tipo
         self._trabajador = trabajador
-        self._codigo=codigo
+        self._codigo =codigo
 
         Producto._productos.append(self)
 
 
     def descripcionProducto(self):
-        return "\nNombre: " + self.getNombre() + "\nCodigo: " + str(self.getCodigo()) + "\nPrecio venta: " + str(self.getPrecioVenta())
+        return "\nNombre: " + self.getNombre() + "\nCodigo: " + str(self.getCodigo()) + "\nPrecio venta: " + str \
+            (self.getPrecioVenta())
 
-    #GETTERS Y SETTERS
+    # GETTERS Y SETTERS
 
     def getNombre(self):
         return self._nombre
@@ -62,7 +58,7 @@ class Producto:
         return self._estado
 
     def setEstado(self, estado):
-        self._estado=estado
+        self._estado =estado
 
 
     def getPrecioVenta(self):
@@ -81,26 +77,26 @@ class Producto:
 
     def getTipo(self):
         return self._tipo
-    def setTipo(self,tipo):
-        self._tipo=tipo
+    def setTipo(self ,tipo):
+        self._tipo =tipo
 
     def getTrabajador(self):
         return self._trabajador
-    def setTrabajador(self,trabajador):
-        self._trabajador=trabajador
+    def setTrabajador(self ,trabajador):
+        self._trabajador =trabajador
 
     def getCodigo(self):
         return self._codigo
-    def setCodigo(self,codigo):
-        self._codigo=codigo
-    
+    def setCodigo(self ,codigo):
+        self._codigo =codigo
+
     def getCliente(self):
         return self._cliente
 
     def setCliente(self, cliente):
         self._cliente = cliente
-    
-    
+
+
     @classmethod
     def getProductos(cls) -> list['Producto']:
         return cls._productos
@@ -117,19 +113,19 @@ class Producto:
     def setNumeroPedido(cls, numeroProducto):
         cls._numeroProducto = numeroProducto
 
-    
+
     @classmethod
     def setBebidasAlcoholicas(cls, bebidasAlcoholicas):
         cls._bebidasAlcoholicas = bebidasAlcoholicas
-    
+
     @classmethod
     def getBebidasAlcoholicas(cls):
         return cls._bebidasAlcoholicas
-    
+
     @classmethod
     def setBebidasNoAlcoholicas(cls, bebidasNoAlcoholicas):
         cls._bebidasNoAlcoholicas = bebidasNoAlcoholicas
-    
+
     @classmethod
     def getBebidasNoAlcoholicas(cls):
         return cls._bebidasNoAlcoholicas
@@ -231,8 +227,6 @@ def verificarProducto(nombre, listaProductos):
             break
     return existe
 
-@staticmethod
-
 
 @staticmethod
 def agregarProducto(nombre, cantidad, listaProductos):
@@ -246,3 +240,32 @@ def agregarProducto(nombre, cantidad, listaProductos):
         else:
             break
     return productosEscogidos
+
+
+def conseguir_mes():
+    lista_meses = []
+    for producto in Producto.getProductos():
+        if producto.getEstado() == "vendido" and producto.getFechaVenta() != None:
+            if producto.getFechaVenta() not in lista_meses:
+                lista_meses.append(producto.getFechaVenta())
+    return lista_meses
+
+def balance_ventas(mes):
+    total=0
+    for producto in Producto.getProductos():
+        if producto.getFechaVenta()!=None:
+            if producto.getEstado() == "vendido" and producto.getFechaVenta() == mes:
+                total+=producto.getPrecioVenta()
+
+    return total
+
+
+
+if __name__=='__main__':
+    producto1 = Producto("coca", "vendido", 400, 2, None, None, 0)
+    producto2 = Producto("coca1", "vendido", 500, 2, None, None, 0)
+    producto3 = Producto("coca1", "vendido", 500, None, None, None, 0)
+    producto3 = Producto("coca1", "vendido", 500, 3, None, None, 0)
+
+    print(balance_ventas(2))
+

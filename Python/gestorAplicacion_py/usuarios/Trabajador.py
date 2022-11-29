@@ -1,4 +1,4 @@
-from Python.src.gestorAplicacion_py.usuarios.Empleado import Empleado
+from gestorAplicacion_py.usuarios.Empleado import Empleado
 from datetime import datetime, timedelta
 
 
