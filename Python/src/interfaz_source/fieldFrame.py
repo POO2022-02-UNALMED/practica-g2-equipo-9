@@ -63,6 +63,7 @@ class FieldFrame(Frame):
         return self._elementos
 
     def camposVacios(self):
+        a=False
         vacios = []
         for j, entrada in enumerate(self._elementos):
             if not entrada.get():
@@ -76,8 +77,9 @@ class FieldFrame(Frame):
             else:
                 textoError = f"El campo {vacios[0]} esta vacio. Por favor completarlo y presionar el boton Aceptar"
             messagebox.showerror("Faltan datos por ingresar", textoError)
-        else:
-            self.validarEntradas()
+            a=True
+        return a
+
 """
 root = Tk()
 root.title('ventana prueba')

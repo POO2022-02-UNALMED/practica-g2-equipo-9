@@ -416,18 +416,14 @@ def ejemplo():
              "Septiembre": 9, "Octubre": 10, "Noviembre": 11, "Diciembre": 12}
 
     def submit():
-        frameFormulario.camposVacios()
-        mesesDisponibles = conseguir_mes()
-        mesElegido = frameFormulario.getDatos("Mes")
-        mesIndex = MESES[mesElegido] if mesElegido != "" else ""
-        # Creamos objeto validador
-        validador = Validador()
-        # VALIDACIONES:
-        validador.validarMesDisponible(mesIndex, mesesDisponibles)
-        # pasarle la funcion de precio
-        #if validador.getValidacion():
-        #    lblResultado.config(text=str(balance_ventas(mesIndex)))
-        pass
+        a=frameFormulario.camposVacios()
+
+        if a==False:
+            pass
+
+
+
+
     def borrar():
 
         for entrada in frameFormulario.getElementos():
@@ -452,5 +448,8 @@ if __name__ == '__main__':
     producto2 = Producto("coca1", "vendido", 500, 2, None, None, 0)
     producto3 = Producto("coca1", "vendido", 500, None, None, None, 0)
     producto4 = Producto("coca1", "vendido", 500, 3, None, None, 0)
+    producto5= Producto("coca1", 500,None,None,None,"vendido",)
+    print(conseguir_mes())
+
     dibujar_ventana_inicio()
     root.mainloop()
