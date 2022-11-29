@@ -203,9 +203,8 @@ def crearMenuUser():
     menuBar.add_cascade(label='Procesos y consultas', menu=Procesos_Consultas, command=evento)
     Procesos_Consultas.add_command(label='Realizar reserva', command=realizarReserva)
     Procesos_Consultas.add_command(label='Modificar reserva')
-    Procesos_Consultas.add_command(label='Gestionar nomina')
+    Procesos_Consultas.add_command(label='Gestionar nomina',command=nomina)
     Procesos_Consultas.add_command(label='Balance Contable',command=ejemplo)
-    Procesos_Consultas.add_command(label='Balance')
 
     Ayuda = Menu(menuBar)
     menuBar.add_cascade(label='Ayuda', menu=Ayuda, command=evento)
@@ -340,7 +339,9 @@ def ingresarUser(frame):
 
 
 
-
+def nomina():
+    limpiarVentana()
+    crearMenuUser()
 
 def balance():
     limpiarVentana()
