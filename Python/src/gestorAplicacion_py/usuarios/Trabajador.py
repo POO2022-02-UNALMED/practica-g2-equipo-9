@@ -1,10 +1,9 @@
-from Python.src.gestorAplicacion_py.usuarios.Empleado import Empleado
+from gestorAplicacion_py.usuarios.Empleado import Empleado
+from datetime import datetime, timedelta
 
+from gestorAplicacion_py.usuarios.Producto import Producto
 
-from datetime import datetime,timedelta
-
-from Python.src.gestorAplicacion_py.gestion.Producto import Producto
-
+    
 
 class Trabajador(Empleado):
 
@@ -12,16 +11,13 @@ class Trabajador(Empleado):
     _numeroTrabajador = 0
 
 
-    def __init__(self,codigo,nombre,fechaVinculacion,_saldoFinal):
-        super().__init__(fechaVinculacion,codigo,nombre,"Trabajador",self.getSueldo)
+    def __init__(self,codigo,nombre,fechaVinculacion,_saldoFinal, sueldo):
+        super().__init__(fechaVinculacion,codigo,nombre,"Trabajador",sueldo)
         self._seguro =6
         self._saldoFinal=_saldoFinal
         
         Trabajador._trabajadores.append(self)
 
-
-
-        
         
     def getSeguro(self):
         return self._seguro
@@ -68,7 +64,3 @@ class Trabajador(Empleado):
     def generarCodigo(cls):
         return cls._numeroTrabajadores + 1
 
-
-
-
-    
