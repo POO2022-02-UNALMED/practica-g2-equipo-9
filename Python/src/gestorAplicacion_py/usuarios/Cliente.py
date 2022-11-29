@@ -1,8 +1,11 @@
+from gestorAplicacion_py.usuarios.Usuario import Usuario
+
+from gestorAplicacion_py.gestion.Pedido import *
 
 
-from Python.src.gestorAplicacion_py.usuarios.Usuario import Usuario
+
 class Cliente(Usuario):
-
+    _historialpedidos = []
     _clientes = []
     _numeroCliente = 0
 
@@ -54,6 +57,33 @@ class Cliente(Usuario):
 
     def informacion(self):
         return "Cliente con nombre "+self.getNombre()+" y codigo "+self.getCodigo()
+    
+
+
+    def generarCodigo(cls):
+        return cls._numeroCliente+1
+
+    @classmethod
+    def getHistorialPedidos(cls):
+        return cls._historialpedidos
+
+    @classmethod
+    def setHistorialPedidos(cls, historial):
+        cls._historialpedidos = historial
+
+
+    def agregarPedidoHistorial(Pedido):
+        Cliente._historialpedidos.append(Pedido)
+
+    def informacion(cls, self):
+        return print("El cliente {self._nombre} con número de reserva, {self._numeroReserva}, y estado de la reserva, {self._estadoReserva}, Ha hecho, {cls._historialpedidos} pedidos en el sistema.")
+
+    def mostrarClientesRegistrados(cls, self):
+        k = 0
+        while k < len(cls._clientes):
+            return print(cls._clientes[k].self.nombre)
+            k+1
+
 
 
 
