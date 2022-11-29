@@ -1,6 +1,7 @@
 from tkinter import *
 from tkinter import ttk
 from tkinter.font import Font
+from tkinter.messagebox import *
 
 from funcionalidadesBalanceContable import conseguir_mes
 from funcionalidadesBalanceContable import balance_ventas
@@ -176,6 +177,17 @@ def dibujar_ventana_inicio():
     Inicio.add_command(label='Descripcion', command=mostrarDescripcion)
     ventanaPrincipalButon.config(command=dibujar_ventana_usuario)
 
+def Aplicacion():
+    showinfo("Aplicacion","UNBar es un software orientado a la administracion de discotecas,"
+                          " permitiendo calcular nomina, realizar reservas entre otras cosas")
+
+def acercaDe():
+    showinfo('Autores de la aplicacion',
+                          'Russbell Noreña Mejia\n'
+                          'Sergio Andres Arias Jimenez\n'
+                          'Kevin Jair Quiñones Sierra\n'
+                          'Linder Yolian Rodriguez\n'
+                          'Janedt Valentina Carmona Ardila')
 
 def crearMenuUser():
 
@@ -184,7 +196,7 @@ def crearMenuUser():
 
     Archivo = Menu(menuBar)
     menuBar.add_cascade(label="Archivo", menu=Archivo, command=evento)
-    Archivo.add_command(label='Aplicacion',command=eventoAplicacion)
+    Archivo.add_command(label='Aplicacion',command=Aplicacion)
     Archivo.add_command(label='Salir', command=dibujar_ventana_inicio)
 
     Procesos_Consultas = Menu(menuBar)
@@ -197,7 +209,7 @@ def crearMenuUser():
 
     Ayuda = Menu(menuBar)
     menuBar.add_cascade(label='Ayuda', menu=Ayuda, command=evento)
-    Ayuda.add_command(label='Acerca de')
+    Ayuda.add_command(label='Acerca de', command=acercaDe)
 
 
 def dibujar_ventana_usuario():
