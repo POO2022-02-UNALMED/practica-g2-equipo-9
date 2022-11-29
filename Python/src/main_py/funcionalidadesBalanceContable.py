@@ -4,16 +4,16 @@ from Python.src.gestorAplicacion_py.gestion.Producto import Producto
 def conseguir_mes():
     lista_meses = []
     for producto in Producto.getProductos():
-        if producto.getEstado() == "vendido" and producto.getMesVenta() != None:
-            if producto.getMesVenta() not in lista_meses:
-                lista_meses.append(producto.getMesVenta())
+        if producto.getEstado() == "vendido" and producto.getFechaVenta() != None:
+            if producto.getFechaVenta() not in lista_meses:
+                lista_meses.append(producto.getFechaVenta())
     return lista_meses
 
 def balance_ventas(mes):
     total=0
     for producto in Producto.getProductos():
-        if producto.getMesVenta()!=None:
-            if producto.getEstado() == "vendido" and producto.getMesVenta() == mes:
+        if producto.getFechaVenta()!=None:
+            if producto.getEstado() == "vendido" and producto.getFechaVenta() == mes:
                 total+=producto.getPrecioVenta()
 
     return total

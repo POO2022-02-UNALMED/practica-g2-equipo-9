@@ -1,10 +1,9 @@
-from tkinter import messagebox
+from Python.src.manejoErrores.ErrorAplicacion import ErrorAplicacion
 
-class ExceptionPopUp():
+class ErrorFormato(ErrorAplicacion):
     def __init__(self, mensaje):
-        self._mensaje = mensaje
-        messagebox.showerror(title = "Error en la aplicación", message = mensaje)
-
+        self.mensaje_error_fromato = " Error por formato " + mensaje
+        super().__init__(self.mensaje_error_fromato)
 
 class CampoVacioException(Exception):
     def __init__(self, message="Error: Debes de llenar todos los datos del formulario"):
@@ -22,13 +21,14 @@ class Mesfuerade1a12(Exception):
         self.message = message
         super().__init__(self.message)
 
-class Validador():
+class Validador1():
     def __init__(self):
         self._esValido = False
 
     def getValidacion(self):
         return self._esValido
 
+class Validador2():
     def validarMesDisponible(self, mes, mesesDisponibles):
         try:
             if mes not in mesesDisponibles:

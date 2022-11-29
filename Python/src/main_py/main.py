@@ -394,32 +394,65 @@ def ejemplo():
     ##crEacion de 3 divisiones en ventana
     frameUser = Frame(root, bg='gray', width=800, height=550)
     frameUser.pack()
+
     frameNombre = Frame(frameUser, bg='#0B5345', width=800, height=50)  # nombre
     frameNombre.pack_propagate(False)
     frameNombre.pack()
+
+    labelDescripcion = Label(frameNombre,
+                             text='BALANCE CONTABLE',
+                             font=fontNombre, bg='#0B5345')
+    labelDescripcion.pack(pady=15)
+    labelDescripcion.config(fg='#A2D9CE')
+
+
+    #descripcion
     frameDescripcion = Frame(frameUser, bg='#909497', width=800, height=100)  # descripcion
     frameDescripcion.pack()
     frameDescripcion.pack_propagate(False)
+    labelDescripcion = Label(frameDescripcion,
+                             text='En esta seccion podra ver el balance de ventas de un mes en concreto,\n seleccionando un numero del mes',
+                             font=fontNombre, bg='#0B5345')
+    labelDescripcion.pack(pady=15)
+    labelDescripcion.config(fg='#A2D9CE')
 
 
-    frameZonaInteraccion = Frame(frameUser, width=800, height=400, pady=20, bg='#909497')  # zona interaccion
+
+    frameZonaInteraccion = Frame(frameUser, width=800, height=320, pady=20, bg='#909497')  # zona interaccion
     frameZonaInteraccion.pack()
     frameZonaInteraccion.pack_propagate(False)
 
-
-
-    frameFormulario = FieldFrame(frameZonaInteraccion, "titulo" , ["Mes"], "VALOR", None, [True])
+    frameFormulario = FieldFrame(frameZonaInteraccion, "Criterio" , ["Mes"], "VALOR", None, [True])
     frameFormulario.config(width=500, height=350, bg='#D0D3D4', borderwidth=5, padx=20, pady=20, relief='groove')
     frameFormulario.pack()
     frameFormulario.pack_propagate(False)
-    MESES = {"Enero": 1, "Febrero": 2, "Marzo": 3, "Abril": 4, "Mayo": 5, "Junio": 6, "Julio": 7, "Agosto": 8,
-             "Septiembre": 9, "Octubre": 10, "Noviembre": 11, "Diciembre": 12}
+
+    frameResultado = Frame(frameUser, bg='#0B5345', width=800, height=300)  # nombre
+    frameResultado.pack_propagate(False)
+    frameResultado.pack()
+
+    textoInfo = ""
+    label = Label(frameResultado,
+                             text=textoInfo,
+                             font=fontNombre, bg='#0B5345')
+    label.pack(pady=15)
+    label.config(fg='#A2D9CE')
+
+
 
     def submit():
         a=frameFormulario.camposVacios()
 
         if a==False:
-            pass
+            mesesDisponibles = conseguir_mes()
+            mesElegido = int(frameFormulario.getDatos("Mes"))
+            # Creamos objeto validador
+            validador = Validador()
+            # VALIDACIONES:
+            validador.validarMesDisponible(mesElegido, mesesDisponibles)
+            if validador.getValidacion()==True:
+                label.config(text="El balance de cuenta para el mes " + str(mesElegido) + " es de: "+ str(balance_ventas(mesElegido)))
+
 
 
 
@@ -444,11 +477,13 @@ user_img = PhotoImage(file='user_img.png')
 
 
 if __name__ == '__main__':
-    producto1 = Producto("coca", "vendido", 400, 2, None, None, 0)
-    producto2 = Producto("coca1", "vendido", 500, 2, None, None, 0)
-    producto3 = Producto("coca1", "vendido", 500, None, None, None, 0)
-    producto4 = Producto("coca1", "vendido", 500, 3, None, None, 0)
-    producto5= Producto("coca1", 500,None,None,None,"vendido",)
+    producto5 = Producto("coca1", 500, None, None, None, "vendido", 1, None)
+    producto5 = Producto("coca1", 500, None, None, None, "vendido", 2, None)
+    producto5 = Producto("coca1", 500, None, None, None, "vendido", 3, None)
+    producto5 = Producto("coca1", 500, None, None, None, "vendido", 3, None)
+    producto5 = Producto("coca1", 500, None, None, None, "vendido", 5, None)
+    producto5 = Producto("coca1", 500, None, None, None, "no vendido", 4, None)
+    producto5 = Producto("coca1", 500, None, None, None, "no vendido", 4, None)
     print(conseguir_mes())
 
     dibujar_ventana_inicio()
