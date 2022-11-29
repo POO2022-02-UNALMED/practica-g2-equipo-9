@@ -1,6 +1,6 @@
 
-from gestorAplicacion_py.usuarios.Empleado import Empleado
-from gestorAplicacion_py.usuarios.Sueldo import Sueldo
+from Python.src.gestorAplicacion_py.usuarios.Empleado import Empleado
+from Python.src.gestorAplicacion_py.usuarios.Sueldo import Sueldo
 
 
 class Gerente(Empleado,Sueldo):

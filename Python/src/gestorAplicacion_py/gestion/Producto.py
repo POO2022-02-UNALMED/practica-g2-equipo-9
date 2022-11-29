@@ -212,42 +212,8 @@ def verificarExistenciaCategoria(lista, producto):
 
 
 
-@staticmethod
-def mostrarProductosDisponibles(listaProducto):
-    s = "Este es el inventario de productos disponibles para vender:" + "\nNombre, Cantidad, Precio:"
-    productosDisponiblesNoRepetidos = TreeSet()
-    productosDisponiblesRepetidos = []
-    listaPrecios = {}
-    for producto in listaProducto:
-        productosDisponiblesNoRepetidos.add(producto.getNombre())
-        productosDisponiblesRepetidos.append(producto.getNombre())
-        if producto.getNombre() in listaPrecios.keys() == False:
-            listaPrecios[producto.getNombre()] = producto.getPrecioVenta()
-    i = 1
-    for nombre in productosDisponiblesNoRepetidos:
-        s += "\n" + str(i) + ". Nombre: " + nombre + ", Cantidad: " + Collections.frequency(productosDisponiblesRepetidos, nombre) + ", Precio: " + str(listaPrecios[nombre])
-        i += 1
-    return s
 
-@staticmethod
-def mostrarNombresCantidadPrecio(productosPedidos):
-    s = "Pedido de Productos: " + "\nNombre, Cantidad, Precio:"
-    nombresNoRepetidos = TreeSet()
-    nombresRepetidos = []
-    listaPrecios = {}
-    valorTotal = 0
-    for producto in productosPedidos:
-        nombresNoRepetidos.add(producto.getNombre())
-        nombresRepetidos.append(producto.getNombre())
-        if producto.getNombre() in listaPrecios.keys() == False:
-            listaPrecios[producto.getNombre()] = producto.getPrecioVenta()
-        valorTotal += producto.getPrecioVenta()
-    i = 1
-    for nombre in nombresNoRepetidos:
-        s += "\n" + str(i) + ". Nombre: " + nombre + ", Cantidad: " + Collections.frequency(nombresRepetidos, nombre) + ", Precio: " + Collections.frequency(nombresRepetidos, nombre) * listaPrecios[nombre]
-        i += 1
-    s += "\nValor total de productos= " + str(valorTotal)
-    return s
+
 @staticmethod
 def productosDisponibles(Inventario):
     productosDisponibles = []
@@ -266,14 +232,7 @@ def verificarProducto(nombre, listaProductos):
     return existe
 
 @staticmethod
-def verificarProducto(nombre, cantidad, listaProductos):
-    existe = False
-    nombresProducto = []
-    for producto in listaProductos:
-        nombresProducto.append(producto.getNombre())
-    if cantidad >= 0 and cantidad <= Collections.frequency(nombresProducto, nombre):
-        existe = True
-    return existe
+
 
 @staticmethod
 def agregarProducto(nombre, cantidad, listaProductos):

@@ -1,3 +1,5 @@
+from datetime import date
+from datetime import timedelta
 class Espacio:
 
     
@@ -64,11 +66,11 @@ class Espacio:
 
     def actualizarFechas(self):
         for fecha in self._fechas:
-            if fecha.isBefore(LocalDate.now()):
+            if fecha.isBefore(date.today()):
                 self._fechas.remove(fecha)
 
     def generarFechasDisponibles(self):
-        self._fechas.append(LocalDate.now())
+        self._fechas.append(date.today())
         for i in range(1, 30):
-            self._fechas.append(LocalDate.now().plusDays(i))
+            self._fechas.append(date.today()+timedelta(days=i))
 
