@@ -204,8 +204,8 @@ def crearMenuUser():
     Procesos_Consultas.add_command(label='Realizar reserva', command=realizarReserva)
     Procesos_Consultas.add_command(label='Modificar reserva')
     Procesos_Consultas.add_command(label='Gestionar nomina')
-    Procesos_Consultas.add_command(label='Ejemplo',command=ejemplo)
-    Procesos_Consultas.add_command(label='Balance', command=balance)
+    Procesos_Consultas.add_command(label='Balance Contable',command=ejemplo)
+    Procesos_Consultas.add_command(label='Balance')
 
     Ayuda = Menu(menuBar)
     menuBar.add_cascade(label='Ayuda', menu=Ayuda, command=evento)
@@ -461,12 +461,17 @@ def ejemplo():
             validador = Validador()
             # VALIDACIONES:
             validador.validarMesDisponible(mesElegido, mesesDisponibles)
-            if validador.getValidacion()==True:
-                label.config(text="El balance de cuenta para el mes " + str(mesElegido) + " es de: "+ str(balance_ventas(mesElegido)))
+            if validador.getValidacion() == True:
+                label.config(text="El balance de cuenta para el mes " + str(mesElegido) + " es de: " + str(
+                    balance_ventas(mesElegido)))
 
 
 
 
+
+            #elif a==True:
+             #   label.config(text="El balance de cuenta para el mes " + str(mesElegido) + " es de: " + str(
+              #      balance_ventas(mesElegido)))
 
     def borrar():
 

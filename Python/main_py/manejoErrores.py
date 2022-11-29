@@ -13,12 +13,12 @@ class CampoVacioException(Exception):
 
 
 class MesNoEncontradoException(Exception):
-    def __init__(self, message="Error: has seleccionado un mes del que no se tienen ventas"):
+    def __init__(self, message="Error: mes ingresado no valido"):
         self.message = message
         super().__init__(self.message)
 
-class Mesfuerade1a12(Exception):
-    def __init__(self, message="Error: has seleccionado un mes fuera de los 12 meses"):
+class stringException(Exception):
+    def __init__(self, message="Error: has ingresado un String"):
         self.message = message
         super().__init__(self.message)
 
@@ -39,12 +39,36 @@ class Validador():
         except MesNoEncontradoException as e:
             ExceptionPopUp(e)
 
-    def validarMes1a12(self, mes, mesesDisponibles):
+    def validarMesDisponible(self, mes, mesesDisponibles):
         try:
-            if mes<1 or mes >12:
+            if mes not in mesesDisponibles:
                 self._esValido = False
-                raise Mesfuerade1a12
+                raise MesNoEncontradoException
 
             self._esValido = True
-        except Mesfuerade1a12 as e:
+        except MesNoEncontradoException as e:
             ExceptionPopUp(e)
+
+
+
+
+    def validarEntradaString(self, mes):
+        try:
+            if type(mes)==str:
+                self._esValido = False
+                raise stringException
+
+            self._esValido = True
+        except stringException as e:
+            ExceptionPopUp(e)
+
+if __name__ == '__main__':
+    validador = Validador()
+    validador.validarEntradaString()
+    print(validador)
+
+    value = 'Yes String'
+    if type(value) == str:
+        print("True")
+    else:
+        print("False")
