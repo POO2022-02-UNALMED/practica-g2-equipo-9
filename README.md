@@ -1,5 +1,4 @@
 # Practica
-Proyecto de estudiantes de la Unal en la asignatura programacion orientada a objetos en el semestre 2022-2S.
 
 ## El archivo start.bat esta dentro de la carpeta main_py la cual se encuentra dentro de la carpeta Python
 
