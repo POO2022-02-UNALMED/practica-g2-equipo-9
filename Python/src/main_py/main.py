@@ -152,10 +152,12 @@ def dibujar_ventana_inicio():
         for widget in frameP6.winfo_children():
             widget.destroy()
 
-        labelDescripcion = Label(frameP6, bg='black', text='Sistema orientado a la administracion\n'
-                                                           ' de una discoteca, en el que se\n podra realizar y '
-                                                           'modificar reservas\n y consultar ventas '
-                                 , fg='white')
+        labelDescripcion = Label(frameP6, bg='black', text='Sistema orientado\n'
+                                                           'a la administracion\n'
+                                                           'de una discoteca, en\n'
+                                                           'el que se podra realizar\n '
+                                                           'y modificar reservas y\n'
+                                                           'consultar ventas', fg='white')
         labelDescripcion.config(font=saludoFont)
         labelDescripcion.pack(fill='y', side='top')
         salirBoton = Button(frameP6, text='Salir de la descripcion', font=saludoLabel, bg='#0B5345', fg='#A2D9CE',
