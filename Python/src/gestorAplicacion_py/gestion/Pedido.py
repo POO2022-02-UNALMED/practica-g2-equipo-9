@@ -27,16 +27,19 @@ class Pedido:
 
     #CONSTRUCTOR
 
-    def __init__(self, trabajador, cliente, estadoPedido, productos, servicios, fechaPedido, codigo):
+    def __init__(self, trabajador, cliente, estadoPedido="", productos=0, servicios=[], fechaPedido="", codigo=0):
         self._cliente = cliente
         self._trabajador = trabajador
         self._estadoPedido = estadoPedido #CONSTRUCTOR PARA LA FUNCIONALIDAD realizarReserva
-        self._productos = productos  #array con productos
+        self._producto= productos
+        self._productos = [] #array con productos
         self._servicios = servicios  #array con servicios
         self._fechaPedido = fechaPedido #fecha del pedido
-        self._codigo = codigo          #codigo del pedido
-        self._pedidos.append(self)
-        Pedido._numeroPedido+=1
+        self._codigo = Pedido._totalPedidos        #codigo del pedido
+        Pedido._pedidos.append(self)
+        Pedido._totalPedidos+=1
+
+
 
 
     #GETTERS Y SETTERS
@@ -54,24 +57,23 @@ class Pedido:
     def setCliente(self, cliente):
         self._cliente = cliente
 
-    @staticmethod
-    def getPedidos(self):
-        return self._pedidos
+    
+    @classmethod
+    def getPedidos(cls):
+        return cls._pedidos
 
-    @staticmethod
-    def setPedidos(self,pedidos):
-        self._pedidos=pedidos
+    @classmethod
+    def setPedidos(cls, pedidos):
+        cls._pedidos = pedidos
 
-    def getEstadoPedido(self):
-        return self._estadoPedido
 
-    @staticmethod
-    def getTotalPedidos():
-        return Pedido._numeroPedido
+    @classmethod
+    def getTotalPedidos(cls):
+        return cls._totalPedidos
 
-    @staticmethod
-    def setTotalPedidos(numeroPedido):
-        Pedido._numeroPedido=numeroPedido
+    @classmethod
+    def setTotalPedidos(cls, totalPedidos):
+        cls._totalPedidos = totalPedidos
 
     def setEstadoPedido(self, estadoPedido):
         self._estadoPedido = estadoPedido
@@ -103,6 +105,16 @@ class Pedido:
 
     def setCodigo(self, codigo):
         self.codigo = codigo
+
+    @classmethod
+    def getNumeroPedido(cls):
+        return cls._numeroPedido
+
+    @classmethod
+    def setNumeroPedido(cls, numeroPedido):
+        cls._numeroPedido = numeroPedido
+
+
 
 #OTROS METODOS
     def generarCodigo(self):
@@ -182,3 +194,7 @@ class Pedido:
 
 
 
+    
+
+
+    
