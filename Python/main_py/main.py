@@ -7,6 +7,7 @@ from funcionalidadesBalanceContable import conseguir_mes
 from funcionalidadesBalanceContable import balance_ventas
 from manejoErrores import Validador
 from fieldFrame import FieldFrame
+from Producto import Producto
 
 root = Tk()
 root.geometry('800x550')
@@ -27,12 +28,12 @@ hojasDeVida = [PhotoImage(file='cv1.png'), PhotoImage(file='cv2.png'), PhotoImag
 contadorVida=0
 
 #listas con las 4 fotos de cada programador
-fotosRussbell = [PhotoImage(file='fotoRussbell.png'), PhotoImage(file='fotoRussbell.png'), PhotoImage(file='fotoRussbell.png'), PhotoImage(file='fotoRussbell.png')]
-fotosSergio=[PhotoImage(file='kevin.png'), PhotoImage(file='kevin.png'), PhotoImage(file='kevin.png'), PhotoImage(file='kevin.png')]
-fotosValentina=[PhotoImage(file='fotoValentina.png'), PhotoImage(file='fotoValentina.png'), PhotoImage(file='fotoValentina.png'), PhotoImage(file='fotoValentina.png')]
-fotosKevin=[PhotoImage(file='fotoRussbell.png'), PhotoImage(file='fotoRussbell.png'), PhotoImage(file='fotoRussbell.png'), PhotoImage(file='fotoRussbell.png')]
-fotosYolian=[PhotoImage(file='kevin.png'), PhotoImage(file='kevin.png'), PhotoImage(file='kevin.png'), PhotoImage(file='kevin.png')]
-fotosProgramadores = [fotosRussbell, fotosSergio, fotosValentina, fotosKevin, fotosYolian]
+fotosRussbell = [PhotoImage(file='fotoRussbell.png'), PhotoImage(file='russbell2.png'), PhotoImage(file='russbell3.png'), PhotoImage(file='fotoRussbell.png')]
+fotosSergio=[PhotoImage(file='sergio1.png'), PhotoImage(file='sergio2.png'), PhotoImage(file='sergio3.png'), PhotoImage(file='sergio4.png')]
+fotosValentina=[PhotoImage(file='valentina1.png'), PhotoImage(file='valentina2.png'), PhotoImage(file='valentina3.png'), PhotoImage(file='valentina4.png')]
+fotosKevin=[PhotoImage(file='kevin1.png'), PhotoImage(file='kevin2.png'), PhotoImage(file='kevin3.png'), PhotoImage(file='kevin4.png')]
+fotosYolian=[PhotoImage(file='yolian1.png'), PhotoImage(file='yolian2.png'), PhotoImage(file='yolian3.png'), PhotoImage(file='yolian4.png')]
+fotosProgramadores = [fotosRussbell, fotosValentina, fotosSergio, fotosYolian, fotosKevin]
 imgvid = PhotoImage(file='cv1.png')
 
 #barra de menu
@@ -118,11 +119,11 @@ def dibujar_ventana_inicio():
 
     label1FrameP6 = Label(frameP6, bg='black', width=200, height=137.5, image=fotosRussbell[0])
     label1FrameP6.grid(row=0, column=0)
-    label2FrameP6 = Label(frameP6, bg='black', width=200, height=137.5, image=fotosRussbell[0])
+    label2FrameP6 = Label(frameP6, bg='black', width=200, height=137.5, image=fotosRussbell[1])
     label2FrameP6.grid(row=0, column=1)
-    label3FrameP6 = Label(frameP6, bg='black', width=200, height=137.5, image=fotosRussbell[0])
+    label3FrameP6 = Label(frameP6, bg='black', width=200, height=137.5, image=fotosRussbell[2])
     label3FrameP6.grid(row=1, column=0)
-    label4FrameP6 = Label(frameP6, bg='black', width=200, height=137.5, image=fotosRussbell[0])
+    label4FrameP6 = Label(frameP6, bg='black', width=200, height=137.5, image=fotosRussbell[3])
     label4FrameP6.grid(row=1, column=1)
     botonP5 = Button(frameP5, width=400, height=275, borderwidth=1, relief='groove', bg='black')
     botonP5.pack(side='top')
@@ -208,11 +209,29 @@ def crearMenuUser():
     menuBar.add_cascade(label='Ayuda', menu=Ayuda, command=evento)
     Ayuda.add_command(label='Acerca de', command=acercaDe)
 
+imagen_der = PhotoImage(file='user_img.png')
+imagen_izq = PhotoImage(file='img_izq.png')
+def iniciar_ventana_Usuario():
+    frameizq = Frame(root, width=400, height=500)
+    frameizq.pack(side='left')
+    frameDer = Frame(root, width=400, height=550, bg='blue')
+    frameDer.config()
+    frameDer.pack(side='right')
+
+    labelImg = Label(frameDer, width=400, height=550)
+    labelImg.config(image=imagen_der)
+    labelImg.pack()
+
+    labelImgIzq = Label(frameizq, width=400, height=550)
+    labelImgIzq.config(image=imagen_izq)
+    labelImgIzq.pack()
 
 def dibujar_ventana_usuario():
     limpiarVentana()
     root.title('UN Bar')
     crearMenuUser()
+    iniciar_ventana_Usuario()
+
 
     def aplicacionDialog():
         pass
@@ -288,13 +307,25 @@ def ingresarUser(frame):
         for widget in frameContenedor.winfo_children():
             widget.destroy()
 
+
+
         frameDatos = FieldFrame(frameContenedor, None, ["Id"],"Usuario registrado", None, [True] )
         frameDatos.pack()
 
+        def borrar():
+
+            for entrada in frameDatos.getElementos():
+                entrada.delete(0, END)
+
+        def aceptar():
+            frameDatos.camposVacios()
+
         botonAceptar = Button(frameDatos, text='Aceptar', pady=15, padx=10, bg='#BDBDBD')
+        botonAceptar.config(command=aceptar)
         botonAceptar.grid(row=3, column=0, pady=30)
 
         botonBorrar = Button(frameDatos, text='Borrar', pady=15, padx=10, bg='#BDBDBD')
+        botonBorrar.config(command=borrar)
         botonBorrar.grid(row=3, column=1)
 
         botonVolver =Button(frameDatos, text='Volver', pady=15, padx=10,bg='#BDBDBD', command=realizarReserva)
@@ -310,10 +341,20 @@ def ingresarUser(frame):
         frameDatos = FieldFrame(frameContenedor, None, ["Nombre"], "Usuario no registrado", None, [True])
         frameDatos.pack()
 
+        def borrar():
+
+            for entrada in frameDatos.getElementos():
+                entrada.delete(0, END)
+
+        def aceptar():
+            frameDatos.camposVacios()
+
         botonAceptar = Button(frameDatos, text='Aceptar', pady=15, padx=10, bg='#BDBDBD')
+        botonAceptar.config(command=aceptar)
         botonAceptar.grid(row=3, column=0)
 
         botonBorrar = Button(frameDatos, text='Borrar', pady=15, padx=10, bg='#BDBDBD')
+        botonBorrar.config(command=borrar)
         botonBorrar.grid(row=3, column=1)
 
         botonVolver = Button(frameDatos, text='Volver', padx=10, pady=15, bg='#BDBDBD', command=realizarReserva)
@@ -430,6 +471,22 @@ user_img = PhotoImage(file='user_img.png')
 
 if __name__ == '__main__':
 
+    producto1 = Producto('coca1', 400, None, None, None, 'vendido', 2, None)
+    producto2 = Producto('coca1', 400, None, None, None, 'vendido', 2, None)
+    producto3 = Producto('coca1', 400, None, None, None, 'vendido', 2, None)
+    producto4 = Producto('coca1', 400, None, None, None, 'vendido', 2, None)
+    producto5 = Producto('coca1', 400, None, None, None, 'vendido', 2, None)
+    producto6 = Producto('coca1', 400, None, None, None, 'vendido', 2, None)
+
+    producto7 = Producto('coca1', 400, None, None, None, 'vendido', 3, None)
+    producto8 = Producto('coca1', 400, None, None, None, 'vendido', 3, None)
+    producto9 = Producto('coca1', 400, None, None, None, 'vendido', 3, None)
+    producto10 = Producto('coca1', 400, None, None, None, 'vendido', 3, None)
+
+    producto11 = Producto('coca1', 400, None, None, None, 'vendido', 4, None)
+    producto12 = Producto('coca1', 400, None, None, None, 'vendido', 4, None)
+    producto13 = Producto('coca1', 400, None, None, None, 'vendido', 4, None)
+    producto14 = Producto('coca1', 400, None, None, None, 'vendido', 4, None)
 
     dibujar_ventana_inicio()
     root.mainloop()
