@@ -8,6 +8,7 @@ from Python.src.gestorAplicacion_py.usuarios import *
 #
 
 
+
 class Producto:
 
 
@@ -33,17 +34,17 @@ class Producto:
 
     #CONSTRUCTOR
 
-    def __init__(self, nombre, estado, precioVenta,mesVenta,tipo, trabajador,codigo):
+    def __init__(self, nombre, precioVenta, codigo, trabajador=None, cliente=None, estado="", fechaVenta=None, tipo=""):
         self._nombre = nombre
         self._estado=estado #"vendido" "no vendido"
+        self._cliente = cliente
         self._precioVenta = precioVenta
-        self._mesVenta=mesVenta
+        self._fechaVenta = fechaVenta
         self._tipo = tipo
         self._trabajador = trabajador
         self._codigo=codigo
-        self._productos.append(self)
-        Producto._numeroProducto+=1
 
+        Producto._productos.append(self)
 
 
     def descripcionProducto(self):
@@ -71,10 +72,11 @@ class Producto:
         self._precioVenta = precioVenta
 
 
-    def getMesVenta(self):
-        return self._mesVenta
-    def seMesVenta(self,mesventa):
-        self._mesVenta=mesventa
+    def getFechaVenta(self):
+        return self._fechaVenta
+
+    def setFechaVenta(self, fechaVenta):
+        self._fechaVenta = fechaVenta
 
 
     def getTipo(self):
@@ -91,109 +93,93 @@ class Producto:
         return self._codigo
     def setCodigo(self,codigo):
         self._codigo=codigo
-
-    @staticmethod
-    def getNumeroProducto():
-        return Producto._numeroProducto
-
-    @staticmethod
-    def setNumeroProducto(numeroProducto):
-        Producto._numeroProducto = numeroProducto
-
-    @staticmethod
-    def getProductos():
-        return Producto._productos
-
-    @staticmethod
-    def setProductos(productos):
-        Producto._productos=productos
-
-
-
-    def getTrabajador(self):
-        return self._trabajador
-
-    def setTrabajador(self, trabajador):
-        self._trabajador = trabajador
-
-
-    def getEstado(self):
-        return self._estado
-
-    def setEstado(self, estado):
-        self._estado = estado
-
-
+    
     def getCliente(self):
         return self._cliente
 
     def setCliente(self, cliente):
         self._cliente = cliente
-
-    def getTipo(self):
-        return self._tipo
     
-    @staticmethod
-    def getBebidasAlcoholicas():
-        return bebidasAlcoholicas
+    
+    @classmethod
+    def getProductos(cls) -> list['Producto']:
+        return cls._productos
 
-    @staticmethod
-    def setBebidasAlcoholicas(bebidasAlcoholicas):
-        Producto.bebidasAlcoholicas = bebidasAlcoholicas
+    @classmethod
+    def setProductos(cls, productos):
+        cls.productos = productos
 
-    @staticmethod
-    def getBebidasNoAlcoholicas():
-        return bebidasNoAlcoholicas
+    @classmethod
+    def getNumeroProductos(cls):
+        return cls._numeroProducto
 
-    @staticmethod
-    def setBebidasNoAlcoholicas(bebidasNoAlcoholicas):
-        Producto.bebidasNoAlcoholicas = bebidasNoAlcoholicas
+    @classmethod
+    def setNumeroPedido(cls, numeroProducto):
+        cls._numeroProducto = numeroProducto
 
-    @staticmethod
-    def getComidas():
-        return comidas
+    
+    @classmethod
+    def setBebidasAlcoholicas(cls, bebidasAlcoholicas):
+        cls._bebidasAlcoholicas = bebidasAlcoholicas
+    
+    @classmethod
+    def getBebidasAlcoholicas(cls):
+        return cls._bebidasAlcoholicas
+    
+    @classmethod
+    def setBebidasNoAlcoholicas(cls, bebidasNoAlcoholicas):
+        cls._bebidasNoAlcoholicas = bebidasNoAlcoholicas
+    
+    @classmethod
+    def getBebidasNoAlcoholicas(cls):
+        return cls._bebidasNoAlcoholicas
 
-    @staticmethod
-    def setComidas(comidas):
-        Producto.comidas = comidas
 
-    @staticmethod
-    def getSnacks():
-        return snacks
+    @classmethod
+    def getComidas(cls):
+        return cls._comidas
 
-    @staticmethod
-    def setSnacks(snacks):
-        Producto.snacks = snacks
+    @classmethod
+    def setComidas(cls, comidas):
+        cls._comidas = comidas
 
-    @staticmethod
-    def getCigarrillos():
-        return cigarrillos
+    @classmethod
+    def getSnacks(cls):
+        return cls._snacks
 
-    @staticmethod
-    def setCigarrillos(cigarrillos):
-        Producto.cigarrillos = cigarrillos
+    @classmethod
+    def setSnacks(cls, snacks):
+        cls._snacks = snacks
 
-    @staticmethod
-    def getEnergizantes():
-        return energizantes
+    @classmethod
+    def getCigarrillos(cls):
+        return cls._cigarrillos
 
-    @staticmethod
-    def setEnergizantes(energizantes):
-        Producto.energizantes = energizantes
+    @classmethod
+    def setCigarrillos(cls, cigarrillos):
+        cls._cigarrillos = cigarrillos
 
-    @staticmethod
-    def getOtrosProductos():
-        return otrosProductos
+    @classmethod
+    def getEnergizantes(cls):
+        return cls._energizantes
 
-    @staticmethod
-    def setOtrosProductos(otrosProductos):
-        Producto.otrosProductos = otrosProductos
+    @classmethod
+    def setEnergizantes(cls, energizantes):
+        cls._energizantes = energizantes
+
+    @classmethod
+    def getOtrosProductos(cls):
+        return cls._otrosProductos
+
+    @classmethod
+    def setOtrosProductos(cls, otrosProductos):
+        cls._otrosProductos = otrosProductos
 
     def getFechaVenta(self):
-        return fechaVenta
+        return self._fechaVenta
 
     def setFechaVenta(self, fechaVenta):
-        self.fechaVenta = fechaVenta
+        self._fechaVenta = fechaVenta
 
     @staticmethod
     def categorizarProducto(producto):
