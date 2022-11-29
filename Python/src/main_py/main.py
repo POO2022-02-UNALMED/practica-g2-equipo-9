@@ -193,6 +193,7 @@ def crearMenuUser():
     Procesos_Consultas.add_command(label='Realizar reserva', command=realizarReserva)
     Procesos_Consultas.add_command(label='Modificar reserva')
     Procesos_Consultas.add_command(label='Gestionar nomina')
+    Procesos_Consultas.add_command(label='Ejemplo',command=ejemplo)
     Procesos_Consultas.add_command(label='Balance', command=balance)
 
     Ayuda = Menu(menuBar)
@@ -214,11 +215,13 @@ def eventoAplicacion():
     ##crEacion de 3 divisiones en ventana
     frameUser = Frame(root, bg='white', width=800, height=550)
     frameUser.pack()
+    frameContenedor=Frame(frameUser,bg='white', width=800, height=550)
+    frameContenedor.pack()
     texto="la aplicacion UNbar\n" \
            "sirve para tomar bebidas\n"
 
 
-    labelRealizarReserva = Label(frameUser, text=texto, bg='#0B5345',font=Font(size=15, family='Arial TUR'))
+    labelRealizarReserva = Label(frameContenedor, text=texto, bg='#0B5345',font=Font(size=15, family='Arial TUR'),pady=50)
     labelRealizarReserva.config(fg='#A2D9CE')
     labelRealizarReserva.pack()
 
@@ -385,7 +388,55 @@ def balance():
 
     lblResultado.pack()
 
+def ejemplo():
+    limpiarVentana()
+    crearMenuUser()
+    ##crEacion de 3 divisiones en ventana
+    frameUser = Frame(root, bg='gray', width=800, height=550)
+    frameUser.pack()
+    frameNombre = Frame(frameUser, bg='#0B5345', width=800, height=50)  # nombre
+    frameNombre.pack_propagate(False)
+    frameNombre.pack()
+    frameDescripcion = Frame(frameUser, bg='#909497', width=800, height=100)  # descripcion
+    frameDescripcion.pack()
+    frameDescripcion.pack_propagate(False)
 
+
+    frameZonaInteraccion = Frame(frameUser, width=800, height=400, pady=20, bg='#909497')  # zona interaccion
+    frameZonaInteraccion.pack()
+    frameZonaInteraccion.pack_propagate(False)
+
+
+
+    frameFormulario = FieldFrame(frameZonaInteraccion, "titulo" , ["Mes"], "VALOR", None, [True])
+    frameFormulario.config(width=500, height=350, bg='#D0D3D4', borderwidth=5, padx=20, pady=20, relief='groove')
+    frameFormulario.pack()
+    frameFormulario.pack_propagate(False)
+    MESES = {"Enero": 1, "Febrero": 2, "Marzo": 3, "Abril": 4, "Mayo": 5, "Junio": 6, "Julio": 7, "Agosto": 8,
+             "Septiembre": 9, "Octubre": 10, "Noviembre": 11, "Diciembre": 12}
+
+    def submit():
+        frameFormulario.camposVacios()
+        mesesDisponibles = conseguir_mes()
+        mesElegido = frameFormulario.getDatos("Mes")
+        mesIndex = MESES[mesElegido] if mesElegido != "" else ""
+        # Creamos objeto validador
+        validador = Validador()
+        # VALIDACIONES:
+        validador.validarMesDisponible(mesIndex, mesesDisponibles)
+        # pasarle la funcion de precio
+        #if validador.getValidacion():
+        #    lblResultado.config(text=str(balance_ventas(mesIndex)))
+        pass
+    def borrar():
+
+        for entrada in frameFormulario.getElementos():
+            entrada.delete(0, END)
+
+
+
+    boton1=frameFormulario.createBut("Aceptar",submit,0,2)
+    boton2=frameFormulario.createBut("Borrar", borrar,1,2)
 
 
 

@@ -1,4 +1,5 @@
 from tkinter import *
+from tkinter import messagebox
 
 
 # Constructor
@@ -57,6 +58,26 @@ class FieldFrame(Frame):
     def createBut(self, txt, cmd, col, fil):
         boton = Button(self, text=txt, command=cmd)
         boton.grid(column=col, row=fil, padx=(10, 10), pady=(10, 10))
+
+    def getElementos(self):
+        return self._elementos
+
+    def camposVacios(self):
+        vacios = []
+        for j, entrada in enumerate(self._elementos):
+            if not entrada.get():
+                vacios.append(self._criterios[j])
+
+        if len(vacios) > 0:
+            cuales = ", ".join(vacios[:-1])
+            if len(vacios) > 1:
+                cuales += " y " + vacios[-1]
+                textoError = f"Los campos {cuales} estan vacios. Por favor completarlos y presionar el boton Aceptar"
+            else:
+                textoError = f"El campo {vacios[0]} esta vacio. Por favor completarlo y presionar el boton Aceptar"
+            messagebox.showerror("Faltan datos por ingresar", textoError)
+        else:
+            self.validarEntradas()
 """
 root = Tk()
 root.title('ventana prueba')
