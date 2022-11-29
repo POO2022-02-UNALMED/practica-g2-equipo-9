@@ -11,7 +11,7 @@ from tkinter import *
 
 class FieldFrame(Frame):
     def __init__(self, wind, t_C="", c_array=None, t_V="", values=None, H_Array=None):
-        super().__init__(wind)  
+        super().__init__(wind)
         self._tituloValores = t_V
         self._tituloCriterios = t_C
         self._habilitado = H_Array
@@ -62,9 +62,7 @@ root = Tk()
 root.title('ventana prueba')
 frame1 = FieldFrame(root, None, ["Nombre", "Cédula", "ID Boleta"],"Información", None, [True, True, True])
 frame1.pack()
-
-
-
+"""
 def extraerDatos():
     nombre = frame1.getDatos("Nombre")
     id = frame1.getDatos("Cédula")
@@ -73,3 +71,4 @@ boton = Button(frame1, text='extraer', command=extraerDatos)
 boton.grid()
 if __name__=='__main__':
     root.mainloop()
+"""
